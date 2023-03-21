@@ -1,0 +1,87 @@
+ \documentclass[12pt]{template/iopart}
+
+% allow loading amsmath
+\expandafter\let\csname equation*\endcsname\relax
+\expandafter\let\csname endequation*\endcsname\relax
+
+\usepackage[english]{babel}
+\usepackage{graphicx,helvet}
+\usepackage{color}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{graphicx,helvet}
+\usepackage{color}
+\usepackage[inline]{showlabels}
+\usepackage{bbm,bm}
+\usepackage{soul}
+\usepackage{amsfonts}
+\usepackage{iopams}
+\usepackage{lipsum}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{quantikz}
+
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
+\FXRegisterAuthor{cp}{acp}{\color{blue}CP}
+\FXRegisterAuthor{tb}{ttb}{\color{OliveGreen}TB}
+
+\newcommand\keywords[1]{Keywords: #1}
+
+
+
+
+
+
+
+
+\begin{document}
+\title[Title]{Title}
+
+\author{Tomás Basile$^1$ and Carlos Pineda$^2$}
+
+\address{$^1$ Facultad de Ciencias. Universidad Nacional Autónoma de México, Ciudad de México 01000, Mexico}
+\address{$^2$ Instituto de Física, Universidad Nacional Autónoma de México, Ciudad de México 01000, México}
+\ead{carlospgmat03@gmail.com}
+
+\begin{abstract}
+The abstract follows the addresses and
+should give readers concise information about the content 
+of the article and indicate the main results obtained and conclusions 
+drawn. It should be self-contained---there should be no references to 
+figures, tables, equations, bibliographic references etc.  It should be enclosed between \verb"\begin{abstract}"
+and \verb"\end{abstract}" commands.  The abstract should normally be restricted 
+to a single paragraph of around 200 words~\cite{bengtsson_zyczkowski_2017}.
+\end{abstract}
+\keywords{magnetic moment, solar neutrinos, astrophysics} \\
+\submitto{\PS}
+\maketitle
+
+\input{Cap1}
+\input{Cap2}
+\input{Cap3}
+\input{Cap4}
+\input{Cap5}
+\input{Cap6}
+
+\newpage
+\appendix
+\input{Cosas-Escritas-Antes}
+
+
+
+\textbf{Acknowledgments}
+
+Support by projects CONACyT 285754, 254515 and UNAM-PAPIIT IG100518, IG101421 is
+acknowledged.  \\
+
+
+\textbf{References}
+\bibliographystyle{unsrt.bst}
+\bibliography{Bibliography}
+
+\end{document}
