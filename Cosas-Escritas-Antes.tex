@@ -50,7 +50,7 @@ and obtain the fidelity of this implementation.
  that contains only one gate that depends on a parameter $p$.
 Furthermore, the parametrized gate is a one qubit rotation about any axis. \\
 
-\textbf{Property 1:} \textit{An $n$-qubit OPR circuit can always be transformed into the form of circuit \ref{fig: OPR general}, where $A$ and $B$ are $n$-qubit gates that don't depend on the parameter
+\textbf{Property 1:} \textit{An $n$-qubit OPR circuit can always be transformed into the form of circuit \ref{fig: OPR general-A}, where $A$ and $B$ are $n$-qubit gates that don't depend on the parameter
 and $s = s(p)$ is a function of the parameter.}\\
 
 \begin{figure}[h!]
@@ -62,7 +62,7 @@ and $s = s(p)$ is a function of the parameter.}\\
 \lstick{$q_{n-1}$} & \qw & & \gate{R_{\sigma_3}(2s(p))} & \qw & & \qw
 \end{quantikz}
 \caption{Forma general de un circuito RP.}
-\label{fig: OPR general}
+\label{fig: OPR general-A}
 \end{figure}
 
 First of all, we notice that by definition an OPR
@@ -86,7 +86,7 @@ since otherwise  swap gates can be added before and after the rotation to make i
 
 Therfore, an OPR circuit can be transformed in a way that the rotation is around $\sigma_3$ and applied on the last qubit 
 (possibly controlled by other qubits), 
-so that it has the form \ref{fig: OPR general}. $\blacksquare$ \\ \\
+so that it has the form \ref{fig: OPR general-A}. $\blacksquare$ \\ \\
 
 \textbf{Property 2:} \textit{An OPR circuit implements an operator with a matrix in the computational basis of the form:}
 \begin{eqnarray}
@@ -96,7 +96,7 @@ U = (|\vec{v}_0|, |\vec{v}_1|, |\vec{v}_2|, \cdots, |\vec{v}_{2^n-1}|),
 with $\vec{a}_j ,\vec{b}_j, \vec{c}_j$ orthogonal and $|\vec{a}_j|^2 + |\vec{b}_j|^2 + |\vec{c}_j|^2 = 1$.}\\
 
 \textbf{Proof:} Because of property 1, we know that any OPR
-circuit can be converted into the form \ref{fig: OPR general},
+circuit can be converted into the form \ref{fig: OPR general-A},
 so that we only need to consider the operator for that circuit. 
 The $j$-th column of the circuit's matrix will be the result of applying the 
 circuit to the state $|j\rangle$. 
@@ -156,7 +156,7 @@ We are interested in finding a way to construct a quantum circuit that can imple
 
 Given this interpretation of the channel, it is easy to construct a quantum circuit that implements it with the help of $2n$ ancilla qubits. The general idea is to first construct a state on the ancilla qubits and then use this state and controlled gates to  apply each Pauli operator $\sigma_{\vec{\gamma}}$ with probability $k_{\vec{\gamma}}$ on the principal qubits. 
 
-The circuit that does this is presented in figure \ref{fig: circuito}, where $|\vec{\gamma}\rangle$ is defined as the $2n$ qubits state $|\vec{\gamma} \rangle = \otimes_{i=0}^n |\gamma_i \; \text{in binary} \rangle$. For example, if $\vec{\gamma} = (0,3,1,\cdots)$, then this state is defined as $|\vec{\gamma} \rangle = |001101 \rangle$.
+The circuit that does this is presented in figure \ref{fig: circuito-A}, where $|\vec{\gamma}\rangle$ is defined as the $2n$ qubits state $|\vec{\gamma} \rangle = \otimes_{i=0}^n |\gamma_i \; \text{in binary} \rangle$. For example, if $\vec{\gamma} = (0,3,1,\cdots)$, then this state is defined as $|\vec{\gamma} \rangle = |001101 \rangle$.
 
 \begin{figure}[h!]
 \centering
@@ -176,7 +176,7 @@ The circuit that does this is presented in figure \ref{fig: circuito}, where $|\
 \lstick{$aq_{2n-1}$}& \qw & & \qw  &  \ctrl{-11} & \qw & & & & &\\
 \end{quantikz}
 \caption{Circuit for a n-qubit Pauli channel.}
-\label{fig: circuito}
+\label{fig: circuito-A}
 \end{figure}
 
 Where 
@@ -216,7 +216,7 @@ A Pauli dynamical map is defined as a continuous parametrized curve drawn inside
 \end{eqnarray}
 where $p$ is a parameter belonging to an interval $[a,b]$ and $\varepsilon_p$ is a Pauli channel for every $p$, with $\varepsilon_a$ being the identity channel.
 
-Dynamical maps can be implemented using the same method as in figure \ref{fig: circuito}, with the only difference that now the state to be created on the ancilla qubits depends on parameter $p$ and it is given by $\sum_{\vec{\gamma}} \sqrt{k_{\vec{\gamma}}(p)} |\vec{\gamma}\rangle$.  \\
+Dynamical maps can be implemented using the same method as in figure \ref{fig: circuito-A}, with the only difference that now the state to be created on the ancilla qubits depends on parameter $p$ and it is given by $\sum_{\vec{\gamma}} \sqrt{k_{\vec{\gamma}}(p)} |\vec{\gamma}\rangle$.  \\
 
 \subsubsection{OPR Circuit for dynamical maps}
 
@@ -245,7 +245,7 @@ and the circuit that can be used to implement it reduces to:
 \lstick{$aq_1$} & \gateinput{$\sqrt{k_0} |0 \rangle |0 \rangle + \sqrt{k_1} |0 \rangle |1 \rangle + \sqrt{k_2} |1 \rangle |0 \rangle + \sqrt{k_3} |1 \rangle |1 \rangle $} & \ctrl{-2} & \octrl{-2}  & \ctrl{-2} & \qw
 \end{quantikz}
 \caption{ Circuit for a one qubit Pauli channel.}
-\label{fig: canal-1qbit} 
+\label{fig: canal-1qbit-A} 
 \end{figure}
 
 This circuit can be applied for any one-qubit Pauli channel. It is well known that these channels can be represented as points in a tetrahedron with corners $(1,1,1)$, $(1,-1,-1)$, $(-1,1,-1)$ and $(-1,-1,1)$. To put the circuit to test, we sampled $250$ points inside the tetrahedron and applied quantum process tomography to each one by using Qiskit's ibmq-lima quantum computer. The fidelity of the Choi matrix obtained by quantum process tomography with respect to the theoretical Choi matrix of each channel was calculated and is plotted in the next figure. 
@@ -267,7 +267,7 @@ We take as an example the Pauli dynamical map for one qubit defined as
 \end{eqnarray}
 with $p \in [-1,1]$. \\
 
-To implement this dynamical map using the circuit presented in figure \ref{fig: one-rot}, it is necessary to create the state
+To implement this dynamical map using the circuit presented in figure \ref{fig: one-rot-A}, it is necessary to create the state
 \begin{eqnarray}
 \left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right)
 \end{eqnarray}
@@ -290,7 +290,7 @@ on the $2$ ancilla qubits. Luckily, this state can be written in the form $\vec{
 1/2
 \end{pmatrix} \sin s
 \end{eqnarray}
-with $s = \arcsin p$. According to theorem 1, the fact that the state we need to create over the ancilla qubits can be written like this implies that the dynamical map can be simulated in a quantum computer using only one parametrized rotation. The circuit used will have the same form as that in figure \ref{fig: canal-1qbit}, where the part used to create the state on the ancilla qubits will be:
+with $s = \arcsin p$. According to theorem 1, the fact that the state we need to create over the ancilla qubits can be written like this implies that the dynamical map can be simulated in a quantum computer using only one parametrized rotation. The circuit used will have the same form as that in figure \ref{fig: canal-1qbit-A}, where the part used to create the state on the ancilla qubits will be:
 \begin{figure}[h!]
 \centering
 \begin{quantikz}
@@ -481,7 +481,7 @@ e^{-it} & 0 &0 & 0 \\
 \end{pmatrix} Q^{\dagger}
 \end{eqnarray}
 The diagonal matrix between $Q$ and $Q^{\dagger}$ is simply $R_{\sigma_3} (2s)$ applied to the first qubit and without control qubits, therefore
-the OPR circuit for this operation is given by figure \ref{fig: 2x3}
+the OPR circuit for this operation is given by figure \ref{fig: 2x3-A}
 
 \begin{figure}
 \centering
@@ -490,7 +490,7 @@ the OPR circuit for this operation is given by figure \ref{fig: 2x3}
 \lstick{$q_1$} & \qw & \targX{} & \gate{R_Z(2t)} & \targX{}  & \qw & \qw\\
 \end{quantikz}
 \caption{Circuito para $\sigma_2 \oplus \sigma_3$}
-\label{fig: 2x3}
+\label{fig: 2x3-A}
 \end{figure}
 I tried out this circuit on 
 real quantum computers for values of $t$ between 
@@ -501,14 +501,3 @@ every value of $t$.\\
 \begin{itemize}
 \item
 \end{itemize}
-
-
-\end{document}
-
-
-
-
-
-
-
-

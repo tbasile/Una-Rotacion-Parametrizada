@@ -1,6 +1,18 @@
 \section{Exponential maps $e^{iHt}$}
 \begin{itemize}
 \item We will apply the results about OPR circuit to another kind of operation, those given by $U  = e^{iHt}$ where $H$ is hermitian  and time independent.
+\item \textbf{Lemma:}\textit{ The $n$-qubit operator $U^{iHt}$ can be implemented with an OPR circuit of $n$ qubits if and only if $D = \text{diag}(e^{i\lambda_0 t}, \cdots, e^{i \lambda_{2^n-1}t})$ can be implemented with an OPR circuit of $n$ qubits, where $\lambda_j$ are the eigenvalues of $H$.}
+\item \textbf{Proof:}  Es b\'asicamente usar que $H = QDQ^{-1}$ para una matriz $Q$ que no depende de $t$ y por lo tanto no agrega compuertas parametrizadas al circuito. 
 \item \textbf{Theorem:} \textit{ A n-qubit operator of the form $U = e^{iHt}$ can be implemented using an OPR circuit if and only if the eigenvalues of $H$ are $-\lambda,0,\lambda$ (for $\lambda$ a real number) and the degeneracies of $\lambda$ and $-\lambda$ are both equal to $2^j$ for some $j\in \{0,1,\cdots,n-1\}$.}
-\item \textbf{Examples.} Some examples are: Every matrix $H$ for one qubit, any $n$-qubit pauli matrix, some sums of Pauli matrices, etc.
+\item \textbf{Proof:} Estoy buscando formas de simplificar la prueba, porque es medio larguita. Pero básicamente es usar el lema y entonces preocuparnos sólo por $D$. Luego  usar el teorema de la sección 3 y notar que sólo hay tres tipos de  $\lambda$s posibles y luego notar que deben de tener esas degeneraciones.
+\item \textbf{Proof del regreso:} Aquí quiero recalcar que la prueba es constructiva, ya que consiste en mostrar cómo construir el circuito OPR que hace la operación a partir de una $H$ que cumpla la hipótesis. 
+\item \textbf{Examples.} Mencionar que por el teorema, los ejemplos son sistemas con 3 energías separadas por la misma distancia y con las degeneraciones dadas en el teorema. 
+La verdad que no se me ocurren sistemas físicos comunes que cumplan eso.
+\begin{itemize}
+\item Cualquier matriz $H$ de un qubit cumple el teorema.
+\item Cualquier matriz de $n$ qubits que sea el producto tensorial de matrices de Pauli para cada partícula (o sea algo como $\sigma_{i_1} \otimes \sigma_{i_2} \otimes \cdots \otimes \sigma_{i_n}$) cumple el teorema.
+\item Estoy viendo para cadenas de espines si hay condiciones para las que cumplan las hipótesis del teorema, pero no he encontrado aún.
+\end{itemize}
+\item Hice explícitamente el circuito de 2 qubits para $H = \sigma_3 \otimes \sigma_2$ y lo simulé en las computadoras de IBM, obteniendo una fidelidad de $0.85$.
+
 \end{itemize}
