@@ -86,7 +86,7 @@ since otherwise  swap gates can be added before and after the rotation to make i
 
 Therfore, an OPR circuit can be transformed in a way that the rotation is around $\sigma_3$ and applied on the last qubit 
 (possibly controlled by other qubits), 
-so that it has the form \ref{fig: OPR general-A}. $\blacksquare$ \\ \\
+so that it has the form \ref{fig: OPR general-A}. $\blacksquare$ \\
 
 \textbf{Property 2:} \textit{An OPR circuit implements an operator with a matrix in the computational basis of the form:}
 \begin{eqnarray}
@@ -115,7 +115,7 @@ and not to the others. Therefore, we apply the gate to the last qubit of these s
 remembering that $R_z(2s)$ acts by just adding a phase $e^{-is}$ to the $|0\rangle$ state
 and a phase $e^{is}$ to the $|1\rangle$ state, and the result is:
 \begin{eqnarray}
-& \fl e^{-is} \sum_{k \in Ctrl} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in Ctrl} B_{2k+1,j} |k\rangle |1 \rangle + \sum_{k \not\in Ctrl} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
+& e^{-is} \sum_{k \in Ctrl} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in Ctrl} B_{2k+1,j} |k\rangle |1 \rangle + \sum_{k \not\in Ctrl} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
 & \qquad := e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
 \end{eqnarray}
 where $\vec{a'} = \sum_{k \in Ctrl} B_{2k,j}|k\rangle|0\rangle \;,\; \vec{b'}_j = \sum_{k \in Ctrl} B_{2k+1,j} |k\rangle |1 \rangle \;,\; \vec{c'}_j =\sum_{k \not\in Ctrl} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right) := e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j$.
@@ -433,7 +433,7 @@ This matrix can then be multiplied by matrices that don't depend on $t$
 such that the eigenvalues are reordered and we get the matrix $D$.
 That it, we can get matrix $D$ using only one rotation that depends on $t$. 
 Then, because $U = Q^{-1} D Q$, we can add matrices $Q^{-1}$ and $Q$ to the circuit
-to obtain the complete OPR circuit of $U$. $\blacksquare$ \\ \\
+to obtain the complete OPR circuit of $U$. $\blacksquare$ \\ 
 
 \textbf{Note:} If we don't care about adding a global phase to the circuit, the eigenvalues can be translated to $-\lambda+a, a, \lambda+a$ for some $a\in \mathbb{R}$.\\
 
