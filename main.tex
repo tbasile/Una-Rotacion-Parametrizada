@@ -374,17 +374,13 @@ each Pauli operator $\sigma_{\vec{\gamma}}$ on $\rho$ with a probability $k_{\ve
 Given this interpretation of the channel, 
 it is easy to construct a quantum circuit that implements 
 it with the help of $2n$ ancilla qubits.
-The general idea is to first construct a state on the ancilla qubits
-and then use this state to control gates that 
-apply each Pauli operator $\sigma_{\vec{\gamma}}$ with probability $k_{\vec{\gamma}}$ 
-on the principal qubits. 
-
-The circuit that does this is presented in Fig~(\ref{fig: circuit-pauli}). 
-The first step in the circuit is to create the state
+The circuit that does this is presented in Fig~(\ref{fig: circuit-pauli}) and its 
+first step in the circuit is to create the state
 \begin{eqnarray}
 \label{ec: state}
-\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma} \rangle,
+\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma} \rangle
 \end{eqnarray}
+in the ancilla qubits, 
 where $b_{\vec{\gamma}}$ is in general a complex number such that 
 \begin{eqnarray}
 \label{ec: b}
@@ -413,8 +409,7 @@ where $|\gamma_i \rangle$ is the $2$ qubit state $|00\rangle, |01\rangle , |10\r
 \lstick{$aq_{2N-2}$}& \qw &  &\qw  & \ctrl{-10} & \qw & \rstick[wires=2]{$|\gamma_{n-1} \rangle$}& & & & \\
 \lstick{$aq_{2N-1}$}& \qw & & \qw  &  \ctrl{-11} & \qw & & & & &\\
 \end{quantikz}
-\caption{\textbf{\tbnote{Hay que quitar esta imagen del texto al entregar el artículo y ponerla en un archivo a parte de tipo TIFF or EPS. Hay que dejar el figure solamente con la caption y label.}} \textbf{\tbnote{Obvio éstas no serían las figuras finales, 
-he visto que hacen los circuitos de forma distinta en Plos One y no usando Quantikz.}} {\bf Circuit for an $N$-qubit Pauli channel.} Circuit to implement an $N$-qubit Pauli channel 
+\caption{\textbf{\tbnote{Hay que quitar esta imagen del texto al entregar el artículo y ponerla en un archivo a parte de tipo TIFF or EPS. Hay que dejar el figure solamente con la caption y label.}} {\bf Circuit for an $N$-qubit Pauli channel.} Circuit to implement an $N$-qubit Pauli channel 
 on the qubits $q_0, q_1, \cdots, q_{n-1}$. 
 The circuit creates the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}|\vec{\gamma}\rangle$ 
 on $2N$ ancilla qubits and then uses them to apply
@@ -429,7 +424,7 @@ probability $|b_{\vec{\gamma}}|^2 = k_{\gamma}$.
 The circuit in Fig~(\ref{fig: circuit-pauli}) uses this fact
 to apply the operations $\sigma_{\vec{\gamma}}$ over the principal qubits
 with probabilities $k_{\gamma}$ by using controlled operations. 
-In Fig~(\ref{fig: circuit-pauli}), the symbol shown in Fig~(\ref{fig: control})
+The symbol shown in Fig~(\ref{fig: control})
 indicates that the controlled gate is
 activated if these two qubits are in the state $|\gamma_i \rangle$. 
 \begin{figure}[h!]
@@ -457,7 +452,7 @@ just as we wanted.  \\
 \label{subsec: Simulation for one-qubit Pauli channels}
 For the particular case of a Pauli channel on one qubit, 
 the circuit that simulates it can be constructed as in Fig~(\ref{fig: citcuit-pauli-1}),
- which is a special case of figure \ref{fig: circuit-pauli}.
+ which is a special case of Fig(\ref{fig: circuit-pauli}).
 
 \begin{figure}[h!]
 \centering
@@ -502,19 +497,27 @@ where $p$ is a parameter in an interval $[a,b]$
 and $\mathcal{E}_p$ is a Pauli channel for every $p$, 
 with $\mathcal{E}_a$ being the identity channel.
 
-Dynamical maps can be implemented using the same method as 
+Dynamical maps can be implemented using the same circuit as 
 in Fig~(\ref{fig: circuit-pauli}), with the only difference that now the state 
 to be created on the ancilla qubits depends on parameter $p$ 
 and therefore is given by 
 \begin{eqnarray}
 \label{ec: parametrized state}
-\sum_{\vec{\gamma}} b_{\vec{\gamma}}(p) |\vec{\gamma}\rangle
+\sum_{\vec{\gamma}} b_{\vec{\gamma}}(p) |\vec{\gamma}\rangle.
 \end{eqnarray}
 
 \section*{OPR Circuits}
 \label{sec: OPR Circuits}
 \textbf{Puntos:}
 \begin{itemize}
+\item As said before, to implement a Pauli dynamical map, 
+we need to create the parametrized $2n$-qubit state 
+$\sum_{\vec{\gamma}} b_{\vec{\gamma}}(p) |\vec{\gamma}\rangle$ on the ancilla qubits.
+\item However, creating this state will in general require many rotations parametrized by $p$. 
+For example, for the case of a Pauli dynamical map on 1 qubit, 
+the parametrized state of the $2$ ancilla qubits in general requires $3$ parametrized rotations and can be constructed as follows: (poner circuito).\\
+In general, to create a parametrized state on $2n$ ancilla qubits will require
+$2n-1$ rotations parametrized by $p$.
 \item How can we reduce the amount of parametrized rotations used?
 \item \textbf{OPR Circuit:} Define an OPR circuit (a circuit with one parametrized rotation)
 \item \textbf{Theorem about OPR circuits:} \textit{An OPR circuit on $n$ qubits with parameter $p$ always has an operator of the form:}
@@ -522,15 +525,19 @@ and therefore is given by
 U = (\vec{v}_0| \vec{v}_1| \cdots| \vec{v}_{2^n-1})
 \end{eqnarray}
 \textit{where $s = s(p)$ and the column vectors are $\vec{v}_j = e^{is} \vec{a}_j + e^{-is} \vec{b}_j + \vec{c}_j$, with $\vec{a}_j, \vec{b}_j, \vec{c}_j$ orthogonal vectors and $|\vec{a}_j|^2 + |\vec{b}_j|^2 + |\vec{c}_j|^2 = 1$.}
+\item \textbf{Proof:} La prueba está dentro de las ``Cosas-Escritas-Antes'', 
+aunque se puede y debe achicar bastante.
 \end{itemize}
 
 \section*{OPR circuit for a Pauli map}
 \label{sec: OPR circuit for a Pauli map}
 \textbf{Puntos:}
 \begin{itemize}
-\item Use the last theorem to conclude which maps can be created using an OPR circuit.
-\item \textbf{Examples:} Show examples that satisfy these conditions: Bit-Flip, parabolic maps, etc. and an example that doesn't satisfy the conditions.
+\item Use the last theorem to conclude directly which maps can be created using an OPR circuit.
+\item \textbf{Examples:} Show examples that satisfy these conditions: Bit-Flip, parabolic maps, etc. 
+and an example that doesn't satisfy the conditions (ejemplo está en la tesis).
 \item \textbf{Results:} Show results of simulating those maps on a quantum computer. 
+Lo tengo para parabolic y para depolarizing.
 \end{itemize}
 
 \section*{Exponential maps $e^{iHt}$}
