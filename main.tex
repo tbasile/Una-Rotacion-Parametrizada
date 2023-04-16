@@ -186,16 +186,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section*{Introduction} % {{{
-%Lorem ipsum dolor sit~\cite{bib1} amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam Eq~(\ref{eq:schemeP}) sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id.%~\cite{bib2} Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
 
 
-
-\begin{eqnarray}
-\label{eq:schemeP}
-	\mathrm{P_Y} = \underbrace{H(Y_n) - H(Y_n|\mathbf{V}^{Y}_{n})}_{S_Y} + \underbrace{H(Y_n|\mathbf{V}^{Y}_{n})- H(Y_n|\mathbf{V}^{X,Y}_{n})}_{T_{X\rightarrow Y}},
-\end{eqnarray}
 % }}}
-\section{Circuits for Pauli Maps}  \label{sec: Circuits for Pauli Maps} % {{{
+\section{Pauli Channels}  \label{sec: Pauli Channels} % {{{
 % Intro  {{{
 \textbf{Lista de puntos:}
 \begin{itemize}
@@ -208,10 +202,14 @@ In this section \cpnote{ser coherente con las subsecciones que se tienen nota qu
 hay mencion a los quantum channels. Menos
 cuadrado, quizá pasar por chatgpt. hacerlo al final cuanod se tenga el capitulo
 por lo menos leido y aprobado en principio de mi parte.} we introduce the
-concept of Pauli channels and Pauli dynamical
-maps, as well as proposal for a quantum circuit that simulates them on systems
-of $N$ qubits.  Furthermore, we show the results of implementing the circuit on
-a quantum computer for the particular case of Pauli channels of one qubit. 
+concept of quantum channels, focusing on a specific type called Pauli channels.
+Finally, we consider Pauli dynamical maps, which
+are curves of Pauli channels parametrized by a variable.
+
+%Quitarrrr:
+Then, we propose a quantum circuit that simulates N-qubit Pauli channels
+and show the results of implementing the circuit for $N=1$ on
+a quantum computer. 
 % }}}
 \subsection*{Quantum Channels} \label{subsec: Quantum Channels} % {{{
 
@@ -220,61 +218,143 @@ a quantum computer for the particular case of Pauli channels of one qubit.
 \cpnote{Tambien creo que no es coherente tener una subseccion para esto si 
 lo qeu se quiere decir en la seccion es otra cosa.}
 
+In quantum mechanics, a closed system is represented by a state vector in a 
+Hilbert space $\mathcal{H}$. 
+The state's evolution is given by Schrodinger's
+equation and is always unitary.
+However, in real-world situations, 
+quantum systems are usually open and interact with their environment in various complicated ways. 
+For example, the system's state may become entangled with the environment,
+which can lead to loss of information of the system's state over time.
 
-Quantum channels are the most general linear operations that a 
-quantum system (which is represented by a density matrix $\rho$) 
-can undergo independently of its past~\cite{zimansbook,cirac}. 
+Instead of vectors in the Hilbert space $\mathcal{H}$,
+open systems are described by matrices $\rho$ acting on $\mathcal{H}$
+called density matrices and they include information about 
+the system's interaction with the environment.
+To be physically valid, a density matrix $\rho$
+has to satisfy the two following conditions:
+1. $\tr(\rho) =1$ and 2. $\rho$ is positive semi-definite $(\rho \geq 0)$.
+
+Given that, we can finally define quantum channels, which
+describe the time evolution of open quantum systems.
+Quantum channels are the most general linear operations
+that a quantum system (which is represented 
+by a density matrix $\rho$) can undergo independently of its
+past~\cite{zimansbook,cirac}.
 These channels are constructed based on three fundamental properties: 
 linearity, trace preservation, and complete positivity.
 
-Linearity ensures that a quantum channel $\mathcal{E}$ maps any convex
-combination of density matrices into a convex combination of their evolution.
-The trace preserving property is given by $\tr \mathcal{E}[\rho] = \tr \rho =
-1$ and guarantees that the quantum channel occurs with a probability of $1$.
-The complete positivity condition ensures that the quantum channel preserves
-positive semidefiniteness.  A linear map $\mathcal{E}$ is considered positive
-if it maps density operators to density operators ($\mathcal{E}(\rho) \geq 0$
-for all density matrices $\rho$).  If the extension of a positive map to
-include an ancilla results in another positive map, the original map is said to
-be completely positive~\cite{geometry}.  This property is required for quantum
-channels to allow for the proper evolution of potentially entangled states with
-an ancilla.
+Linearity ensures that a quantum channel $\mathcal{E}$ maps any ensemble
+of density matrices into the corresponding ensemble of their evolution.
+The trace preserving property is given by $\tr (\mathcal{E}[\rho]) = \tr (\rho) =
+1$ and guarantees that the quantum channel does not change the condition that $\tr(\rho) = 1$.
+Finally, the channel should also preserve
+the condition $\rho \geq 0$, and a map that does this is called a positive map.
+However, positivity of $\mathcal{E}$ is not enough, 
+and we actually require the more restrictive condition of complete positivity.
+Complete positivity means that
+$\mathcal{E} \otimes \mathbb{I}_n$ is positive for
+any positive integer $n$ 
+(where $\mathbb{I}_n$ is the $n\times n$ identity matrix).
+This is required to ensure that even if $\rho$ is entangled with another system,
+applying $\mathcal{E}$ to $\rho$ while doing nothing to the
+ other system still results in  a positive semidefinite state. 
 
-Jamiołkowski and Choi~\cite{choi,jamil} developed a simple algorithm to test
-for complete positivity of a quantum channel.  The algorithm exploits the
+Given a possible quantum channel $\mathcal{E}$, 
+the condition of trace preservation is straightforward to examine but complete positivity is not as simple.
+To test complete positivity of a quantum channel, 
+Jamiołkowski and Choi~\cite{choi,jamil} developed a simple algorithm.  
+The algorithm exploits the
 isomorphism between a channel $\mathcal{E}$ and the state $\mathcal{D} =
-(\text{id} \otimes \mathcal{E}) [|\Omega \rangle \langle  \Omega|]$, where
-$|\Omega\rangle$ is a maximally entangled state between the original system and
-an ancilla and “id” is the identity channel.  Remarkably, the map $\mathcal{E}$
+(\mathbb{I} \otimes \mathcal{E}) [|\Omega \rangle \langle  \Omega|]$, where
+$|\Omega\rangle = 1/\text{dim}(\mathcal{H}) \sum_{i}^{\text{dim}(\mathcal{H})} |i \rangle |i \rangle$ is a maximally entangled state between the original system and
+an ancilla.  Remarkably, the map $\mathcal{E}$
 is completely positive if and only if $\mathcal{D}$ (also known as the Choi or
 dynamical matrix of $\mathcal{E}$) is positive semidefinite.
 
 % }}}
 \subsection*{Pauli Channels} \label{subsec: Pauli Channels} % {{{
 
-To define a Pauli channel, we start by exploring the single-qubit scenario and
-then the $N$-qubit one.  First of all, the most general single-qubit density
+We have discussed the main features of quantum channels and 
+now we turn our attention to a specific 
+type of channel for $N$-qubit systems called Pauli channels.
+First we define a Pauli channel on a one-qubit system,
+whose most general single-qubit density
 matrix can be written as
 \begin{eqnarray}
 \label{ec: Density Matrix}
 \rho = \dfrac{1}{2} \sum_{\alpha=0}^{3} r_{\alpha} \sigma_{\alpha},
 \end{eqnarray}
 with $\sigma_0 = \mathbb{I}$, and $\sigma_{1,2,3}$ the usual Pauli matrices.
-Normalization requires that $r_0 = 1$ and the remaining $r_{1,2,3}$ form a
-Bloch vector \cpnote{explicar un poco mejor. Me parece que para el publico vale 
+The condition $\tr(\rho) = 1$ requires that $r_0 = 1$ while $\rho \geq 0$ 
+implies that the remaining $r_{1,2,3}$ form
+a vector $\vec{r}= (r_1,r_2,r_3)$ inside a unit sphere known as the Bloch sphere. \cpnote{explicar un poco mejor. Me parece que para el publico vale 
 la pena ser un poco mas explicito. pero no estoy muy seguro. }. 
-A Pauli channel is defined as an operation
-that applies a convex combination of Pauli matrices to the density matrix in the following way:
+A Pauli channel is defined as an operation that
+applies each Pauli matrix $\sigma_{\gamma}$ to
+the system with probabilities $k_{\gamma}$ with $\gamma = 0,1,2,3$. 
+Mathematically, the Pauli channel is written in the following way:
 \begin{eqnarray}
 \label{ec: Pauli channel 1 qbit}
 \mathcal{E}(\rho) = \sum_{\gamma=0}^3 k_{\gamma} \sigma_{\gamma} \rho \sigma_{\gamma},
-\end{eqnarray}
-where $k_{\gamma}$ are non-negative real numbers such that 
-$\sum_{\gamma} k_{\gamma} = 1$ (these conditions are needed for the channel 
-to be completely positive and trace preserving). 
+\end{eqnarray} 
+where of course the probabilities $k_{\gamma}$ of applying $\sigma_{\gamma}$
+are non-negative real numbers such that 
+$\sum_{\gamma} k_{\gamma} = 1$ (these conditions also ensure that the channel is 
+trace preserving and completely positive). 
 \cpnote{en todo hay que mejorar un poco la redaccion. Aca me gustaria que 
 se interpretara. Creo qe es mas que atenuacion de los componentes, o es solo atenuacion? 
 en todo caso ver mejor como va la cosa. }
+
+Apart from this interpretation of Pauli channels,
+we can find another one by seeing how the channel acts on the 
+density matrix of eq. (\ref{ec: Density Matrix}).
+To do it, we substitute eq. (\ref{ec: Density Matrix}) in eq. (\ref{ec: Pauli channel 1 qbit}):
+\begin{equation}
+\mathcal{E}(\rho) = \dfrac{1}{2}\sum_{\gamma,\alpha=0}^3 k_{\gamma} r_{\alpha} \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}.
+\end{equation}
+This can be simplified by using the following property of Pauli matrices:
+\begin{equation}
+\label{ec: propiedad-pauli}
+\sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A_{\alpha,\gamma} = \begin{pmatrix}
+1 & 1 & 1 & 1\\
+1 & 1 & -1 &-1 \\
+1 & -1 & 1 & -1 \\
+1 & -1 & -1 & 1
+\end{pmatrix},
+\end{equation}
+which leads to
+\begin{equation}
+\label{ec: rho-transformada}
+\mathcal{E}(\rho) = \dfrac{1}{2} \sum_{\alpha} \left(\sum_{\gamma} A_{\alpha, \gamma} k_{\gamma} \right) r_{\alpha} \sigma_{\alpha}.
+\end{equation}
+Equation \ref{ec: rho-transformada} gives us another interpretation of Pauli channels.
+Pauli channels take each component $r_{\alpha}$
+of the density matrix and multiply them
+by $\sum_{\gamma} A_{\alpha,\gamma} k_{\gamma}$, 
+that is:
+\begin{equation}
+\label{ec: multipliers}
+r_{\alpha}  \xrightarrow[\text{Channel}]{\text{Pauli}}  \tau_{\alpha} r_{\alpha} ,\;\; \tau_{\alpha} := \sum_{\gamma} A_{\alpha,\gamma} k_{\gamma}.
+\end{equation}
+Furthermore, reverting the definition of $\tau_{\alpha}$ by using that $A^{-1} = \dfrac{1}{4} A$, 
+we get that $k_{\gamma} = \dfrac{1}{4} \sum_{\gamma} A_{\gamma,\alpha} \tau_{\gamma}$.
+Then, using that $k_{\gamma} \geq 0$ and $\sum_{\gamma} k_{\gamma} = 1$,
+we get the following conditions on the multipliers:
+\begin{eqnarray}
+\label{eq: conditions-tetrahedron}
+1+\tau_i -\tau_j - \tau_k \geq 0, \\
+1+\tau_1 + \tau_2 + \tau_3 \geq 0.
+\end{eqnarray}
+These conditions imply that $(\tau_1,\tau_2,\tau_3)$
+has to be inside a tetrahedron with
+vertices $(1,1,1), (1,-1,-1),(-1,1,-1)$ and $(-1,-1,1)$. 
+Therefore, the $\tau_{1,2,3}$ are numbers between 
+$-1$ and $1$, which means that the components
+$r_{\alpha}$ of the density matrix are always 
+attenuated and possibly flipped sign.
+
+Pauli channels can be used to model noise....
 
 Having defined the one qubit case, 
 in order to present the $N-$qubit one, we 
@@ -285,40 +365,62 @@ need to introduce the so-called \textit{Pauli strings}, defined as
 \end{eqnarray}
 where $\vec{\alpha}$ denotes a multi-index $(\alpha_1, \cdots, \alpha_N)$
  and $\alpha_i \in \{0,1,2,3\}$. 
- These operators form an orthogonal basis in the space of operators acting on $N$ qubits. 
+These operators form an orthogonal basis in the space of operators acting on $N$ qubits. 
  Similarly to the single-qubit case, the density matrix $\rho$ 
 of a system of $N$ qubits can be written using Pauli strings as:
 \begin{eqnarray}
 \label{ec:  Density matrix Nqbit}
 \rho = \dfrac{1}{2^N} \sum_{\vec{\alpha}} r_{\vec{\alpha}} \sigma_{\vec{\alpha}}.
 \end{eqnarray}
-Then, we define a Pauli channel as a transformation of the density 
-matrix given by
+Then, just as before we define a Pauli channel as a transformation that applies 
+the operators $\sigma_{\vec{\gamma}}$ to $\rho$ with probabilities $k_{\vec{\gamma}}$
+and is described mathematically by:
 \begin{eqnarray}
 \label{ec: pauli channel N-qubt}
 \mathcal{E}(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}} \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
 \end{eqnarray}
 where just as before, complete positivity and trace preservation requires
-that $k_{\vec{\gamma}}$ are positive real numbers such 
+that $k_{\vec{\gamma}}$ are non-negative real numbers such 
 that $\sum_{\vec{\gamma}} k_{\vec{\gamma}}=1$.
 
+\textbf{Interpretación de multiplicadores}
+
 \cpnote{Creo qeu toca motivar, conectar con cosas conocidas y en general no ser tan seco}
+
 % }}}
-\subsection*{Circuit for a Pauli Channel} % {{{
+\subsection*{Pauli Dynamical Maps} % {{{
+\label{subsec: Pauli Dynamical Maps}
+
+A Pauli dynamical map is defined as a continuous parametrized 
+curve drawn inside the set of Pauli channels and starting at the identity channel. 
+Therefore, a Pauli dynamical map can be written as
+\begin{eqnarray}
+\label{ec: Pauli dynamical map}
+\mathcal{E}_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
+\end{eqnarray}
+where $p$ is a parameter in an interval $[a,b]$ 
+and $\mathcal{E}_p$ is a Pauli channel for every $p$, 
+with $\mathcal{E}_a$ being the identity channel.
+
+% }}}
+% }}}
+\section{Circuit for a Pauli Channel} % {{{
 \label{subsec: Circuit for a Pauli Channel}
 
 \cpnote{esto está un poco desordenado y a un ritmo creo qeu inapropiado por lo rapido}
 
 We are interested in constructing a quantum circuit that can implement an
 arbitrary Pauli channel on a system of $N$ qubits. 
-To do it, it is important to realize that a Pauli channel
- as shown in Eq~(\ref{ec: pauli channel N-qubt})  can 
-be interpreted as a transformation that applies
+To do it, we remember that a Pauli channel as in eq.~(\ref{ec: pauli channel N-qubt})
+is interpreted as a transformation that applies
 each Pauli operator $\sigma_{\vec{\gamma}}$ on $\rho$ with a probability $k_{\vec{\gamma}}$.
 
 Given this interpretation of the channel, 
 it is easy to construct a quantum circuit that implements 
 it with the help of $2n$ ancilla qubits.
+The general idea is to create a state in the ancilla qubits that can then
+be used to apply the operators $\sigma_{\vec{\gamma}}$
+to the system.
 The circuit that does this is presented in Fig~(\ref{fig: circuit-pauli}) and its 
 first step in the circuit is to create the state
 \begin{eqnarray}
@@ -348,12 +450,12 @@ where $|\gamma_i \rangle$ is the $2$ qubit state $|00\rangle, |01\rangle , |10\r
 \lstick{ } & \vdots & \vdots & \vdots & &  & & & &\\
 \lstick{$q_{n-1}$} & \qw & \qw & \qw & \gate{\sigma_{\gamma_{n-1} }} & \qw & & &\\
 \lstick{ } & & & & & &\\
-\lstick{$aq_0$} & \qw & \gate[wires=7,nwires=5]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \qw &  \ctrl{-5} & \qw & \rstick[wires=2]{$|\gamma_0 \rangle$} &  & & &\\
+\lstick{$aq_0$} & \qw & \gate[wires=7,nwires=5]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \qw &  \ctrl{-5} & \qw & \rstick[wires=7]{$|\vec{\gamma} \rangle$} &  & & &\\
 \lstick{$aq_1$} & \qw & & \qw &  \ctrl{-6} &\qw & & & & & \\
-\lstick{$aq_2$} &\qw & & \qw &  \ctrl{-7} & \qw & \rstick[wires=2]{$|\gamma_1 \rangle$} & & & &\\
+\lstick{$aq_2$} &\qw & & \qw &  \ctrl{-7} & \qw & & & & &\\
 \lstick{$aq_3$} &\qw & & \qw &  \ctrl{-8} & \qw & & & & &\\
 \vdots  &\vdots & & \vdots & &  \vdots & & & & &\\
-\lstick{$aq_{2N-2}$}& \qw &  &\qw  & \ctrl{-10} & \qw & \rstick[wires=2]{$|\gamma_{n-1} \rangle$}& & & & \\
+\lstick{$aq_{2N-2}$}& \qw &  &\qw  & \ctrl{-10} & \qw & & & & & \\
 \lstick{$aq_{2N-1}$}& \qw & & \qw  &  \ctrl{-11} & \qw & & & & &\\
 \end{quantikz}
 \caption{\textbf{\tbnote{Hay que quitar esta imagen del texto al entregar el artículo y ponerla en un archivo a parte de tipo TIFF or EPS. Hay que dejar el figure solamente con la caption y label.}} {\bf Circuit for an $N$-qubit Pauli channel.} Circuit to implement an $N$-qubit Pauli channel 
@@ -395,7 +497,7 @@ This  means that each gate $\sigma_{\vec{\gamma}}$ is applied
 on the principal qubits with a probability $k_{\vec{\gamma}}$, 
 just as we wanted.  \\
 
-\subsubsection*{Simulation for one-qubit Pauli channels} % {{{
+\subsection*{Simulation for one-qubit Pauli channels} % {{{
 \label{subsec: Simulation for one-qubit Pauli channels}
 For the particular case of a Pauli channel on one qubit, 
 the circuit that simulates it can be constructed as in Fig~(\ref{fig: citcuit-pauli-1}),
@@ -429,20 +531,7 @@ in Fig~(\ref{fig: fidelity one qubit}).
 \caption{\tbnote{Al igual que antes, hay que quitar esta figura y ponerla en un archivo a parte}. {\bf Fidelities one-qubit Pauli channel} Fidelities of one-qubit Pauli channels implemented on IBM's ibmq-lima. The channels are plotted in the tetrahedron of Pauli channels, with a color bar indicating the fidelity of each channel's implementation using the circuit for a 1-qubit Pauli channel}
 \label{fig: fidelity one qubit}
 \end{figure}
-% }}}
-\subsubsection*{Pauli Dynamical Maps} % {{{
-\label{subsec: Pauli Dynamical Maps}
 
-A Pauli dynamical map is defined as a continuous parametrized 
-curve drawn inside the set of Pauli channels and starting at the identity channel. 
-Therefore, a Pauli dynamical map can be written as
-\begin{eqnarray}
-\label{ec: Pauli dynamical map}
-\mathcal{E}_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
-\end{eqnarray}
-where $p$ is a parameter in an interval $[a,b]$ 
-and $\mathcal{E}_p$ is a Pauli channel for every $p$, 
-with $\mathcal{E}_a$ being the identity channel.
 
 Dynamical maps can be implemented using the same circuit as 
 in Fig~(\ref{fig: circuit-pauli}), with the only difference that now the state 
@@ -454,7 +543,8 @@ and therefore is given by
 \end{eqnarray}
 % }}}
 % }}}
-% }}}
+
+
 \section*{OPR Circuits} % {{{
 \label{sec: OPR Circuits}
 \textbf{Puntos:}
