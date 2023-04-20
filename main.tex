@@ -190,6 +190,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 
 % }}}
 \section{Pauli Channels}  \label{sec: Pauli Channels} % {{{
+\cpnote{Es raro qeu la seccion y una subseccion se llamen igual. Por discutir con Tomas}
 % Intro  {{{
 \textbf{Lista de puntos:}
 \begin{itemize}
@@ -209,29 +210,29 @@ are curves of Pauli channels parametrized by a variable.
 \subsection*{Quantum Channels} \label{subsec: Quantum Channels} % {{{
 
 
-\cpnote{Creo que toca iterar, pensando un poco en nivel licenciatura. ver ejemplos }
-\cpnote{Tambien creo que no es coherente tener una subseccion para esto si 
-lo qeu se quiere decir en la seccion es otra cosa.}
+% \cpnote{Creo que toca iterar, pensando un poco en nivel licenciatura. ver ejemplos }
+% \cpnote{Tambien creo que no es coherente tener una subseccion para esto si 
+% lo qeu se quiere decir en la seccion es otra cosa.}
 
-In quantum mechanics, a closed system's state is represented by a vector in a 
-Hilbert space $\mathcal{H}$. 
-The state's evolution is unitary and given by Schrodinger's equation~\cite{Rieffel}.
-However, in real-world situations, quantum systems are usually open, 
-which means that they interact with their environment~\cite{Breuer}. 
-For instance, the system's state may become entangled with the environment,
-leading to a loss of information about the system's state over time.
+In quantum mechanics, a closed system's state is represented by a vector in a
+Hilbert space $\mathcal{H}$.  The state's evolution is unitary and given by
+Schrodinger's equation~\cite{Rieffel}.  However, in real-world situations,
+quantum systems are usually open, which means that they interact with their
+environment~\cite{Breuer}.  For instance, the system's state may become
+entangled with the environment, leading to a loss of information about the
+system's state over time.
 
 To describe open systems, instead of state vectors,
 we use matrices $\rho$ that act on $\mathcal{H}$.
 These matrices are called density matrices, and they include information about the system's interaction with its environment. 
 For a density matrix $\rho$ to be physically valid, 
-it must satisfy two conditions: $\tr(\rho) = 1$ and $\rho$ is positive semi-definite,
+it must satisfy two conditions: $\tr(\rho) = 1$ and it must be positive semi-definite,
 which is denoted as $\rho \geq 0$~\cite{chuangbook}.
 
 
 Knowing this, we can now define quantum channels.
 Quantum channels are operators $\mathcal{E}$ that
-describe the evolution of open quantum systems, such that $\rho \rightarrow \mathcal{E}(\rho)$.
+can describe the evolution of open quantum systems, such that $\rho \rightarrow \mathcal{E}(\rho)$.
 Quantum channels are the most general linear operations
 that a quantum system can undergo independently of its
 past~\cite{zimansbook,cirac}.
@@ -265,12 +266,13 @@ an ancilla.  Remarkably, the map $\mathcal{E}$
 is completely positive if and only if $\mathcal{D}$ (also known as the Choi or
 dynamical matrix of $\mathcal{E}$) is positive semidefinite.
 
+\cpnote{Le hice un par de cambios pequeños pero la veo bastante bien. }
 % }}}
 \subsection*{Pauli Channels} \label{subsec: Pauli Channels} % {{{
 
 We have discussed the main features of quantum channels and 
 now we turn our attention to a specific 
-type of channel for $N$-qubit systems called Pauli channels.
+type of channels for $N$-qubit systems called Pauli channels.
 First we will define these channels for single-qubit systems,
 whose most general density matrix can be written as~\cite{chuangbook}:
 \begin{equation}
@@ -282,8 +284,9 @@ The condition $\tr(\rho) = 1$ requires that $r_0 = 1$ while $\rho \geq 0$
 implies that the remaining $r_{1,2,3}$ form
 a vector $\vec{r}= (r_1,r_2,r_3)$ inside a unit sphere known as the Bloch sphere~\cite{Marinescu}.
 That is, every possible density matrix for a one-qubit
-system is uniquely associated with a point in a unit sphere. \cpnote{explicar un poco mejor. Me parece que para el publico vale 
-la pena ser un poco mas explicito. pero no estoy muy seguro.}
+system is uniquely associated with a point in a unit sphere. 
+% \cpnote{explicar un poco mejor. Me parece que para el publico vale 
+% la pena ser un poco mas explicito. pero no estoy muy seguro.}
 
 Given a one-qubit system described by $\rho$, 
 a Pauli channel is defined as an operation that with probability $k_{\gamma}$
@@ -294,8 +297,8 @@ Mathematically, the Pauli channel is written in the following way:
 \label{eq: Pauli channel 1 qbit}
 \mathcal{E}(\rho) = \sum_{\gamma=0}^3 k_{\gamma} \sigma_{\gamma} \rho \sigma_{\gamma},
 \end{eqnarray} 
-where of course the probabilities $k_{\gamma}$ of applying $\sigma_{\gamma}$
-have to be non-negative real numbers such that 
+where the probabilities $k_{\gamma}$ of applying $\sigma_{\gamma}$
+are non-negative real numbers such that 
 $\sum_{\gamma} k_{\gamma} = 1$ (these conditions also ensure that the channel is 
 trace preserving and completely positive).
 
@@ -323,11 +326,6 @@ and it can be written as:
 \mathcal{E}(\rho) = (1-p)\rho + p \dfrac{1}{2} \mathbb{I} = \left(1 - \dfrac{3p}{4} \right) \sigma + \dfrac{p}{4} \sigma_1 \rho \sigma_1 + \dfrac{p}{4} \sigma_2 \rho \sigma_2+ \dfrac{p}{4} \sigma_3 \rho \sigma_3.
 \end{equation} 
 \end{itemize}
-
-
-\cpnote{en todo hay que mejorar un poco la redaccion. Aca me gustaria que 
-se interpretara. Creo qe es mas que atenuacion de los componentes, o es solo atenuacion? 
-en todo caso ver mejor como va la cosa. }
 
 We can also see how an arbitrary Pauli channel acts on an arbitrary  
 density matrix.
@@ -417,11 +415,11 @@ and using the property of eq. (\ref{eq: propiedad-pauli}):
 \end{align*}
 which means that applying the Pauli channel multiplies the 
 components $r_{\vec{\alpha}}$ by $\tau_{\vec{\alpha}} := \sum_{\vec{\gamma}} (A^{\otimes^N})_{\vec{\alpha},\vec{\gamma}} k_{\vec{\gamma}}$.
-\cpnote{Creo qeu toca motivar, conectar con cosas conocidas y en general no ser tan seco}
-
 % }}}
 \subsection*{Pauli Dynamical Maps} % {{{
 \label{subsec: Pauli Dynamical Maps}
+
+\cpnote{aca voy}
 
 As seen in the last section, Pauli channels and in 
 general quantum channels are discrete maps
@@ -553,8 +551,6 @@ pero estoy buscando cuál conviene más.}}w
 
 % }}}
 % }}}
-
-\newpage
 \section*{OPR Circuits} % {{{
 \label{sec: OPR Circuits}
 Dynamical maps can be implemented using the same circuit as 
