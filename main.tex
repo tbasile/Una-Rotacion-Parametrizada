@@ -451,11 +451,20 @@ with $\mathcal{E}_a$ being the identity channel.
 
 \cpnote{Acá voy}
 
-In this section we propose a quantum circuit that simulates N-qubit Pauli
-channels.  Furthermore, we show the results of implementing the circuit for
-$N=1$ on a quantum computer. 
+In this section we propose a quantum circuit that simulates $N$-qubit Pauli
+channels.  Moreover, we implement the circuit for $N=1$ on a quantum computer
+and analyze the results\cpnote{Quizá en una frase poner el resultado aca o ampliar
+tantito}.
 
-To create the circuit, we remember that a Pauli channel as the one in eq.~(\ref{eq: pauli channel N-qubit})
+\cpnote{Yo abriría este parrafo con una frase que de la idea muy general. Decir 
+algo asi como que vamos a crear un estado conque contenga a las $k$s 
+como coeficientes y leugo controlar la aplicación de los Pauli strings. Luego
+ya dar los detalles. Así incluso mas escueto de lo que pongo. Por ejemplo:
+To design the circiot that implements 13, we construct a state that incorportes
+probabilities $k$ and subsequently apply controlled operation. In particular... }
+\cpnote{No me gusta como está organizado este parrafo. Le puedes dar una iterada?}
+To design the circuit, we remember that a Pauli channel as the one in
+eq.~(\ref{eq: pauli channel N-qubit})
 applies each Pauli operator $\sigma_{\vec{\gamma}}$ on $\rho$ with a probability $k_{\vec{\gamma}}$.
 Given this, it is easy to construct a quantum circuit that implements 
 a Pauli channel with the help of $2N$ ancilla qubits,
@@ -479,18 +488,19 @@ The $2N$-qubit state $|\vec{\gamma}\rangle$  is defined by $|\gamma_1 \rangle \c
 
 \begin{figure}[h!]
 \centering
-\begin{quantikz}
-\lstick{$q:\; |0\rangle^{\otimes N}$} & \qw & \gate{\sigma_{\vec{\gamma}}} \gategroup[wires=2,steps
-=1,style={dashed, inner sep=4pt}]{Repeat for all $\vec{\gamma}$}
-\gategroup[wires=2,steps
-=1,style={dashed, inner sep=4pt}, label style = {label position = below, yshift = 0.15cm}]
-{$|\vec{\gamma}\rangle$} & \qw \\
-\lstick{$\tilde{q}:\; |0\rangle^{\otimes 2N}$} & \gate[wires=1]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \ctrl{-1} 
-% \gategroup[wires=1,steps
-%=1,style={color=white, inner sep=0pt}, label style= {label position=below}]{$|\vec{\gamma}\rangle$} 
-& \qw 
-\end{quantikz}
-\caption{\textbf{\tbnote{Hay que quitar esta imagen del texto al entregar el artículo y ponerla en un archivo a parte de tipo TIFF or EPS. Hay que dejar el figure solamente con la caption y label.}} {\bf Circuit for an $N$-qubit Pauli channel on $N$ qubits.}
+% \begin{quantikz}
+% \lstick{$q:\; |0\rangle^{\otimes N}$} & \qw & \gate{\sigma_{\vec{\gamma} }} \gategroup[wires=2,steps
+% =1,style={dashed, inner sep=4pt}]{Repeat for all $\vec{\gamma}$}
+% \gategroup[wires=2,steps
+% =1,style={dashed, inner sep=4pt}, label style = {label position = below, yshift = 0.15cm}]
+% {$|\vec{\gamma}\rangle$} & \qw \\
+% \lstick{$\tilde{q}:\; |0\rangle^{\otimes 2N}$} & \gate[wires=1]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \ctrl{-1} 
+% % \gategroup[wires=1,steps
+% %=1,style={color=white, inner sep=0pt}, label style= {label position=below}]{$|\vec{\gamma}\rangle$} 
+% & \qw 
+% \end{quantikz}
+\includegraphics{images/circuito_general.pdf}
+\caption{\cpnote{Revisa el archivo images/circuito\_general.pdf y el makefile correspondiente} {\bf Circuit for an $N$-qubit Pauli channel on $N$ qubits.}
 The circuit creates the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}|\vec{\gamma}\rangle$ 
 on the $2N$ ancilla qubits denoted by $\tilde{q}$. 
 Then, for every vector $\vec{\gamma}$, it applies the operator $\sigma_{\vec{\gamma}}$ 
@@ -498,25 +508,35 @@ if the ancilla qubits are in the state $\vec{\gamma}$.}
 \label{fig: circuit-pauli}
 \end{figure}
 
+\cpnote{La primera frase es cierta, pero no le veo el sentido acá. Trata de reformular el parrafo 
+de nuevo. Croe que el ``This means'' definitivamente no va y es el que le da un sentido ``raro''. 
+Itera (quizá solo quitando esas dos palabras)}
 This means that when measured in the computational basis, the state given in eq.~(\ref{eq: state})
 collapses to $|\vec{\gamma}\rangle$ with a 
-probability $|b_{\vec{\gamma}}|^2 = k_{\gamma}$. 
+probability $|b_{\vec{\gamma}}|^2 = k_{\vec\gamma}$. 
 The circuit in fig.~(\ref{fig: circuit-pauli}) uses this fact
 to operate $\sigma_{\vec{\gamma}}$ on the principal qubits
-with a probability $k_{\gamma}$ by using controlled operations 
+with a probability $k_{\vec\gamma}$ by using controlled operations 
 that apply $\sigma_{\vec{\gamma}}$ to the principal qubits
 only if the ancilla qubits are in the state $|\vec{\gamma}\rangle$.
 Therefore, the circuit from fig.~(\ref{fig: circuit-pauli}) 
 applies each operation $\sigma_{\vec{\gamma}}$ to the principal qubits 
 with a probability $k_{\vec{\gamma}}$, 
-just as a Pauli channel is supposed to do.  \\
+just as a Pauli channel is supposed to do.  
+\cpnote{Del circuito, parece ue las fases de las bs gammas no omportan mucho (o nada). 
+Esa libertad la hemos considerado? De alguna manera colapsan curvas de las que
+hemos visto?}
 
 \subsection{Simulation for one-qubit Pauli channels} % {{{
 \label{subsec: Simulation for one-qubit Pauli channels}
-For the particular case of a Pauli channel on one qubit, 
-the circuit that simulates it can be constructed as in fig. (\ref{fig: citcuit-pauli-1}),
- which is a special case of fig. (\ref{fig: circuit-pauli})
- but with all qubits explicitly shown.
+\cpnote{Es raro tener una sola subseccion. De perdida dos, o ninguna. Charlemso a ver como 
+reorganizar las secciones (creo que el flujo si va bien hasta ahora)}
+
+
+For the particular case of a Pauli channel on one qubit, the circuit that
+simulates it can be constructed as in fig.~\ref{fig: citcuit-pauli-1},
+ which is a special case of fig. \ref{fig: circuit-pauli}
+ but with all qubits \cpnote{y compuertas , etc digamos que details} explicitly shown.
 
 \begin{figure}[h!]
 \centering
@@ -525,21 +545,30 @@ the circuit that simulates it can be constructed as in fig. (\ref{fig: citcuit-p
 \lstick{$\tilde{q}_0$} & \gate[wires=2][3cm]{\quad\quad \text{Create the two qubits state}\quad\quad} & \octrl{-1} & \ctrl{-1} & \ctrl{-1} & \qw \\
 \lstick{$\tilde{q}_1$} & \gateinput{$\;\;\;\;\;b_0 |0 \rangle |0 \rangle + b_1 |0 \rangle |1 \rangle + b_2 |1 \rangle |0 \rangle + b_3 |1 \rangle |1 \rangle $} & \ctrl{-2} & \octrl{-2}  & \ctrl{-2} & \qw
 \end{quantikz}
-\caption{\tbnote{Al igual que antes, hay que adaptar esta figura y quitarla antes de entregar}. {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel, which is a particular case of Fig~(\ref{fig: circuit-pauli}).}
+\caption{\cpnote{si quieres, intenta hacer la figura tu solo basado en el lo quehabía hecho. 
+Otra cosa quizá para discutir. La creacion del estado especial de dos qubits no esta
+aca explicita. Eso creo que si lo podemos hacer en general, o no? Como sería eso? Lo discutimos
+a ver si lo pones?
+} {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel, which is a particular case of Fig~(\ref{fig: circuit-pauli}).}
 \label{fig: citcuit-pauli-1} 
 \end{figure}
 Taking advantage of the quantum computers that IBM has available~\cite{Qiskit},
 we sampled $249$ one-qubit Pauli channels and simulated them using the 
 ibmq-lima quantum computer. 
-For each of these channels, we used quantum process tomography~\cite{Qiskit, Chuang:1996} to obtain the
-Choi matrix corresponding to the implementation of the circuit $\mathcal{C}_{I}$.
+For each of these channels, we used quantum process tomography~\cite{Qiskit,
+Chuang:1996} to obtain the Choi matrix corresponding to the implementation of
+the circuit $\mathcal{C}_{I}$ .
 Then, we compared this Choi matrix with the theoretical
-Choi matrix $\mathcal{C}_T$ of the channel we wanted to implement.
+Choi matrix $\mathcal{C}_T$ of the channel we wanted to implement\cpnote{Quizá
+referirnos mejor al canal? Lo discutimos}.
 
-To make this comparison, we used the diamond norm~\cite{Aharonov},
-which allows us to discriminate between quantum channels.
+To perform this comparison, we used the diamond norm~\cite{Aharonov},
+which allows us to discriminate \cpnote{creo qeu todas lasnormas nos
+permiten discriminar entre canales. itera} between quantum channels.
 Suppose an agent is given one of the channels $\mathcal{C}_I$, $\mathcal{C}_T$
-with probability $1/2$ for each,
+with probability $1/2$ for each \cpnote{que pasa para una probabilidad $p$?
+Otra cosa, los canales no se caracterizan por lo general po rla matriz 
+de choi, tonces por aca quizá hay problemas. Discutamos notacion.},
 and tries to guess which channel they received
 by passing through it a state $\rho$ and measuring the result.
 Then, the maximal probability of success (out of all possible states $\rho$) that
@@ -548,14 +577,20 @@ the agent guesses correctly is~\cite{Benenti}:
 \label{eq: probability-success}
 p_{succ} = \dfrac{1}{2}+ \dfrac{1}{2} ||\mathcal{C}_I - \mathcal{C}_T ||_{\diamond},
 \end{equation}
-where $|| \cdot ||_{\diamond}$ is the diamond norm.
-Notice that $p_{succ}=1/2$ means that the channels
-are the same, while $p_{succ}=1$
-indicates that they are perfectly distinguishable.
+where $|| \cdot ||_{\diamond}$ is the diamond norm.  Notice that $p_{succ}=1/2$
+means that the channels are the same \cpnote{qioza una frase explicando porque
+esto es razonable}, while $p_{succ}=1$ indicates that they are perfectly
+distinguishable \cpnote{hummm ejemplo al menos para nosotros.}.
 
 Finally, using the representation of Pauli channels in a tetrahedron as
 in eq.~(\ref{eq: conditions-tetrahedron}),
-we show in fig.~(\ref{fig: fidelity one qubit}) the maximal probabilities of success defined by eq. (\ref{eq: probability-success}) for the channels analyzed.
+we show in fig.~(\ref{fig: fidelity one qubit}) the maximal probabilities of
+success defined by eq. (\ref{eq: probability-success}) for the channels
+analyzed. \cpnote{Falta analisis de los resultados. }
+
+\cpnote{Mejorar la figura, quizá dejando la tridimensional y ademas poniendo unos 6 cortes. Probar
+con diferentes colores.}
+
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.45\textwidth]{probabilities-points.png}\\
@@ -564,7 +599,6 @@ we show in fig.~(\ref{fig: fidelity one qubit}) the maximal probabilities of suc
 \end{figure}
 
 
-\newpage
 % }}}
 % }}}
 \section{OPR Circuits} % {{{
