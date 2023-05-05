@@ -7,4 +7,3 @@
 	mv $(basename $<)-crop.pdf $(basename $<).pdf
 # 	cp $(basename $<).pdf /tmp/
 # 	killall -1 mupdf
-

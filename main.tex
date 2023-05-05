@@ -6,6 +6,7 @@
 
 % textcomp package and marvosym package for additional characters
 \usepackage{textcomp,marvosym}
+\usepackage{subcaption}
 
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
@@ -206,7 +207,7 @@ los titulo tambien. Platicar con Tomas a ver a que llegamos. }
 In this section \cpnote{ser coherente con las subsecciones que se tienen nota que no 
 hay mencion a los quantum channels. Menos
 cuadrado, quizá pasar por chatgpt. hacerlo al final cuanod se tenga el capitulo
-por lo menos leido y aprobado en principio de mi parte.} we introduce the
+por lo menos leido y aprobado en principio de mi parte.} \tbnote{Ya} we introduce the
 concept of quantum channels, focusing on a specific type called Pauli channels.
 Furthermore, we define Pauli dynamical maps, which
 are curves of Pauli channels parametrized by a variable.
@@ -447,14 +448,22 @@ with $\mathcal{E}_a$ being the identity channel.
 % }}}
 % }}}
 \section{Circuit for a Pauli Channel} % {{{
-\label{subsec: Circuit for a Pauli Channel}
-
+\label{sec: Circuit for a Pauli Channel}
 \cpnote{Acá voy}
 
 In this section we propose a quantum circuit that simulates $N$-qubit Pauli
 channels.  Moreover, we implement the circuit for $N=1$ on a quantum computer
-and analyze the results\cpnote{Quizá en una frase poner el resultado aca o ampliar
-tantito}.
+and analyze the results using the diamond norm.
+\cpnote{Quizá en una frase poner el resultado aca o ampliar
+tantito} \tbnote{Va, agregué lo siguiente: 
+We conclude that the circuit performs optimally for channels  in proximity to the
+completely depolarizing channel but
+it is deficient close to unitary channels.}
+
+\subsection{Description of the Circuit for a Pauli Channel} %{{{
+\label{subsec: Description of the circuit}
+
+
 
 \cpnote{Yo abriría este parrafo con una frase que de la idea muy general. Decir 
 algo asi como que vamos a crear un estado conque contenga a las $k$s 
@@ -463,6 +472,9 @@ ya dar los detalles. Así incluso mas escueto de lo que pongo. Por ejemplo:
 To design the circiot that implements 13, we construct a state that incorportes
 probabilities $k$ and subsequently apply controlled operation. In particular... }
 \cpnote{No me gusta como está organizado este parrafo. Le puedes dar una iterada?}
+\tbnote{Propongo el párrafo en naranja para sustituirlo}
+
+
 To design the circuit, we remember that a Pauli channel as the one in
 eq.~(\ref{eq: pauli channel N-qubit})
 applies each Pauli operator $\sigma_{\vec{\gamma}}$ on $\rho$ with a probability $k_{\vec{\gamma}}$.
@@ -478,6 +490,20 @@ in the ancilla qubits,
 where $b_{\vec{\gamma}}$ are numbers such that $
 |b_{\vec{\gamma}}|^2 = k_{\vec{\gamma}}$.
 The $2N$-qubit state $|\vec{\gamma}\rangle$  is defined by $|\gamma_1 \rangle \cdots |\gamma_N\rangle$.
+
+{\color{orange} Cambiar por:  To design the circuit that implements \ref{eq: pauli channel N-qubit}, we construct a state that incorportes
+probabilities $k_{\gamma}$ on ancilla qubits and subsequently apply controlled 
+Pauli operations on the principal qubits.
+The circuit that does this is presented in fig. (\ref{fig: circuit-pauli})
+and works by creating the state
+\begin{eqnarray}
+\label{eq: state}
+\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma} \rangle
+\end{eqnarray}
+on the ancilla qubits, where $b_{\vec{\gamma}}$ are numbers such that $
+|b_{\vec{\gamma}}|^2 = k_{\vec{\gamma}}$ and
+the $2N$-qubit state $|\vec{\gamma}\rangle$ is defined by $|\gamma_1\rangle \cdots |\gamma_N\rangle$.
+}
 
 %Moreover $|\vec{\gamma}\rangle$ is defined as a $2n$ qubit state given by
 %\begin{eqnarray}
@@ -500,18 +526,16 @@ The $2N$-qubit state $|\vec{\gamma}\rangle$  is defined by $|\gamma_1 \rangle \c
 % & \qw 
 % \end{quantikz}
 \includegraphics{images/circuito_general.pdf}
-\caption{\cpnote{Revisa el archivo images/circuito\_general.pdf y el makefile correspondiente} {\bf Circuit for an $N$-qubit Pauli channel on $N$ qubits.}
+\caption{\cpnote{Revisa el archivo images/circuito\_general.pdf y el makefile correspondiente} \tbnote{Oh, ya veo, gracias!.} {\bf Circuit for an $N$-qubit Pauli channel on $N$ qubits.}
 The circuit creates the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}|\vec{\gamma}\rangle$ 
-on the $2N$ ancilla qubits denoted by $\tilde{q}$. 
-Then, for every vector $\vec{\gamma}$, it applies the operator $\sigma_{\vec{\gamma}}$ 
-if the ancilla qubits are in the state $\vec{\gamma}$.}
+on the $2N$ ancilla qubits denoted by $\tilde{q}$. }
 \label{fig: circuit-pauli}
 \end{figure}
 
 \cpnote{La primera frase es cierta, pero no le veo el sentido acá. Trata de reformular el parrafo 
 de nuevo. Croe que el ``This means'' definitivamente no va y es el que le da un sentido ``raro''. 
-Itera (quizá solo quitando esas dos palabras)}
-This means that when measured in the computational basis, the state given in eq.~(\ref{eq: state})
+Itera (quizá solo quitando esas dos palabras)} \tbnote{Concuerdo, quité eso.}
+When measured in the computational basis, the state given in eq.~(\ref{eq: state})
 collapses to $|\vec{\gamma}\rangle$ with a 
 probability $|b_{\vec{\gamma}}|^2 = k_{\vec\gamma}$. 
 The circuit in fig.~(\ref{fig: circuit-pauli}) uses this fact
@@ -525,68 +549,100 @@ with a probability $k_{\vec{\gamma}}$,
 just as a Pauli channel is supposed to do.  
 \cpnote{Del circuito, parece ue las fases de las bs gammas no omportan mucho (o nada). 
 Esa libertad la hemos considerado? De alguna manera colapsan curvas de las que
-hemos visto?}
+hemos visto?} \tbnote{Sí, es una libertad que se tiene y he considerado y significa que hay muchas elecciones de $b_{\gamma}$ para un mismo canal.
+Es una de las varias cosas que complicaba determinar uno a uno qué canales se pueden hacer.}
 
+
+%}}}
 \subsection{Simulation for one-qubit Pauli channels} % {{{
 \label{subsec: Simulation for one-qubit Pauli channels}
 \cpnote{Es raro tener una sola subseccion. De perdida dos, o ninguna. Charlemso a ver como 
-reorganizar las secciones (creo que el flujo si va bien hasta ahora)}
+reorganizar las secciones (creo que el flujo si va bien hasta ahora)} \tbnote{Va. Me pareció ponerle su propia subsección a la parte anterior porque creo que esto y lo anterior sí debe ir separado, así que mejor dos subsecciones.}
 
 
 For the particular case of a Pauli channel on one qubit, the circuit that
 simulates it can be constructed as in fig.~\ref{fig: citcuit-pauli-1},
  which is a special case of fig. \ref{fig: circuit-pauli}
- but with all qubits \cpnote{y compuertas , etc digamos que details} explicitly shown.
+ but with all details \cpnote{y compuertas , etc digamos que details}\tbnote{Va, listo} explicitly shown.
 
 \begin{figure}[h!]
 \centering
-\begin{quantikz}
-\lstick{$q_0$} & \qw & \gate{\sigma_1} & \gate{\sigma_2} & \gate{\sigma_3} & \qw \\
-\lstick{$\tilde{q}_0$} & \gate[wires=2][3cm]{\quad\quad \text{Create the two qubits state}\quad\quad} & \octrl{-1} & \ctrl{-1} & \ctrl{-1} & \qw \\
-\lstick{$\tilde{q}_1$} & \gateinput{$\;\;\;\;\;b_0 |0 \rangle |0 \rangle + b_1 |0 \rangle |1 \rangle + b_2 |1 \rangle |0 \rangle + b_3 |1 \rangle |1 \rangle $} & \ctrl{-2} & \octrl{-2}  & \ctrl{-2} & \qw
-\end{quantikz}
-\caption{\cpnote{si quieres, intenta hacer la figura tu solo basado en el lo quehabía hecho. 
-Otra cosa quizá para discutir. La creacion del estado especial de dos qubits no esta
+\includegraphics{images/circuito_unqubit.pdf}
+\caption{\cpnote{si quieres, intenta hacer la figura tu solo basado en el lo quehabía hecho.} \tbnote{Va, lo hice así, espero haberlo hecho bien.} \cpnote{ 
+Otra cosa quizá para discutir.  La creacion del estado especial de dos qubits no esta
 aca explicita. Eso creo que si lo podemos hacer en general, o no? Como sería eso? Lo discutimos
-a ver si lo pones?
-} {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel, which is a particular case of Fig~(\ref{fig: circuit-pauli}).}
+a ver si lo pones?} \tbnote{Sí. En la figura que está ahora lo puse (antes sólo había un bloque que
+ decía que se crea el estado $|b\rangle$ sobre los qubits de ancilla).
+Ahora que lo pienso, sí lo prefiero así con la creación explícita y creo que mejora a la discusión después,
+porque muestra que en general se necesitan tres ángulos y es lo que luego buscamos 
+reducir a sólo uno}
+ {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel, which is a particular case of Fig~(\ref{fig: circuit-pauli}).
+Here we have two ancilla qubits, and the state 
+$b_{00} |00\rangle + b_{01} |01\rangle + b_{10} |10\rangle + b_{11}|11\rangle$ 
+is created on them with the help of three rotations of angles $\theta_0 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) - \arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$, 
+$ \theta_1 = 2 \arccos(\sqrt{k_{00} + k_{01}})$ and
+$ \theta_2 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) + \arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$. }
 \label{fig: citcuit-pauli-1} 
 \end{figure}
 Taking advantage of the quantum computers that IBM has available~\cite{Qiskit},
 we sampled $249$ one-qubit Pauli channels and simulated them using the 
 ibmq-lima quantum computer. 
 For each of these channels, we used quantum process tomography~\cite{Qiskit,
-Chuang:1996} to obtain the Choi matrix corresponding to the implementation of
-the circuit $\mathcal{C}_{I}$ .
-Then, we compared this Choi matrix with the theoretical
-Choi matrix $\mathcal{C}_T$ of the channel we wanted to implement\cpnote{Quizá
-referirnos mejor al canal? Lo discutimos}.
+Chuang:1996} to obtain the {\color{red} Choi matrix} {\color{orange} operator $\xi_I$}  corresponding to the implementation of
+the circuit {\color{red} $\mathcal{C}_{I}$} .
+Then, we compared this {\color{red} Choi matrix} {\color{orange} operator} with the theoretical
+{\color{red} Choi matrix $\mathcal{C}_T$} {\color{orange} operator $\xi_T$} 
+of the channel we wanted to implement.
+\cpnote{Quizá referirnos mejor al canal? Lo discutimos.} 
+\tbnote{Ah sí, mejor. Cambié lo que puse en rojo por lo que está en naranja.}
 
-To perform this comparison, we used the diamond norm~\cite{Aharonov},
-which allows us to discriminate \cpnote{creo qeu todas lasnormas nos
-permiten discriminar entre canales. itera} between quantum channels.
-Suppose an agent is given one of the channels $\mathcal{C}_I$, $\mathcal{C}_T$
-with probability $1/2$ for each \cpnote{que pasa para una probabilidad $p$?
-Otra cosa, los canales no se caracterizan por lo general po rla matriz 
-de choi, tonces por aca quizá hay problemas. Discutamos notacion.},
+To perform this comparison, we used the diamond norm~\cite{Aharonov,Wilde},
+which gives us a method of discriminating \cpnote{creo qeu todas lasnormas nos
+permiten discriminar entre canales. itera} \tbnote{Lo cambié un poco para que no se entienda que diamond es la única que lo hace} between quantum channels.
+Suppose an agent is given one of the channels $\xi_I$, $\xi_T$
+with probability $1/2$ for each \cpnote{que pasa para una probabilidad $p$?}
+\tbnote{Hay una expresión similar pero que depende de $p$. Lo pongo con $p$ en general?} 
+\cpnote{Otra cosa, los canales no se caracterizan por lo general po rla matriz 
+de choi, tonces por aca quizá hay problemas. Discutamos notacion.} \tbnote{Sip, lo cambié},
 and tries to guess which channel they received
 by passing through it a state $\rho$ and measuring the result.
 Then, the maximal probability of success (out of all possible states $\rho$) that
 the agent guesses correctly is~\cite{Benenti}:
 \begin{equation}
 \label{eq: probability-success}
-p_{succ} = \dfrac{1}{2}+ \dfrac{1}{2} ||\mathcal{C}_I - \mathcal{C}_T ||_{\diamond},
+p_{succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
 \end{equation}
 where $|| \cdot ||_{\diamond}$ is the diamond norm.  Notice that $p_{succ}=1/2$
 means that the channels are the same \cpnote{qioza una frase explicando porque
-esto es razonable}, while $p_{succ}=1$ indicates that they are perfectly
-distinguishable \cpnote{hummm ejemplo al menos para nosotros.}.
+esto es razonable}
+\tbnote{Cambiar la oración pasada por:} {\color{orange} Notice that if the channels are the same, then $p_{succ}=1/2$. 
+This is expected because in this situation the agent
+has no way of distinguishing the channels and has no choice but to completely
+guess, which results in a probability of success of $1/2$.}
+On the other hand, $p_{succ}=1$ indicates that the channels are perfectly
+distinguishable \cpnote{hummm ejemplo al menos para nosotros.} 
+\tbnote{Un ejemplo que comprobé es considerar el canal que aplica $\sigma_x$ y 
+el que aplica $\sigma_z$ y tienen $p_{succ}=1$.
+De hecho, al tomar dos canales que consistan en aplicar $\sigma_i$ y $\sigma_j$ 
+(para $i\neq j$), se cumple esto.
+También quería ejemplos no unitarios, pero no encontré.}
 
 Finally, using the representation of Pauli channels in a tetrahedron as
 in eq.~(\ref{eq: conditions-tetrahedron}),
 we show in fig.~(\ref{fig: fidelity one qubit}) the maximal probabilities of
 success defined by eq. (\ref{eq: probability-success}) for the channels
-analyzed. \cpnote{Falta analisis de los resultados. }
+analyzed. \cpnote{Falta analisis de los resultados. } 
+\tbnote{Agregar: } {\color{orange} We can see that channels close to the 
+completely depolarizing
+channel (that is close to the center of the tetrahedron)
+have a low $p_{succ}$, while those 
+close to unitary channels have much higher $p_{succ}$.
+This means that channels closer to the 
+completely depolarizing channel are simulated better on the quantum computers.
+This is reasonable because quantum computers are prone to errors
+that depolarize qubits, which isn't very problematic
+when trying to simulate depolarization but it is 
+when simulating unitary processes.}
 
 \cpnote{Mejorar la figura, quizá dejando la tridimensional y ademas poniendo unos 6 cortes. Probar
 con diferentes colores.
@@ -599,6 +655,51 @@ con diferentes colores.
 \label{fig: fidelity one qubit}
 \end{figure}
 
+\newpage
+\tbnote{Algunas paletas de colores diferentes:}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.32\columnwidth]{images/tetra-col1.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col2.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col3.png} \\[1ex]
+\includegraphics[width=.32\columnwidth]{images/tetra-col4.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col5.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col6.png}\\[1ex]
+\includegraphics[width=.32\columnwidth]{images/tetra-col7.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col8.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col9.png}\\[1ex]
+\includegraphics[width=.32\columnwidth]{images/tetra-col10.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col11.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col12.png}\\[1ex]
+\includegraphics[width=.32\columnwidth]{images/tetra-col13.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col14.png}
+\includegraphics[width=.32\columnwidth]{images/tetra-col16.png}\\[1ex]
+\caption{Algunos colores posibles }
+\end{figure}
+
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{.9\textwidth}
+\centering
+\includegraphics[width=.30\columnwidth]{images/corte1.png}
+\includegraphics[width=.30\columnwidth]{images/corte2.png}
+\includegraphics[width=.30\columnwidth]{images/corte3.png} \\[1ex]
+\includegraphics[width=.30\columnwidth]{images/corte4.png}
+\includegraphics[width=.30\columnwidth]{images/corte5.png}
+\end{subfigure}%
+\begin{subfigure}{0.1\textwidth}
+\includegraphics[width=.8\columnwidth]{images/col.png}\\[1ex]
+\end{subfigure}
+\caption{\tbnote{Aquí hay algunos cortes de la figura anterior.
+De qué forma lo agrego a la figura anterior?}}
+\end{figure}
+
+
+\newpage
 
 % }}}
 % }}}

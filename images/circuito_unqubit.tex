@@ -58,15 +58,9 @@
 % \end{tikzpicture}
 
 \begin{quantikz}
-\lstick{$q:\; |0\rangle^{\otimes N}$} & \qw & \gate{\sigma_{\vec{\gamma} }} \gategroup[wires=2,steps
-=1,style={dashed, inner sep=4pt}]{Repeat for all $\vec{\gamma}$}
-\gategroup[wires=2,steps
-=1,style={dashed, inner sep=4pt}, label style = {label position = below, yshift = 0.15cm}]
-{$|\vec{\gamma}\rangle$} & \qw \\
-\lstick{$\tilde{q}:\; |0\rangle^{\otimes 2N}$} & \gate[wires=1]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \ctrl{-1} 
-% \gategroup[wires=1,steps
-%=1,style={color=white, inner sep=0pt}, label style= {label position=below}]{$|\vec{\gamma}\rangle$} 
-& \qw 
+\lstick{$q_0$} & \qw & \qw & \qw & \qw & \targ{} & \gate{\sigma_Y} & \control{} & \qw  \\
+\lstick{$\tilde{q}_0$} & \gate{R_{\sigma_Y}(\theta_1)} & \ctrl{1} & \qw & \qw & \octrl{-1} & \ctrl{-1} & \ctrl{-1} & \qw \\
+\lstick{$\tilde{q}_1$} & \gate{R_{\sigma_Y}(\theta_0)} & \control{} & \gate{R_{\sigma_Y}(\theta_2)} & \qw  & \ctrl{-2} & \octrl{-2}  & \ctrl{-2} & \qw
 \end{quantikz}
 
 \end{document}
