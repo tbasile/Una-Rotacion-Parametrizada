@@ -1,0 +1,70 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage[]{xcolor}
+% % \usetikzlibrary{positioning}
+% \usetikzlibrary{arrows,backgrounds}
+% 
+% \usepackage{amsmath, amsthm, amssymb}
+% \input{commondefinitions}
+% 	
+% 
+% 
+% \begin{document}
+% \pagestyle{empty}
+% %\providecommand{\openone}{\leavevmode\hbox{\small1\kern-3.8pt\normalsize1}}
+% 
+% % \documentclass[12pt]{article}
+% % \usepackage{psfrag}
+% \usepackage{tikz}
+% % \usetikzlibrary{positioning}
+% % \usetikzlibrary{arrows,backgrounds}
+ \usetikzlibrary{calc}
+\usepackage{bbold}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{quantikz}
+
+
+\usepackage{amsmath, amsthm, amssymb}
+\colorlet{coscolor}{blue}
+
+\newcommand{\red}{\color{red}}
+\newcommand{\blue}{\color{blue}}
+%Colors
+
+\definecolor{max}{rgb}{1,0.54,0.1}
+\definecolor{medium}{rgb}{1,0.8,0.6}
+\definecolor{min}{rgb}{1,0.9,0.8}
+\begin{document}
+\pagestyle{empty}
+%\begin{tikzpicture}
+%\node at (0,0) {\includegraphics[scale=0.2]{chain_cg_diagram.png}};
+%\node at (0,0.3) {\tiny $2 k$};
+%\node at (-0.5,-1.2) {\tiny $2 k-1$};
+%\node at (0,0.3) {\tiny $2 k$};
+%\node at (0.5,-1.2) {\tiny $2 k+1$};
+%\end{tikzpicture}
+% \begin{tikzpicture}
+% \node at (0,0) {\includegraphics[scale=0.2]{chain_cg_diagram_aniso.png}};
+% \node at (-2.37,-0.3) {\tiny $2 k$};
+% \node at (-0.3,-0.35) {\tiny $2 k+2$};
+% \node at (-3.1,-1.65) {\tiny $2 k-1$};
+% \node at (-1,-1.65) {\tiny $2 k+1$};
+% \node at (-2.65,-1.1) {\rotatebox{57}{ \tiny $p_{2k-1}$}};
+% \node at (-1.85,-1.05) {\rotatebox{-31}{ \tiny $p_{2k}$}};
+% \node at (-4,1) {a)};
+% \node at (-4,-0.3) {b)};
+% \end{tikzpicture}
+
+\begin{quantikz}
+\lstick{$q_0$} & \qw & \gate[wires = 4,nwires=3]{B} & \ctrl{3} & \qw & \gate[wires=4,nwires=3]{A} & \qw \\
+\lstick{$q_1$} & \qw &  & \ctrl{2} & \qw & & \qw \\
+\vdots & \vdots & & & \vdots & \\
+\lstick{$q_{N-1}$} & \qw & & \gate{R_{\sigma_3}(2s(p))} & \qw & & \qw
+\end{quantikz}
+
+\end{document}
+
+
+
