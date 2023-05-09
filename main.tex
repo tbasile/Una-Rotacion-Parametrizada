@@ -715,7 +715,14 @@ Tambien poner mas puntos experimentales.}}
 \includegraphics[width=.32\columnwidth]{images/tetra-col13.png}
 \includegraphics[width=.32\columnwidth]{images/tetra-col14.png}
 \includegraphics[width=.32\columnwidth]{images/tetra-col16.png}\\[1ex]
-\caption{Algunos colores posibles }
+\caption{Algunos colores posibles. Creo qeu me gustaria usar otra candidad, 
+como la fidelidad, pero definida a partir de la norma diamante. 
+Asi, 1 es perfecto y 0 esta mal. De estas, me gusta la de abajo 
+a la izquiera porque siento que distingue bien, pero si toca entnoces
+usar los mismos colores en la fig 5. Te propongo dejar un tetraedro y los
+cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
+propongo tambien que se ponta la leyenda en la figura y no encima. 
+Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ.  }
 \end{figure}
 
 
@@ -741,6 +748,10 @@ De qué forma lo agrego a la figura anterior?}}
 % }}}
 \section{OPR Circuits} % {{{
 \label{sec: OPR Circuits}
+\cpnote{Quizá abrir con un parrafo de motivacion. Quizá lo tenemos que hablar. }
+\cpnote{No se sabe aun que son OPR circuits. Poner completo}
+
+
 Just as Pauli channels, Pauli dynamical maps can be implemented using the circuit
 of fig.~(\ref{fig: circuit-pauli}). However, there is one difference: 
 the state to be created on the ancilla qubits now 
@@ -752,39 +763,42 @@ depends on a parameter $p$, and it is represented by the expression:
 Thus, we temporarily shift our focus from Pauli
 channels and dynamical maps to the general problem of 
 creating a circuit to generate a curve of
-states like the one described in eq. (\ref{eq: parametrized state}).
+states like the one described in \eref{eq: parametrized state}.
+\cpnote{me gusta mas usar el comando eref para que si toca cambiarlo, dependiendo 
+de la revista, lo pueda hacer de un solo jalon. Lo mismo para las 
+figuras.}
 
 In general, producing this curve of states will require multiple rotations
 parametrized by $p$. For instance, in the case of a two-qubit curve of states,
-we would typically need three rotations that depend on $p$, s
-imilar to those illustrated for the ancilla qubits in fig. (\ref{fig: circuit-pauli-1}).
+we would typically need three rotations that depend on $p$, similar to those
+illustrated for the ancilla qubits in \fref{fig: circuit-pauli-1}.
 Moreover, creating an $N$-qubit curve of states
 usually necessitates $N-1$ parametrized rotations.
+\cpnote{no me salen esas cuentas.}
 
 However, it is desirable to minimize the number of parametrized rotations in our circuit.
+\cpnote{why?}
 This leads us to the following question: which curves of states,
-such as the one described in eq. (\ref{eq: parametrized state}), 
+such as the one described in \eref{eq: parametrized state}, 
 can be generated using only a single parametrized rotation? 
 To clarify this, we provide the following definition for a circuit with one parametrized rotation.
+\cpnote{Creo qeu los dos párrafos anteriores son uno y toca pensar cual es el
+mensaje principal y rediseñar. }
 
-\begin{definition}{\textbf{OPR Circuit:}}
-An OPR (One-Parameterized Rotation) circuit is a parametrized quantum
+\begin{definition}{\textbf{1-Parameter Rotation Circuit:}}
+A 1-Parameter Rotation (1PR) circuit is a parametrized quantum
 circuit that includes only one gate dependent on a parameter $p$.
 Moreover, the parametrized gate is a one-qubit rotation about any axis,
 whether controlled or not.
 \end{definition}
 
 Based on this definition, we aim to determine which curves of 
-states can be generated using OPR circuits. 
-To accomplish this, we begin by proving that any OPR circuit exhibits 
-a specific form, as stated in the following theorem.
+states can be generated using OPR \cpnote{Si te parece bien el cambio 
+en la sigla, cambialos todos} circuits. 
+To accomplish this, we begin by proving that all OPR circuit have 
+a specific form.
 
-\begin{theorem}
-An $N-$qubit OPR circuit can always be transformed into the form shown in
-fig.~(\ref{fig:OPR-circuit}).
-\end{theorem}
-
-\begin{figure}[h!]
+\begin{figure} % {{{
 \centering
 \includegraphics{images/OPR-circuit.pdf}
 \caption{\textbf{General form of an OPR circuit}.
@@ -793,10 +807,18 @@ where the rotation on the last qubit
 can be controlled or not by any of the other qubits.
 $A$ and $B$
 are $N$-qubit gates that do not depend on the parameter $p$ and
-$s= s(p)$ is a function of the parameter}
+$s= s(p)$ is a function of the parameter.
+\cpnote{Parece que se te olvida la puntuacion en algunos captions. 
+por otro lado, queda la figura a mitad de la prueba. A mi me gusta dejar 
+que Latex organice solo las figuras y sin ponerle el h! ni nada. }
+}
 \label{fig:OPR-circuit}
-\end{figure}
+\end{figure} % }}}
 
+\begin{theorem}
+An $N-$qubit OPR circuit can always be transformed into the form shown in
+fig.~(\ref{fig:OPR-circuit}).
+\end{theorem}
 \textbf{Proof:} 
 First, we observe that according to the
 definition, an OPR circuit always consists of an operation $B$ followed 
@@ -818,12 +840,16 @@ R_{\hat{n}}(2s) = R_{\sigma_3}(\phi) R_{\sigma_2}(\theta) R_{\sigma_3}(2s) R_{\s
 Since the angles $\theta$ and $\phi$ do not depend on the parameter $p$,
 any OPR circuit can be transformed into a circuit where the parametrized
  rotation is around $\sigma_3$ instead of an arbitrary axis. 
-Moreover, without loss of generality, we can choose the last qubit as the target qubit for the rotation.
+Moreover, without loss of generality, we can choose the last qubit as the
+target qubit for the rotation \cpnote{Why?}.
 
 Therefore, an OPR circuit can be transformed such
 that the rotation is around $\sigma_3$ and is applied to the last qubit 
 (possibly controlled by other qubits), 
-resulting in the form depicted in fig. (\ref{fig:OPR-circuit}). $\blacksquare$ \\
+resulting in the form depicted in fig. (\ref{fig:OPR-circuit}). 
+\cpnote{Creo que este ultimo parrafo sobra, aunque hay detalles aca que quizá se pueden
+poner en el planteamiento del problema.}
+$\blacksquare$ \\
 $\;$\\
 
 With the aid of this theorem, we can now determine the curves
@@ -836,10 +862,12 @@ in the computational basis, has the form:
 \begin{eqnarray}
 U = (|\vec{v}_0|, |\vec{v}_1|, |\vec{v}_2|, \cdots, |\vec{v}_{2^n-1}|),
 \end{eqnarray}
+\cpnote{que denota el valor absoluto?}
 where the column vectors are given by $\vec{v}_j = e^{is} \vec{a}_j + e^{-is} \vec{b}_j + \vec{c}_j$,
 with $\vec{a}_j ,\vec{b}_j, \vec{c}_j$ orthogonal and $|\vec{a}_j|^2 + |\vec{b}_j|^2 + |\vec{c}_j|^2 = 1$.
 \end{theorem}
 \textbf{Proof:} 
+\cpnote{Discutir la prueba, se ve demasiado larga y aburrida}
 Using Theorem 1, we know that any OPR circuit can be transformed into the 
 form shown in Figure (\ref{fig:OPR-circuit}).
 Hence, we only need to consider the operator corresponding to that circuit. 
@@ -923,6 +951,8 @@ $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2 = 1$.
 % }}}
 \section{OPR circuit for a Pauli map} % {{{
 \label{sec: OPR circuit for a Pauli map}
+
+
 \tbnote{Sección no escrita aún, sólo es el medio resumen que tenía.}
 We can now use the last theorem to conclude directly which Pauli dynamical maps
 can be created using an OPR circuit.
@@ -1011,7 +1041,6 @@ B& = \begin{pmatrix}
 \section{Exponential maps $e^{iHt}$} % {{{
 \label{sec: Exponential maps}
 \textbf{Puntos:}
-
 \begin{itemize}
 \item We will apply the results about OPR circuit to another kind of operation, those given by $U  = e^{iHt}$ where $H$ is hermitian  and time independent.
 \item \textbf{Lemma:}\textit{ The $n$-qubit operator $U^{iHt}$ can be implemented with an OPR circuit of $n$ qubits if and only if $D = \text{diag}(e^{i\lambda_0 t}, \cdots, e^{i \lambda_{2^n-1}t})$ can be implemented with an OPR circuit of $n$ qubits, where $\lambda_j$ are the eigenvalues of $H$.}
