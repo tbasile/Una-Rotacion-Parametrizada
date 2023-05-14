@@ -341,8 +341,8 @@ and it can be written as:
 
 We can also see how an arbitrary Pauli channel acts on an arbitrary  
 density matrix.
-To do it, we substitute eq. (\ref{eq: Density Matrix}) 
-in eq. (\ref{eq: Pauli channel 1 qbit}):
+To do it, we substitute \eref{eq: Density Matrix} 
+in \eref{eq: Pauli channel 1 qbit}:
 \begin{equation}
 \mathcal{E}(\rho) = \dfrac{1}{2}\sum_{\gamma,\alpha=0}^3 k_{\gamma} r_{\alpha} \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}.
 \end{equation}
@@ -361,7 +361,7 @@ which leads to
 \label{eq: rho-transformada}
 \mathcal{E}(\rho) = \dfrac{1}{2} \sum_{\alpha} \left(\sum_{\gamma} A_{\alpha, \gamma} k_{\gamma} \right) r_{\alpha} \sigma_{\alpha}.
 \end{equation}
-Eq.~(\ref{eq: rho-transformada}) once again has the form of eq.~(\ref{eq: Density Matrix})
+\eref{eq: rho-transformada} once again has the form of \eref{eq: Density Matrix}
 but with components $\left( \sum_{\gamma} A_{\alpha,\gamma} k_{\gamma} \right) r_{\alpha}$.
 This gives us another way of understanding Pauli channels
 as operations that take each component $r_{\alpha}$
@@ -419,8 +419,8 @@ that $\sum_{\vec{\gamma}} k_{\vec{\gamma}}=1$.
 
 As in the one qubit case, Pauli channels for $N$ qubits 
 attenuate the components $r_{\vec{\alpha}}$ of the density matrix.
-This can be seen by substituting eq. (\ref{eq:  Density matrix Nqbit}) in eq. (\ref{eq: pauli channel N-qubit})
-and using the property of eq. (\ref{eq: propiedad-pauli}):
+This can be seen by substituting \eref{eq:  Density matrix Nqbit} in \eref{eq: pauli channel N-qubit}
+and using the property of \eref{eq: propiedad-pauli}:
 \begin{align*}
 \mathcal{E}(\rho) &= \dfrac{1}{2^N} \sum_{\vec{\gamma},\vec{\alpha}} k_{\vec{\gamma}} r_{\vec{\alpha}} \sigma_{\vec{\gamma}} \sigma_{\vec{\alpha}} \sigma_{\vec{\gamma}} \\
 & = \dfrac{1}{2^N} \sum_{\vec{\alpha}} \left( \sum_{\vec{\gamma}} (A^{\otimes^N})_{\vec{\alpha},\vec{\gamma}} \; k_{\vec{\gamma}} \right) r_{\vec{\alpha}} \sigma_{\vec{\alpha}},
@@ -484,7 +484,7 @@ can implement such channels with the highest fidelity.
 
 
 % To design the circuit, we recall that a Pauli channel, as the one in
-% eq.~(\ref{eq: pauli channel N-qubit}), applies each Pauli operator
+% \eref{eq: pauli channel N-qubit}, applies each Pauli operator
 % $\sigma_{\vec{\gamma}}$ on $\rho$ with a probability $k_{\vec{\gamma}}$.
 % Given this, it is easy to construct a quantum circuit that implements 
 % a Pauli channel with the help of $2N$ ancilla qubits,
@@ -540,10 +540,10 @@ the $2N$-qubit state $|\vec{\gamma}\rangle$ is defined as $|\gamma_1\rangle
 % \cpnote{La primera frase es cierta, pero no le veo el sentido acá. Trata de reformular el parrafo 
 % de nuevo. Croe que el ``This means'' definitivamente no va y es el que le da un sentido ``raro''. 
 % Itera (quizá solo quitando esas dos palabras)} \tbnote{Concuerdo, quité eso.}
-When measured in the computational basis, the state given in eq.~(\ref{eq: state})
+When measured in the computational basis, the state given in \eref{eq: state}
 collapses to $|\vec{\gamma}\rangle$ with a 
 probability $|b_{\vec{\gamma}}|^2 = k_{\vec\gamma}$. 
-The circuit in fig.~(\ref{fig: circuit-pauli}) uses this fact
+The circuit in \fref{fig: circuit-pauli} uses this fact
 to apply $\sigma_{\vec{\gamma}}$ on the main qubits
 with a probability $k_{\vec\gamma}$ by using controlled operations 
 conditioned on the state of the system being $|\vec{\gamma}\rangle$,
@@ -552,7 +552,7 @@ just as the Pauli channel is supposed to do.
 % that apply $\sigma_{\vec{\gamma}}$ to the main qubits
 % only if the ancilla qubits are in the state $|\vec{\gamma}\rangle$.
 % 
-% Therefore, the circuit from fig.~(\ref{fig: circuit-pauli}) 
+% Therefore, the circuit from \fref{fig: circuit-pauli} 
 % applies each operation $\sigma_{\vec{\gamma}}$ to the principal qubits 
 % with a probability $k_{\vec{\gamma}}$, 
 % just as a Pauli channel is supposed to do.  
@@ -578,39 +578,55 @@ Es una de las varias cosas que complicaba determinar uno a uno qué canales se p
 
 
 For the particular case of a Pauli channel on one qubit, the circuit that
-simulates it can be constructed as in fig.~\ref{fig: circuit-pauli-1},
-which is a special case of fig. \ref{fig: circuit-pauli}
+simulates it can be constructed as in \fref{fig: circuit-pauli-1},
+which is a special case of \fref{fig: circuit-pauli}
 but with all details  explicitly shown.
+In said figure, the state 
+$\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
+|10\rangle + \sqrt{k_{11}}|11\rangle$
+is created on the ancilla qubits with the help of three rotations of angles:
+\begin{subequations}
+\begin{eqnarray}
+\theta_0 &= &\arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
+\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})
+\label{eq:angle1} \\ 
+\theta_1 &= &2 \arccos(\sqrt{k_{00} +
+k_{01}})
+\label{eq:angle2} \\
+\theta_2 &= &\arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) +
+\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})
+\label{eq:angle3}
+\end{eqnarray}
+\label{eq:angle}
+\end{subequations}
+
 
 
 \begin{figure} % {{{
 \centering
 \includegraphics{images/circuito_unqubit.pdf}
 \caption{
-% \cpnote{si quieres, intenta hacer la figura tu solo basado en el lo quehabía hecho.} \tbnote{Va, lo hice así, espero haberlo hecho bien.} \cpnote{ 
-% Otra cosa quizá para discutir.  La creacion del estado especial de dos qubits no esta
-% aca explicita. Eso creo que si lo podemos hacer en general, o no? Como sería eso? Lo discutimos
-% a ver si lo pones?} \tbnote{Sí. En la figura que está ahora lo puse (antes sólo había un bloque que
-%  decía que se crea el estado $|b\rangle$ sobre los qubits de ancilla).
-% Ahora que lo pienso, sí lo prefiero así con la creación explícita y creo que mejora a la discusión después,
-% porque muestra que en general se necesitan tres ángulos y es lo que luego buscamos 
-% reducir a sólo uno}
 \cpnote{No me gusta que esté tan cargado de ecuaciones el caption. Metelas en
-el lugar apropiado en el texto}
+el lugar apropiado en el texto} \tbnote{Lo pasé al texto}
 {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel,
-which is a particular case of Fig~(\ref{fig: circuit-pauli}).  Here we have two
-ancilla qubits, and the state $b_{00} |00\rangle + b_{01} |01\rangle + b_{10}
-|10\rangle + b_{11}|11\rangle$ is created on them with the help of three
-rotations of angles $\theta_0 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
-\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$, $ \theta_1 = 2 \arccos(\sqrt{k_{00} +
-k_{01}})$ and $ \theta_2 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) +
-\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$. }
+which is a particular case of \fref{fig: circuit-pauli}.  Here we have two
+ancilla qubits and we use three rotations
+of angles given by \eref{eq:angle} to create the state $\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
+|10\rangle + \sqrt{k_{11}}|11\rangle$
+on them.
+%and the state $b_{00} |00\rangle + b_{01} |01\rangle + b_{10}
+%|10\rangle + b_{11}|11\rangle$ is created on them with the help of three
+%rotations of angles $\theta_0 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
+%\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$, $ \theta_1 = 2 \arccos(\sqrt{k_{00} +
+%k_{01}})$ and $ \theta_2 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) +
+%\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$.
+}
 \label{fig: circuit-pauli-1} 
 \end{figure} % }}}
 
 
 Using the quantum computers that IBM has available~\cite{Qiskit}, we sampled
-$249$ one-qubit Pauli channels and simulated them using the ibmq-lima quantum
+one-qubit Pauli channels and simulated them using the ibmq-lima quantum
 computer.  For each of these channels, we used quantum process
 tomography~\cite{Qiskit, Chuang:1996} to obtain the 
 operator $\xi_I$ corresponding to the implementation of the
@@ -623,7 +639,8 @@ wanted to implement.  \cpnote{Quizá referirnos mejor al canal? Lo discutimos.}
 
 We shall use the diamond norm~\cite{Aharonov,Wilde}, which has a simple physical meaning related
 with the probability that one can distinguish two channels \cpnote{Revisa esta 
-frase a ver si te parece}.
+frase a ver si te parece} 
+\tbnote{Sí, perfecto}.
 % To perform this comparison, we used the diamond norm~\cite{Aharonov,Wilde},
 % which gives us a method of discriminating \cpnote{no solo discrimina... todas
 % las normas lo hacen, pero nos permite ver que tan parecidos son dos canales. 
@@ -640,11 +657,14 @@ the agent guesses correctly is~\cite{Benenti}:
 p_{\succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
 \end{equation}
 where $|| \cdot ||_{\diamond}$ is the diamond norm \cpnote{no la hemos 
-definido matemáticamente}.  
-% Notice that $p_{\succ}=1/2$
-% means that the channels are the same \cpnote{qioza una frase explicando porque
-% esto es razonable}
-% \tbnote{Cambiar la oración pasada por:} {\color{orange} 
+definido matemáticamente} \tbnote{Qué tal así:} {\color{orange}, defined by 
+\begin{align*}
+||\xi_I - \xi_T ||_{\diamond}  = \max_{\rho} || (\xi_I \otimes I) \rho - (\xi_T \otimes I) \rho ||_1,
+\end{align*}
+with $I$ the identity map,
+$|| \cdot ||_1$ the trace norm and the maximization
+done over all density matrices $\rho$.} 
+   
 Notice that if the channels are the same, then $p_{\succ}=1/2$. 
 This is expected because in this situation the agent
 has no way of distinguishing the channels and has no choice but to completely
@@ -659,9 +679,9 @@ distinguishable.
 % También quería ejemplos no unitarios, pero no encontré.}
 
 Finally, using the representation of Pauli channels in a tetrahedron as
-in eq.~(\ref{eq: conditions-tetrahedron}),
-we show in fig.~(\ref{fig: fidelity one qubit}) the maximal probabilities of
-success defined by eq. (\ref{eq: probability-success}) for the channels
+in \eref{eq: conditions-tetrahedron},
+we show in \fref{fig: fidelity one qubit} the maximal probabilities of
+success defined by \eref{eq: probability-success} for the channels
 analyzed. 
 We can see that channels close to the 
 completely depolarizing
@@ -676,84 +696,110 @@ when trying to simulate depolarization but it is
 when simulating unitary processes.
 \cpnote{Siento qeu aun falta algo de análisis pero lo dejamos para cuando tengamos mas
 figuras y mas inspiracion}
+\tbnote{Va}
 
 % \cpnote{Mejorar la figura, quizá dejando la tridimensional y ademas poniendo unos 6 cortes. Probar
 % con diferentes colores.
 % }
 
-\begin{figure}[h!]
+
+
+\begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{probabilities-points.png}\\
+\includegraphics[width=0.55\textwidth]{images/probabilities-points.png}\\
 \caption{{\bf Maximal probabilities of success for one-qubit Pauli channel}
 $p_{\succ}$ of one-qubit Pauli channels implemented on IBM's ibmq-lima. The
 channels are plotted in the tetrahedron of Pauli channels, with a color bar
 indicating the distinguishability of each channel's implementation using the
 circuit for a 1-qubit Pauli channel. \cpnote{Poner la barra del tamaño apropiado 
 y quizá juntar con los cortes que tenemos. Discutir en vivo con Tomas a ver que onda. 
-Tambien poner mas puntos experimentales.}}
+Tambien poner mas puntos experimentales.} \tbnote{Cambié lo de la barra y puse más puntos experimentales en los cortes que están en 
+la figura más abajo
+(no en esta figura porque ya se llena mucho de puntos).}
+\cpnote{ Creo qeu me gustaria usar otra candidad, 
+como la fidelidad, pero definida a partir de la norma diamante. 
+Asi, 1 es perfecto y 0 esta mal.} \tbnote{Lo que se me ocurre es algo como $2*(1-p_{succ})$ que justo cumple eso y en términos
+de la norma es $1-1/2||\xi_I - \xi_T||_{\diamond}$} \cpnote{ De estas, me gusta la de abajo 
+a la izquiera porque siento que distingue bien, pero si toca entnoces
+usar los mismos colores en la fig 5.} \tbnote{Ya agarré esos colores} \cpnote{Te propongo dejar un tetraedro y los
+cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
+propongo tambien que se ponta la leyenda en la figura y no encima. 
+Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ. } \tbnote{Lo puse en la figura siguiente. Poniéndolo con 3 columnas y dos filas queda
+muy chiquita la figura del tetraedro y no se llega a ver nada, así que lo puse grande y los cortes
+alrededor. }}
 \label{fig: fidelity one qubit}
 \end{figure}
 
-\newpage
-\tbnote{Algunas paletas de colores diferentes:}
+%
+%\begin{figure}
+%\centering
+%\includegraphics[width=.32\columnwidth]{images/tetra-col1.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col2.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col3.png} \\[1ex]
+%\includegraphics[width=.32\columnwidth]{images/tetra-col4.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col5.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col6.png}\\[1ex]
+%\includegraphics[width=.32\columnwidth]{images/tetra-col7.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col8.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col9.png}\\[1ex]
+%\includegraphics[width=.32\columnwidth]{images/tetra-col10.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col11.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col12.png}\\[1ex]
+%\includegraphics[width=.32\columnwidth]{images/tetra-col13.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col14.png}
+%\includegraphics[width=.32\columnwidth]{images/tetra-col16.png}\\[1ex]
+%\caption{Algunos colores posibles. \cpnote{ Creo qeu me gustaria usar otra candidad, 
+%como la fidelidad, pero definida a partir de la norma diamante. 
+%Asi, 1 es perfecto y 0 esta mal.} \tbnote{Algo como } \cpnote{ De estas, me gusta la de abajo 
+%a la izquiera porque siento que distingue bien, pero si toca entnoces
+%usar los mismos colores en la fig 5. Te propongo dejar un tetraedro y los
+%cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
+%propongo tambien que se ponta la leyenda en la figura y no encima. 
+%Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ. } }
+%\end{figure}
 
 
 \begin{figure}
 \centering
-\includegraphics[width=.32\columnwidth]{images/tetra-col1.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col2.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col3.png} \\[1ex]
-\includegraphics[width=.32\columnwidth]{images/tetra-col4.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col5.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col6.png}\\[1ex]
-\includegraphics[width=.32\columnwidth]{images/tetra-col7.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col8.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col9.png}\\[1ex]
-\includegraphics[width=.32\columnwidth]{images/tetra-col10.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col11.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col12.png}\\[1ex]
-\includegraphics[width=.32\columnwidth]{images/tetra-col13.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col14.png}
-\includegraphics[width=.32\columnwidth]{images/tetra-col16.png}\\[1ex]
-\caption{Algunos colores posibles. Creo qeu me gustaria usar otra candidad, 
-como la fidelidad, pero definida a partir de la norma diamante. 
-Asi, 1 es perfecto y 0 esta mal. De estas, me gusta la de abajo 
-a la izquiera porque siento que distingue bien, pero si toca entnoces
-usar los mismos colores en la fig 5. Te propongo dejar un tetraedro y los
-cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
-propongo tambien que se ponta la leyenda en la figura y no encima. 
-Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ.  }
-\end{figure}
-
-
-
-\begin{figure}
+\begin{subfigure}{0.9\textwidth}
+\begin{subfigure}{.666\textwidth}
 \centering
-\begin{subfigure}{.9\textwidth}
-\centering
-\includegraphics[width=.30\columnwidth]{images/corte1.png}
-\includegraphics[width=.30\columnwidth]{images/corte2.png}
-\includegraphics[width=.30\columnwidth]{images/corte3.png} \\[1ex]
-\includegraphics[width=.30\columnwidth]{images/corte4.png}
-\includegraphics[width=.30\columnwidth]{images/corte5.png}
+\includegraphics[width=.95\columnwidth]{images/tetra-def.png}
+\end{subfigure}%
+\begin{subfigure}{.333\textwidth}
+\includegraphics[width=.95\columnwidth]{images/corte1-2.png} \\
+\includegraphics[width=.95\columnwidth]{images/corte2-2.png} \\
+\end{subfigure}
+\includegraphics[width=.322\columnwidth]{images/corte3-2.png}
+\includegraphics[width=.322\columnwidth]{images/corte4-2.png}
+\includegraphics[width=.322\columnwidth]{images/corte5-2.png}
 \end{subfigure}%
 \begin{subfigure}{0.1\textwidth}
-\includegraphics[width=.8\columnwidth]{images/col.png}\\[1ex]
+\includegraphics[width=.8\columnwidth]{images/col-2.png} \\ [2ex]
 \end{subfigure}
-\caption{\tbnote{Aquí hay algunos cortes de la figura anterior.
-De qué forma lo agrego a la figura anterior?}}
+\caption{\tbnote{Aquí está una forma alternativa en que puede quedar la figura. 
+Usé $2(1-p)$ en lugar de $p$ para que se cumpla lo de
+que $0$ es lo peor y $1$ lo mejor.}}
 \end{figure}
+
+
+
+
+
+
 
 % }}}
 % }}}
-\section{OPR Circuits} % {{{
-\label{sec: OPR Circuits}
+
+\newpage
+\section{One Parameter Circuits} % {{{
+\label{sec: 1PR Circuits}
 \cpnote{Quizá abrir con un parrafo de motivacion. Quizá lo tenemos que hablar. }
-\cpnote{No se sabe aun que son OPR circuits. Poner completo}
+\cpnote{No se sabe aun que son 1PR circuits. Poner completo} \tbnote{Ya.}
 
 
 Just as Pauli channels, Pauli dynamical maps can be implemented using the circuit
-of fig.~(\ref{fig: circuit-pauli}). However, there is one difference: 
+of \fref{fig: circuit-pauli}. However, there is one difference: 
 the state to be created on the ancilla qubits now 
 depends on a parameter $p$, and it is represented by the expression:
 \begin{eqnarray}
@@ -766,15 +812,15 @@ creating a circuit to generate a curve of
 states like the one described in \eref{eq: parametrized state}.
 \cpnote{me gusta mas usar el comando eref para que si toca cambiarlo, dependiendo 
 de la revista, lo pueda hacer de un solo jalon. Lo mismo para las 
-figuras.}
+figuras.} \tbnote{Ah va, lo puse en todas.}
 
 In general, producing this curve of states will require multiple rotations
 parametrized by $p$. For instance, in the case of a two-qubit curve of states,
 we would typically need three rotations that depend on $p$, similar to those
 illustrated for the ancilla qubits in \fref{fig: circuit-pauli-1}.
 Moreover, creating an $N$-qubit curve of states
-usually necessitates $N-1$ parametrized rotations.
-\cpnote{no me salen esas cuentas.}
+usually necessitates $2^N-1$ parametrized rotations.
+\cpnote{no me salen esas cuentas.} \tbnote{Se me fue el 2.}
 
 However, it is desirable to minimize the number of parametrized rotations in our circuit.
 \cpnote{why?}
@@ -784,6 +830,20 @@ can be generated using only a single parametrized rotation?
 To clarify this, we provide the following definition for a circuit with one parametrized rotation.
 \cpnote{Creo qeu los dos párrafos anteriores son uno y toca pensar cual es el
 mensaje principal y rediseñar. }
+\tbnote{De acuerdo, mejor así?:.}
+
+{\color{orange} In general, producing this curve of states for $N$ qubits will require
+$2^N-1$ rotations parametrized by $p$,
+such as the three rotations used for the ancilla
+qubits in \fref{fig: circuit-pauli-1}.
+However, it would be preferable to achieve the same effect using only one parametrized rotation. 
+This would allow us to treat said rotation 
+as a knob that smoothly traverses the curve of states.
+Consequently, we are faced with the question of which curves of states, 
+such as the one described in \eref{eq: parametrized state}, 
+can be produced using just a single parametrized rotation. 
+To clarify this, we provide the following definition 
+for a circuit with one parametrized rotation.}
 
 \begin{definition}{\textbf{1-Parameter Rotation Circuit:}}
 A 1-Parameter Rotation (1PR) circuit is a parametrized quantum
@@ -793,16 +853,19 @@ whether controlled or not.
 \end{definition}
 
 Based on this definition, we aim to determine which curves of 
-states can be generated using OPR \cpnote{Si te parece bien el cambio 
-en la sigla, cambialos todos} circuits. 
-To accomplish this, we begin by proving that all OPR circuit have 
-a specific form.
+states can be generated using 1PR \cpnote{Si te parece bien el cambio 
+en la sigla, cambialos todos} 
+\tbnote{Sí me parece, los cambié} circuits. 
+To accomplish this, we begin by proving that all 1PR circuits have 
+{\color{orange} the form depicted in \fref{fig:1PR-circuit},
+where the rotation is around $\sigma_3$ and
+is applied to the last qubit.} 
 
 \begin{figure} % {{{
 \centering
 \includegraphics{images/OPR-circuit.pdf}
-\caption{\textbf{General form of an OPR circuit}.
-Any OPR circuit can be transformed into this form,
+\caption{\textbf{General form of a 1PR circuit}.
+Any 1PR circuit can be transformed into this form,
 where the rotation on the last qubit
 can be controlled or not by any of the other qubits.
 $A$ and $B$
@@ -810,18 +873,18 @@ are $N$-qubit gates that do not depend on the parameter $p$ and
 $s= s(p)$ is a function of the parameter.
 \cpnote{Parece que se te olvida la puntuacion en algunos captions. 
 por otro lado, queda la figura a mitad de la prueba. A mi me gusta dejar 
-que Latex organice solo las figuras y sin ponerle el h! ni nada. }
+que Latex organice solo las figuras y sin ponerle el h! ni nada. } \tbnote{Va}
 }
-\label{fig:OPR-circuit}
+\label{fig:1PR-circuit}
 \end{figure} % }}}
 
 \begin{theorem}
-An $N-$qubit OPR circuit can always be transformed into the form shown in
-fig.~(\ref{fig:OPR-circuit}).
+An $N-$qubit 1PR circuit can always be transformed 
+into the form shown in \fref{fig:1PR-circuit}.
 \end{theorem}
 \textbf{Proof:} 
 First, we observe that according to the
-definition, an OPR circuit always consists of an operation $B$ followed 
+definition, a 1PR circuit always consists of an operation $B$ followed 
 by the parametrized rotation and then another operation $A$, 
 where $A$ and $B$ are not parametrized.
 
@@ -838,72 +901,77 @@ The rotation can then be rewritten as follows:
 R_{\hat{n}}(2s) = R_{\sigma_3}(\phi) R_{\sigma_2}(\theta) R_{\sigma_3}(2s) R_{\sigma_2}(-\theta) R_{\sigma_3}(-\phi).
 \end{eqnarray}
 Since the angles $\theta$ and $\phi$ do not depend on the parameter $p$,
-any OPR circuit can be transformed into a circuit where the parametrized
+any 1PR circuit can be transformed into a circuit where the parametrized
  rotation is around $\sigma_3$ instead of an arbitrary axis. 
 Moreover, without loss of generality, we can choose the last qubit as the
-target qubit for the rotation \cpnote{Why?}.
+target qubit for the rotation \cpnote{Why?} 
+{\color{orange} , since if it weren't, we could use
+swap gates to convert the rotation
+to the last qubit without adding gates
+that depend on $p$. }.
 
-Therefore, an OPR circuit can be transformed such
+Therefore, a 1PR circuit can be transformed such
 that the rotation is around $\sigma_3$ and is applied to the last qubit 
 (possibly controlled by other qubits), 
-resulting in the form depicted in fig. (\ref{fig:OPR-circuit}). 
+resulting in the form depicted in \fref{fig:1PR-circuit}. 
 \cpnote{Creo que este ultimo parrafo sobra, aunque hay detalles aca que quizá se pueden
-poner en el planteamiento del problema.}
+poner en el planteamiento del problema.} \tbnote{Lo pasé arriba justo antes del teorema y quitaría este párrafo entonces }
 $\blacksquare$ \\
 $\;$\\
 
 With the aid of this theorem, we can now determine the curves
-of states of $N$ qubits that can be generated using an OPR circuit. 
+of states of $N$ qubits that can be generated using a 1PR circuit. 
 This result is stated in the following theorem.
 
 \begin{theorem}
-An OPR circuit always implements an operator whose matrix,
+A 1PR circuit always implements an operator whose matrix,
 in the computational basis, has the form:
 \begin{eqnarray}
-U = (|\vec{v}_0|, |\vec{v}_1|, |\vec{v}_2|, \cdots, |\vec{v}_{2^n-1}|),
+U = (\vec{v}_0, \vec{v}_1, \vec{v}_2, \cdots, \vec{v}_{2^n-1}),
 \end{eqnarray}
-\cpnote{que denota el valor absoluto?}
 where the column vectors are given by $\vec{v}_j = e^{is} \vec{a}_j + e^{-is} \vec{b}_j + \vec{c}_j$,
 with $\vec{a}_j ,\vec{b}_j, \vec{c}_j$ orthogonal and $|\vec{a}_j|^2 + |\vec{b}_j|^2 + |\vec{c}_j|^2 = 1$.
 \end{theorem}
 \textbf{Proof:} 
 \cpnote{Discutir la prueba, se ve demasiado larga y aburrida}
-Using Theorem 1, we know that any OPR circuit can be transformed into the 
-form shown in Figure (\ref{fig:OPR-circuit}).
-Hence, we only need to consider the operator corresponding to that circuit. 
-The $j$-th column of the circuit's matrix represents the result of applying the circuit to the state $|j\rangle$.
+\tbnote{La cambié un poco, pero aún así.}
+Denoting by $U$ the matrix for the 1PR circuit,
+we can conclude from theorem 1 that $U=ARB$,
+where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
+applied to the last qubit and controlled by some of the other
+ones. 
+We will calculate the $j$-th column of this matrix,
+which is given by $U|j\rangle$.
 
-First, applying $B$ to $|j\rangle$ results in $B|j\rangle = B_{0,j} |0\rangle + B_{1,j} |1 \rangle + \cdots + B_{2^n-1,j}|2^n-1\rangle$.
-This can be rewritten by separating the
+First, applying $B$ to $|j\rangle$ results in $B|j\rangle = B_{0,j} |0\rangle + B_{1,j} |1 \rangle + \cdots + B_{2^n-1,j}|2^n-1\rangle$,
+which can be rewritten by separating the
 first $N-1$ qubits from the last one as:
 \begin{equation}
 B|j\rangle = \sum_{k=0}^{2^{N-1}-1} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j} |k\rangle |1 \rangle \right).
 \end{equation}
-After the operator $B$, the circuit applies a controlled rotation to the last qubit.
+After the operator $B$, we need to apply $R$.
 To simplify the analysis, we separate the states of
-the first $N-1$ qubits into those that fulfill the control conditions 
-(which we denote as the set $C$)
-and those that do not.
-Therefore, the state can be written as
+the first $N-1$ qubits into those that fulfill the control conditions of the rotation
+(which we denote as the set $\mathcal{C}$)
+and those that do not, and write it as
 \begin{eqnarray}
-B|j\rangle = \sum_{k \in C} \left(B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j} |k\rangle |1 \rangle \right) + \sum_{k \not\in C} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j}|k\rangle |1\rangle \right),
+B|j\rangle = \sum_{k \in \mathcal{C}} \left(B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j} |k\rangle |1 \rangle \right) + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j}|k\rangle |1\rangle \right),
 \end{eqnarray}
-After $B$ creates this state, we need to apply the controlled rotation to the result. 
-This rotation will only be applied for the states on the first sum (since they fulfill the control conditions)
-and not to the others. Therefore, we apply the gate to the last qubit of the first sum, 
-remembering that $R_z(2s)$ acts by adding a phase $e^{-is}$ to $|0\rangle$
-and a phase $e^{is}$ to $|1\rangle$, and the result is:
+Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
+and not the others. Therefore,  
+remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
+and a phase $e^{is}$ to $|1\rangle$, the result is:
 \begin{small}
 \begin{eqnarray}
-&e^{-is} \sum_{k \in Ctrl} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in Ctrl} B_{2k+1,j} |k\rangle |1 \rangle 
-+ \sum_{k \not\in Ctrl} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
+&e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
++ \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
 & \qquad = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
 \end{eqnarray}
 \end{small}
-where $\vec{a'} = \sum_{k \in Ctrl} B_{2k,j}|k\rangle|0\rangle \;,\; \vec{b'}_j = \sum_{k \in Ctrl} B_{2k+1,j} |k\rangle |1 \rangle \;,\; \vec{c'}_j =\sum_{k \not\in Ctrl} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)$.
+where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle \;,\; \vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle \;,\; \vec{c'}_j =\sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)$.
  These vectors are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
-Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the norm of the $j-$th column of $B$, 
+Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the norm of the $j$th column of $B$, 
 which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
@@ -919,15 +987,15 @@ computational base is
  $U = (|\vec{v}_0|, |\vec{v}_1|, \cdots, |\vec{v}_{2^n-1}|)$. $\blacksquare$  \\
  $\;$ \\
  
-Therefore, from this theorem we conclude that
-the kind of curves of states that can be created
-using an OPR circuit are always of the form
-\begin{align*}
-|b(p)\rangle= e^{is} \vec{a} + e^{-is} \vec{b} + \vec{c},
-\end{align*}
-where $s$ is a function of $p$, $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors and
-$|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2 = 1$.
-%\textbf{Puntos:}
+%Therefore, from this theorem we conclude that
+%the kind of curves of states that can be created
+%using a 1PR circuit are always of the form
+%\begin{align*}
+%|b(p)\rangle= e^{is} \vec{a} + e^{-is} \vec{b} + \vec{c},
+%\end{align*}
+%where $s$ is a function of $p$, $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors and
+%$|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2 = 1$.
+%%\textbf{Puntos:}
 %\begin{itemize}
 %\item As said before, to implement a Pauli dynamical map, 
 %we need to create the parametrized $2n$-qubit state 
@@ -938,8 +1006,8 @@ $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2 = 1$.
 %In general, to create a parametrized state on $2n$ ancilla qubits will require
 %$2n-1$ rotations parametrized by $p$.
 %\item How can we reduce the amount of parametrized rotations used?
-%\item \textbf{OPR Circuit:} Define an OPR circuit (a circuit with one parametrized rotation)
-%\item \textbf{Theorem about OPR circuits:} \textit{An OPR circuit on $n$ qubits with parameter $p$ always has an operator of the form:}
+%\item \textbf{1PR Circuit:} Define an 1PR circuit (a circuit with one parametrized rotation)
+%\item \textbf{Theorem about 1PR circuits:} \textit{An 1PR circuit on $n$ qubits with parameter $p$ always has an operator of the form:}
 %\begin{eqnarray}
 %U = (\vec{v}_0| \vec{v}_1| \cdots| \vec{v}_{2^n-1})
 %\end{eqnarray}
@@ -949,14 +1017,14 @@ $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2 = 1$.
 %\end{itemize}
 \newpage
 % }}}
-\section{OPR circuit for a Pauli map} % {{{
-\label{sec: OPR circuit for a Pauli map}
+\section{1PR circuit for a Pauli map} % {{{
+\label{sec: 1PR circuit for a Pauli map}
 
 
 \tbnote{Sección no escrita aún, sólo es el medio resumen que tenía.}
 We can now use the last theorem to conclude directly which Pauli dynamical maps
-can be created using an OPR circuit.
-For OPR circuits, the ancilla state has to be created with only one parametrized curve. Then, the theorem for OPR circuits implies that a map
+can be created using a 1PR circuit.
+For 1PR circuits, the ancilla state has to be created with only one parametrized curve. Then, the theorem for 1PR circuits implies that a map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
 \end{eqnarray}
@@ -968,7 +1036,7 @@ where $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors in $\mathbb{C}^{2n}$
 and $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2= 1$.
 
 We can see some examples of Pauli dynamical
-maps of one qubit that can be implemented with an OPR circuit:
+maps of one qubit that can be implemented with a 1PR circuit:
 \begin{itemize}
 \item \textbf{$\sigma_3$ parabolic map:} We take as an example the Pauli dynamical map for one qubit defined as
 \begin{eqnarray}
@@ -976,7 +1044,7 @@ maps of one qubit that can be implemented with an OPR circuit:
 \end{eqnarray}
 with $p \in [-1,1]$. \\
 
-To implement this dynamical map using the circuit presented in figure \ref{fig:OPR-circuit}, it is necessary to create the state
+To implement this dynamical map using the circuit presented in \fref{fig:1PR-circuit}, it is necessary to create the state
 \begin{eqnarray}
 \left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right)
 \end{eqnarray}
@@ -1033,7 +1101,7 @@ B& = \begin{pmatrix}
 
 %\textbf{Puntos:}
 %\begin{itemize}
-%\item Use the last theorem to conclude directly which maps can be created using an OPR circuit.
+%\item Use the last theorem to conclude directly which maps can be created using an 1PR circuit.
 %\item \textbf{Examples:} Show examples that satisfy these conditions: Bit-Flip, parabolic maps, etc. 
 %and an example that doesn't satisfy the conditions (ejemplo está en la tesis).
 %\end{itemize}
@@ -1042,12 +1110,12 @@ B& = \begin{pmatrix}
 \label{sec: Exponential maps}
 \textbf{Puntos:}
 \begin{itemize}
-\item We will apply the results about OPR circuit to another kind of operation, those given by $U  = e^{iHt}$ where $H$ is hermitian  and time independent.
-\item \textbf{Lemma:}\textit{ The $n$-qubit operator $U^{iHt}$ can be implemented with an OPR circuit of $n$ qubits if and only if $D = \text{diag}(e^{i\lambda_0 t}, \cdots, e^{i \lambda_{2^n-1}t})$ can be implemented with an OPR circuit of $n$ qubits, where $\lambda_j$ are the eigenvalues of $H$.}
+\item We will apply the results about 1PR circuit to another kind of operation, those given by $U  = e^{iHt}$ where $H$ is hermitian  and time independent.
+\item \textbf{Lemma:}\textit{ The $n$-qubit operator $U^{iHt}$ can be implemented with a 1PR circuit of $n$ qubits if and only if $D = \text{diag}(e^{i\lambda_0 t}, \cdots, e^{i \lambda_{2^n-1}t})$ can be implemented with a 1PR circuit of $n$ qubits, where $\lambda_j$ are the eigenvalues of $H$.}
 \item \textbf{Proof:}  Es b\'asicamente usar que $H = QDQ^{-1}$ para una matriz $Q$ que no depende de $t$ y por lo tanto no agrega compuertas parametrizadas al circuito. 
-\item \textbf{Theorem:} \textit{ A n-qubit operator of the form $U = e^{iHt}$ can be implemented using an OPR circuit if and only if the eigenvalues of $H$ are $-\lambda,0,\lambda$ (for $\lambda$ a real number) and the degeneracies of $\lambda$ and $-\lambda$ are both equal to $2^j$ for some $j\in \{0,1,\cdots,n-1\}$.}
+\item \textbf{Theorem:} \textit{ A n-qubit operator of the form $U = e^{iHt}$ can be implemented using a 1PR circuit if and only if the eigenvalues of $H$ are $-\lambda,0,\lambda$ (for $\lambda$ a real number) and the degeneracies of $\lambda$ and $-\lambda$ are both equal to $2^j$ for some $j\in \{0,1,\cdots,n-1\}$.}
 \item \textbf{Proof:} Estoy buscando formas de simplificar la prueba, porque es medio larguita. Pero básicamente es usar el lema y entonces preocuparnos sólo por $D$. Luego  usar el teorema de la sección 3 y notar que sólo hay tres tipos de  $\lambda$s posibles y luego notar que deben de tener esas degeneraciones.
-\item \textbf{Proof del regreso:} Aquí quiero recalcar que la prueba es constructiva, ya que consiste en mostrar cómo construir el circuito OPR que hace la operación a partir de una $H$ que cumpla la hipótesis. 
+\item \textbf{Proof del regreso:} Aquí quiero recalcar que la prueba es constructiva, ya que consiste en mostrar cómo construir el circuito 1PR que hace la operación a partir de una $H$ que cumpla la hipótesis. 
 \item \textbf{Examples.} Mencionar que por el teorema, los ejemplos son sistemas con 3 energías separadas por la misma distancia y con las degeneraciones dadas en el teorema. 
 La verdad que no se me ocurren sistemas físicos comunes que cumplan eso.
 \begin{itemize}
