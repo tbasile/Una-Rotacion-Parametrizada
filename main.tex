@@ -830,7 +830,7 @@ can be generated using only a single parametrized rotation?
 To clarify this, we provide the following definition for a circuit with one parametrized rotation.
 \cpnote{Creo qeu los dos párrafos anteriores son uno y toca pensar cual es el
 mensaje principal y rediseñar. }
-\tbnote{De acuerdo, mejor así?:.}
+\tbnote{De acuerdo, Lo cambié a esto:}
 
 {\color{orange} In general, producing this curve of states for $N$ qubits will require
 $2^N-1$ rotations parametrized by $p$,
@@ -858,7 +858,7 @@ en la sigla, cambialos todos}
 \tbnote{Sí me parece, los cambié} circuits. 
 To accomplish this, we begin by proving that all 1PR circuits have 
 {\color{orange} the form depicted in \fref{fig:1PR-circuit},
-where the rotation is around $\sigma_3$ and
+where the parametrized rotation is around $\sigma_3$ and
 is applied to the last qubit.} 
 
 \begin{figure} % {{{
@@ -906,7 +906,7 @@ any 1PR circuit can be transformed into a circuit where the parametrized
 Moreover, without loss of generality, we can choose the last qubit as the
 target qubit for the rotation \cpnote{Why?} 
 {\color{orange} , since if it weren't, we could use
-swap gates to convert the rotation
+swap gates to move the rotation
 to the last qubit without adding gates
 that depend on $p$. }.
 
@@ -960,7 +960,7 @@ B|j\rangle = \sum_{k \in \mathcal{C}} \left(B_{2k,j} |k\rangle |0\rangle + B_{2k
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
-and a phase $e^{is}$ to $|1\rangle$, the result is:
+and a phase $e^{is}$ to $|1\rangle$, $RB|j\rangle$ is:
 \begin{small}
 \begin{eqnarray}
 &e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
@@ -968,7 +968,7 @@ and a phase $e^{is}$ to $|1\rangle$, the result is:
 & \qquad = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
 \end{eqnarray}
 \end{small}
-where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle \;,\; \vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle \;,\; \vec{c'}_j =\sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)$.
+where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$, $\vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle$, $\vec{c'}_j =\sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)$.
  These vectors are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
 Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the norm of the $j$th column of $B$, 
@@ -977,15 +977,47 @@ which is unitary.
 Finally, after having applied the rotation, the circuit applies gate $A$, 
 so that the result is given by:
 \begin{eqnarray}
-e^{-is} A \vec{a'}_j + e^{is} A \vec{b'}_j + A \vec{c'}_j = e^{-is} \vec{a}_j + e^{is} \vec{b}_j + \vec{c}_j = \vec{v}_j,
+U|j\rangle = ARB|j\rangle = e^{-is} A \vec{a'}_j + e^{is} A \vec{b'}_j + A \vec{c'}_j = e^{-is} \vec{a}_j + e^{is} \vec{b}_j + \vec{c}_j = \vec{v}_j,
 \end{eqnarray}
 where $\vec{a}_j = A \vec{a'}_j , \vec{b}_j = A \vec{b'}_j , \vec{c}_j = A \vec{c'}_j$ are still orthogonal
 vectors that satisfy $|\vec{a}_j|^2 + |\vec{b}_j|^2 + |\vec{c}_j|^2 = 1$ because $A$ is unitary. 
 Therefore, we conclude that the circuit takes a state $|j\rangle$ and converts it
  into the state represented by the vector $\vec{v}_j$, which means that the matrix representation of the circuit's operation in the 
 computational base is
- $U = (|\vec{v}_0|, |\vec{v}_1|, \cdots, |\vec{v}_{2^n-1}|)$. $\blacksquare$  \\
+ $U = (\vec{v}_0, \vec{v}_1, \cdots, \vec{v}_{2^n-1})$. $\blacksquare$  \\
  $\;$ \\
+ 
+This theorem implies that starting from the state $|0\rangle$,
+the only curves we could expect to create
+with a 1PR circuit are those of the form
+\begin{equation}
+|\eta(p)\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is},
+\label{eq:curve-states}
+\end{equation}
+with 
+\begin{equation}
+|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1  \; \text{and} \; \vec{a}, \vec{b}, \vec{c} \; \text{are orthogonal vectors}.
+\label{eq:conditions-vecs}
+\end{equation}
+Furthermore, we can show a way to create these curves of states
+with a 1PR circuit.
+To do it, we can use the circuit of \fref{fig:1PR-circuit} with the parametrized
+rotation on the last qubit controlled by all the others
+and with matrices $A$ and $B$ defined as:
+\begin{align*}
+B = (\vec{d}, *,*, \cdots,*), \; 
+A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|).
+\end{align*}
+Here the column vector $\vec{d}$ is defined as 
+$(0,0, \cdots,0 ,|\vec{c}|, |\vec{b}|, |\vec{a}|)$
+and the asterisks can be completed in any
+way such that these matrices are unitary.
+Then, starting from the initial state $|0\rangle = (1,0,0,\cdots,0)$
+and applying the matrices $ARB$ defined
+like this, some calculations lead us to 
+the resulting curve of states
+of \eref{eq:curve-states}.
+
  
 %Therefore, from this theorem we conclude that
 %the kind of curves of states that can be created
@@ -1021,83 +1053,158 @@ computational base is
 \label{sec: 1PR circuit for a Pauli map}
 
 
-\tbnote{Sección no escrita aún, sólo es el medio resumen que tenía.}
+\tbnote{Sección no escrita del todo aún, sólo es un medio resumen que tenía.}
 We can now use the last theorem to conclude directly which Pauli dynamical maps
 can be created using a 1PR circuit.
-For 1PR circuits, the ancilla state has to be created with only one parametrized curve. Then, the theorem for 1PR circuits implies that a map
+For 1PR circuits, the ancilla state of \ref{fig: circuit-pauli} 
+has to be created with only one parametrized curve. Therefore, theorem 2 implies that a map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
 \end{eqnarray}
 can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\beta_{\vec{\gamma}}(p)|^2 = k_{\vec{\gamma}}(p)$ and
 \begin{eqnarray}
-\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = \vec{c} + \vec{a} \cos s + \vec{b} \sin s
+\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is}
 \end{eqnarray}
 where $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors in $\mathbb{C}^{2n}$ 
 and $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2= 1$.
 
-We can see some examples of Pauli dynamical
-maps of one qubit that can be implemented with a 1PR circuit:
+For the particular case of one qubit,
+we show some examples of Pauli dynamical maps that can be
+implemented with a 1PR circuit, which are plotted
+in \fref{fig:curves}.
+
+
+\begin{figure} % {{{
+\centering
+\includegraphics{images/curvas.png}
+\caption{{\bf Some Pauli dynamical maps that can be implemented with a 1PR circuit.}
+The curves painted in the tetrahedron
+represent Pauli dynamical maps that can be implemented with 1PR circuits.
+In particular, the depolarizing (purple), bit flip (blue),
+phase flip (green), bit-phase flip (red)
+and parabolic (orange). }
+\label{fig:curves}
+\end{figure}
+
+
 \begin{itemize}
-\item \textbf{$\sigma_3$ parabolic map:} We take as an example the Pauli dynamical map for one qubit defined as
+\item \textbf{Bit flip map:} 
+This Pauli dynamical map is defined as
+\begin{align*}
+\varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1
+\end{align*}
+for $p \in [0,1]$. 
+Therefore, the curve of state $|\beta(p)\rangle$ needed on the ancilla
+qubits is such that 
+$|\beta_0(p)|^2= (1-p)^2$, $|\beta_1(p)|^2 = p$, $|\beta_2(p)|^2 = |\beta_3(p)|^2 = 0$.
+In particular, if we take the $\beta_j$ to be real,
+we need to create the curve of states:
+\begin{align*}
+|\beta(p)\rangle = (\sqrt{1-p},\sqrt{p},0,0).
+\end{align*}
+This curve can be rewritten as
+\begin{align*}
+|\beta(p) \rangle = e^{is} \left( \dfrac{1}{2}, - \dfrac{i}{2},0,0 \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2},0,0 \right),
+\end{align*}
+with $s= \arcsin(\sqrt{p})$.
+Therefore, we can see that the curve satisfies the conditions of theorem 2 
+and it can be created with a 1PR circuit.
+The exact same thing can be done
+for the phase flip and bit phase flip dynamical maps
+changing $\sigma_1$ with
+$\sigma_3$ and $\sigma_2$ respectively.
+
+\item \textbf{Depolarizing:} This dynamical map is given by
+\begin{align*}
+\varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
+\end{align*}
+with $p \in [0,1]$. 
+Therefore, taking the $\beta_j$ to be real,
+the curve of states needed to create on the ancilla qubits is
+\begin{align*}
+|\beta(p) \rangle = \left( \sqrt{1-3p/4}, \sqrt{p/4}, \sqrt{p/4},\sqrt{p/4} \right).
+\end{align*}
+This state can be rewritten as:
+\begin{align*}
+|\beta(p)\rangle = e^{is} \left( \dfrac{1}{2}, \dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}} \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}}\right)
+\end{align*}
+with $s = \arcsin(\sqrt{3p/4}$.
+We can see that the curve satisfies the conditions of theorem 2, which
+means that it can be created with a 
+1PR circuit.
+
+\item \textbf{Parabolic dynamical map:} Finally, we define a parabolic dynamical map as:
 \begin{eqnarray}
 \epsilon(\rho) = \dfrac{1}{4} (1-p)^2 \sigma_0 \rho \sigma_0 + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
-with $p \in [-1,1]$. \\
+with $p \in [-1,1]$. 
+If we take the $\beta_j$ to be real,
+this dynamical map can be implemented
+by creating the curve of states:
+\begin{eqnarray}
+|\beta(p)\rangle = \left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right).
+\end{eqnarray}
+This can be rewritten as
+\begin{align*}
+|\beta(p)\rangle = \left( \dfrac{1}{2},0,0, \dfrac{1}{2} \right) + e^{is} \left( \dfrac{i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{-i}{4} \right) + e^{-is}  \left( \dfrac{-i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{i}{4} \right),
+\end{align*}
+with $s = \arcsin(p)$, so that
+this map fulfills the conditions of theorem 2.
+\end{itemize}
 
-To implement this dynamical map using the circuit presented in \fref{fig:1PR-circuit}, it is necessary to create the state
-\begin{eqnarray}
-\left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right)
-\end{eqnarray}
-on the $2$ ancilla qubits. Luckily, this state can be written in the form $\vec{c} + \vec{a} \cos s + \vec{b} \sin s$ as
-\begin{eqnarray}
-\begin{pmatrix}
-1/2 \\
-0 \\ 
-0 \\
-1/2
-\end{pmatrix} + \begin{pmatrix}
-0 \\
-1/2 \\
-1/2 \\
-0
-\end{pmatrix}  \cos s + \begin{pmatrix}
--1/2 \\
-0 \\
-0 \\
-1/2
-\end{pmatrix} \sin s
-\end{eqnarray}
-with $s = \arcsin p$. According to theorem 1, the fact that the state we need to create over the ancilla qubits can be written like this implies that the dynamical map can be simulated in a quantum computer using only one parametrized rotation. The circuit used will have the same form as that in figure , where the part used to create the state on the ancilla qubits will be:
-\begin{figure}[h!]
+We can construct other examples of 
+Pauli dynamical maps
+such that the curve of states $|\beta(p)\rangle$ requires
+can be implemented with a 1PR circuit.
+To do it, we only need to choose the three vectors $\vec{a}, \vec{b},\vec{c}$
+that satisfy the conditions of theorem 2.
+
+This can be done systematically for the case of curves of two qubits
+(that is, for Pauli dynamical maps of one qubit)
+with the following procedure:
+\begin{itemize}
+\item[1.] We first choose the norms $|\vec{a}|, |\vec{b}|, |\vec{c}|$
+such that $|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1$
+by choosing two angles $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and 
+defining:
+\begin{align*}
+|\vec{a}| = \sin \nu \cos \mu, \; |\vec{b}| = \sin \nu \sin \mu , \; |\vec{c}| = \cos \nu.
+\end{align*}
+\item[2.] We define $\vec{a'} = (|\vec{a}|,0,0,0),$ $\vec{b'} = (0,|\vec{b}|,0,0),$ $\vec{c'} = (0,0,|\vec{c}|,0)$.
+\item[3.] We select a unitary matrix $U$
+whose first row is $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$,
+with $\theta \in [0,2\pi]$ and use it to define $\vec{a} = U \vec{a'}, \vec{b} = U \vec{b'}, \vec{c} = U \vec{c'}$.
+
+This way, since the primed vectors are orthogonal and their squared norms add up to one,
+so do the unprimed vectors. 
+Moreover, we have that $\vec{a}+ \vec{b}+ \vec{c} = (e^{i\theta},0,0,0)$,
+which is a consequence of the first row of $U$ being $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$ because:
+\begin{align*}
+\vec{a} + \vec{b} + \vec{c} = U (\vec{a'} + \vec{b'} + \vec{c'}) = U(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
+\end{align*}
+The last step is because the first entry of $U(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
+is obtained by calculating the dot product of the first row of $U$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
+$e^{i\theta}$. 
+Furthermore, the other entries have to be $0$,
+since otherwise the norm of the result would be greater than
+one but $U$ preserves the norm.
+\end{itemize}
+
+Following this procedure for random
+angles and unitary matrices $U$, 
+we plot four Pauli dynamical maps 
+that can be implemented with a 1PR circuit in \fref{fig:curves-random}.
+
+\begin{figure} % {{{
 \centering
-\begin{quantikz}
-\lstick{$aq_0$} & \gate[wires=2]{B} & \ctrl{1} & \gate[wires=2]{A} & \qw \\
-\lstick{$aq_{1}$} & & \gate{R_{\sigma_2}(2s)} & & \qw  \\
-\end{quantikz}
-\caption{Circuit to create 2-qubit state}
+\includegraphics{images/curvas-azar.png}
+\caption{{\bf Random Pauli dynamical maps that can be implemented with a 1PR circuit.}
+The curves painted in the tetrahedron
+represent Pauli dynamical maps that can be implemented with 1PR circuits
+that were selected at random using the procedure detailed before.}
+\label{fig:curves-random}
 \end{figure}
 
-where according to theorem 1, matrices $A$ and $B$ can be chosen as:
-\begin{eqnarray}
-A &= \begin{pmatrix}
-*  & c_0 / \sqrt{1-r^2} & -b_0/r & a_0 /r \\
-*  & c_1 / \sqrt{1-r^2} & -b_1/r & a_1 /r \\ 
-* & c_2 / \sqrt{1-r^2} & -b_2/r & a_2/r \\
-* & c_3 / \sqrt{1-r^2} & -b_3/r & a_3/r \\
-\end{pmatrix} = \begin{pmatrix}
-0 & 1/\sqrt{2} & -1/\sqrt{2} & 0 \\
--1/\sqrt{2} & 0 & 0 & 1/\sqrt{2} \\
-1/\sqrt{2} & 0 & 0 & 1/\sqrt{2} \\
-0 & 1/\sqrt{2} & 1/\sqrt{2} & 0
-\end{pmatrix} \\
-B& = \begin{pmatrix}
-0 & 0 & 0 & 1 \\
-0 & 1 & 0 & 0\\
-0 & 0& 1 & 0 \\
-1 & 0 & 0 & 0 
-\end{pmatrix}
-\end{eqnarray}
-\end{itemize}
 
 %\textbf{Puntos:}
 %\begin{itemize}
