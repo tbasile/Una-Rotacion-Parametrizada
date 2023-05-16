@@ -1186,7 +1186,7 @@ These maps where constructed with the additional condition
 of passing through the identity channel.
 To do that, we ensure that the vectors also satisfy
 $\vec{a} + \vec{b} + \vec{c} = (e^{i \theta},0,0,0)$ with $\theta$ an arbitrary
-number.
+real number.
 This way, when $s = 0$ in \eref{eq:vec}, the constructed state
 is $(e^{i \theta},0,0,0)$, which
 corresponds with the identity channel.
@@ -1195,10 +1195,10 @@ To fulfill this additional condition,  we restrict the first row of
 $V$ to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
 That way, 
 \begin{align*}
-\vec{a} + \vec{b} + \vec{c} = U (\vec{a'} + \vec{b'} + \vec{c'}) = U(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
+\vec{a} + \vec{b} + \vec{c} = V (\vec{a'} + \vec{b'} + \vec{c'}) = V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
 \end{align*}
 The last step is because the first entry of $V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
-is obtained by calculating the dot product of the first row of $U$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
+is obtained by calculating the dot product of the first row of $V$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
