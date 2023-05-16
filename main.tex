@@ -988,7 +988,7 @@ computational base is
  $\;$ \\
  
 This theorem implies that starting from the state $|0\rangle$,
-the only curves we could expect to create
+the only curves of states we could expect to create
 with a 1PR circuit are those of the form
 \begin{equation}
 |\eta(p)\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is},
@@ -996,25 +996,25 @@ with a 1PR circuit are those of the form
 \end{equation}
 with 
 \begin{equation}
-|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1  \; \text{and} \; \vec{a}, \vec{b}, \vec{c} \; \text{are orthogonal vectors}.
+|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1  \; \text{and} \; \vec{a}, \vec{b}, \vec{c} \; \text{orthogonal vectors}.
 \label{eq:conditions-vecs}
 \end{equation}
-Furthermore, we can show a way to create these curves of states
+Furthermore, we can exhibit a way to create any of these curves of states
 with a 1PR circuit.
 To do it, we can use the circuit of \fref{fig:1PR-circuit} with the parametrized
-rotation on the last qubit controlled by all the others
-and with matrices $A$ and $B$ defined as:
+rotation $R$ on the last qubit controlled by all the other qubits
+and matrices $A$ and $B$ defined as:
 \begin{align*}
 B = (\vec{d}, *,*, \cdots,*), \; 
 A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|).
 \end{align*}
 Here the column vector $\vec{d}$ is defined as 
-$(0,0, \cdots,0 ,|\vec{c}|, |\vec{b}|, |\vec{a}|)$
+$(0,0, \cdots,0 ,|\vec{c}|, |\vec{b}|, |\vec{a}|)^T$
 and the asterisks can be completed in any
 way such that these matrices are unitary.
 Then, starting from the initial state $|0\rangle = (1,0,0,\cdots,0)$
 and applying the matrices $ARB$ defined
-like this, some calculations lead us to 
+like this, some direct calculations lead us  to 
 the resulting curve of states
 of \eref{eq:curve-states}.
 
@@ -1053,23 +1053,24 @@ of \eref{eq:curve-states}.
 \label{sec: 1PR circuit for a Pauli map}
 
 
-\tbnote{Sección no escrita del todo aún, sólo es un medio resumen que tenía.}
 We can now use the last theorem to conclude directly which Pauli dynamical maps
-can be created using a 1PR circuit.
-For 1PR circuits, the ancilla state of \ref{fig: circuit-pauli} 
-has to be created with only one parametrized curve. Therefore, theorem 2 implies that a map
+can be implemented using a 1PR circuit.
+With this condition, the curve of states of \eref{eq: parametrized state} 
+has to be created on the ancilla qubits with only one parametrized curve. 
+Therefore, the results of the last section imply that the the map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
 \end{eqnarray}
 can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\beta_{\vec{\gamma}}(p)|^2 = k_{\vec{\gamma}}(p)$ and
 \begin{eqnarray}
-\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is}
+\label{eq:vec}
+\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is},
 \end{eqnarray}
 where $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors in $\mathbb{C}^{2n}$ 
 and $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2= 1$.
 
 For the particular case of one qubit,
-we show some examples of Pauli dynamical maps that can be
+we can show some examples of Pauli dynamical maps that can be
 implemented with a 1PR circuit, which are plotted
 in \fref{fig:curves}.
 
@@ -1089,25 +1090,25 @@ and parabolic (orange). }
 
 \begin{itemize}
 \item \textbf{Bit flip map:} 
-This Pauli dynamical map is defined as
+This dynamical map is defined as
 \begin{align*}
 \varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1
 \end{align*}
 for $p \in [0,1]$. 
-Therefore, the curve of state $|\beta(p)\rangle$ needed on the ancilla
+Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
 qubits is such that 
 $|\beta_0(p)|^2= (1-p)^2$, $|\beta_1(p)|^2 = p$, $|\beta_2(p)|^2 = |\beta_3(p)|^2 = 0$.
 In particular, if we take the $\beta_j$ to be real,
 we need to create the curve of states:
 \begin{align*}
-|\beta(p)\rangle = (\sqrt{1-p},\sqrt{p},0,0).
+|\beta(p)\rangle = \left(\sqrt{1-p},\sqrt{p},0,0\right).
 \end{align*}
-This curve can be rewritten as
+This can be rewritten as
 \begin{align*}
 |\beta(p) \rangle = e^{is} \left( \dfrac{1}{2}, - \dfrac{i}{2},0,0 \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2},0,0 \right),
 \end{align*}
 with $s= \arcsin(\sqrt{p})$.
-Therefore, we can see that the curve satisfies the conditions of theorem 2 
+Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
 The exact same thing can be done
 for the phase flip and bit phase flip dynamical maps
@@ -1128,19 +1129,17 @@ This state can be rewritten as:
 \begin{align*}
 |\beta(p)\rangle = e^{is} \left( \dfrac{1}{2}, \dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}} \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}}\right)
 \end{align*}
-with $s = \arcsin(\sqrt{3p/4}$.
-We can see that the curve satisfies the conditions of theorem 2, which
-means that it can be created with a 
+with $s = \arcsin(\sqrt{3p/4})$.
+We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
 1PR circuit.
 
-\item \textbf{Parabolic dynamical map:} Finally, we define a parabolic dynamical map as:
+\item \textbf{Parabolic dynamical map:} Finally, we define the parabolic dynamical map as:
 \begin{eqnarray}
 \epsilon(\rho) = \dfrac{1}{4} (1-p)^2 \sigma_0 \rho \sigma_0 + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
 with $p \in [-1,1]$. 
 If we take the $\beta_j$ to be real,
-this dynamical map can be implemented
-by creating the curve of states:
+we need to create the curve of states:
 \begin{eqnarray}
 |\beta(p)\rangle = \left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right).
 \end{eqnarray}
@@ -1149,51 +1148,61 @@ This can be rewritten as
 |\beta(p)\rangle = \left( \dfrac{1}{2},0,0, \dfrac{1}{2} \right) + e^{is} \left( \dfrac{i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{-i}{4} \right) + e^{-is}  \left( \dfrac{-i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{i}{4} \right),
 \end{align*}
 with $s = \arcsin(p)$, so that
-this map fulfills the conditions of theorem 2.
+this map fulfills the conditions of  \eref{eq:conditions-vecs}.
 \end{itemize}
 
-We can construct other examples of 
+Furthermore, we can construct other examples of 
 Pauli dynamical maps
-such that the curve of states $|\beta(p)\rangle$ requires
+such that the curve of states $|\beta(p)\rangle$ 
 can be implemented with a 1PR circuit.
 To do it, we only need to choose the three vectors $\vec{a}, \vec{b},\vec{c}$
-that satisfy the conditions of theorem 2.
+that satisfy the conditions of  \eref{eq:conditions-vecs}.
 
-This can be done systematically for the case of curves of two qubits
+
+For example, this can be done systematically for the case of curves of states of two qubits
 (that is, for Pauli dynamical maps of one qubit)
 with the following procedure:
 \begin{itemize}
 \item[1.] We first choose the norms $|\vec{a}|, |\vec{b}|, |\vec{c}|$
 such that $|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1$
-by choosing two angles $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and 
+by selecting two angles $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and 
 defining:
 \begin{align*}
 |\vec{a}| = \sin \nu \cos \mu, \; |\vec{b}| = \sin \nu \sin \mu , \; |\vec{c}| = \cos \nu.
 \end{align*}
 \item[2.] We define $\vec{a'} = (|\vec{a}|,0,0,0),$ $\vec{b'} = (0,|\vec{b}|,0,0),$ $\vec{c'} = (0,0,|\vec{c}|,0)$.
-\item[3.] We select a unitary matrix $U$
-whose first row is $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$,
-with $\theta \in [0,2\pi]$ and use it to define $\vec{a} = U \vec{a'}, \vec{b} = U \vec{b'}, \vec{c} = U \vec{c'}$.
-
+\item[3.] Finally, we select a unitary matrix $V$
+and use it to define the vectors $\vec{a} = V \vec{a'}, \vec{b} = V \vec{b'}, \vec{c} = V \vec{c'}$.
 This way, since the primed vectors are orthogonal and their squared norms add up to one,
-so do the unprimed vectors. 
-Moreover, we have that $\vec{a}+ \vec{b}+ \vec{c} = (e^{i\theta},0,0,0)$,
-which is a consequence of the first row of $U$ being $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$ because:
+so do the unprimed vectors and therefore 
+fulfill the conditions of  \eref{eq:conditions-vecs}. 
+\end{itemize}
+
+Following this procedure for random
+angles and unitary matrices $V$, 
+we plot four Pauli dynamical maps 
+that can be implemented with a 1PR circuit in \fref{fig:curves-random}.
+These maps where constructed with the additional condition
+of passing through the identity channel.
+To do that, we ensure that the vectors also satisfy
+$\vec{a} + \vec{b} + \vec{c} = (e^{i \theta},0,0,0)$ with $\theta$ an arbitrary
+number.
+This way, when $s = 0$ in \eref{eq:vec}, the constructed state
+is $(e^{i \theta},0,0,0)$, which
+corresponds with the identity channel.
+
+To fulfill this additional condition,  we restrict the first row of
+$V$ to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
+That way, 
 \begin{align*}
 \vec{a} + \vec{b} + \vec{c} = U (\vec{a'} + \vec{b'} + \vec{c'}) = U(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
 \end{align*}
-The last step is because the first entry of $U(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
+The last step is because the first entry of $V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
 is obtained by calculating the dot product of the first row of $U$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
-one but $U$ preserves the norm.
-\end{itemize}
-
-Following this procedure for random
-angles and unitary matrices $U$, 
-we plot four Pauli dynamical maps 
-that can be implemented with a 1PR circuit in \fref{fig:curves-random}.
+one but $V$ preserves the norm.
 
 \begin{figure} % {{{
 \centering
