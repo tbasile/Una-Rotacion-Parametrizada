@@ -996,25 +996,24 @@ with a 1PR circuit are those of the form
 \end{equation}
 with 
 \begin{equation}
-|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1  \; \text{and} \; \vec{a}, \vec{b}, \vec{c} \; \text{orthogonal vectors}.
+|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1  \; \text{and} \; \vec{a}, \vec{b}, \vec{c} \; \text{orthogonal vectors},
 \label{eq:conditions-vecs}
 \end{equation}
-Furthermore, we can exhibit a way to create any of these curves of states
-with a 1PR circuit.
-To do it, we can use the circuit of \fref{fig:1PR-circuit} with the parametrized
-rotation $R$ on the last qubit controlled by all the other qubits
-and matrices $A$ and $B$ defined as:
+and $s = s(p)$ a function of $p$.
+Furthermore, we can exhibit a 1PR circuit to create any of these curves of states.
+To do it, we can use the circuit of \fref{fig:1PR-circuit} and set the parametrized
+rotation $R$ on the last qubit to be controlled by all the other qubits..
+Moreover, we define the matrices $A$ and $B$ as:
 \begin{align*}
 B = (\vec{d}, *,*, \cdots,*), \; 
-A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|).
+A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|),
 \end{align*}
-Here the column vector $\vec{d}$ is defined as 
+where the column vector $\vec{d}$ is defined as 
 $(0,0, \cdots,0 ,|\vec{c}|, |\vec{b}|, |\vec{a}|)^T$
-and the asterisks can be completed in any
+and the asterisks can be filled up in any
 way such that these matrices are unitary.
 Then, starting from the initial state $|0\rangle = (1,0,0,\cdots,0)$
-and applying the matrices $ARB$ defined
-like this, some direct calculations lead us  to 
+and applying the circuit (whose matrix is $ARB$), some direct calculations lead us  to 
 the resulting curve of states
 of \eref{eq:curve-states}.
 
@@ -1053,10 +1052,11 @@ of \eref{eq:curve-states}.
 \label{sec: 1PR circuit for a Pauli map}
 
 
-We can now use the last theorem to conclude directly which Pauli dynamical maps
-can be implemented using a 1PR circuit.
-With this condition, the curve of states of \eref{eq: parametrized state} 
-has to be created on the ancilla qubits with only one parametrized curve. 
+We can now use the previous results to conclude directly which Pauli dynamical maps
+can be implemented with a 1PR circuit.
+Given this condition, the curve of states of \eref{eq: parametrized state}  needed 
+to implement the map
+has to be constructed with only one parametrized rotation. 
 Therefore, the results of the last section imply that the the map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
@@ -1070,8 +1070,8 @@ where $\vec{a},\vec{b},\vec{c}$ are orthogonal vectors in $\mathbb{C}^{2n}$
 and $|\vec{a}|^2+  |\vec{b}|^2 + |\vec{c}|^2= 1$.
 
 For the particular case of one qubit,
-we can show some examples of Pauli dynamical maps that can be
-implemented with a 1PR circuit, which are plotted
+we can show some examples of Pauli dynamical maps
+implementable with a 1PR circuit, which are plotted
 in \fref{fig:curves}.
 
 
@@ -1111,8 +1111,8 @@ with $s= \arcsin(\sqrt{p})$.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
 The exact same thing can be done
-for the phase flip and bit phase flip dynamical maps
-changing $\sigma_1$ with
+for the phase flip and bit phase flip dynamical maps by
+changing $\sigma_1$ to
 $\sigma_3$ and $\sigma_2$ respectively.
 
 \item \textbf{Depolarizing:} This dynamical map is given by
@@ -1135,7 +1135,7 @@ We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}
 
 \item \textbf{Parabolic dynamical map:} Finally, we define the parabolic dynamical map as:
 \begin{eqnarray}
-\epsilon(\rho) = \dfrac{1}{4} (1-p)^2 \sigma_0 \rho \sigma_0 + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
+\epsilon(\rho) = \dfrac{1}{4} (1-p)^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
 with $p \in [-1,1]$. 
 If we take the $\beta_j$ to be real,
@@ -1152,26 +1152,23 @@ this map fulfills the conditions of  \eref{eq:conditions-vecs}.
 \end{itemize}
 
 Furthermore, we can construct other examples of 
-Pauli dynamical maps
-such that the curve of states $|\beta(p)\rangle$ 
+Pauli dynamical maps such that it
 can be implemented with a 1PR circuit.
 To do it, we only need to choose the three vectors $\vec{a}, \vec{b},\vec{c}$
 that satisfy the conditions of  \eref{eq:conditions-vecs}.
-
-
 For example, this can be done systematically for the case of curves of states of two qubits
 (that is, for Pauli dynamical maps of one qubit)
 with the following procedure:
 \begin{itemize}
 \item[1.] We first choose the norms $|\vec{a}|, |\vec{b}|, |\vec{c}|$
-such that $|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1$
-by selecting two angles $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and 
-defining:
+such that $|\vec{a}|^2 + |\vec{b}|^2 + |\vec{c}|^2 = 1$. 
+This can be done by selecting two angles
+$\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
 \begin{align*}
 |\vec{a}| = \sin \nu \cos \mu, \; |\vec{b}| = \sin \nu \sin \mu , \; |\vec{c}| = \cos \nu.
 \end{align*}
 \item[2.] We define $\vec{a'} = (|\vec{a}|,0,0,0),$ $\vec{b'} = (0,|\vec{b}|,0,0),$ $\vec{c'} = (0,0,|\vec{c}|,0)$.
-\item[3.] Finally, we select a unitary matrix $V$
+\item[3.] Finally, we choose a unitary matrix $V$
 and use it to define the vectors $\vec{a} = V \vec{a'}, \vec{b} = V \vec{b'}, \vec{c} = V \vec{c'}$.
 This way, since the primed vectors are orthogonal and their squared norms add up to one,
 so do the unprimed vectors and therefore 
@@ -1183,7 +1180,7 @@ angles and unitary matrices $V$,
 we plot four Pauli dynamical maps 
 that can be implemented with a 1PR circuit in \fref{fig:curves-random}.
 These maps where constructed with the additional condition
-of passing through the identity channel.
+of the map passing through the identity channel.
 To do that, we ensure that the vectors also satisfy
 $\vec{a} + \vec{b} + \vec{c} = (e^{i \theta},0,0,0)$ with $\theta$ an arbitrary
 real number.
@@ -1202,7 +1199,7 @@ is obtained by calculating the dot product of the first row of $V$ with $(|\vec{
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
-one but $V$ preserves the norm.
+$1$ but $V$ is unitary and therefore preserves the norm.
 
 \begin{figure} % {{{
 \centering
