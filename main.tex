@@ -192,10 +192,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
+\tbnote{Poner intro luego}
 
 
 % }}}
-\section{Quantum Channels}  \label{sec: Pauli Channels} % {{{
+\section{Pauli channels and dynamical maps}  \label{sec: Pauli Channels} % {{{
 \cpnote{Es raro qeu la seccion y una subseccion se llamen igual. Por discutir con Tomas}
 \tbnote{Lo cambié}
 \cpnote{El texto esta bien, pero creo qeu la distribucino de subsecciones esta chistosna y 
@@ -778,7 +779,7 @@ alrededor. }}
 \includegraphics[width=.8\columnwidth]{images/col-2.png} \\ [2ex]
 \end{subfigure}
 \caption{\tbnote{Aquí está una forma alternativa en que puede quedar la figura. 
-Usé $2(1-p)$ en lugar de $p$ para que se cumpla lo de
+Usé $2(1-p_{succ})$ en lugar de $p_{succ}$ para que se cumpla lo de
 que $0$ es lo peor y $1$ lo mejor.}}
 \end{figure}
 
@@ -820,7 +821,7 @@ we would typically need three rotations that depend on $p$, similar to those
 illustrated for the ancilla qubits in \fref{fig: circuit-pauli-1}.
 Moreover, creating an $N$-qubit curve of states
 usually necessitates $2^N-1$ parametrized rotations.
-\cpnote{no me salen esas cuentas.} \tbnote{Se me fue el 2.}
+\cpnote{no me salen esas cuentas.} \tbnote{Se me olvidaba el 2, ya está bien}
 
 However, it is desirable to minimize the number of parametrized rotations in our circuit.
 \cpnote{why?}
@@ -837,7 +838,7 @@ $2^N-1$ rotations parametrized by $p$,
 such as the three rotations used for the ancilla
 qubits in \fref{fig: circuit-pauli-1}.
 However, it would be preferable to achieve the same effect using only one parametrized rotation. 
-This would allow us to treat said rotation 
+This would allow us to interpret said rotation 
 as a knob that smoothly traverses the curve of states.
 Consequently, we are faced with the question of which curves of states, 
 such as the one described in \eref{eq: parametrized state}, 
@@ -857,9 +858,9 @@ states can be generated using 1PR \cpnote{Si te parece bien el cambio
 en la sigla, cambialos todos} 
 \tbnote{Sí me parece, los cambié} circuits. 
 To accomplish this, we begin by proving that all 1PR circuits have 
-{\color{orange} the form depicted in \fref{fig:1PR-circuit},
+the form depicted in \fref{fig:1PR-circuit},
 where the parametrized rotation is around $\sigma_3$ and
-is applied to the last qubit.} 
+is applied to the last qubit.
 
 \begin{figure} % {{{
 \centering
@@ -934,14 +935,15 @@ with $\vec{a}_j ,\vec{b}_j, \vec{c}_j$ orthogonal and $|\vec{a}_j|^2 + |\vec{b}_
 \end{theorem}
 \textbf{Proof:} 
 \cpnote{Discutir la prueba, se ve demasiado larga y aburrida}
-\tbnote{La cambié un poco, pero aún así.}
+\tbnote{La cambié un poco, pero no sé qué más cambiarle.}
 Denoting by $U$ the matrix for the 1PR circuit,
 we can conclude from theorem 1 that $U=ARB$,
 where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
 applied to the last qubit and controlled by some of the other
 ones. 
 We will calculate the $j$-th column of this matrix,
-which is given by $U|j\rangle$.
+which is given by $U|j\rangle$
+and confirm that it has the form $\vec{v}_j$ as defined above.
 
 First, applying $B$ to $|j\rangle$ results in $B|j\rangle = B_{0,j} |0\rangle + B_{1,j} |1 \rangle + \cdots + B_{2^n-1,j}|2^n-1\rangle$,
 which can be rewritten by separating the
@@ -949,7 +951,7 @@ first $N-1$ qubits from the last one as:
 \begin{equation}
 B|j\rangle = \sum_{k=0}^{2^{N-1}-1} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1,j} |k\rangle |1 \rangle \right).
 \end{equation}
-After the operator $B$, we need to apply $R$.
+After the operator $B$, the circuit applies the  controlled rotation $R$.
 To simplify the analysis, we separate the states of
 the first $N-1$ qubits into those that fulfill the control conditions of the rotation
 (which we denote as the set $\mathcal{C}$)
@@ -960,7 +962,7 @@ B|j\rangle = \sum_{k \in \mathcal{C}} \left(B_{2k,j} |k\rangle |0\rangle + B_{2k
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
-and a phase $e^{is}$ to $|1\rangle$, $RB|j\rangle$ is:
+and a phase $e^{is}$ to $|1\rangle$, $RB|j\rangle$ is equal to:
 \begin{small}
 \begin{eqnarray}
 &e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
@@ -968,10 +970,10 @@ and a phase $e^{is}$ to $|1\rangle$, $RB|j\rangle$ is:
 & \qquad = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
 \end{eqnarray}
 \end{small}
-where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$, $\vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle$, $\vec{c'}_j =\sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)$.
+where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$, $\vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle$, $\vec{c'}_j =\sum_{k \not\in \mathcal{C}} \big( B_{2k,j} |k\rangle |0\rangle+$ $ B_{2k+1} |k\rangle |j \rangle \big)$.
  These vectors are clearly orthogonal because they are each linear combinations of different 
-orthogonal states of the computational basis. 
-Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the norm of the $j$th column of $B$, 
+orthogonal states of the computational base. 
+Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
 which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
@@ -987,9 +989,10 @@ computational base is
  $U = (\vec{v}_0, \vec{v}_1, \cdots, \vec{v}_{2^n-1})$. $\blacksquare$  \\
  $\;$ \\
  
-This theorem implies that starting from the state $|0\rangle$,
+This theorem implies that starting from the state $|0\rangle$ (or any 
+other starting state),
 the only curves of states we could expect to create
-with a 1PR circuit are those of the form
+with a 1PR circuit are those of the form $U|0\rangle$, that is, curves such as:
 \begin{equation}
 |\eta(p)\rangle = \vec{c} + \vec{a} e^{is} + \vec{b} e^{-is},
 \label{eq:curve-states}
@@ -1000,20 +1003,21 @@ with
 \label{eq:conditions-vecs}
 \end{equation}
 and $s = s(p)$ a function of $p$.
-Furthermore, we can exhibit a 1PR circuit to create any of these curves of states.
-To do it, we can use the circuit of \fref{fig:1PR-circuit} and set the parametrized
-rotation $R$ on the last qubit to be controlled by all the other qubits..
-Moreover, we define the matrices $A$ and $B$ as:
+Furthermore, given a curve of states as the one in
+\eref{eq:curve-states}, we can always construct a 1PR circuit to create it.
+One way of doing it, is to use the circuit of \fref{fig:1PR-circuit}, setting the parametrized
+rotation $R$ on the last qubit to be controlled by all the other qubits
+and defining the matrices $A$ and $B$ as
 \begin{align*}
 B = (\vec{d}, *,*, \cdots,*), \; 
-A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|),
+A = (* , \cdots, *, \vec{c}/|\vec{c}|, \vec{b}/|\vec{b}|, \vec{a}/|\vec{a}|).
 \end{align*}
-where the column vector $\vec{d}$ is defined as 
+Here the column vector $\vec{d}$ is defined as 
 $(0,0, \cdots,0 ,|\vec{c}|, |\vec{b}|, |\vec{a}|)^T$
 and the asterisks can be filled up in any
 way such that these matrices are unitary.
 Then, starting from the initial state $|0\rangle = (1,0,0,\cdots,0)$
-and applying the circuit (whose matrix is $ARB$), some direct calculations lead us  to 
+and applying the circuit  of \fref{fig:1PR-circuit} (whose matrix representation is $ARB$), some direct calculations lead us  to 
 the resulting curve of states
 of \eref{eq:curve-states}.
 
@@ -1219,26 +1223,7 @@ that were selected at random using the procedure detailed before.}
 %and an example that doesn't satisfy the conditions (ejemplo está en la tesis).
 %\end{itemize}
 % }}}
-\section{Exponential maps $e^{iHt}$} % {{{
-\label{sec: Exponential maps}
-\textbf{Puntos:}
-\begin{itemize}
-\item We will apply the results about 1PR circuit to another kind of operation, those given by $U  = e^{iHt}$ where $H$ is hermitian  and time independent.
-\item \textbf{Lemma:}\textit{ The $n$-qubit operator $U^{iHt}$ can be implemented with a 1PR circuit of $n$ qubits if and only if $D = \text{diag}(e^{i\lambda_0 t}, \cdots, e^{i \lambda_{2^n-1}t})$ can be implemented with a 1PR circuit of $n$ qubits, where $\lambda_j$ are the eigenvalues of $H$.}
-\item \textbf{Proof:}  Es b\'asicamente usar que $H = QDQ^{-1}$ para una matriz $Q$ que no depende de $t$ y por lo tanto no agrega compuertas parametrizadas al circuito. 
-\item \textbf{Theorem:} \textit{ A n-qubit operator of the form $U = e^{iHt}$ can be implemented using a 1PR circuit if and only if the eigenvalues of $H$ are $-\lambda,0,\lambda$ (for $\lambda$ a real number) and the degeneracies of $\lambda$ and $-\lambda$ are both equal to $2^j$ for some $j\in \{0,1,\cdots,n-1\}$.}
-\item \textbf{Proof:} Estoy buscando formas de simplificar la prueba, porque es medio larguita. Pero básicamente es usar el lema y entonces preocuparnos sólo por $D$. Luego  usar el teorema de la sección 3 y notar que sólo hay tres tipos de  $\lambda$s posibles y luego notar que deben de tener esas degeneraciones.
-\item \textbf{Proof del regreso:} Aquí quiero recalcar que la prueba es constructiva, ya que consiste en mostrar cómo construir el circuito 1PR que hace la operación a partir de una $H$ que cumpla la hipótesis. 
-\item \textbf{Examples.} Mencionar que por el teorema, los ejemplos son sistemas con 3 energías separadas por la misma distancia y con las degeneraciones dadas en el teorema. 
-La verdad que no se me ocurren sistemas físicos comunes que cumplan eso.
-\begin{itemize}
-\item Cualquier matriz $H$ de un qubit cumple el teorema.
-\item Cualquier matriz de $n$ qubits que sea el producto tensorial de matrices de Pauli para cada partícula (o sea algo como $\sigma_{i_1} \otimes \sigma_{i_2} \otimes \cdots \otimes \sigma_{i_n}$) cumple el teorema.
-\item Estoy viendo para cadenas de espines si hay condiciones para las que cumplan las hipótesis del teorema, pero no he encontrado aún.
-\end{itemize}
-\item Hice explícitamente el circuito de 2 qubits para $H = \sigma_3 \otimes \sigma_2$ y lo simulé en las computadoras de IBM, obteniendo una fidelidad de $0.85$.
-\end{itemize}
-% }}}
+
 \section{Conclusion} % {{{
 
 CO\textsubscript{2} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem, tincidunt sit amet feugiat eget, ullamcorper sed velit. 
