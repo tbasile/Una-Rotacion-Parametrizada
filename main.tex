@@ -700,9 +700,9 @@ figuras y mas inspiracion}
 \begin{subfigure}{0.1\textwidth}
 \includegraphics[width=.8\columnwidth]{images/col-2.png} \\ [2ex]
 \end{subfigure}
-\caption{\cpnote{}\tbnote{Aquí está una forma alternativa en que puede quedar la figura. 
-Usé $2(1-p_{succ})$ en lugar de $p_{succ}$ para que se cumpla lo de
-que $0$ es lo peor y $1$ lo mejor.}}
+\caption{\cpnote{porfa escribe el caption.} \tbnote{Aquí está una forma
+alternativa en que puede quedar la figura.  Usé $2(1-p_{succ})$ en lugar de
+$p_{succ}$ para que se cumpla lo de que $0$ es lo peor y $1$ lo mejor.}}
 \end{figure}
 
 
@@ -715,8 +715,6 @@ que $0$ es lo peor y $1$ lo mejor.}}
 % }}}
 \section{One Parameter Circuits} % {{{
 \label{sec: 1PR Circuits}
-\cpnote{Quizá abrir con un parrafo de motivacion. Quizá lo tenemos que hablar. }
-\cpnote{No se sabe aun que son 1PR circuits. Poner completo} \tbnote{Ya.}
 
 
 Just as Pauli channels, Pauli dynamical maps can be implemented using the circuit
@@ -731,30 +729,9 @@ Thus, we temporarily shift our focus from Pauli
 channels and dynamical maps to the general problem of 
 creating a circuit to generate a curve of
 states like the one described in \eref{eq: parametrized state}.
-\cpnote{me gusta mas usar el comando eref para que si toca cambiarlo, dependiendo 
-de la revista, lo pueda hacer de un solo jalon. Lo mismo para las 
-figuras.} \tbnote{Ah va, lo puse en todas.}
 
-In general, producing this curve of states will require multiple rotations
-parametrized by $p$. For instance, in the case of a two-qubit curve of states,
-we would typically need three rotations that depend on $p$, similar to those
-illustrated for the ancilla qubits in \fref{fig: circuit-pauli-1}.
-Moreover, creating an $N$-qubit curve of states
-usually necessitates $2^N-1$ parametrized rotations.
-\cpnote{no me salen esas cuentas.} \tbnote{Se me olvidaba el 2, ya está bien}
-
-However, it is desirable to minimize the number of parametrized rotations in our circuit.
-\cpnote{why?}
-This leads us to the following question: which curves of states,
-such as the one described in \eref{eq: parametrized state}, 
-can be generated using only a single parametrized rotation? 
-To clarify this, we provide the following definition for a circuit with one parametrized rotation.
-\cpnote{Creo qeu los dos párrafos anteriores son uno y toca pensar cual es el
-mensaje principal y rediseñar. }
-\tbnote{De acuerdo, Lo cambié a esto:}
-
-{\color{orange} In general, producing this curve of states for $N$ qubits will require
-$2^N-1$ rotations parametrized by $p$,
+In general, producing this curve of states for $N$ qubits will require
+$2^N-1$ rotations parametrized by $p$\cpnote{De de donde sale este numero?},
 such as the three rotations used for the ancilla
 qubits in \fref{fig: circuit-pauli-1}.
 However, it would be preferable to achieve the same effect using only one parametrized rotation. 
@@ -764,7 +741,7 @@ Consequently, we are faced with the question of which curves of states,
 such as the one described in \eref{eq: parametrized state}, 
 can be produced using just a single parametrized rotation. 
 To clarify this, we provide the following definition 
-for a circuit with one parametrized rotation.}
+for a circuit with one parametrized rotation.
 
 \begin{definition}{\textbf{1-Parameter Rotation Circuit:}}
 A 1-Parameter Rotation (1PR) circuit is a parametrized quantum
@@ -774,9 +751,7 @@ whether controlled or not.
 \end{definition}
 
 Based on this definition, we aim to determine which curves of 
-states can be generated using 1PR \cpnote{Si te parece bien el cambio 
-en la sigla, cambialos todos} 
-\tbnote{Sí me parece, los cambié} circuits. 
+states can be generated using 1PR circuits. 
 To accomplish this, we begin by proving that all 1PR circuits have 
 the form depicted in \fref{fig:1PR-circuit},
 where the parametrized rotation is around $\sigma_3$ and
@@ -792,9 +767,6 @@ can be controlled or not by any of the other qubits.
 $A$ and $B$
 are $N$-qubit gates that do not depend on the parameter $p$ and
 $s= s(p)$ is a function of the parameter.
-\cpnote{Parece que se te olvida la puntuacion en algunos captions. 
-por otro lado, queda la figura a mitad de la prueba. A mi me gusta dejar 
-que Latex organice solo las figuras y sin ponerle el h! ni nada. } \tbnote{Va}
 }
 \label{fig:1PR-circuit}
 \end{figure} % }}}
@@ -825,18 +797,15 @@ Since the angles $\theta$ and $\phi$ do not depend on the parameter $p$,
 any 1PR circuit can be transformed into a circuit where the parametrized
  rotation is around $\sigma_3$ instead of an arbitrary axis. 
 Moreover, without loss of generality, we can choose the last qubit as the
-target qubit for the rotation \cpnote{Why?} 
-{\color{orange} , since if it weren't, we could use
+target qubit for the rotation, since if it weren't, we could use
 swap gates to move the rotation
 to the last qubit without adding gates
-that depend on $p$. }.
+that depend on $p$. 
 
 Therefore, a 1PR circuit can be transformed such
 that the rotation is around $\sigma_3$ and is applied to the last qubit 
 (possibly controlled by other qubits), 
 resulting in the form depicted in \fref{fig:1PR-circuit}. 
-\cpnote{Creo que este ultimo parrafo sobra, aunque hay detalles aca que quizá se pueden
-poner en el planteamiento del problema.} \tbnote{Lo pasé arriba justo antes del teorema y quitaría este párrafo entonces }
 $\blacksquare$ \\
 $\;$\\
 
@@ -882,16 +851,30 @@ B|j\rangle = \sum_{k \in \mathcal{C}} \left(B_{2k,j} |k\rangle |0\rangle + B_{2k
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
-and a phase $e^{is}$ to $|1\rangle$, $RB|j\rangle$ is equal to:
-\begin{small}
-\begin{eqnarray}
-&e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
-+ \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
-& \qquad = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
-\end{eqnarray}
-\end{small}
-where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$, $\vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle$, $\vec{c'}_j =\sum_{k \not\in \mathcal{C}} \big( B_{2k,j} |k\rangle |0\rangle+$ $ B_{2k+1} |k\rangle |j \rangle \big)$.
- These vectors are clearly orthogonal because they are each linear combinations of different 
+and a phase $e^{is}$ to $|1\rangle$,
+% \begin{small}
+% \begin{eqnarray}
+% &e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
+% + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1} |k\rangle |j \rangle \right)\\
+% & \qquad = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
+% \end{eqnarray}
+% \end{small}
+% test
+\begin{align}
+RB|j\rangle& = e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
++ \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle |0\rangle + B_{2k+1}
+|k\rangle |j \rangle \right) \nonumber \\
+& = e^{-is} \vec{b'}_j + e^{is} \vec{a'}_j + \vec{c'}_j,
+\end{align}
+where $\vec{a'} = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$,
+$\vec{b'}_j = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle$,
+$\vec{c'}_j =\sum_{k \not\in \mathcal{C}} \big( B_{2k,j} |k\rangle |0\rangle+$
+$ B_{2k+1} |k\rangle |j \rangle \big)$.
+\cpnote{Preferira que tuvieramos que los kets fisicos tuvieran la notacion de
+ket. Intenta modificarlo asi y luego sigo con la prueba. Ya no me está pareciendo 
+tan latosa. Trata tambien que los nombres que usas sean como consistentes o tengan 
+algo que decir de su contenido.}
+These vectors are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational base. 
 Moreover, they satisfy $|\vec{a'}_j|^2 + |\vec{b'}_j|^2 + |\vec{c'}_j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
 which is unitary.
@@ -970,7 +953,6 @@ of \eref{eq:curve-states}.
 %\item \textbf{Proof:} La prueba está dentro de las ``Cosas-Escritas-Antes'', 
 %aunque se puede y debe achicar bastante.
 %\end{itemize}
-\newpage
 % }}}
 \section{1PR circuit for a Pauli map} % {{{
 \label{sec: 1PR circuit for a Pauli map}
