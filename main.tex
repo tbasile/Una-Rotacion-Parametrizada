@@ -682,67 +682,6 @@ when simulating unitary processes.
 figuras y mas inspiracion}
 \tbnote{Va}
 
-% \cpnote{Mejorar la figura, quizá dejando la tridimensional y ademas poniendo unos 6 cortes. Probar
-% con diferentes colores.
-% }
-
-
-
-\begin{figure}
-\centering
-\includegraphics[width=0.55\textwidth]{images/probabilities-points.png}\\
-\caption{{\bf Maximal probabilities of success for one-qubit Pauli channel}
-$p_{\succ}$ of one-qubit Pauli channels implemented on IBM's ibmq-lima. The
-channels are plotted in the tetrahedron of Pauli channels, with a color bar
-indicating the distinguishability of each channel's implementation using the
-circuit for a 1-qubit Pauli channel. \cpnote{Poner la barra del tamaño apropiado 
-y quizá juntar con los cortes que tenemos. Discutir en vivo con Tomas a ver que onda. 
-Tambien poner mas puntos experimentales.} \tbnote{Cambié lo de la barra y puse más puntos experimentales en los cortes que están en 
-la figura más abajo
-(no en esta figura porque ya se llena mucho de puntos).}
-\cpnote{ Creo qeu me gustaria usar otra candidad, 
-como la fidelidad, pero definida a partir de la norma diamante. 
-Asi, 1 es perfecto y 0 esta mal.} \tbnote{Lo que se me ocurre es algo como $2*(1-p_{succ})$ que justo cumple eso y en términos
-de la norma es $1-1/2||\xi_I - \xi_T||_{\diamond}$} \cpnote{ De estas, me gusta la de abajo 
-a la izquiera porque siento que distingue bien, pero si toca entnoces
-usar los mismos colores en la fig 5.} \tbnote{Ya agarré esos colores} \cpnote{Te propongo dejar un tetraedro y los
-cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
-propongo tambien que se ponta la leyenda en la figura y no encima. 
-Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ. } \tbnote{Lo puse en la figura siguiente. Poniéndolo con 3 columnas y dos filas queda
-muy chiquita la figura del tetraedro y no se llega a ver nada, así que lo puse grande y los cortes
-alrededor. }}
-\label{fig: fidelity one qubit}
-\end{figure}
-
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=.32\columnwidth]{images/tetra-col1.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col2.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col3.png} \\[1ex]
-%\includegraphics[width=.32\columnwidth]{images/tetra-col4.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col5.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col6.png}\\[1ex]
-%\includegraphics[width=.32\columnwidth]{images/tetra-col7.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col8.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col9.png}\\[1ex]
-%\includegraphics[width=.32\columnwidth]{images/tetra-col10.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col11.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col12.png}\\[1ex]
-%\includegraphics[width=.32\columnwidth]{images/tetra-col13.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col14.png}
-%\includegraphics[width=.32\columnwidth]{images/tetra-col16.png}\\[1ex]
-%\caption{Algunos colores posibles. \cpnote{ Creo qeu me gustaria usar otra candidad, 
-%como la fidelidad, pero definida a partir de la norma diamante. 
-%Asi, 1 es perfecto y 0 esta mal.} \tbnote{Algo como } \cpnote{ De estas, me gusta la de abajo 
-%a la izquiera porque siento que distingue bien, pero si toca entnoces
-%usar los mismos colores en la fig 5. Te propongo dejar un tetraedro y los
-%cinco cortes para que nos quede algo de 3 columnsas y dos filas. 
-%propongo tambien que se ponta la leyenda en la figura y no encima. 
-%Si te haces bolas con las figuras, discutimos como hacerlas en TIKZ. } }
-%\end{figure}
-
-
 \begin{figure}
 \centering
 \begin{subfigure}{0.9\textwidth}
@@ -761,7 +700,7 @@ alrededor. }}
 \begin{subfigure}{0.1\textwidth}
 \includegraphics[width=.8\columnwidth]{images/col-2.png} \\ [2ex]
 \end{subfigure}
-\caption{\tbnote{Aquí está una forma alternativa en que puede quedar la figura. 
+\caption{\cpnote{}\tbnote{Aquí está una forma alternativa en que puede quedar la figura. 
 Usé $2(1-p_{succ})$ en lugar de $p_{succ}$ para que se cumpla lo de
 que $0$ es lo peor y $1$ lo mejor.}}
 \end{figure}
