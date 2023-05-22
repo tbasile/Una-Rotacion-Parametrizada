@@ -197,33 +197,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 
 % }}}
 \section{Pauli channels and dynamical maps}  \label{sec: Pauli Channels} % {{{
-\cpnote{Es raro qeu la seccion y una subseccion se llamen igual. Por discutir con Tomas}
-\tbnote{Lo cambié}
-\cpnote{El texto esta bien, pero creo qeu la distribucino de subsecciones esta chistosna y 
-los titulo tambien. Platicar con Tomas a ver a que llegamos. }
-
 % Intro  {{{
-\textbf{Lista de puntos:}
-\begin{itemize}
-\item \textbf{Circuit for a Pauli channel:}  Propose a circuit to simulate a Pauli channel on $n$ qubits. It works by creating a $2n$-qubit state on ancilla qubits.
-\item \textbf{Simulation:} Show the fidelities of simulating the circuit on a quantum computer for many one-qubit channels inside the tetrahedron.
-\item \textbf{For Pauli dynamical maps}: See how the circuit generalizes to parametrized channels and notice that many rotations are needed to create the $2n$-ancilla qubit state. \\
-\end{itemize}
+% \textbf{Lista de puntos:}
+% \begin{itemize}
+% \item \textbf{Circuit for a Pauli channel:}  Propose a circuit to simulate a Pauli channel on $n$ qubits. It works by creating a $2n$-qubit state on ancilla qubits.
+% \item \textbf{Simulation:} Show the fidelities of simulating the circuit on a quantum computer for many one-qubit channels inside the tetrahedron.
+% \item \textbf{For Pauli dynamical maps}: See how the circuit generalizes to parametrized channels and notice that many rotations are needed to create the $2n$-ancilla qubit state. \\
+% \end{itemize}
 
-In this section \cpnote{ser coherente con las subsecciones que se tienen nota que no 
-hay mencion a los quantum channels. Menos
-cuadrado, quizá pasar por chatgpt. hacerlo al final cuanod se tenga el capitulo
-por lo menos leido y aprobado en principio de mi parte.} \tbnote{Ya} we introduce the
-concept of quantum channels, focusing on a specific type called Pauli channels.
-Furthermore, we define Pauli dynamical maps, which
-are curves of Pauli channels parametrized by a variable.
+In this section  we introduce the concept of quantum channels, focusing on a
+specific type called Pauli channels.  Furthermore, we define Pauli dynamical
+maps, which are curves of Pauli channels parametrized by a variable.
 % }}}
-%\subsection*{Quantum Channels} \label{subsec: Quantum Channels} % {{{
+\subsection{Quantum Channels} \label{subsec: Quantum Channels} % {{{
 
-
-% \cpnote{Creo que toca iterar, pensando un poco en nivel licenciatura. ver ejemplos }
-% \cpnote{Tambien creo que no es coherente tener una subseccion para esto si 
-% lo qeu se quiere decir en la seccion es otra cosa.}
 
 In quantum mechanics, a closed system's state is represented by a vector in a
 Hilbert space $\mathcal{H}$.  The state's evolution is unitary and given by
@@ -233,55 +220,51 @@ environment~\cite{Breuer}.  For instance, the system's state may become
 entangled with the environment, leading to a loss of information about the
 system's state over time.
 
-To describe open systems, instead of state vectors,
-we use matrices $\rho$ that act on $\mathcal{H}$.
-These matrices are called density matrices, and they include information about the system's interaction with its environment. 
-For a density matrix $\rho$ to be physically valid, 
-it must satisfy two conditions: $\tr(\rho) = 1$ and it must be positive semi-definite,
-which is denoted as $\rho \geq 0$~\cite{chuangbook}.
+To describe open systems, instead of state vectors, we use matrices $\rho$ that
+act on $\mathcal{H}$.  These matrices are called density matrices, and they
+include information about the system's interaction with its environment.  For a
+density matrix $\rho$ to be physically valid, it must satisfy two conditions:
+$\tr(\rho) = 1$ and it must be positive semi-definite, which is denoted as
+$\rho \geq 0$~\cite{chuangbook}.
 
 
-Knowing this, we can now define quantum channels.
-Quantum channels are operators $\mathcal{E}$ that
-can describe the evolution of open quantum systems, such that $\rho \rightarrow \mathcal{E}(\rho)$.
-Quantum channels are the most general linear operations
-that a quantum system can undergo independently of its
-past~\cite{zimansbook,cirac}.
-These channels are constructed based on three fundamental properties: 
-linearity, trace preservation, and complete positivity.
+Knowing this, we can now define quantum channels.  Quantum channels are
+operators $\mathcal{E}$ that can describe the evolution of open quantum
+systems, such that $\rho \rightarrow \mathcal{E}(\rho)$.  Quantum channels are
+the most general linear operations that a quantum system can undergo
+independently of its past~\cite{zimansbook,cirac}.  These channels are
+constructed based on three fundamental properties: linearity, trace
+preservation, and complete positivity.
 
-Linearity ensures that a quantum channel $\mathcal{E}$ maps any ensemble
-of density matrices into the corresponding ensemble of their evolution.
-The trace preserving property is given by $\tr (\mathcal{E}[\rho]) = \tr (\rho) =
-1$ and guarantees that the quantum channel does not change the condition that $\tr(\rho) = 1$.
-Finally, the channel should also preserve
-the condition $\rho \geq 0$, and a map that does this is called a positive map.
-However, positivity of $\mathcal{E}$ is not enough, 
-and we actually require the more restrictive condition of complete positivity.
-Complete positivity means that
-$\mathcal{E} \otimes \mathbb{I}_n$ is positive for
-any positive integer $n$ 
-(where $\mathbb{I}_n$ is the $n\times n$ identity matrix).
-This ensures that even if the principal system is entangled with another system,
-applying $\mathcal{E}$ to the principal system while doing nothing to the
- other one still results in  a positive semidefinite state for the principal system~\cite{chuangbook}. 
+Linearity ensures that a quantum channel $\mathcal{E}$ maps any ensemble of
+density matrices into the corresponding ensemble of their evolution.  The trace
+preserving property is given by $\tr (\mathcal{E}[\rho]) = \tr (\rho) = 1$ and
+guarantees that the quantum channel does not change the condition that
+$\tr(\rho) = 1$.  Finally, the channel should also preserve the condition $\rho
+\geq 0$, and a map that does this is called a positive map.  However,
+positivity of $\mathcal{E}$ is not enough, and we actually require the more
+restrictive condition of complete positivity.  Complete positivity means that
+$\mathcal{E} \otimes \mathbb{I}_n$ is positive for any positive integer $n$
+(where $\mathbb{I}_n$ is the $n\times n$ identity matrix).  This ensures that
+even if the principal system is entangled with another system, applying
+$\mathcal{E}$ to the principal system while doing nothing to the other one
+still results in  a positive semidefinite state for the principal
+system~\cite{chuangbook}. 
 
-Given a quantum channel $\mathcal{E}$, 
-the condition of trace preservation is straightforward to verify but complete positivity is not as simple.
-To test complete positivity of a quantum channel, 
-Jamiołkowski and Choi~\cite{choi,jamil} developed a simple algorithm that exploits the
+Given a quantum channel $\mathcal{E}$, the condition of trace preservation is
+straightforward to verify but complete positivity is not as simple.  To test
+complete positivity of a quantum channel, Jamiołkowski and
+Choi~\cite{choi,jamil} developed a simple algorithm that exploits the
 isomorphism between a channel $\mathcal{E}$ and the state $\mathcal{D} =
 (\mathbb{I} \otimes \mathcal{E}) [|\Omega \rangle \langle  \Omega|]$, where
-$|\Omega\rangle = 1/\text{dim}(\mathcal{H}) \sum_{i}^{\text{dim}(\mathcal{H})} |i \rangle |i \rangle$ is a maximally entangled state between the original system and
-an ancilla.  Remarkably, the map $\mathcal{E}$
-is completely positive if and only if $\mathcal{D}$ (also known as the Choi or
-dynamical matrix of $\mathcal{E}$) is positive semidefinite.
+$|\Omega\rangle = 1/\text{dim}(\mathcal{H}) \sum_{i}^{\text{dim}(\mathcal{H})}
+|i \rangle |i \rangle$ is a maximally entangled state between the original
+system and an ancilla.  Remarkably, the map $\mathcal{E}$ is completely
+positive if and only if $\mathcal{D}$ (also known as the Choi or dynamical
+matrix of $\mathcal{E}$) is positive semidefinite.
 
-\cpnote{Le hice un par de cambios pequeños pero la veo bastante bien. }
-\tbnote{Perfecto, gracias!}
 % }}}
-\subsection{Pauli Channels} 
-\label{subsec: Pauli Channels} % {{{
+\subsection{Pauli Channels}  \label{subsec: Pauli Channels} % {{{
 
 We have discussed the main features of quantum channels and 
 now we turn our attention to a specific 
@@ -569,15 +552,6 @@ Es una de las varias cosas que complicaba determinar uno a uno qué canales se p
 \subsection{Simulation for one-qubit Pauli channels} % {{{
 \label{subsec: Simulation for one-qubit Pauli channels}
 
-\cpnote{Acá voy}
-
-% \cpnote{Es raro tener una sola subseccion. De perdida dos, o ninguna. Charlemso
-% a ver como reorganizar las secciones (creo que el flujo si va bien hasta
-% ahora)} \tbnote{Va. Me pareció ponerle su propia subsección a la parte anterior
-% porque creo que esto y lo anterior sí debe ir separado, así que mejor dos
-% subsecciones.}
-
-
 For the particular case of a Pauli channel on one qubit, the circuit that
 simulates it can be constructed as in \fref{fig: circuit-pauli-1},
 which is a special case of \fref{fig: circuit-pauli}
@@ -600,6 +574,9 @@ k_{01}})
 \end{eqnarray}
 \label{eq:angle}
 \end{subequations}
+\cpnote{Acá te falto la puntuación en las ecuaciones. Porotro lado me gustaría ver la 
+forma que tienen las ecuaciones en exponenciales o en funciones trigonometricas
+que quizá estén mas bonitas.}
 
 
 
@@ -607,14 +584,18 @@ k_{01}})
 \centering
 \includegraphics{images/circuito_unqubit.pdf}
 \caption{
-\cpnote{No me gusta que esté tan cargado de ecuaciones el caption. Metelas en
-el lugar apropiado en el texto} \tbnote{Lo pasé al texto}
+% \cpnote{ No me gusta que esté tan cargado de ecuaciones el caption. Metelas en
+% el lugar apropiado en el texto} \tbnote{Lo pasé al texto}
 {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel,
 which is a particular case of \fref{fig: circuit-pauli}.  Here we have two
 ancilla qubits and we use three rotations
-of angles given by \eref{eq:angle} to create the state $\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
+of angles given by \eref{eq:angle} to create the state $\sqrt{k_{00}}
+|00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
 |10\rangle + \sqrt{k_{11}}|11\rangle$
 on them.
+\cpnote{Creo qeu este seria el estado ecuacion 14, pero como qeuno está limpio. 
+Creo quepodemos nombrar ese estado y luego referirnos acá por el nobmre y la referencia 
+a la ecuación.}
 %and the state $b_{00} |00\rangle + b_{01} |01\rangle + b_{10}
 %|10\rangle + b_{11}|11\rangle$ is created on them with the help of three
 %rotations of angles $\theta_0 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
@@ -628,20 +609,19 @@ on them.
 
 Using the quantum computers that IBM has available~\cite{Qiskit}, we sampled
 one-qubit Pauli channels and simulated them using the ibmq-lima quantum
-computer.  For each of these channels, we used quantum process
+computer\cpnote{la computadora no la usamos para samplear sino solo para simular. Modificar
+la frase.}.  For each of these channels, we used quantum process
 tomography~\cite{Qiskit, Chuang:1996} to obtain the 
 operator $\xi_I$ corresponding to the implementation of the
-circuit.  Then, we compared this {\color{red}
-Choi matrix} {\color{orange} operator} with the theoretical {\color{red} Choi
-matrix $\mathcal{C}_T$} {\color{orange} operator $\xi_T$} of the channel we
-wanted to implement.  \cpnote{Quizá referirnos mejor al canal? Lo discutimos.}
-\tbnote{Ah sí, mejor. Cambié lo que puse en rojo por lo que está en naranja.}
+circuit.  Then, we compared this operator with the ideal 
+channel $\xi_T$  we
+wanted to implement.  
 
 
+\cpnote{Toca rediseñar este parrafo mejor. La figura que al final nos interesa es 
+la $f$, pero no se menciona acá. Toca como que hacer que el párrafo gire alrededor de ella. }
 We shall use the diamond norm~\cite{Aharonov,Wilde}, which has a simple physical meaning related
-with the probability that one can distinguish two channels \cpnote{Revisa esta 
-frase a ver si te parece} 
-\tbnote{Sí, perfecto}.
+with the probability that one can distinguish two channels.
 % To perform this comparison, we used the diamond norm~\cite{Aharonov,Wilde},
 % which gives us a method of discriminating \cpnote{no solo discrimina... todas
 % las normas lo hacen, pero nos permite ver que tan parecidos son dos canales. 
@@ -657,14 +637,15 @@ the agent guesses correctly is~\cite{Benenti}:
 \label{eq: probability-success}
 p_{\succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
 \end{equation}
-where $|| \cdot ||_{\diamond}$ is the diamond norm \cpnote{no la hemos 
-definido matemáticamente} \tbnote{Qué tal así:} {\color{orange}, defined by 
+where $|| \cdot ||_{\diamond}$ is the diamond norm, defined by 
 \begin{align*}
 ||\xi_I - \xi_T ||_{\diamond}  = \max_{\rho} || (\xi_I \otimes I) \rho - (\xi_T \otimes I) \rho ||_1,
 \end{align*}
 with $I$ the identity map,
 $|| \cdot ||_1$ the trace norm and the maximization
-done over all density matrices $\rho$.} 
+done over all density matrices $\rho$.
+\cpnote{Esa definicion esta bonita y me gusta, pero supongo qeu no es asi somo la 
+calculas. }
    
 Notice that if the channels are the same, then $p_{\succ}=1/2$. 
 This is expected because in this situation the agent
@@ -672,6 +653,8 @@ has no way of distinguishing the channels and has no choice but to completely
 guess, which results in a probability of success of $1/2$.
 On the other hand, $p_{\succ}=1$ indicates that the channels are perfectly
 distinguishable.
+\cpnote{Creo qeu el ejemplo debería ir con la $f$ que definamos, quizá pasando por la 
+norma diamante, o por la p succ. Eso si, si no la ocupamos (la psucc) tonces quitarla.}
 % \cpnote{hummm ejemplo al menos para nosotros.} 
 % \tbnote{Un ejemplo que comprobé es considerar el canal que aplica $\sigma_x$ y 
 % el que aplica $\sigma_z$ y tienen $p_{\succ}=1$.
@@ -791,8 +774,6 @@ que $0$ es lo peor y $1$ lo mejor.}}
 
 % }}}
 % }}}
-
-\newpage
 \section{One Parameter Circuits} % {{{
 \label{sec: 1PR Circuits}
 \cpnote{Quizá abrir con un parrafo de motivacion. Quizá lo tenemos que hablar. }
@@ -1089,7 +1070,7 @@ In particular, the depolarizing (purple), bit flip (blue),
 phase flip (green), bit-phase flip (red)
 and parabolic (orange). }
 \label{fig:curves}
-\end{figure}
+\end{figure} % }}}
 
 
 \begin{itemize}
@@ -1213,7 +1194,7 @@ The curves painted in the tetrahedron
 represent Pauli dynamical maps that can be implemented with 1PR circuits
 that were selected at random using the procedure detailed before.}
 \label{fig:curves-random}
-\end{figure}
+\end{figure} % }}}
 
 
 %\textbf{Puntos:}
