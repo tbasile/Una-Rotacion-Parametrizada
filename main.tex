@@ -996,7 +996,7 @@ and parabolic (orange). }
 \item \textbf{Bit flip map:} 
 This dynamical map is defined as
 \begin{align*}
-\varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1
+\varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1,
 \end{align*}
 for $p \in [0,1]$. 
 Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
@@ -1005,11 +1005,11 @@ $|\beta_0(p)|^2= (1-p)^2$, $|\beta_1(p)|^2 = p$, $|\beta_2(p)|^2 = |\beta_3(p)|^
 In particular, if we take the $\beta_j$ to be real,
 we need to create the curve of states:
 \begin{align*}
-|\beta(p)\rangle = \left(\sqrt{1-p},\sqrt{p},0,0\right).
+|\beta(p)\rangle = \sqrt{1-p} |0\rangle +\sqrt{p} |1\rangle.
 \end{align*}
 This can be rewritten as
 \begin{align*}
-|\beta(p) \rangle = e^{is} \left( \dfrac{1}{2}, - \dfrac{i}{2},0,0 \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2},0,0 \right),
+|\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |0\rangle - \dfrac{i}{2} |1\rangle \right) + e^{-is} \left( \frac{1}{2} |0\rangle + \frac{i}{2} |1\rangle \right),
 \end{align*}
 with $s= \arcsin(\sqrt{p})$.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
@@ -1024,14 +1024,15 @@ $\sigma_3$ and $\sigma_2$ respectively.
 \varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
 \end{align*}
 with $p \in [0,1]$. 
-Therefore, taking the $\beta_j$ to be real,
+Then, taking the $\beta_j$ to be real,
 the curve of states needed to create on the ancilla qubits is
 \begin{align*}
-|\beta(p) \rangle = \left( \sqrt{1-3p/4}, \sqrt{p/4}, \sqrt{p/4},\sqrt{p/4} \right).
+|\beta(p) \rangle = \sqrt{1-3p/4} |0\rangle + \sqrt{p/4} |1\rangle + \sqrt{p/4} |2 \rangle  + \sqrt{p/4} |3\rangle.
 \end{align*}
 This state can be rewritten as:
 \begin{align*}
-|\beta(p)\rangle = e^{is} \left( \dfrac{1}{2}, \dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}},\dfrac{-i}{2\sqrt{3}} \right) + e^{-is} \left( \dfrac{1}{2}, \dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}},\dfrac{i}{2\sqrt{3}}\right)
+|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |0\rangle - \dfrac{i}{2\sqrt{3}} |1\rangle - \dfrac{i}{2\sqrt{3}} |2 \rangle - \dfrac{i}{2\sqrt{3}} |3\rangle \right) \\
+& + e^{-is} \left( \dfrac{1}{2} |0\rangle + \dfrac{i}{2\sqrt{3}} |1\rangle + \dfrac{i}{2\sqrt{3}} |2\rangle + \dfrac{i}{2\sqrt{3}} |3 \rangle \right),
 \end{align*}
 with $s = \arcsin(\sqrt{3p/4})$.
 We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
@@ -1045,11 +1046,12 @@ with $p \in [-1,1]$.
 If we take the $\beta_j$ to be real,
 we need to create the curve of states:
 \begin{eqnarray}
-|\beta(p)\rangle = \left(\dfrac{1}{2} (1-p) , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2} \sqrt{1-p^2} , \dfrac{1}{2}(1+p) \right).
+|\beta(p)\rangle = \dfrac{1}{2} (1-p) |0\rangle + \dfrac{1}{2} \sqrt{1-p^2} |1\rangle +  \dfrac{1}{2} \sqrt{1-p^2} |2\rangle +  \dfrac{1}{2}(1+p) |3\rangle.
 \end{eqnarray}
 This can be rewritten as
 \begin{align*}
-|\beta(p)\rangle = \left( \dfrac{1}{2},0,0, \dfrac{1}{2} \right) + e^{is} \left( \dfrac{i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{-i}{4} \right) + e^{-is}  \left( \dfrac{-i}{4}, \dfrac{1}{4}, \dfrac{1}{4}, \dfrac{i}{4} \right),
+|\beta(p)\rangle =&\; \left( \dfrac{1}{2}|0\rangle + \dfrac{1}{2} |3\rangle \right) + e^{is} \left( \dfrac{i}{4}|0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle - \dfrac{i}{4} |3\rangle \right) \\
+& + e^{-is}  \left( \dfrac{-i}{4} |0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle + \dfrac{i}{4} |3\rangle \right),
 \end{align*}
 with $s = \arcsin(p)$, so that
 this map fulfills the conditions of  \eref{eq:conditions-vecs}.
@@ -1071,7 +1073,7 @@ $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
 \begin{align*}
 |a| = \sin \nu \cos \mu, \; |b| = \sin \nu \sin \mu , \; |c| = \cos \nu.
 \end{align*}
-\item[2.] We define $|a'\rangle = |a| |0\rangle$, $|b'\rangle = |b| |1\rangle,$ $|c'\rangle |c| |2\rangle$.
+\item[2.] We define $|a'\rangle = |a| |0\rangle$, $|b'\rangle = |b| |1\rangle,$ $|c'\rangle = |c| |2\rangle$.
 \item[3.] Finally, we choose a unitary matrix $V$
 and use it to define the states $|a\rangle = V |a'\rangle, |b\rangle = V |b'\rangle, |c\rangle = V |c'\rangle$.
 This way, since the primed states are orthogonal and their squared norms add up to one,
