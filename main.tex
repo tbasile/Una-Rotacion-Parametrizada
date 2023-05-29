@@ -515,6 +515,7 @@ on the $2N$ ancilla qubits denoted by $\tilde{q}$. }
 The first part of the circuit involves the creation of the state
 \begin{eqnarray}
 \label{eq: state}
+\text{Ancilla state =} 
 \sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma} \rangle
 \end{eqnarray}
 on the ancilla qubits, where $b_{\vec{\gamma}}$ are numbers such that $
@@ -556,20 +557,21 @@ For the particular case of a Pauli channel on one qubit, the circuit that
 simulates it can be constructed as in \fref{fig: circuit-pauli-1},
 which is a special case of \fref{fig: circuit-pauli}
 but with all details  explicitly shown.
-In said figure, the state 
+In said figure, the ancilla state
+of \eref{eq: state} can be taken to be
 $\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
 |10\rangle + \sqrt{k_{11}}|11\rangle$
-is created on the ancilla qubits with the help of three rotations of angles:
+and it is created on the ancilla qubits with the help of three rotations of angles:
 \begin{subequations}
 \begin{eqnarray}
-\theta_0 &= &\arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
-\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})
+\theta_0 &= &\arctan(\sqrt{k_{01}/k_{00}}) -
+\arctan(\sqrt{k_{11}/k_{10}}),
 \label{eq:angle1} \\ 
 \theta_1 &= &2 \arccos(\sqrt{k_{00} +
-k_{01}})
+k_{01}}),
 \label{eq:angle2} \\
-\theta_2 &= &\arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) +
-\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})
+\theta_2 &= &\arctan(\sqrt{k_{01}/k_{00}}) +
+\arctan(\sqrt{k_{11}/k_{10}}).
 \label{eq:angle3}
 \end{eqnarray}
 \label{eq:angle}
@@ -577,6 +579,10 @@ k_{01}})
 \cpnote{Acá te falto la puntuación en las ecuaciones. Porotro lado me gustaría ver la 
 forma que tienen las ecuaciones en exponenciales o en funciones trigonometricas
 que quizá estén mas bonitas.}
+\tbnote{Ya puse la puntuación y lo puse en términos de arctan.
+La suma de arcotangentes se puede juntar en una 
+sola arctan, pero con un argumento que ya queda muy complicado y 
+creo que está mejor así.}
 
 
 
@@ -589,28 +595,21 @@ que quizá estén mas bonitas.}
 {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel,
 which is a particular case of \fref{fig: circuit-pauli}.  Here we have two
 ancilla qubits and we use three rotations
-of angles given by \eref{eq:angle} to create the state $\sqrt{k_{00}}
-|00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
-|10\rangle + \sqrt{k_{11}}|11\rangle$
-on them.
+of angles given by \eref{eq:angle} to create the Ancilla State of
+of \eref{eq: state} for the two ancilla qubits.
 \cpnote{Creo qeu este seria el estado ecuacion 14, pero como qeuno está limpio. 
 Creo quepodemos nombrar ese estado y luego referirnos acá por el nobmre y la referencia 
-a la ecuación.}
-%and the state $b_{00} |00\rangle + b_{01} |01\rangle + b_{10}
-%|10\rangle + b_{11}|11\rangle$ is created on them with the help of three
-%rotations of angles $\theta_0 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) -
-%\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$, $ \theta_1 = 2 \arccos(\sqrt{k_{00} +
-%k_{01}})$ and $ \theta_2 = \arg(\sqrt{k_{00}} + i \sqrt{k_{01}}) +
-%\arg(\sqrt{k_{10}} + i\sqrt{k_{11}})$.
+a la ecuación.} \tbnote{Ya}
 }
 \label{fig: circuit-pauli-1} 
 \end{figure} % }}}
 
 
-Using the quantum computers that IBM has available~\cite{Qiskit}, we sampled
-one-qubit Pauli channels and simulated them using the ibmq-lima quantum
-computer\cpnote{la computadora no la usamos para samplear sino solo para simular. Modificar
-la frase.}.  For each of these channels, we used quantum process
+We took a sample of one-qubit Pauli channels and
+used the ibmq-lima quantum computer that IBM has available~\cite{Qiskit}
+to simulate them. \cpnote{la computadora no la usamos para samplear sino solo para simular. Modificar
+la frase.}
+\tbnote{Ya.}  For each of these channels, we used quantum process
 tomography~\cite{Qiskit, Chuang:1996} to obtain the 
 operator $\xi_I$ corresponding to the implementation of the
 circuit.  Then, we compared this operator with the ideal 
@@ -620,41 +619,73 @@ wanted to implement.
 
 \cpnote{Toca rediseñar este parrafo mejor. La figura que al final nos interesa es 
 la $f$, pero no se menciona acá. Toca como que hacer que el párrafo gire alrededor de ella. }
-We shall use the diamond norm~\cite{Aharonov,Wilde}, which has a simple physical meaning related
-with the probability that one can distinguish two channels.
-% To perform this comparison, we used the diamond norm~\cite{Aharonov,Wilde},
-% which gives us a method of discriminating \cpnote{no solo discrimina... todas
-% las normas lo hacen, pero nos permite ver que tan parecidos son dos canales. 
-% Es como la fidelidad. Itera.} between quantum channels \cpnote{Tambien esta frase
-% no conecta bien con lo que sigue}.
-In particular, suppose an agent is given one of the channels $\xi_I$, $\xi_T$
-with probability $1/2$ each,
-and tries to guess which channel they received
-by applying it to a state $\rho$ and measuring the result.
-Then, the maximal probability of success (out of all possible states $\rho$) that
-the agent guesses correctly is~\cite{Benenti}:
-\begin{equation}
-\label{eq: probability-success}
-p_{\succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
-\end{equation}
-where $|| \cdot ||_{\diamond}$ is the diamond norm, defined by 
+
+\tbnote{Rediseño párrafo anterior: }
+{\color{orange}  We took a sample of one-qubit Pauli channels
+and evaluated their implementation on IBM's
+ibmq-lima quantum computer~\cite{Qiskit},
+as shown in \fref{fig:fids}. 
+For each of the channels sampled, we used 
+quantum process tomography~\cite{Qiskit, Chuang:1996} to obtain the 
+operator $\xi_I$ corresponding to the implementation of the
+circuit in the quantum computer. 
+Then, we compared $\xi_I$ with the theoretical 
+operator $\xi_T$ of the Pauli channel we wanted to implement.
+To see how close the operators $\xi_I$ and 
+$\xi_T$ are, we shall use the
+diamond distance~\cite{Aharonov,Wilde}, which is defined by}
+
+%We shall use the diamond norm~\cite{Aharonov,Wilde}, which has a simple physical meaning related
+%with the probability that one can distinguish two channels.
+%In particular, suppose an agent is given one of the channels $\xi_I$, $\xi_T$
+%with probability $1/2$ each,
+%and tries to guess which channel they received
+%by applying it to a state $\rho$ and measuring the result.
+%Then, the maximal probability of success (out of all possible states $\rho$) that
+%the agent guesses correctly is~\cite{Benenti}:
+%\begin{equation}
+%\label{eq: probability-success}
+%p_{\succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
+%\end{equation}
+%where $|| \cdot ||_{\diamond}$ is the diamond norm, defined by 
+
+
 \begin{align*}
 ||\xi_I - \xi_T ||_{\diamond}  = \max_{\rho} || (\xi_I \otimes I) \rho - (\xi_T \otimes I) \rho ||_1,
 \end{align*}
 with $I$ the identity map,
 $|| \cdot ||_1$ the trace norm and the maximization
 done over all density matrices $\rho$.
+{\color{orange} The calculation of this norm is done using the semi-definite program from reference \cite{Watrous}.}
 \cpnote{Esa definicion esta bonita y me gusta, pero supongo qeu no es asi somo la 
-calculas. }
+calculas. } 
+\tbnote{La calculo usando una función en la librería de Qiskit
+que se basa en la referencia que puse,
+pero la verdad no sé bien cómo funciona.}
    
-Notice that if the channels are the same, then $p_{\succ}=1/2$. 
-This is expected because in this situation the agent
-has no way of distinguishing the channels and has no choice but to completely
-guess, which results in a probability of success of $1/2$.
-On the other hand, $p_{\succ}=1$ indicates that the channels are perfectly
-distinguishable.
+%Notice that if the channels are the same, then $p_{\succ}=1/2$. 
+%This is expected because in this situation the agent
+%has no way of distinguishing the channels and has no choice but to completely
+%guess, which results in a probability of success of $1/2$.
+%On the other hand, $p_{\succ}=1$ indicates that the channels are perfectly
+%distinguishable.
 \cpnote{Creo qeu el ejemplo debería ir con la $f$ que definamos, quizá pasando por la 
 norma diamante, o por la p succ. Eso si, si no la ocupamos (la psucc) tonces quitarla.}
+\tbnote{Va, ya puse directo con la $f$ y quité lo de psucc}
+
+{\color{orange} When the two channels are the same,
+the diamond distance has a value of $0$, while in the case that the channels
+are completely distingushable, the distance reaches its maximum value of $2$~\cite{Benenti}.
+For the analysis done in \fref{fig:fids}, we define a sort of ``diamond fidelity'' as: 
+
+\begin{align}
+f = 1 - \dfrac{1}{2} ||\varepsilon_I - \varepsilon_T ||_{\diamond},
+\label{eq:diamond-fid}
+\end{align}
+which is a number between $0$ and $1$,
+with $1$ indicating that the channels are completely
+equal and $0$ the opposite.
+}
 % \cpnote{hummm ejemplo al menos para nosotros.} 
 % \tbnote{Un ejemplo que comprobé es considerar el canal que aplica $\sigma_x$ y 
 % el que aplica $\sigma_z$ y tienen $p_{\succ}=1$.
@@ -664,14 +695,13 @@ norma diamante, o por la p succ. Eso si, si no la ocupamos (la psucc) tonces qui
 
 Finally, using the representation of Pauli channels in a tetrahedron as
 in \eref{eq: conditions-tetrahedron},
-we show in \fref{fig: fidelity one qubit} the maximal probabilities of
-success defined by \eref{eq: probability-success} for the channels
+we show in \fref{fig:fids} the diamond fidelity defined by \eref{eq:diamond-fid} for the channels
 analyzed. 
 We can see that channels close to the 
 completely depolarizing
 channel (that is close to the center of the tetrahedron)
-have a low $p_{\succ}$, while those 
-close to unitary channels have much higher $p_{\succ}$.
+have a high $f$, while those 
+close to unitary channels have much lower $f$.
 This means that channels closer to the 
 completely depolarizing channel are simulated better on the quantum computers.
 This is reasonable because quantum computers are prone to errors
@@ -702,7 +732,11 @@ figuras y mas inspiracion}
 \end{subfigure}
 \caption{\cpnote{porfa escribe el caption.} \tbnote{Aquí está una forma
 alternativa en que puede quedar la figura.  Usé $2(1-p_{succ})$ en lugar de
-$p_{succ}$ para que se cumpla lo de que $0$ es lo peor y $1$ lo mejor.}}
+$p_{succ}$ para que se cumpla lo de que $0$ es lo peor y $1$ lo mejor.} Results of the diamond fidelities as defined in \eref{eq:diamond-fid} for a sample of Pauli channels in the tetrahedron.
+Notice that channels close to the center of the tetrahedron have high fidelities,
+while those close to the borders do not. 
+Moreover, we show the results for cuts of the tetrahedron at different values of $\tau_3$.}
+\label{fig:fids}
 \end{figure}
 
 
@@ -731,7 +765,7 @@ creating a circuit to generate a curve of
 states like the one described in \eref{eq: parametrized state}.
 
 In general, producing this curve of states for $N$ qubits will require
-$2^N-1$ rotations parametrized by $p$\cpnote{De de donde sale este numero?},
+many rotations parametrized by $p$,
 such as the three rotations used for the ancilla
 qubits in \fref{fig: circuit-pauli-1}.
 However, it would be preferable to achieve the same effect using only one parametrized rotation. 
