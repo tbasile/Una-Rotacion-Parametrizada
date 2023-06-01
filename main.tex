@@ -576,13 +576,9 @@ k_{01}}),
 \end{eqnarray}
 \label{eq:angle}
 \end{subequations}
-\cpnote{Acá te falto la puntuación en las ecuaciones. Porotro lado me gustaría ver la 
-forma que tienen las ecuaciones en exponenciales o en funciones trigonometricas
-que quizá estén mas bonitas.}
-\tbnote{Ya puse la puntuación y lo puse en términos de arctan.
-La suma de arcotangentes se puede juntar en una 
-sola arctan, pero con un argumento que ya queda muy complicado y 
-creo que está mejor así.}
+\cpnote{Quisiera ver las ecuaciones sin la teheta despejada. Por ejemplo la de theta 1
+es $\cos^2 (\theta_1/2) = k00 + k01$ bueno mas bonita, pero asi. Luego las de tehta0 y theta2 
+quizá tambien sean sencillas. Las quiero ver!!!}
 
 
 
@@ -607,9 +603,7 @@ a la ecuación.} \tbnote{Ya}
 
 We took a sample of one-qubit Pauli channels and
 used the ibmq-lima quantum computer that IBM has available~\cite{Qiskit}
-to simulate them. \cpnote{la computadora no la usamos para samplear sino solo para simular. Modificar
-la frase.}
-\tbnote{Ya.}  For each of these channels, we used quantum process
+to simulate them. For each of these channels, we used quantum process
 tomography~\cite{Qiskit, Chuang:1996} to obtain the 
 operator $\xi_I$ corresponding to the implementation of the
 circuit.  Then, we compared this operator with the ideal 
@@ -617,11 +611,13 @@ channel $\xi_T$  we
 wanted to implement.  
 
 
-\cpnote{Toca rediseñar este parrafo mejor. La figura que al final nos interesa es 
-la $f$, pero no se menciona acá. Toca como que hacer que el párrafo gire alrededor de ella. }
+% \cpnote{Toca rediseñar este parrafo mejor. La figura que al final nos interesa
+% es la $f$, pero no se menciona acá. Toca como que hacer que el párrafo gire
+% alrededor de ella. }
 
-\tbnote{Rediseño párrafo anterior: }
-{\color{orange}  We took a sample of one-qubit Pauli channels
+% \tbnote{Rediseño párrafo anterior: }
+% {\color{orange}  
+We took a sample of one-qubit Pauli channels
 and evaluated their implementation on IBM's
 ibmq-lima quantum computer~\cite{Qiskit},
 as shown in \fref{fig:fids}. 
@@ -633,59 +629,25 @@ Then, we compared $\xi_I$ with the theoretical
 operator $\xi_T$ of the Pauli channel we wanted to implement.
 To see how close the operators $\xi_I$ and 
 $\xi_T$ are, we shall use the
-diamond distance~\cite{Aharonov,Wilde}, which is defined by}
-
-%We shall use the diamond norm~\cite{Aharonov,Wilde}, which has a simple physical meaning related
-%with the probability that one can distinguish two channels.
-%In particular, suppose an agent is given one of the channels $\xi_I$, $\xi_T$
-%with probability $1/2$ each,
-%and tries to guess which channel they received
-%by applying it to a state $\rho$ and measuring the result.
-%Then, the maximal probability of success (out of all possible states $\rho$) that
-%the agent guesses correctly is~\cite{Benenti}:
-%\begin{equation}
-%\label{eq: probability-success}
-%p_{\succ} = \dfrac{1}{2}+ \dfrac{1}{4} ||\xi_I - \xi_T ||_{\diamond},
-%\end{equation}
-%where $|| \cdot ||_{\diamond}$ is the diamond norm, defined by 
-
-
-\begin{align*}
+diamond distance~\cite{Aharonov,Wilde}, which is defined by
+\begin{equation}
 ||\xi_I - \xi_T ||_{\diamond}  = \max_{\rho} || (\xi_I \otimes I) \rho - (\xi_T \otimes I) \rho ||_1,
-\end{align*}
+\end{equation}
 with $I$ the identity map,
 $|| \cdot ||_1$ the trace norm and the maximization
 done over all density matrices $\rho$.
-{\color{orange} The calculation of this norm is done using the semi-definite program from reference \cite{Watrous}.}
-\cpnote{Esa definicion esta bonita y me gusta, pero supongo qeu no es asi somo la 
-calculas. } 
-\tbnote{La calculo usando una función en la librería de Qiskit
-que se basa en la referencia que puse,
-pero la verdad no sé bien cómo funciona.}
-   
-%Notice that if the channels are the same, then $p_{\succ}=1/2$. 
-%This is expected because in this situation the agent
-%has no way of distinguishing the channels and has no choice but to completely
-%guess, which results in a probability of success of $1/2$.
-%On the other hand, $p_{\succ}=1$ indicates that the channels are perfectly
-%distinguishable.
-\cpnote{Creo qeu el ejemplo debería ir con la $f$ que definamos, quizá pasando por la 
-norma diamante, o por la p succ. Eso si, si no la ocupamos (la psucc) tonces quitarla.}
-\tbnote{Va, ya puse directo con la $f$ y quité lo de psucc}
-
-{\color{orange} When the two channels are the same,
+The calculation of this norm is done using the semi-definite program from reference \cite{Watrous}.
+When the two channels are the same,
 the diamond distance has a value of $0$, while in the case that the channels
 are completely distingushable, the distance reaches its maximum value of $2$~\cite{Benenti}.
 For the analysis done in \fref{fig:fids}, we define a sort of ``diamond fidelity'' as: 
-
-\begin{align}
+\begin{equation}
 f = 1 - \dfrac{1}{2} ||\varepsilon_I - \varepsilon_T ||_{\diamond},
 \label{eq:diamond-fid}
-\end{align}
-which is a number between $0$ and $1$,
-with $1$ indicating that the channels are completely
-equal and $0$ the opposite.
-}
+\end{equation}
+which ranges from $0$, when the channels have a maximum distance, to  $1$,
+when they are exactly equal.
+
 % \cpnote{hummm ejemplo al menos para nosotros.} 
 % \tbnote{Un ejemplo que comprobé es considerar el canal que aplica $\sigma_x$ y 
 % el que aplica $\sigma_z$ y tienen $p_{\succ}=1$.
@@ -707,12 +669,14 @@ completely depolarizing channel are simulated better on the quantum computers.
 This is reasonable because quantum computers are prone to errors
 that depolarize qubits, which isn't very problematic
 when trying to simulate depolarization but it is 
-when simulating unitary processes.
+when simulating unitary processes. \cpnote{Tambien creo qeu debemos comentar que nuestra 
+simulación para operaciones unitarias no es optima, porque usamos un monton de compuertas 
+y además operaciones doblemente controladas.}
 \cpnote{Siento qeu aun falta algo de análisis pero lo dejamos para cuando tengamos mas
 figuras y mas inspiracion}
 \tbnote{Va}
 
-\begin{figure}
+\begin{figure} % {{{
 \centering
 \begin{subfigure}{0.9\textwidth}
 \begin{subfigure}{.666\textwidth}
@@ -730,16 +694,13 @@ figuras y mas inspiracion}
 \begin{subfigure}{0.1\textwidth}
 \includegraphics[width=.8\columnwidth]{images/col-2.png} \\ [2ex]
 \end{subfigure}
-\caption{\cpnote{porfa escribe el caption.} \tbnote{Aquí está una forma
-alternativa en que puede quedar la figura.  Usé $2(1-p_{succ})$ en lugar de
-$p_{succ}$ para que se cumpla lo de que $0$ es lo peor y $1$ lo mejor.} Results of the diamond fidelities as defined in \eref{eq:diamond-fid} for a sample of Pauli channels in the tetrahedron.
-Notice that channels close to the center of the tetrahedron have high fidelities,
-while those close to the borders do not. 
-Moreover, we show the results for cuts of the tetrahedron at different values of $\tau_3$.}
+\caption{Results of the diamond fidelities as defined in \eref{eq:diamond-fid}
+for a sample of Pauli channels in the tetrahedron.  Notice that channels close
+to the center of the tetrahedron have high fidelities, while those close to the
+borders do not.  Moreover, we show the results for cuts of the tetrahedron at
+different values of $\tau_3$.}
 \label{fig:fids}
-\end{figure}
-
-
+\end{figure} % }}}
 
 
 
@@ -858,8 +819,8 @@ U|j\rangle = e^{is} |a^j\rangle + e^{-is} |b^j\rangle + |c^j\rangle
 with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $|a^j|^2 + |b^j|^2 + |c^j|^2 = 1$.
 \end{theorem}
 \textbf{Proof:} 
-\cpnote{Discutir la prueba, se ve demasiado larga y aburrida}
-\tbnote{La cambié un poco, pero no sé qué más cambiarle.}
+\cpnote{Sugiero cambiar la a gargoleada por una a con gorro o con tilde. No se 
+usa asi cambiar de fuente.}
 We can conclude from theorem 1 that $U=ARB$,
 where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
 applied to the last qubit and controlled by some of the other ones. 
@@ -876,8 +837,14 @@ the first $N-1$ qubits into those that fulfill the control conditions of the rot
 (which we denote as the set $\mathcal{C}$)
 and those that do not, and write it as
 \begin{align}
-B|j\rangle = \sum_{k \in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right) + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right),
+B|j\rangle = 
+   \sum_{k \in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle 
+                                     + B_{2k+1,j} |k \rangle |1\rangle  \right) 
+   + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  
+                                      + B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{align}
+
+\cpnote{Separo el parrafo par auqe cada matriz tenga como su propio espacio.}
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
@@ -898,10 +865,8 @@ RB|j\rangle& = e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e
 where we defined $|\mathfrak{a}^j \rangle = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$,
 $|\mathfrak{b}^j\rangle = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |0 \rangle$,
 $|\mathfrak{c}^j\rangle =\sum_{k \not\in \mathcal{C}}\big( B_{2k,j} |k\rangle|0\rangle+$ $B_{2k+1,j} |k \rangle |1\rangle  \big)$.
-\cpnote{Preferira que tuvieramos que los kets fisicos tuvieran la notacion de
-ket. Intenta modificarlo asi y luego sigo con la prueba. Ya no me está pareciendo 
-tan latosa. Trata tambien que los nombres que usas sean como consistentes o tengan 
-algo que decir de su contenido.} \tbnote{Ya hice unos cambios}
+\cpnote{Acá puedes usar align. Creo que es mucho para dejarlas en el texto. Recuerda la puntuacion. 
+Me está gustando mucho la explicacion. Simple y clara. }
 These states are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
 Moreover, they satisfy  $|\mathfrak{a}^j|^2 + |\mathfrak{b}^j|^2 + |\mathfrak{c}^j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
@@ -915,6 +880,8 @@ U|j\rangle = ARB|j\rangle = e^{-is} A |\mathfrak{a}^j\rangle + e^{is} A |\mathfr
 where $|a^j\rangle = A |\mathfrak{a}^j\rangle, |b^j\rangle = A |\mathfrak{b}^j\rangle, |c^j\rangle = A |\mathfrak{c}^j\rangle$ are still orthogonal
 states that satisfy $|a|^2 + |b|^2 + |c|^2 = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
+
+\cpnote{Acá voy}
  
 This theorem implies that starting from the state $|0\rangle$ (or any 
 other starting state),
@@ -986,6 +953,7 @@ Finally, applying $A$ as defined above to this state leads to the desired result
 %aunque se puede y debe achicar bastante.
 %\end{itemize}
 % }}}
+
 \section{1PR circuit for a Pauli map} % {{{
 \label{sec: 1PR circuit for a Pauli map}
 
