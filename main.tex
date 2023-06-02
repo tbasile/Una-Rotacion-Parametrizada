@@ -282,8 +282,6 @@ implies that the remaining $r_{1,2,3}$ form
 a vector $\vec{r}= (r_1,r_2,r_3)$ inside a unit sphere known as the Bloch sphere~\cite{Marinescu}.
 That is, every possible density matrix for a one-qubit
 system is uniquely associated with a point in a unit sphere. 
-% \cpnote{explicar un poco mejor. Me parece que para el publico vale 
-% la pena ser un poco mas explicito. pero no estoy muy seguro.}
 
 Given a one-qubit system described by $\rho$, 
 a Pauli channel is defined as an operation that with probability $k_{\gamma}$
@@ -447,25 +445,11 @@ and analyze the results using the diamond norm.
 We find that close to the depolarizing channel, the general circuit simulator 
 can implement such channels with the highest fidelity. 
 % produce the highest 
-% \cpnote{Quizá en una frase poner el resultado aca o ampliar
-% tantito} \tbnote{Va, agregué lo siguiente: 
-% We conclude that the circuit performs optimally for channels  in proximity to the
-% completely depolarizing channel but
-% it is deficient close to unitary channels.}
 % }}} 
 \subsection{Description of the Circuit for a Pauli Channel} %{{{
 \label{subsec: Description of the circuit}
 
 
-
-% \cpnote{Yo abriría este parrafo con una frase que de la idea muy general. Decir 
-% algo asi como que vamos a crear un estado conque contenga a las $k$s 
-% como coeficientes y leugo controlar la aplicación de los Pauli strings. Luego
-% ya dar los detalles. Así incluso mas escueto de lo que pongo. Por ejemplo:
-% To design the circiot that implements 13, we construct a state that incorportes
-% probabilities $k$ and subsequently apply controlled operation. In particular... }
-% \cpnote{No me gusta como está organizado este parrafo. Le puedes dar una iterada?}
-% \tbnote{Propongo el párrafo en naranja para sustituirlo}
 
 
 % To design the circuit, we recall that a Pauli channel, as the one in
@@ -523,9 +507,6 @@ on the ancilla qubits, where $b_{\vec{\gamma}}$ are numbers such that $
 |b_{\vec{\gamma}}|^2 = k_{\vec{\gamma}}$ and
 the $2N$-qubit state $|\vec{\gamma}\rangle$ is defined as $|\gamma_1\rangle
 \cdots |\gamma_N\rangle$.
-% \cpnote{La primera frase es cierta, pero no le veo el sentido acá. Trata de reformular el parrafo 
-% de nuevo. Croe que el ``This means'' definitivamente no va y es el que le da un sentido ``raro''. 
-% Itera (quizá solo quitando esas dos palabras)} \tbnote{Concuerdo, quité eso.}
 When measured in the computational basis, the state given in \eref{eq: state}
 collapses to $|\vec{\gamma}\rangle$ with a 
 probability $|b_{\vec{\gamma}}|^2 = k_{\vec\gamma}$. 
@@ -582,8 +563,8 @@ es $\cos^2 (\theta_1/2) = k00 + k01$ bueno mas bonita, pero asi. Luego las de te
 quizá tambien sean sencillas. Las quiero ver!!!}
 \tbnote{Ah, ya entiendo. Las única forma que veo de escribirlas es:
 \begin{align*}
-\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10}}}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}}} \\
-\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10}}}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}}}
+\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10} }}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }} \\
+\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10} }}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }}
 \end{align*}
 No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
 }
@@ -594,16 +575,11 @@ No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
 \centering
 \includegraphics{images/circuito_unqubit.pdf}
 \caption{
-% \cpnote{ No me gusta que esté tan cargado de ecuaciones el caption. Metelas en
-% el lugar apropiado en el texto} \tbnote{Lo pasé al texto}
 {\bf One qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel,
 which is a particular case of \fref{fig: circuit-pauli}.  Here we have two
 ancilla qubits and we use three rotations
 of angles given by \eref{eq:angle} to create the Ancilla State of
 of \eref{eq: state} for the two ancilla qubits.
-\cpnote{Creo qeu este seria el estado ecuacion 14, pero como qeuno está limpio. 
-Creo quepodemos nombrar ese estado y luego referirnos acá por el nobmre y la referencia 
-a la ecuación.} \tbnote{Ya}
 }
 \label{fig: circuit-pauli-1} 
 \end{figure} % }}}
@@ -619,12 +595,6 @@ channel $\xi_T$  we
 wanted to implement.  
 
 
-% \cpnote{Toca rediseñar este parrafo mejor. La figura que al final nos interesa
-% es la $f$, pero no se menciona acá. Toca como que hacer que el párrafo gire
-% alrededor de ella. }
-
-% \tbnote{Rediseño párrafo anterior: }
-% {\color{orange}  
 We took a sample of one-qubit Pauli channels
 and evaluated their implementation on IBM's
 ibmq-lima quantum computer~\cite{Qiskit},
@@ -655,13 +625,6 @@ f = 1 - \dfrac{1}{2} ||\varepsilon_I - \varepsilon_T ||_{\diamond},
 \end{equation}
 which ranges from $0$, when the channels have a maximum distance, to  $1$,
 when they are exactly equal.
-
-% \cpnote{hummm ejemplo al menos para nosotros.} 
-% \tbnote{Un ejemplo que comprobé es considerar el canal que aplica $\sigma_x$ y 
-% el que aplica $\sigma_z$ y tienen $p_{\succ}=1$.
-% De hecho, al tomar dos canales que consistan en aplicar $\sigma_i$ y $\sigma_j$ 
-% (para $i\neq j$), se cumple esto.
-% También quería ejemplos no unitarios, pero no encontré.}
 
 Finally, using the representation of Pauli channels in a tetrahedron as
 in \eref{eq: conditions-tetrahedron},
@@ -831,8 +794,6 @@ U|j\rangle = e^{is} |a^j\rangle + e^{-is} |b^j\rangle + |c^j\rangle
 with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $|a^j|^2 + |b^j|^2 + |c^j|^2 = 1$.
 \end{theorem}
 \textbf{Proof:} 
-\cpnote{Sugiero cambiar la a gargoleada por una a con gorro o con tilde. No se 
-usa asi cambiar de fuente.} \tbnote{Va, listo}
 We can conclude from theorem 1 that $U=ARB$,
 where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
 applied to the last qubit and controlled by some of the other ones. 
@@ -856,7 +817,6 @@ B|j\rangle =
                                       + B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{align}
 
-\cpnote{Separo el parrafo par auqe cada matriz tenga como su propio espacio.} \tbnote{Va, excelente.}
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
@@ -880,9 +840,6 @@ where we defined
 |\tilde{b}^j\rangle &= \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |0 \rangle,\\
 |\tilde{c}^j\rangle &= \sum_{k \not\in \mathcal{C}}\left( B_{2k,j} |k\rangle|0\rangle+ B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{align*}
-\cpnote{Acá puedes usar align. Creo que es mucho para dejarlas en el texto. Recuerda la puntuacion. 
-Me está gustando mucho la explicacion. Simple y clara. }
-\tbnote{Listo.}
 These states are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
 Moreover, they satisfy  $|\tilde{a}^j|^2 + |\tilde{b}^j|^2 + |\tilde{c}^j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
@@ -897,22 +854,31 @@ where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle,
 states that satisfy $|a|^2 + |b|^2 + |c|^2 = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
 
-\cpnote{Acá voy}
  
 This theorem implies that starting from the state $|0\rangle$ (or any 
-other starting state),
+other state),
 the only curves of states we could expect to create
-with a 1PR circuit are those of the form $U|0\rangle$, that is, curves such as:
+with a 1PR circuit are those of the form 
 \begin{equation}
 |\eta(p)\rangle = |c\rangle + e^{is}|a\rangle + e^{-is} |b\rangle,
 \label{eq:curve-states}
 \end{equation}
 with 
 \begin{equation}
-|a|^2 + |b|^2 + |c|^2 = 1  \; \text{and} \; |a\rangle, |b\rangle, |c\rangle \; \text{orthogonal states},
+|a|^2 + |b|^2 + |c|^2 = 1,  \quad
+\langle a |b\rangle =
+\langle a |c\rangle =
+\langle b |c\rangle = 0
+% , |b\rangle, |c\rangle \; \text{orthogonal states},
+%  \text{and} \; |a\rangle, |b\rangle, |c\rangle \; \text{orthogonal states},
 \label{eq:conditions-vecs}
 \end{equation}
 and $s = s(p)$ a function of $p$.
+\cpnote{Es un poco confusa la notacion. Hablas de la norma de a con $|a|$, pero ahi parece
+que $a$ es un vector. Sugiero cambiar a $\langle a | a \rangle$ o algo asi sin cargar mucho
+la notacion. }
+\cpnote{Tambien siento qeu las palabras son un poco raras. Sugiero pasarlo por Chatgpt y 
+luego tunearlo (todo este parrafo). Avisame cuando quede eso!}
 Furthermore, given a curve of states as the one in
 \eref{eq:curve-states}, we can always construct a 1PR circuit to create it.
 One way of doing it, is to use the circuit of \fref{fig:1PR-circuit}, setting the parametrized
@@ -1144,7 +1110,7 @@ $1$ but $V$ is unitary and therefore preserves the norm.
 
 
 
-
+% }}}
 \section{Conclusion} % {{{
 \tbnote{Poner luego}
 % }}}
