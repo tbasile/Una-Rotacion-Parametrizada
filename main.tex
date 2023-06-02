@@ -8,6 +8,7 @@
 \usepackage{textcomp,marvosym}
 \usepackage{subcaption}
 
+
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
@@ -192,7 +193,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
-\tbnote{Poner intro luego}
+\tbnote{Poner intro luego. Ver libro de writing science}
 
 
 % }}}
@@ -579,6 +580,13 @@ k_{01}}),
 \cpnote{Quisiera ver las ecuaciones sin la teheta despejada. Por ejemplo la de theta 1
 es $\cos^2 (\theta_1/2) = k00 + k01$ bueno mas bonita, pero asi. Luego las de tehta0 y theta2 
 quizá tambien sean sencillas. Las quiero ver!!!}
+\tbnote{Ah, ya entiendo. Las única forma que veo de escribirlas es:
+\begin{align*}
+\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10}}}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}}} \\
+\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10}}}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}}}
+\end{align*}
+No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
+}
 
 
 
@@ -672,6 +680,10 @@ when trying to simulate depolarization but it is
 when simulating unitary processes. \cpnote{Tambien creo qeu debemos comentar que nuestra 
 simulación para operaciones unitarias no es optima, porque usamos un monton de compuertas 
 y además operaciones doblemente controladas.}
+\tbnote{Algo como: }
+{\color{orange} Moreover, the algorithm of \fref{fig: circuit-pauli-1} is not optimal for unitary channels 
+(that is, the channels corresponding to the vertices of the tetrahedron). 
+These straightforward channels could be accomplished more efficiently by simply applying the corresponding Pauli operation directly. Nevertheless, due to its general design to accommodate any Pauli channel, the algorithm employs numerous quantum gates even in such scenarios.}
 \cpnote{Siento qeu aun falta algo de análisis pero lo dejamos para cuando tengamos mas
 figuras y mas inspiracion}
 \tbnote{Va}
@@ -820,7 +832,7 @@ with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $|a^j|^2 + |b
 \end{theorem}
 \textbf{Proof:} 
 \cpnote{Sugiero cambiar la a gargoleada por una a con gorro o con tilde. No se 
-usa asi cambiar de fuente.}
+usa asi cambiar de fuente.} \tbnote{Va, listo}
 We can conclude from theorem 1 that $U=ARB$,
 where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
 applied to the last qubit and controlled by some of the other ones. 
@@ -844,7 +856,7 @@ B|j\rangle =
                                       + B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{align}
 
-\cpnote{Separo el parrafo par auqe cada matriz tenga como su propio espacio.}
+\cpnote{Separo el parrafo par auqe cada matriz tenga como su propio espacio.} \tbnote{Va, excelente.}
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
 remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
@@ -860,24 +872,28 @@ and a phase $e^{is}$ to $|1\rangle$, we have that,
 \begin{align}
 RB|j\rangle& = e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1\rangle 
 + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right) \nonumber \\
-& = e^{-is} |\mathfrak{b}^{j}\rangle + e^{is} |\mathfrak{a}^j\rangle + |\mathfrak{c}^j\rangle
+& = e^{-is} |\tilde{b}^{j}\rangle + e^{is} |\tilde{a}^j\rangle + |\tilde{c}^j\rangle
 \end{align}
-where we defined $|\mathfrak{a}^j \rangle = \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle$,
-$|\mathfrak{b}^j\rangle = \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |0 \rangle$,
-$|\mathfrak{c}^j\rangle =\sum_{k \not\in \mathcal{C}}\big( B_{2k,j} |k\rangle|0\rangle+$ $B_{2k+1,j} |k \rangle |1\rangle  \big)$.
+where we defined
+\begin{align*}
+|\tilde{a}^j \rangle &= \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|0\rangle,\\
+|\tilde{b}^j\rangle &= \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |0 \rangle,\\
+|\tilde{c}^j\rangle &= \sum_{k \not\in \mathcal{C}}\left( B_{2k,j} |k\rangle|0\rangle+ B_{2k+1,j} |k \rangle |1\rangle  \right).
+\end{align*}
 \cpnote{Acá puedes usar align. Creo que es mucho para dejarlas en el texto. Recuerda la puntuacion. 
 Me está gustando mucho la explicacion. Simple y clara. }
+\tbnote{Listo.}
 These states are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
-Moreover, they satisfy  $|\mathfrak{a}^j|^2 + |\mathfrak{b}^j|^2 + |\mathfrak{c}^j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
+Moreover, they satisfy  $|\tilde{a}^j|^2 + |\tilde{b}^j|^2 + |\tilde{c}^j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
 which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
 so that the result is given by:
 \begin{eqnarray}
-U|j\rangle = ARB|j\rangle = e^{-is} A |\mathfrak{a}^j\rangle + e^{is} A |\mathfrak{b}^j\rangle + A |\mathfrak{c}^j\rangle = e^{-is} |a^j\rangle + e^{is} |b^j\rangle + |c^j\rangle,
+U|j\rangle = ARB|j\rangle = e^{-is} A |\tilde{a}^j\rangle + e^{is} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is} |a^j\rangle + e^{is} |b^j\rangle + |c^j\rangle,
 \end{eqnarray}
-where $|a^j\rangle = A |\mathfrak{a}^j\rangle, |b^j\rangle = A |\mathfrak{b}^j\rangle, |c^j\rangle = A |\mathfrak{c}^j\rangle$ are still orthogonal
+where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle, |c^j\rangle = A |\tilde{c}^j\rangle$ are still orthogonal
 states that satisfy $|a|^2 + |b|^2 + |c|^2 = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
 
@@ -978,20 +994,35 @@ and $|a|^2+  |b|^2 + |c|^2= 1$.
 For the particular case of one qubit,
 we can show some examples of Pauli dynamical maps
 implementable with a 1PR circuit, which are plotted
-in \fref{fig:curves}.
+in \fref{fig:curves1}.
 
 
-\begin{figure} % {{{
+\begin{figure}
+\captionsetup[subfigure]{justification=centering}
 \centering
-\includegraphics{images/curvas.png}
+\begin{subfigure}{.45\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/curvas.png}
+   \caption{}
+  \label{fig:curves1}
+\end{subfigure}%
+\begin{subfigure}{.45\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/curvas-azar.png}
+  \caption{}
+  \label{fig:curves2}
+\end{subfigure}
 \caption{{\bf Some Pauli dynamical maps that can be implemented with a 1PR circuit.}
-The curves painted in the tetrahedron
+The curves painted in these tetrahedrons
 represent Pauli dynamical maps that can be implemented with 1PR circuits.
-In particular, the depolarizing (purple), bit flip (blue),
+(a) shows the dynamical maps mentioned in the main 
+text, which are: depolarizing (purple), bit flip (blue),
 phase flip (green), bit-phase flip (red)
-and parabolic (orange). }
+and parabolic (orange).
+(b) shows dynamical maps selected at random that can be implemented with 1PR 
+circuits.}
 \label{fig:curves}
-\end{figure} % }}}
+\end{figure}
 
 
 \begin{itemize}
@@ -1086,7 +1117,7 @@ fulfill the conditions of  \eref{eq:conditions-vecs}.
 Following this procedure for random
 angles and unitary matrices $V$, 
 we plot four Pauli dynamical maps 
-that can be implemented with a 1PR circuit in \fref{fig:curves-random}.
+that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 These maps where constructed with the additional condition
 of the map passing through the identity channel.
 To do that, we ensure that the vectors also satisfy
@@ -1110,33 +1141,16 @@ Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
 $1$ but $V$ is unitary and therefore preserves the norm.
 
-\begin{figure} % {{{
-\centering
-\includegraphics{images/curvas-azar.png}
-\caption{{\bf Random Pauli dynamical maps that can be implemented with a 1PR circuit.}
-The curves painted in the tetrahedron
-represent Pauli dynamical maps that can be implemented with 1PR circuits
-that were selected at random using the procedure detailed before.}
-\label{fig:curves-random}
-\end{figure} % }}}
 
 
-%\textbf{Puntos:}
-%\begin{itemize}
-%\item Use the last theorem to conclude directly which maps can be created using an 1PR circuit.
-%\item \textbf{Examples:} Show examples that satisfy these conditions: Bit-Flip, parabolic maps, etc. 
-%and an example that doesn't satisfy the conditions (ejemplo está en la tesis).
-%\end{itemize}
-% }}}
+
 
 \section{Conclusion} % {{{
-
-CO\textsubscript{2} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem, tincidunt sit amet feugiat eget, ullamcorper sed velit. 
-
-Sed non aliquet felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo justo ac dui pretium imperdiet. Sed suscipit iaculis mi at feugiat. Ut neque ipsum, luctus id lacus ut, laoreet scelerisque urna. Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed. Nam condimentum sem eget mollis euismod. Nullam dui urna, gravida venenatis dui et, tincidunt sodales ex. Nunc est dui, sodales sed mauris nec, auctor sagittis leo. Aliquam tincidunt, ex in facilisis elementum, libero lectus luctus est, non vulputate nisl augue at dolor. For more information, see \nameref{S1_Appendix}.
+\tbnote{Poner luego}
 % }}}
 \section{Supporting information} % {{{
 
+\tbnote{Ver qué se debe de poner aquí según el template y también arreglar las imágenes de acuerdo a él.}
 % Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
 \paragraph*{S1 Fig.}
 \label{S1_Fig}
