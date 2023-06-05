@@ -141,7 +141,7 @@
 \newline
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
 \\
-Tomás Basile\textsuperscript{1\Yinyang},
+Tomás Basile\textsuperscript{1,2\Yinyang},
 Carlos Pineda\textsuperscript{2*\Yinyang},
 \\
 \bigskip
@@ -193,6 +193,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
+
+
+Puntos hechos en el artículo:
+\begin{itemize}
+\item Propuesta de algoritmo para canal es de Pauli de N qubits y su simulación en compus cuánticas
+\item Condiciones para que un circuito parametrizado use una sola rotación parametrizada. En particular luego aplicadas al algoritmo para mapas dinámicos de Pauli.
+\end{itemize}
+
 \tbnote{versión muy preliminar de la intro, para ir teniendo algo escrito de una vez. }\\
 
 Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
@@ -203,7 +211,15 @@ Pauli channels hold special significance due to their simplicity
 and relevance in the context of quantum computing~\cite{Zbigniew,geometry}, 
 as they serve as effective models for the noise affecting quantum devices~\cite{Flammia,Fawzi}.
 
-In this article, our primary objective is to present a 
+On the other hand, we shall also work with parametrized quantum circuits, that is,  
+a quantum circuit in which some of the operations depend on a variable parameter~\cite{cerezo}. 
+The investigation of parametrized quantum
+circuits holds extensive importance, 
+as they find applications in quantum machine learning~\cite{Benedetti}
+and describe general quantum transformations dependent on a parameter. Substantial research has been 
+devoted to enhancing the efficiency of these circuits~\cite{Watanabe,Rasmussen}. 
+
+In this article, our first objective is to present a 
 quantum algorithm capable of simulating Pauli channels on quantum computers, 
 and we demonstrate its implementation using IBM's quantum computers. 
 This algorithm is designed to simulate any Pauli channel on a system of $N$ qubits,
@@ -215,22 +231,30 @@ which are defined as a continuous parametrization of
 $N$-qubit Pauli channels. 
 Consequently, we adapt the algorithm developed for Pauli channels 
 to accommodate these dynamical maps by employing a 
-parametrized quantum circuit, that is, 
-a quantum circuit in which some of the
- operations depend on a variable parameter~\cite{cerezo}. 
-
-The investigation of parametrized quantum
-circuits holds extensive importance, 
-as they find applications in quantum machine learning~\cite{Benedetti}
-and describe general quantum transformations dependent on a parameter. Substantial research has been 
-devoted to enhancing the efficiency of these circuits~\cite{Watanabe,Rasmussen}. 
-In this article, we contribute to this body of work by establishing theorem \ref{theorem2},
-which outlines the types of transformations that 
-can be done using a parametrized quantum with the condition that only one
- single-qubit operation in the circuit may depend on the parameter. 
+parametrized quantum circuit. 
+We contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2}.
+This theorem outlines the types of transformations that 
+can be done using a parametrized quantum circuit with the condition that only one
+ single-qubit operation in the circuit may depend on the parameter.
 We explicitly find the mathematical conditions for these types of
 transformations and conclude about which 
 Pauli dynamical maps can be done with them. 
+
+The paper is organized as follows: In section \ref{sec: Pauli Channels} 
+we give the definition of quantum channels and focus particularly on Pauli channels for systems of
+$N$ qubits. 
+In section \ref{sec: Circuit for a Pauli Channel} we show the proposed circuit 
+to implement a Pauli channel of $N$ qubits in a quantum computer. 
+Furthermore, we simulate it on IBM’s computers for the special case of $N=1$
+and obtain the fidelity of this implementation.  
+In section \ref{sec: 1PR Circuits} we shift our focus to parametrized quantum circuits with the goal of
+generalizing the circuit for Pauli channels to one for Pauli dynamical maps. 
+We introduce theorem \ref{theorem2} to establish what operations can be done with a 
+parametrized circuit that uses only one single-qubit operation dependent on the parameter.
+Finally, in section \ref{sec: 1PR circuit for a Pauli map} 
+we apply this theorem for the circuit of Pauli dynamical
+maps and show a couple of maps that fulfill the theorem's conditions.
+
 
 
 
@@ -240,6 +264,7 @@ Pauli dynamical maps can be done with them.
 
 % }}}
 \section{Pauli channels and dynamical maps}  \label{sec: Pauli Channels} % {{{
+
 % Intro  {{{
 % \textbf{Lista de puntos:}
 % \begin{itemize}
@@ -603,23 +628,37 @@ k_{01}}),
 \cpnote{Quisiera ver las ecuaciones sin la teheta despejada. Por ejemplo la de theta 1
 es $\cos^2 (\theta_1/2) = k00 + k01$ bueno mas bonita, pero asi. Luego las de tehta0 y theta2 
 quizá tambien sean sencillas. Las quiero ver!!!}
-\tbnote{Ah, ya entiendo. Las única forma que veo de escribirlas es:
+%\tbnote{Ah, ya entiendo. Las única forma que veo de escribirlas es:
+%\begin{align*}
+%\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10} }}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }} \\
+%\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10} }}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }}
+%\end{align*}
+%No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
+%}
+
+%\tbnote{Obteniendo el seno y coseno de estos ángulos tampoco se 
+%consigue algo mucho mejor:
+%\begin{align*}
+%\cos \theta_0 = \dfrac{\sqrt{k_{00} k_{10}} + \sqrt{k_{01} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}} \\
+%\sin \theta_0 =  \dfrac{\sqrt{k_{01} k_{10}} - \sqrt{k_{00} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}}  \\
+%\cos \theta_2 = \sqrt{\dfrac{k_{00}k_{10}}{(k_{00}+k_{01})(k_{10}+k_{11})}} \left( -1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right) \\
+%\sin \theta_2 =  - \sqrt{\dfrac{k_{00}k_{10} + k_{01}k_{11} - 2 \sqrt{k_{00} k_{01} k_{10} k_{11}}}{(k_{00} + k_{01}) (k_{10} + k_{11})}} \left(\sqrt{\dfrac{k_{01}}{k_{00}}} + \sqrt{\dfrac{k_{11}}{k_{10}}} \right) \left(-1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right)^{-1}
+%\end{align*}
+%Probé combinar estas cantidades de diferentes formas, pero ninguna se simplificaba.}
+
+\tbnote{Creo que la mejor forma es la siguiente (nota:
+intercambié los ángulos 0 y 1 en la imagen para que 1 y 2
+sean los que van juntos y el 0 por separado, en lugar de que los juntos sean el 0 y 2) :}
+\tbnote{of angles defined by the following equations:
 \begin{align*}
-\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10} }}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }} \\
-\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10} }}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }}
+\cos\left(\dfrac{\theta_0}{2} \right) &= \sqrt{k_{00} + k_{01}}\\
+\tan\left( \dfrac{\theta_1 + \theta_2}{2} \right) &= \sqrt{k_{01}/k_{00}} \\
+\tan\left( \dfrac{\theta_2 - \theta_1}{2} \right) &= \sqrt{k_{11}/k_{10}}
 \end{align*}
-No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
+También podría quitar los factores de 2 que hay aquí y meter factores de 2 en los ángulos del circuito.
 }
 
-\tbnote{Obteniendo el seno y coseno de estos ángulos tampoco se 
-consigue algo mucho mejor:
-\begin{align*}
-\cos \theta_0 = \dfrac{\sqrt{k_{00} k_{10}} + \sqrt{k_{01} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}} \\
-\sin \theta_0 =  \dfrac{\sqrt{k_{01} k_{10}} - \sqrt{k_{00} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}}  \\
-\cos \theta_2 = \sqrt{\dfrac{k_{00}k_{10}}{(k_{00}+k_{01})(k_{10}+k_{11})}} \left( -1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right) \\
-\sin \theta_2 =  - \sqrt{\dfrac{k_{00}k_{10} + k_{01}k_{11} - 2 \sqrt{k_{00} k_{01} k_{10} k_{11}}}{(k_{00} + k_{01}) (k_{10} + k_{11})}} \left(\sqrt{\dfrac{k_{01}}{k_{00}}} + \sqrt{\dfrac{k_{11}}{k_{10}}} \right) \left(-1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right)^{-1}
-\end{align*}
-Probé combinar estas cantidades de diferentes formas, pero ninguna se simplificaba.}
+
 
 
 \begin{figure} % {{{
