@@ -193,7 +193,49 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
-\tbnote{Poner intro luego. Ver libro de writing science}
+\tbnote{versión muy preliminar de la intro, para ir teniendo algo escrito de una vez. }\\
+
+Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
+with a recent particular interest in simulating the evolution of open systems, 
+which are described by the theory of quantum channels~\cite{cleve,Zanetti,Xin,Wei}. 
+Among the various types of quantum channels for a system of qubits, 
+Pauli channels hold special significance due to their simplicity 
+and relevance in the context of quantum computing~\cite{Zbigniew,geometry}, 
+as they serve as effective models for the noise affecting quantum devices~\cite{Flammia,Fawzi}.
+
+In this article, our primary objective is to present a 
+quantum algorithm capable of simulating Pauli channels on quantum computers, 
+and we demonstrate its implementation using IBM's quantum computers. 
+This algorithm is designed to simulate any Pauli channel on a system of $N$ qubits,
+and works by utilizing $2N$ ancilla qubits.
+
+Expanding beyond discrete Pauli channels,
+we introduce the concept of Pauli dynamical maps, 
+which are defined as a continuous parametrization of
+$N$-qubit Pauli channels. 
+Consequently, we adapt the algorithm developed for Pauli channels 
+to accommodate these dynamical maps by employing a 
+parametrized quantum circuit, that is, 
+a quantum circuit in which some of the
+ operations depend on a variable parameter~\cite{cerezo}. 
+
+The investigation of parametrized quantum
+circuits holds extensive importance, 
+as they find applications in quantum machine learning~\cite{Benedetti}
+and describe general quantum transformations dependent on a parameter. Substantial research has been 
+devoted to enhancing the efficiency of these circuits~\cite{Watanabe,Rasmussen}. 
+In this article, we contribute to this body of work by establishing theorem \ref{theorem2},
+which outlines the types of transformations that 
+can be done using a parametrized quantum with the condition that only one
+ single-qubit operation in the circuit may depend on the parameter. 
+We explicitly find the mathematical conditions for these types of
+transformations and conclude about which 
+Pauli dynamical maps can be done with them. 
+
+
+
+
+
 
 
 % }}}
@@ -569,6 +611,15 @@ quizá tambien sean sencillas. Las quiero ver!!!}
 No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
 }
 
+\tbnote{Obteniendo el seno y coseno de estos ángulos tampoco se 
+consigue algo mucho mejor:
+\begin{align*}
+\cos \theta_0 = \dfrac{\sqrt{k_{00} k_{10}} + \sqrt{k_{01} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}} \\
+\sin \theta_0 =  \dfrac{\sqrt{k_{01} k_{10}} - \sqrt{k_{00} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}}  \\
+\cos \theta_2 = \sqrt{\dfrac{k_{00}k_{10}}{(k_{00}+k_{01})(k_{10}+k_{11})}} \left( -1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right) \\
+\sin \theta_2 =  - \sqrt{\dfrac{k_{00}k_{10} + k_{01}k_{11} - 2 \sqrt{k_{00} k_{01} k_{10} k_{11}}}{(k_{00} + k_{01}) (k_{10} + k_{11})}} \left(\sqrt{\dfrac{k_{01}}{k_{00}}} + \sqrt{\dfrac{k_{11}}{k_{10}}} \right) \left(-1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right)^{-1}
+\end{align*}
+Probé combinar estas cantidades de diferentes formas, pero ninguna se simplificaba.}
 
 
 \begin{figure} % {{{
@@ -784,6 +835,7 @@ of states of $N$ qubits that can be generated using a 1PR circuit.
 This result is stated in the following theorem.
 
 \begin{theorem}
+\label{theorem2}
 Consider a 1PR circuit of $N$ qubits
 and denote by $U$ the operator it implements on this system. 
 Then, for every $j \in \{0, 1, \cdots, 2^N-1\}$, 
@@ -791,7 +843,8 @@ we have that:
 \begin{align*}
 U|j\rangle = e^{is} |a^j\rangle + e^{-is} |b^j\rangle + |c^j\rangle
 \end{align*}
-with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $|a^j|^2 + |b^j|^2 + |c^j|^2 = 1$.
+with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle
+c^j|c^j \rangle = 1$.
 \end{theorem}
 \textbf{Proof:} 
 We can conclude from theorem 1 that $U=ARB$,
@@ -842,7 +895,7 @@ where we defined
 \end{align*}
 These states are clearly orthogonal because they are each linear combinations of different 
 orthogonal states of the computational basis. 
-Moreover, they satisfy  $|\tilde{a}^j|^2 + |\tilde{b}^j|^2 + |\tilde{c}^j|^2 = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
+Moreover, they satisfy  $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle c^j| c^j\rangle = 1$ because this quantity is the squared norm of the $j$th column of $B$, 
 which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
@@ -851,60 +904,58 @@ so that the result is given by:
 U|j\rangle = ARB|j\rangle = e^{-is} A |\tilde{a}^j\rangle + e^{is} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is} |a^j\rangle + e^{is} |b^j\rangle + |c^j\rangle,
 \end{eqnarray}
 where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle, |c^j\rangle = A |\tilde{c}^j\rangle$ are still orthogonal
-states that satisfy $|a|^2 + |b|^2 + |c|^2 = 1$ because $A$ is unitary. $\blacksquare$  \\
+states that satisfy $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
 
- 
-This theorem implies that starting from the state $|0\rangle$ (or any 
-other state),
-the only curves of states we could expect to create
-with a 1PR circuit are those of the form 
+This theorem implies that when starting from the state $|0\rangle$ 
+or any other initial state, the only possible curves of states that can be 
+created using a 1PR circuit are of the following form:
 \begin{equation}
 |\eta(p)\rangle = |c\rangle + e^{is}|a\rangle + e^{-is} |b\rangle,
 \label{eq:curve-states}
 \end{equation}
-with 
+with conditions defined by the equations: 
 \begin{equation}
-|a|^2 + |b|^2 + |c|^2 = 1,  \quad
+\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1,  \quad
 \langle a |b\rangle =
 \langle a |c\rangle =
 \langle b |c\rangle = 0
 % , |b\rangle, |c\rangle \; \text{orthogonal states},
-%  \text{and} \; |a\rangle, |b\rangle, |c\rangle \; \text{orthogonal states},
+%  \text{and} \; a\rangle, |b\rangle, |c\rangle \; \text{orthogonal states},
 \label{eq:conditions-vecs}
 \end{equation}
-and $s = s(p)$ a function of $p$.
+where $s = s(p)$ is a function of $p$. 
 \cpnote{Es un poco confusa la notacion. Hablas de la norma de a con $|a|$, pero ahi parece
 que $a$ es un vector. Sugiero cambiar a $\langle a | a \rangle$ o algo asi sin cargar mucho
-la notacion. }
+la notacion. } \tbnote{Va, concuerdo, listo}
 \cpnote{Tambien siento qeu las palabras son un poco raras. Sugiero pasarlo por Chatgpt y 
-luego tunearlo (todo este parrafo). Avisame cuando quede eso!}
-Furthermore, given a curve of states as the one in
-\eref{eq:curve-states}, we can always construct a 1PR circuit to create it.
-One way of doing it, is to use the circuit of \fref{fig:1PR-circuit}, setting the parametrized
-rotation $R$ on the last qubit to be controlled by all the other qubits
-and defining the operators $A$ and $B$ by:
+luego tunearlo (todo este parrafo). Avisame cuando quede eso!} \tbnote{Ya}
+
+Moreover, it is possible to construct a 1PR circuit to generate any given curve of 
+states described by \eref{eq:curve-states}. 
+One approach to achieve this is by utilizing the circuit 
+depicted in \fref{fig:1PR-circuit}, 
+with the parametrized rotation $R$ applied to the last qubit controlled by all the 
+other qubits. The operators $A$ and $B$ can be defined as follows:
 \begin{align*}
-&B|0\rangle = |a| |2^{N}-1 \rangle + |b| |2^{N}-2\rangle + |c| |2^N-3\rangle, \\
-&A|2^N-1 \rangle = \frac{1}{|a|} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{|b|}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{|c|}|c\rangle.
+&B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, \\
+&A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
 \end{align*}
-The rest of the operators $A$ and $B$ can be
-defined arbitrarily in any way such that they are unitary.
-Then, starting from the initial state $|0\rangle$
-and applying the circuit  of \fref{fig:1PR-circuit}, 
-some direct calculations lead us  to 
-the resulting curve of states
-of \eref{eq:curve-states}.
-To see it, notice that rewriting the expression of  $B|0\rangle$ by separating the
-first $N-1$ qubits from the last one,
-we have that $$B|0\rangle = |a| |2^{N-1}-1\rangle |1\rangle + |b| |2^{N-1}-1\rangle |0\rangle + |c| |2^{N-1}-2\rangle |1\rangle.$$
-Then, since the parametrized rotation $R$ is controlled by all the first $N-1$ qubits, it only applies
-to the first two terms of $B|0\rangle$ 
-and gives as a result
+The rest of the operators $A$ and $B$ can be defined
+in any arbitrary manner as long as they are unitary.
+By starting from the initial state $|0\rangle$ and 
+applying the circuit shown in \fref{fig:1PR-circuit}, straightforward calculations 
+lead us to obtain the resulting curve of states described in Equation (\ref{eq:curve-states}).
+
+To see it, we can rewrite the expression of $B|0\rangle$ by 
+separating the first $N-1$ qubits from the last one:
+$$B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.$$
+Since the parametrized rotation $R$ is controlled by all the first $N-1$ qubits, it only applies to the first two terms of $B|0\rangle$. As a result, we obtain:
+
 $$
-RB|0\rangle =|a| e^{is} |2^{N-1}-1\rangle |1\rangle + |b| e^{-is} |2^{N-1}-1\rangle |0\rangle + |c| |2^{N-1}-2\rangle |1\rangle.
+RB|0\rangle =\sqrt{\langle a | a \rangle} e^{is} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} e^{-is} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.
 $$
-Finally, applying $A$ as defined above to this state leads to the desired result.
+Finally, applying the defined operator $A$ to this state yields the desired result.
  
 %Therefore, from this theorem we conclude that
 %the kind of curves of states that can be created
@@ -954,8 +1005,8 @@ can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\
 \label{eq:vec}
 \sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = |c\rangle +  e^{is} |a\rangle + e^{-is}|b\rangle,
 \end{eqnarray}
-where $|a\rangle,|b\rangle,|c\rangle$ are orthogonal states in  
-and $|a|^2+  |b|^2 + |c|^2= 1$.
+where $|a\rangle,|b\rangle,|c\rangle$ are orthogonal states  
+and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$.
 
 For the particular case of one qubit,
 we can show some examples of Pauli dynamical maps
@@ -1066,7 +1117,7 @@ For example, this can be done systematically for the case of curves of states of
 with the following procedure:
 \begin{itemize}
 \item[1.] We first choose the norms $|a|, |b|, |c|$
-such that $|a|^2 + |b|^2 + |c|^2 = 1$. 
+such that $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$. 
 This can be done by selecting two angles
 $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
 \begin{align*}
@@ -1112,7 +1163,29 @@ $1$ but $V$ is unitary and therefore preserves the norm.
 
 % }}}
 \section{Conclusion} % {{{
-\tbnote{Poner luego}
+\tbnote{Primera versión para ir teniendo algo escrito }\\
+
+In this work, we have undertaken the study of Pauli channels on systems of $N$ qubits, 
+proposing an algorithm capable of implementing them on a quantum computer
+with the assistance of $2N$ ancilla qubits.
+ By running this algorithm on one of IBM's quantum computers, 
+we observed that the fidelity of the simulated channels was highest for those 
+closely resembling the totally depolarizing channel, 
+and decreased as the channels approached unitary behavior. 
+This performance can be attributed to the limitations and susceptibility to errors 
+inherent in current quantum computers. 
+Furthermore, being as general as it is,
+the algorithm isn’t efficient for unitary channels, 
+which can be done in a much simpler manner.
+
+Additionally, we extended our investigation 
+to encompass Pauli dynamical maps by leveraging the concept of a parametrized quantum circuit. 
+Through this extension, we determined the mathematical conditions under which a
+parametrized quantum circuit requires only one single-qubit 
+rotation dependent on the parameter. Notably, theorem \ref{theorem2} establishes these
+ conditions as applicable to any parametrized quantum circuit, 
+ providing a general framework to describe the type of algorithms achievable using 
+only one single-qubit parametrized rotation.
 % }}}
 \section{Supporting information} % {{{
 
