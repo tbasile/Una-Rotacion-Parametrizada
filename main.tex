@@ -610,56 +610,13 @@ In said figure, the ancilla state
 of \eref{eq: state} can be taken to be
 $\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}} 
 |10\rangle + \sqrt{k_{11}}|11\rangle$
-and it is created on the ancilla qubits with the help of three rotations of angles:
-\begin{subequations}
-\begin{eqnarray}
-\theta_0 &= &\arctan(\sqrt{k_{01}/k_{00}}) -
-\arctan(\sqrt{k_{11}/k_{10}}),
-\label{eq:angle1} \\ 
-\theta_1 &= &2 \arccos(\sqrt{k_{00} +
-k_{01}}),
-\label{eq:angle2} \\
-\theta_2 &= &\arctan(\sqrt{k_{01}/k_{00}}) +
-\arctan(\sqrt{k_{11}/k_{10}}).
-\label{eq:angle3}
-\end{eqnarray}
-\label{eq:angle}
-\end{subequations}
-\cpnote{Quisiera ver las ecuaciones sin la teheta despejada. Por ejemplo la de theta 1
-es $\cos^2 (\theta_1/2) = k00 + k01$ bueno mas bonita, pero asi. Luego las de tehta0 y theta2 
-quizá tambien sean sencillas. Las quiero ver!!!}
-%\tbnote{Ah, ya entiendo. Las única forma que veo de escribirlas es:
-%\begin{align*}
-%\tan \theta_0 = \dfrac{\sqrt{k_{01}/k_{00}} - \sqrt{k_{11}/k_{10} }}{1+\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }} \\
-%\tan \theta_2 = \dfrac{\sqrt{k_{01}/k_{00}} + \sqrt{k_{11}/k_{10} }}{1-\sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}} }}
-%\end{align*}
-%No veo cómo escribir ecuaciones de las thetas no despejadas que sean sencillas.
-%}
-
-%\tbnote{Obteniendo el seno y coseno de estos ángulos tampoco se 
-%consigue algo mucho mejor:
-%\begin{align*}
-%\cos \theta_0 = \dfrac{\sqrt{k_{00} k_{10}} + \sqrt{k_{01} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}} \\
-%\sin \theta_0 =  \dfrac{\sqrt{k_{01} k_{10}} - \sqrt{k_{00} k_{11}}}{\sqrt{(k_{00} + k_{01}) (k_{10} + k_{11})}}  \\
-%\cos \theta_2 = \sqrt{\dfrac{k_{00}k_{10}}{(k_{00}+k_{01})(k_{10}+k_{11})}} \left( -1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right) \\
-%\sin \theta_2 =  - \sqrt{\dfrac{k_{00}k_{10} + k_{01}k_{11} - 2 \sqrt{k_{00} k_{01} k_{10} k_{11}}}{(k_{00} + k_{01}) (k_{10} + k_{11})}} \left(\sqrt{\dfrac{k_{01}}{k_{00}}} + \sqrt{\dfrac{k_{11}}{k_{10}}} \right) \left(-1 + \sqrt{\dfrac{k_{01}k_{11}}{k_{00}k_{10}}} \right)^{-1}
-%\end{align*}
-%Probé combinar estas cantidades de diferentes formas, pero ninguna se simplificaba.}
-
-\tbnote{Creo que la mejor forma es la siguiente (nota:
-intercambié los ángulos 0 y 1 en la imagen para que 1 y 2
-sean los que van juntos y el 0 por separado, en lugar de que los juntos sean el 0 y 2) :}
-\tbnote{of angles defined by the following equations:
+and it is created on the ancilla qubits with the help of three rotations of angles
+defined by the following equations:
 \begin{align*}
-\cos\left(\dfrac{\theta_0}{2} \right) &= \sqrt{k_{00} + k_{01}}\\
-\tan\left( \dfrac{\theta_1 + \theta_2}{2} \right) &= \sqrt{k_{01}/k_{00}} \\
-\tan\left( \dfrac{\theta_2 - \theta_1}{2} \right) &= \sqrt{k_{11}/k_{10}}
+\cos\left(\dfrac{\theta_0}{2} \right) &= \sqrt{k_{00} + k_{01}},\\
+\tan\left( \dfrac{\theta_1 + \theta_2}{2} \right) &= \sqrt{k_{01}/k_{00}}, \\
+\tan\left( \dfrac{\theta_2 - \theta_1}{2} \right) &= \sqrt{k_{11}/k_{10}}.
 \end{align*}
-También podría quitar los factores de 2 que hay aquí y meter factores de 2 en los ángulos del circuito.
-}
-
-
-
 
 \begin{figure} % {{{
 \centering
@@ -675,15 +632,14 @@ of \eref{eq: state} for the two ancilla qubits.
 \end{figure} % }}}
 
 
-We took a sample of one-qubit Pauli channels and
-used the ibmq-lima quantum computer that IBM has available~\cite{Qiskit}
-to simulate them. For each of these channels, we used quantum process
-tomography~\cite{Qiskit, Chuang:1996} to obtain the 
-operator $\xi_I$ corresponding to the implementation of the
-circuit.  Then, we compared this operator with the ideal 
-channel $\xi_T$  we
-wanted to implement.  
-
+% We took a sample of one-qubit Pauli channels and
+% used the ibmq-lima quantum computer that IBM has available~\cite{Qiskit}
+% to simulate them. For each of these channels, we used quantum process
+% tomography~\cite{Qiskit, Chuang:1996} to obtain the 
+% operator $\xi_I$ corresponding to the implementation of the
+% circuit.  Then, we compared this operator with the ideal 
+% channel $\xi_T$  we
+% wanted to implement.  
 
 We took a sample of one-qubit Pauli channels
 and evaluated their implementation on IBM's
@@ -707,7 +663,7 @@ done over all density matrices $\rho$.
 The calculation of this norm is done using the semi-definite program from reference \cite{Watrous}.
 When the two channels are the same,
 the diamond distance has a value of $0$, while in the case that the channels
-are completely distingushable, the distance reaches its maximum value of $2$~\cite{Benenti}.
+are completely distinguishable, the distance reaches its maximum value of $2$~\cite{Benenti}.
 For the analysis done in \fref{fig:fids}, we define a sort of ``diamond fidelity'' as: 
 \begin{equation}
 f = 1 - \dfrac{1}{2} ||\varepsilon_I - \varepsilon_T ||_{\diamond},
@@ -730,16 +686,14 @@ completely depolarizing channel are simulated better on the quantum computers.
 This is reasonable because quantum computers are prone to errors
 that depolarize qubits, which isn't very problematic
 when trying to simulate depolarization but it is 
-when simulating unitary processes. \cpnote{Tambien creo qeu debemos comentar que nuestra 
-simulación para operaciones unitarias no es optima, porque usamos un monton de compuertas 
-y además operaciones doblemente controladas.}
-\tbnote{Algo como: }
-{\color{orange} Moreover, the algorithm of \fref{fig: circuit-pauli-1} is not optimal for unitary channels 
-(that is, the channels corresponding to the vertices of the tetrahedron). 
-These straightforward channels could be accomplished more efficiently by simply applying the corresponding Pauli operation directly. Nevertheless, due to its general design to accommodate any Pauli channel, the algorithm employs numerous quantum gates even in such scenarios.}
-\cpnote{Siento qeu aun falta algo de análisis pero lo dejamos para cuando tengamos mas
-figuras y mas inspiracion}
-\tbnote{Va}
+when simulating unitary processes. Moreover, the algorithm of \fref{fig:
+circuit-pauli-1} is not optimal for unitary channels (that is, the channels
+corresponding to the vertices of the tetrahedron).  These straightforward
+channels could be accomplished more efficiently by simply applying the
+corresponding Pauli operation directly. Nevertheless, due to its general design
+to accommodate any Pauli channel, the algorithm employs numerous quantum gates
+even in such scenarios.
+\cpnote{Iterar este parrafo cuando estemos cerca del final. Ta un tilin chafa.}
 
 \begin{figure} % {{{
 \centering
@@ -964,11 +918,11 @@ with conditions defined by the equations:
 \label{eq:conditions-vecs}
 \end{equation}
 where $s = s(p)$ is a function of $p$. 
-\cpnote{Es un poco confusa la notacion. Hablas de la norma de a con $|a|$, pero ahi parece
-que $a$ es un vector. Sugiero cambiar a $\langle a | a \rangle$ o algo asi sin cargar mucho
-la notacion. } \tbnote{Va, concuerdo, listo}
-\cpnote{Tambien siento qeu las palabras son un poco raras. Sugiero pasarlo por Chatgpt y 
-luego tunearlo (todo este parrafo). Avisame cuando quede eso!} \tbnote{Ya}
+% \cpnote{Es un poco confusa la notacion. Hablas de la norma de a con $|a|$, pero ahi parece
+% que $a$ es un vector. Sugiero cambiar a $\langle a | a \rangle$ o algo asi sin cargar mucho
+% la notacion. } \tbnote{Va, concuerdo, listo}
+% \cpnote{Tambien siento qeu las palabras son un poco raras. Sugiero pasarlo por Chatgpt y 
+% luego tunearlo (todo este parrafo). Avisame cuando quede eso!} \tbnote{Ya}
 
 Moreover, it is possible to construct a 1PR circuit to generate any given curve of 
 states described by \eref{eq:curve-states}. 
@@ -980,7 +934,7 @@ other qubits. The operators $A$ and $B$ can be defined as follows:
 &B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, \\
 &A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
 \end{align*}
-The rest of the operators $A$ and $B$ can be defined
+The remaining part of the operators $A$ and $B$ can be defined
 in any arbitrary manner as long as they are unitary.
 By starting from the initial state $|0\rangle$ and 
 applying the circuit shown in \fref{fig:1PR-circuit}, straightforward calculations 
@@ -1025,14 +979,12 @@ Finally, applying the defined operator $A$ to this state yields the desired resu
 %aunque se puede y debe achicar bastante.
 %\end{itemize}
 % }}}
-
 \section{1PR circuit for a Pauli map} % {{{
 \label{sec: 1PR circuit for a Pauli map}
 
-
 We can now use the previous results to conclude directly which Pauli dynamical maps
 can be implemented with a 1PR circuit.
-Given this condition, the curve of states of \eref{eq: parametrized state}  needed 
+Given this condition \cpnote{which?}, the curve of states of \eref{eq: parametrized state}  needed 
 to implement the map
 has to be constructed with only one parametrized rotation. 
 Therefore, the results of the last section imply that the the map
@@ -1045,7 +997,9 @@ can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\
 \sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = |c\rangle +  e^{is} |a\rangle + e^{-is}|b\rangle,
 \end{eqnarray}
 where $|a\rangle,|b\rangle,|c\rangle$ are orthogonal states  
-and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$.
+and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ \cpnote{redundante, refierete mejor a la ecuacion anterior, a la 24 pues. Ahora, también creo qeu la pedendencia
+con $p$ no está clara del lado derecho. Quizpa si se escribe $s(p)$ en vez de 
+$s$ es mejor, pero piensale tambien . }.
 
 For the particular case of one qubit,
 we can show some examples of Pauli dynamical maps
@@ -1053,7 +1007,7 @@ implementable with a 1PR circuit, which are plotted
 in \fref{fig:curves1}.
 
 
-\begin{figure}
+\begin{figure} % {{{
 \captionsetup[subfigure]{justification=centering}
 \centering
 \begin{subfigure}{.45\textwidth}
@@ -1078,11 +1032,15 @@ and parabolic (orange).
 (b) shows dynamical maps selected at random that can be implemented with 1PR 
 circuits.}
 \label{fig:curves}
-\end{figure}
+\end{figure} % }}}
 
 
 \begin{itemize}
 \item \textbf{Bit flip map:} 
+\cpnote{Aca solo usas dos niveles, pero el caso general requiere 2 qubits. Ahora, si solo 
+se requiere un qubit, pues está chido pero toca decirlo. Quizá dejarlo como un ultimo ejemplo. 
+Toca citar acá tambien el trabajo de los brasileños... a ver si lo encuentro, Andrea 
+Valdez me va a pasar la cita. De hecho pordemos leer el articulo para inspiracion y citar}
 This dynamical map is defined as
 \begin{align*}
 \varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1,
@@ -1100,7 +1058,8 @@ This can be rewritten as
 \begin{align*}
 |\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |0\rangle - \dfrac{i}{2} |1\rangle \right) + e^{-is} \left( \frac{1}{2} |0\rangle + \frac{i}{2} |1\rangle \right),
 \end{align*}
-with $s= \arcsin(\sqrt{p})$.
+with $s= \arcsin(\sqrt{p})$\cpnote{Que tal si lo dejamos como $\sin s= \sqrt{p}$? Si estas de 
+acuerdo igual cambia los siguientes}.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
 The exact same thing can be done
@@ -1126,6 +1085,7 @@ This state can be rewritten as:
 with $s = \arcsin(\sqrt{3p/4})$.
 We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
 1PR circuit.
+\cpnote{De nuevo, quizá aca convenga tener notacion de qubits y no de sistemas de 4 niveles}
 
 \item \textbf{Parabolic dynamical map:} Finally, we define the parabolic dynamical map as:
 \begin{eqnarray}
@@ -1163,7 +1123,9 @@ $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
 |a| = \sin \nu \cos \mu, \; |b| = \sin \nu \sin \mu , \; |c| = \cos \nu.
 \end{align*}
 \item[2.] We define $|a'\rangle = |a| |0\rangle$, $|b'\rangle = |b| |1\rangle,$ $|c'\rangle = |c| |2\rangle$.
-\item[3.] Finally, we choose a unitary matrix $V$
+\item[3.] Finally, we choose a unitary matrix $V$ \cpnote{Esta supongo qeu 
+la escoges aleatoriamente, y que la tomas por ahi del CUE. Lo platicamos y metemos 
+los detalles. }
 and use it to define the states $|a\rangle = V |a'\rangle, |b\rangle = V |b'\rangle, |c\rangle = V |c'\rangle$.
 This way, since the primed states are orthogonal and their squared norms add up to one,
 so do the unprimed states and therefore 
@@ -1183,6 +1145,9 @@ This way, when $s = 0$ in \eref{eq:vec}, the constructed state
 is $e^{i \theta}|0\rangle$, which
 corresponds with the identity channel.
 
+\cpnote{Esta parte está desordenada. Porque parece qeu das el procedimiento 
+en los 3 putnos de arriba y leugo que siempre no, qu evalta algo. Trata de iterar el paso 3 
+estos dos parrafos para que tengan un flujo mas chido. }
 To fulfill this additional condition,  we restrict the first row of
 $V$ writen as a matrix in 
 the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
@@ -1201,6 +1166,7 @@ $1$ but $V$ is unitary and therefore preserves the norm.
 
 
 % }}}
+
 \section{Conclusion} % {{{
 \tbnote{Primera versión para ir teniendo algo escrito }\\
 
@@ -1230,29 +1196,29 @@ only one single-qubit parametrized rotation.
 
 \tbnote{Ver qué se debe de poner aquí según el template y también arreglar las imágenes de acuerdo a él.}
 % Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
-\paragraph*{S1 Fig.}
-\label{S1_Fig}
-{\bf Bold the title sentence.} Add descriptive text after the title of the item (optional).
-
-\paragraph*{S2 Fig.}
-\label{S2_Fig}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 File.}
-\label{S1_File}
-{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Video.}
-\label{S1_Video}
-{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Appendix.}
-\label{S1_Appendix}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
-
-\paragraph*{S1 Table.}
-\label{S1_Table}
-{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% \paragraph*{S1 Fig.}
+% \label{S1_Fig}
+% {\bf Bold the title sentence.} Add descriptive text after the title of the item (optional).
+% 
+% \paragraph*{S2 Fig.}
+% \label{S2_Fig}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 File.}
+% \label{S1_File}
+% {\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Video.}
+% \label{S1_Video}
+% {\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Appendix.}
+% \label{S1_Appendix}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+% 
+% \paragraph*{S1 Table.}
+% \label{S1_Table}
+% {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 % }}}
 \section{Acknowledgments} % {{{
 Support by projects CONACyT 285754, 254515 and UNAM-PAPIIT IG100518, IG101421 is
