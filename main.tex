@@ -201,11 +201,12 @@ Puntos hechos en el artículo:
 \item Condiciones para que un circuito parametrizado use una sola rotación parametrizada. En particular luego aplicadas al algoritmo para mapas dinámicos de Pauli.
 \end{itemize}
 
-\tbnote{versión muy preliminar de la intro, para ir teniendo algo escrito de una vez. }\\
 
 Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
 with a recent particular interest in simulating the evolution of open systems, 
-which are described by the theory of quantum channels~\cite{cleve,Zanetti,Xin,Wei}. 
+which are described by the theory of quantum channels~\cite{cleve,Zanetti,Xin,Wei}. \tbnote{Cita a Andrea}
+{\color{purple} For example, this has been done using optical arrangements
+to study the emergence of multipartite entanglement \cite{Andrea,Andrea_AD}.}
 Among the various types of quantum channels for a system of qubits, 
 Pauli channels hold special significance due to their simplicity 
 and relevance in the context of quantum computing~\cite{Zbigniew,geometry}, 
@@ -612,11 +613,12 @@ $\sqrt{k_{00}} |00\rangle + \sqrt{k_{01}} |01\rangle + \sqrt{k_{10}}
 |10\rangle + \sqrt{k_{11}}|11\rangle$
 and it is created on the ancilla qubits with the help of three rotations of angles
 defined by the following equations:
-\begin{align*}
+\begin{align}
+\label{eq:angle}
 \cos\left(\dfrac{\theta_0}{2} \right) &= \sqrt{k_{00} + k_{01}},\\
 \tan\left( \dfrac{\theta_1 + \theta_2}{2} \right) &= \sqrt{k_{01}/k_{00}}, \\
 \tan\left( \dfrac{\theta_2 - \theta_1}{2} \right) &= \sqrt{k_{11}/k_{10}}.
-\end{align*}
+\end{align}
 
 \begin{figure} % {{{
 \centering
@@ -829,14 +831,14 @@ This result is stated in the following theorem.
 
 \begin{theorem}
 \label{theorem2}
-Consider a 1PR circuit of $N$ qubits
+Consider a 1PR circuit of $N$ qubits parametrized by $p$
 and denote by $U$ the operator it implements on this system. 
 Then, for every $j \in \{0, 1, \cdots, 2^N-1\}$, 
 we have that:
 \begin{align*}
-U|j\rangle = e^{is} |a^j\rangle + e^{-is} |b^j\rangle + |c^j\rangle
+U|j\rangle = e^{is(p)} |a^j\rangle + e^{-is(p)} |b^j\rangle + |c^j\rangle
 \end{align*}
-with $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle
+with $s(p)$ some function of $p$,  $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states and $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle
 c^j|c^j \rangle = 1$.
 \end{theorem}
 \textbf{Proof:} 
@@ -865,8 +867,8 @@ B|j\rangle =
 
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
-remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is}$ to $|0\rangle$
-and a phase $e^{is}$ to $|1\rangle$, we have that,
+remembering that a $\sigma_3$ rotation acts by adding a phase $e^{-is(p)}$ to $|0\rangle$
+and a phase $e^{is(p)}$ to $|1\rangle$, we have that,
 % \begin{small}
 % \begin{eqnarray}
 % &e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1 \rangle 
@@ -876,9 +878,9 @@ and a phase $e^{is}$ to $|1\rangle$, we have that,
 % \end{small}
 % test
 \begin{align}
-RB|j\rangle& = e^{-is} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1\rangle 
+RB|j\rangle& = e^{-is(p)} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is(p)} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1\rangle 
 + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right) \nonumber \\
-& = e^{-is} |\tilde{b}^{j}\rangle + e^{is} |\tilde{a}^j\rangle + |\tilde{c}^j\rangle
+& = e^{-is(p)} |\tilde{b}^{j}\rangle + e^{is(p)} |\tilde{a}^j\rangle + |\tilde{c}^j\rangle
 \end{align}
 where we defined
 \begin{align*}
@@ -894,7 +896,7 @@ which is unitary.
 Finally, after having applied the rotation, the circuit applies gate $A$, 
 so that the result is given by:
 \begin{eqnarray}
-U|j\rangle = ARB|j\rangle = e^{-is} A |\tilde{a}^j\rangle + e^{is} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is} |a^j\rangle + e^{is} |b^j\rangle + |c^j\rangle,
+U|j\rangle = ARB|j\rangle = e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
 \end{eqnarray}
 where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle, |c^j\rangle = A |\tilde{c}^j\rangle$ are still orthogonal
 states that satisfy $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ because $A$ is unitary. $\blacksquare$  \\
@@ -904,7 +906,7 @@ This theorem implies that when starting from the state $|0\rangle$
 or any other initial state, the only possible curves of states that can be 
 created using a 1PR circuit are of the following form:
 \begin{equation}
-|\eta(p)\rangle = |c\rangle + e^{is}|a\rangle + e^{-is} |b\rangle,
+|\eta(p)\rangle = |c\rangle + e^{is(p)}|a\rangle + e^{-is(p)} |b\rangle,
 \label{eq:curve-states}
 \end{equation}
 with conditions defined by the equations: 
@@ -912,12 +914,9 @@ with conditions defined by the equations:
 \langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1,  \quad
 \langle a |b\rangle =
 \langle a |c\rangle =
-\langle b |c\rangle = 0
-% , |b\rangle, |c\rangle \; \text{orthogonal states},
-%  \text{and} \; a\rangle, |b\rangle, |c\rangle \; \text{orthogonal states},
+\langle b |c\rangle = 0.
 \label{eq:conditions-vecs}
 \end{equation}
-where $s = s(p)$ is a function of $p$. 
 % \cpnote{Es un poco confusa la notacion. Hablas de la norma de a con $|a|$, pero ahi parece
 % que $a$ es un vector. Sugiero cambiar a $\langle a | a \rangle$ o algo asi sin cargar mucho
 % la notacion. } \tbnote{Va, concuerdo, listo}
@@ -946,7 +945,7 @@ $$B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N-1}-1\rangle |1\rangle + \sqrt{
 Since the parametrized rotation $R$ is controlled by all the first $N-1$ qubits, it only applies to the first two terms of $B|0\rangle$. As a result, we obtain:
 
 $$
-RB|0\rangle =\sqrt{\langle a | a \rangle} e^{is} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} e^{-is} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.
+RB|0\rangle =\sqrt{\langle a | a \rangle} e^{is(p)} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} e^{-is(p)} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.
 $$
 Finally, applying the defined operator $A$ to this state yields the desired result.
  
@@ -984,7 +983,7 @@ Finally, applying the defined operator $A$ to this state yields the desired resu
 
 We can now use the previous results to conclude directly which Pauli dynamical maps
 can be implemented with a 1PR circuit.
-Given this condition \cpnote{which?}, the curve of states of \eref{eq: parametrized state}  needed 
+Given the condition of theorem \ref{theorem2}, the curve of states of \eref{eq: parametrized state}  needed 
 to implement the map
 has to be constructed with only one parametrized rotation. 
 Therefore, the results of the last section imply that the the map
@@ -994,17 +993,33 @@ Therefore, the results of the last section imply that the the map
 can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\beta_{\vec{\gamma}}(p)|^2 = k_{\vec{\gamma}}(p)$ and
 \begin{eqnarray}
 \label{eq:vec}
-\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = |c\rangle +  e^{is} |a\rangle + e^{-is}|b\rangle,
+\sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = |c\rangle +  e^{is(p)} |a\rangle + e^{-is(p)}|b\rangle,
 \end{eqnarray}
+{\color{red}
 where $|a\rangle,|b\rangle,|c\rangle$ are orthogonal states  
-and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ \cpnote{redundante, refierete mejor a la ecuacion anterior, a la 24 pues. Ahora, también creo qeu la pedendencia
-con $p$ no está clara del lado derecho. Quizpa si se escribe $s(p)$ en vez de 
-$s$ es mejor, pero piensale tambien . }.
+and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$}
+ \cpnote{redundante, refierete mejor a la ecuacion anterior, a la 24 pues. Ahora, también creo qeu la pedendencia
+con $p$ no está clara del lado derecho.}
+
+\tbnote{Va, algo así (quitar lo 
+rojo, dejar lo morado):}
+
+{\color{purple} where $|a\rangle,|b\rangle,|c\rangle$ fulfill
+the conditions of \eref{eq:conditions-vecs}.}
+
+\cpnote{
+ Quizpa si se escribe $s(p)$ en vez de 
+$s$ es mejor, pero piensale tambien . } 
+\tbnote{Es cierto, mejor, ya lo puse}.\\
+
+
+
+
 
 For the particular case of one qubit,
 we can show some examples of Pauli dynamical maps
 implementable with a 1PR circuit, which are plotted
-in \fref{fig:curves1}.
+in \fref{fig:curves1}. 
 
 
 \begin{figure} % {{{
@@ -1036,74 +1051,84 @@ circuits.}
 
 
 \begin{itemize}
-\item \textbf{Bit flip map:} 
-\cpnote{Aca solo usas dos niveles, pero el caso general requiere 2 qubits. Ahora, si solo 
-se requiere un qubit, pues está chido pero toca decirlo. Quizá dejarlo como un ultimo ejemplo. 
-Toca citar acá tambien el trabajo de los brasileños... a ver si lo encuentro, Andrea 
-Valdez me va a pasar la cita. De hecho pordemos leer el articulo para inspiracion y citar}
-This dynamical map is defined as
-\begin{align*}
-\varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1,
-\end{align*}
-for $p \in [0,1]$. 
-Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
-qubits is such that 
-$|\beta_0(p)|^2= (1-p)^2$, $|\beta_1(p)|^2 = p$, $|\beta_2(p)|^2 = |\beta_3(p)|^2 = 0$.
-In particular, if we take the $\beta_j$ to be real,
-we need to create the curve of states:
-\begin{align*}
-|\beta(p)\rangle = \sqrt{1-p} |0\rangle +\sqrt{p} |1\rangle.
-\end{align*}
-This can be rewritten as
-\begin{align*}
-|\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |0\rangle - \dfrac{i}{2} |1\rangle \right) + e^{-is} \left( \frac{1}{2} |0\rangle + \frac{i}{2} |1\rangle \right),
-\end{align*}
-with $s= \arcsin(\sqrt{p})$\cpnote{Que tal si lo dejamos como $\sin s= \sqrt{p}$? Si estas de 
-acuerdo igual cambia los siguientes}.
-Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
-and it can be created with a 1PR circuit.
-The exact same thing can be done
-for the phase flip and bit phase flip dynamical maps by
-changing $\sigma_1$ to
-$\sigma_3$ and $\sigma_2$ respectively.
-
 \item \textbf{Depolarizing:} This dynamical map is given by
 \begin{align*}
 \varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
 \end{align*}
 with $p \in [0,1]$. 
+Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
+qubits is such that 
+$|\beta_0(p)|^2= (1-3p/4)$, $|\beta_1(p)|^2 = |\beta_2(p)|^2 = |\beta_3(p)|^2 = p/4$.
 Then, taking the $\beta_j$ to be real,
-the curve of states needed to create on the ancilla qubits is
+thi curve of states is
 \begin{align*}
-|\beta(p) \rangle = \sqrt{1-3p/4} |0\rangle + \sqrt{p/4} |1\rangle + \sqrt{p/4} |2 \rangle  + \sqrt{p/4} |3\rangle.
+|\beta(p) \rangle = \sqrt{1-3p/4} |00\rangle + \sqrt{p/4} |01\rangle + \sqrt{p/4} |10 \rangle  + \sqrt{p/4} |11\rangle.
 \end{align*}
 This state can be rewritten as:
 \begin{align*}
-|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |0\rangle - \dfrac{i}{2\sqrt{3}} |1\rangle - \dfrac{i}{2\sqrt{3}} |2 \rangle - \dfrac{i}{2\sqrt{3}} |3\rangle \right) \\
-& + e^{-is} \left( \dfrac{1}{2} |0\rangle + \dfrac{i}{2\sqrt{3}} |1\rangle + \dfrac{i}{2\sqrt{3}} |2\rangle + \dfrac{i}{2\sqrt{3}} |3 \rangle \right),
+|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |00\rangle - \dfrac{i}{2\sqrt{3}} |01\rangle - \dfrac{i}{2\sqrt{3}} |10 \rangle - \dfrac{i}{2\sqrt{3}} |11\rangle \right) \\
+& + e^{-is} \left( \dfrac{1}{2} |00\rangle + \dfrac{i}{2\sqrt{3}} |01\rangle + \dfrac{i}{2\sqrt{3}} |10\rangle + \dfrac{i}{2\sqrt{3}} |11 \rangle \right),
 \end{align*}
-with $s = \arcsin(\sqrt{3p/4})$.
+with $\sin s = \sqrt{3p/4}$.
 We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
 1PR circuit.
 \cpnote{De nuevo, quizá aca convenga tener notacion de qubits y no de sistemas de 4 niveles}
+\tbnote{Va, listo.}
 
-\item \textbf{Parabolic dynamical map:} Finally, we define the parabolic dynamical map as:
+\item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
 \begin{eqnarray}
 \epsilon(\rho) = \dfrac{1}{4} (1-p)^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
 with $p \in [-1,1]$. 
 If we take the $\beta_j$ to be real,
-we need to create the curve of states:
+the curve of states needed on the ancilla qubits is:
 \begin{eqnarray}
-|\beta(p)\rangle = \dfrac{1}{2} (1-p) |0\rangle + \dfrac{1}{2} \sqrt{1-p^2} |1\rangle +  \dfrac{1}{2} \sqrt{1-p^2} |2\rangle +  \dfrac{1}{2}(1+p) |3\rangle.
+|\beta(p)\rangle = \dfrac{1}{2} (1-p) |00\rangle + \dfrac{1}{2} \sqrt{1-p^2} |01\rangle +  \dfrac{1}{2} \sqrt{1-p^2} |10\rangle +  \dfrac{1}{2}(1+p) |11\rangle.
 \end{eqnarray}
 This can be rewritten as
 \begin{align*}
-|\beta(p)\rangle =&\; \left( \dfrac{1}{2}|0\rangle + \dfrac{1}{2} |3\rangle \right) + e^{is} \left( \dfrac{i}{4}|0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle - \dfrac{i}{4} |3\rangle \right) \\
-& + e^{-is}  \left( \dfrac{-i}{4} |0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle + \dfrac{i}{4} |3\rangle \right),
+|\beta(p)\rangle =&\; \left( \dfrac{1}{2}|00\rangle + \dfrac{1}{2} |11\rangle \right) + e^{is} \left( \dfrac{i}{4}|00\rangle + \dfrac{1}{4} |01\rangle + \dfrac{1}{4} |10\rangle - \dfrac{i}{4} |11\rangle \right) \\
+& + e^{-is}  \left( \dfrac{-i}{4} |00\rangle + \dfrac{1}{4} |01\rangle + \dfrac{1}{4} |10\rangle + \dfrac{i}{4} |11\rangle \right),
 \end{align*}
-with $s = \arcsin(p)$, so that
+with $\sin s = p$, so that
 this map fulfills the conditions of  \eref{eq:conditions-vecs}.
+
+
+\item \textbf{Bit flip map:} 
+\cpnote{Aca solo usas dos niveles, pero el caso general requiere 2 qubits. Ahora, si solo 
+se requiere un qubit, pues está chido pero toca decirlo. Quizá dejarlo como un ultimo ejemplo. 
+Toca citar acá tambien el trabajo de los brasileños... a ver si lo encuentro, Andrea 
+Valdez me va a pasar la cita. De hecho pordemos leer el articulo para inspiracion y citar} \tbnote{Va, puse explícitamente lo de que sólo se usa un qubit más abajo} \tbnote{Tambien puse la cita del trabajo brasileño}
+This dynamical map is defined as
+\begin{align*}
+\varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1,
+\end{align*}
+for $p \in [0,1]$. 
+In particular, if we take the $\beta_j$ to be real,
+we need to create the curve of states:
+\begin{align*}
+|\beta(p)\rangle = \sqrt{1-p} |00\rangle +\sqrt{p} |01\rangle.
+\end{align*}
+This can be rewritten as
+\begin{align*}
+|\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |00\rangle - \dfrac{i}{2} |01\rangle \right) + e^{-is} \left( \frac{1}{2} |00\rangle + \frac{i}{2} |01\rangle \right),
+\end{align*}
+with $\sin s= \sqrt{p}$\cpnote{Que tal si lo dejamos como $\sin s= \sqrt{p}$? Si estas de 
+acuerdo igual cambia los siguientes} \tbnote{Va, ya los cambié}.
+Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
+and it can be created with a 1PR circuit.
+{\color{purple} Note that in this case we actually only need one ancilla qubit
+since the state $|\beta(p)\rangle$ is only two dimensional.}
+
+The exact same thing can be done
+for the phase flip and bit phase flip dynamical maps by
+changing $\sigma_1$ to
+$\sigma_3$ and $\sigma_2$ respectively.
+{\color{purple}
+For example, the bit phase flip map was implemented in \cite{Andrea, Andrea_4qb} 
+using an optical arrangement, and  it was indeed done 
+by varying only one angle that depends on the parameter $p$ (the angle of a half waveplate).}
+
 \end{itemize}
 
 Furthermore, we can construct other examples of 
@@ -1127,15 +1152,40 @@ $\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
 la escoges aleatoriamente, y que la tomas por ahi del CUE. Lo platicamos y metemos 
 los detalles. }
 and use it to define the states $|a\rangle = V |a'\rangle, |b\rangle = V |b'\rangle, |c\rangle = V |c'\rangle$.
-This way, since the primed states are orthogonal and their squared norms add up to one,
+This way, given that the primed states are orthogonal and their squared norms add up to one,
 so do the unprimed states and therefore 
 fulfill the conditions of  \eref{eq:conditions-vecs}. 
+
+{\color{purple} However, since a Pauli dynamical map should begin at the
+identity channel, we need to add the condition that $|a\rangle + |b\rangle + |c\rangle = e^{i \theta} |0\rangle$, with
+$\theta$ an arbitrary real number. 
+This way, when $s = 0$ in \eref{eq:vec}, the constructed state
+is $e^{i \theta}|0\rangle$, which
+corresponds with the identity channel.
+
+
+To fulfill this additional condition,  we restrict the first row of
+$V$ written as a matrix in 
+the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
+That way, 
+\begin{align*}
+|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
+\end{align*}
+The last equality comes from the fact
+that the first entry of $V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
+is obtained by calculating the dot product of the first row of $V$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
+$e^{i\theta}$. 
+Furthermore, the other entries have to be $0$,
+since otherwise the norm of the result would be greater than
+$1$ but $V$ is unitary and therefore preserves the norm.}
 \end{itemize}
 
 Following this procedure for random
 angles and unitary matrices $V$, 
-we plot four Pauli dynamical maps 
+we plot four Pauli dynamical maps  selected at random
 that can be implemented with a 1PR circuit in \fref{fig:curves2}.
+
+{\color{red}
 These maps where constructed with the additional condition
 of the map passing through the identity channel.
 To do that, we ensure that the vectors also satisfy
@@ -1148,6 +1198,7 @@ corresponds with the identity channel.
 \cpnote{Esta parte está desordenada. Porque parece qeu das el procedimiento 
 en los 3 putnos de arriba y leugo que siempre no, qu evalta algo. Trata de iterar el paso 3 
 estos dos parrafos para que tengan un flujo mas chido. }
+\tbnote{Va, lo cambié y agregué esto al paso 3. Propongo quitar lo rojo y dejar lo morado}
 To fulfill this additional condition,  we restrict the first row of
 $V$ writen as a matrix in 
 the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
@@ -1161,7 +1212,7 @@ $e^{i\theta}$.
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
 $1$ but $V$ is unitary and therefore preserves the norm.
-
+}
 
 
 
