@@ -203,7 +203,7 @@ Puntos hechos en el artículo:
 
 
 Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
-with a recent particular interest in simulating the evolution of open systems, 
+with a recent particular interest in simulating the evolution of open quantum systems, 
 which are described by the theory of quantum channels~\cite{cleve,Zanetti,Xin,Wei}. \tbnote{Cita a Andrea}
 {\color{purple} For example, this has been done using optical arrangements
 to study the emergence of multipartite entanglement \cite{Andrea,Andrea_AD}.}
@@ -212,12 +212,11 @@ Pauli channels hold special significance due to their simplicity
 and relevance in the context of quantum computing~\cite{Zbigniew,geometry}, 
 as they serve as effective models for the noise affecting quantum devices~\cite{Flammia,Fawzi}.
 
-On the other hand, we shall also work with parametrized quantum circuits, that is,  
-a quantum circuit in which some of the operations depend on a variable parameter~\cite{cerezo}. 
-The investigation of parametrized quantum
-circuits holds extensive importance, 
-as they find applications in quantum machine learning~\cite{Benedetti}
-and describe general quantum transformations dependent on a parameter. Substantial research has been 
+Additionally , we shall also work with parametrized quantum circuits, that is,  
+quantum circuits in which some of the operations depend on variable parameters~\cite{cerezo}. 
+These circuits play an important 
+part in applications such as quantum machine learning~\cite{Benedetti}
+and describing general quantum transformations dependent on parameters. Substantial research has been 
 devoted to enhancing the efficiency of these circuits~\cite{Watanabe,Rasmussen}. 
 
 In this article, our first objective is to present a 
@@ -228,30 +227,31 @@ and works by utilizing $2N$ ancilla qubits.
 
 Expanding beyond discrete Pauli channels,
 we introduce the concept of Pauli dynamical maps, 
-which are defined as a continuous parametrization of
+defined as a continuous parametrization of
 $N$-qubit Pauli channels. 
-Consequently, we adapt the algorithm developed for Pauli channels 
+We adapt the algorithm developed for Pauli channels 
 to accommodate these dynamical maps by employing a 
 parametrized quantum circuit. 
-We contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2}.
-This theorem outlines the types of transformations that 
-can be done using a parametrized quantum circuit with the condition that only one
+Furthermore, we contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2},
+which outlines the types of transformations that 
+can be done using a parametrized circuit with the condition that only one
  single-qubit operation in the circuit may depend on the parameter.
 We explicitly find the mathematical conditions for these types of
 transformations and conclude about which 
 Pauli dynamical maps can be done with them. 
 
 The paper is organized as follows: In section \ref{sec: Pauli Channels} 
-we give the definition of quantum channels and focus particularly on Pauli channels for systems of
+we provide  the definition of quantum channels and focus specifically on Pauli channels for systems of
 $N$ qubits. 
-In section \ref{sec: Circuit for a Pauli Channel} we show the proposed circuit 
-to implement a Pauli channel of $N$ qubits in a quantum computer. 
+In section \ref{sec: Circuit for a Pauli Channel} we present  the proposed circuit 
+for implementing a Pauli channel of $N$ qubits in a quantum computer. 
 Furthermore, we simulate it on IBM’s computers for the special case of $N=1$
 and obtain the fidelity of this implementation.  
-In section \ref{sec: 1PR Circuits} we shift our focus to parametrized quantum circuits with the goal of
-generalizing the circuit for Pauli channels to one for Pauli dynamical maps. 
-We introduce theorem \ref{theorem2} to establish what operations can be done with a 
-parametrized circuit that uses only one single-qubit operation dependent on the parameter.
+Section \ref{sec: 1PR Circuits} shifts the focus to parametrized quantum circuits, 
+aiming to generalize the circuit for Pauli channels to accommodate Pauli dynamical maps. 
+We introduce theorem \ref{theorem2} to determine the operations that can be 
+performed using a parametrized circuit 
+with only one single-qubit operation dependent on the parameter.
 Finally, in section \ref{sec: 1PR circuit for a Pauli map} 
 we apply this theorem for the circuit of Pauli dynamical
 maps and show a couple of maps that fulfill the theorem's conditions.
@@ -1221,9 +1221,9 @@ $1$ but $V$ is unitary and therefore preserves the norm.
 \section{Conclusion} % {{{
 \tbnote{Primera versión para ir teniendo algo escrito }\\
 
-In this work, we have undertaken the study of Pauli channels on systems of $N$ qubits, 
-proposing an algorithm capable of implementing them on a quantum computer
-with the assistance of $2N$ ancilla qubits.
+
+In this study, we focused on the analysis of Pauli channels in N-qubit systems and
+developed an algorithm to implement them on a quantum computer.
  By running this algorithm on one of IBM's quantum computers, 
 we observed that the fidelity of the simulated channels was highest for those 
 closely resembling the totally depolarizing channel, 
@@ -1232,7 +1232,7 @@ This performance can be attributed to the limitations and susceptibility to erro
 inherent in current quantum computers. 
 Furthermore, being as general as it is,
 the algorithm isn’t efficient for unitary channels, 
-which can be done in a much simpler manner.
+which can be done in a much straightforward manner.
 
 Additionally, we extended our investigation 
 to encompass Pauli dynamical maps by leveraging the concept of a parametrized quantum circuit. 
