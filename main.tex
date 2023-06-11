@@ -4,7 +4,7 @@
 % Use adjustwidth environment to exceed column width (see example table in text)
 \usepackage{changepage}
 
-% textcomp package and marvosym package for additional characters
+% textcomp cpackage and marvosym package for additional characters
 \usepackage{textcomp,marvosym}
 \usepackage{subcaption}
 
@@ -27,6 +27,9 @@
 
 % array package and thick rules for tables
 \usepackage{array}
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Fig}}
+
 
 % create "+" rule type for thick vertical lines
 \newcolumntype{+}{!{\vrule width 2pt}}
@@ -62,8 +65,8 @@
 \renewcommand{\figurename}{Fig}
 \renewcommand{\succ}{\textrm{succ}}
 
-\newcommand{\fref}[1]{Fig.~\ref{#1}}
-\newcommand{\eref}[1]{eq.~(\ref{#1})}
+\newcommand{\fref}[1]{Fig~\ref{#1}}
+\newcommand{\eref}[1]{Eq~(\ref{#1})}
 % Use the PLoS provided BiBTeX style
 \bibliographystyle{plos2015}
 
@@ -474,10 +477,10 @@ This can be seen by substituting \eref{eq:  Density matrix Nqbit} in \eref{eq: p
 and using the property of \eref{eq: propiedad-pauli}:
 \begin{align*}
 \mathcal{E}(\rho) &= \dfrac{1}{2^N} \sum_{\vec{\gamma},\vec{\alpha}} k_{\vec{\gamma}} r_{\vec{\alpha}} \sigma_{\vec{\gamma}} \sigma_{\vec{\alpha}} \sigma_{\vec{\gamma}} \\
-& = \dfrac{1}{2^N} \sum_{\vec{\alpha}} \left( \sum_{\vec{\gamma}} (A^{\otimes^N})_{\vec{\alpha},\vec{\gamma}} \; k_{\vec{\gamma}} \right) r_{\vec{\alpha}} \sigma_{\vec{\alpha}},
+& = \dfrac{1}{2^N} \sum_{\vec{\alpha}} \left( \sum_{\vec{\gamma}} {(A^{\otimes^N})}_{\vec{\alpha},\vec{\gamma}} \; k_{\vec{\gamma}} \right) r_{\vec{\alpha}} \sigma_{\vec{\alpha}},
 \end{align*}
 which means that applying the Pauli channel multiplies the 
-components $r_{\vec{\alpha}}$ by $\tau_{\vec{\alpha}} := \sum_{\vec{\gamma}} (A^{\otimes^N})_{\vec{\alpha},\vec{\gamma}} k_{\vec{\gamma}}$.
+components $r_{\vec{\alpha}}$ by $\tau_{\vec{\alpha}} := \sum_{\vec{\gamma}} {(A^{\otimes^N})}_{\vec{\alpha},\vec{\gamma}} k_{\vec{\gamma}}$.
 % }}}
 \subsection{Pauli Dynamical Maps} % {{{
 \label{subsec: Pauli Dynamical Maps}
@@ -546,17 +549,6 @@ this is presented in \fref{fig: circuit-pauli}.
 
 \begin{figure} % {{{
 \centering
-% \begin{quantikz}
-% \lstick{$q:\; |0\rangle^{\otimes N}$} & \qw & \gate{\sigma_{\vec{\gamma} }} \gategroup[wires=2,steps
-% =1,style={dashed, inner sep=4pt}]{Repeat for all $\vec{\gamma}$}
-% \gategroup[wires=2,steps
-% =1,style={dashed, inner sep=4pt}, label style = {label position = below, yshift = 0.15cm}]
-% {$|\vec{\gamma}\rangle$} & \qw \\
-% \lstick{$\tilde{q}:\; |0\rangle^{\otimes 2N}$} & \gate[wires=1]{\text{Create the $2N$ qubits state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}   |\vec{\gamma} \rangle$}} & \ctrl{-1} 
-% % \gategroup[wires=1,steps
-% %=1,style={color=white, inner sep=0pt}, label style= {label position=below}]{$|\vec{\gamma}\rangle$} 
-% & \qw 
-% \end{quantikz}
 \includegraphics{images/circuito_general.pdf}
 \caption{{\bf Circuit for an $N$-qubit
 Pauli channel on $N$ qubits.}
@@ -572,12 +564,12 @@ The first part of the circuit involves the creation of the state
 \sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma} \rangle
 \end{eqnarray}
 on the ancilla qubits, where $b_{\vec{\gamma}}$ are numbers such that $
-|b_{\vec{\gamma}}|^2 = k_{\vec{\gamma}}$ and
+{|b_{\vec{\gamma}}|}^2 = k_{\vec{\gamma}}$ and
 the $2N$-qubit state $|\vec{\gamma}\rangle$ is defined as $|\gamma_1\rangle
 \cdots |\gamma_N\rangle$.
 When measured in the computational basis, the state given in \eref{eq: state}
 collapses to $|\vec{\gamma}\rangle$ with a 
-probability $|b_{\vec{\gamma}}|^2 = k_{\vec\gamma}$. 
+probability ${|b_{\vec{\gamma}}|}^2 = k_{\vec\gamma}$. 
 The circuit in \fref{fig: circuit-pauli} uses this fact
 to apply $\sigma_{\vec{\gamma}}$ on the main qubits
 with a probability $k_{\vec\gamma}$ by using controlled operations 
@@ -674,29 +666,6 @@ f = 1 - \dfrac{1}{2} ||\varepsilon_I - \varepsilon_T ||_{\diamond},
 which ranges from $0$, when the channels have a maximum distance, to  $1$,
 when they are exactly equal.
 
-Finally, using the representation of Pauli channels in a tetrahedron as
-in \eref{eq: conditions-tetrahedron},
-we show in \fref{fig:fids} the diamond fidelity defined by \eref{eq:diamond-fid} for the channels
-analyzed. 
-We can see that channels close to the 
-completely depolarizing
-channel (that is close to the center of the tetrahedron)
-have a high $f$, while those 
-close to unitary channels have much lower $f$.
-This means that channels closer to the 
-completely depolarizing channel are simulated better on the quantum computers.
-This is reasonable because quantum computers are prone to errors
-that depolarize qubits, which isn't very problematic
-when trying to simulate depolarization but it is 
-when simulating unitary processes. Moreover, the algorithm of \fref{fig:
-circuit-pauli-1} is not optimal for unitary channels (that is, the channels
-corresponding to the vertices of the tetrahedron).  These straightforward
-channels could be accomplished more efficiently by simply applying the
-corresponding Pauli operation directly. Nevertheless, due to its general design
-to accommodate any Pauli channel, the algorithm employs numerous quantum gates
-even in such scenarios.
-\cpnote{Iterar este parrafo cuando estemos cerca del final. Ta un tilin chafa.}
-
 \begin{figure} % {{{
 \centering
 \begin{subfigure}{0.9\textwidth}
@@ -722,6 +691,31 @@ borders do not.  Moreover, we show the results for cuts of the tetrahedron at
 different values of $\tau_3$.}
 \label{fig:fids}
 \end{figure} % }}}
+
+Finally, using the representation of Pauli channels in a tetrahedron as
+in \eref{eq: conditions-tetrahedron},
+we show in \fref{fig:fids} the diamond fidelity defined by \eref{eq:diamond-fid} for the channels
+analyzed. 
+We can see that channels close to the 
+completely depolarizing
+channel (that is close to the center of the tetrahedron)
+have a high $f$, while those 
+close to unitary channels have much lower $f$.
+This means that channels closer to the 
+completely depolarizing channel are simulated better on the quantum computers.
+This is reasonable because quantum computers are prone to errors
+that depolarize qubits, which isn't very problematic
+when trying to simulate depolarization but it is 
+when simulating unitary processes. Moreover, the algorithm of \fref{fig:
+circuit-pauli-1} is not optimal for unitary channels (that is, the channels
+corresponding to the vertices of the tetrahedron).  These straightforward
+channels could be accomplished more efficiently by simply applying the
+corresponding Pauli operation directly. Nevertheless, due to its general design
+to accommodate any Pauli channel, the algorithm employs numerous quantum gates
+even in such scenarios.
+\cpnote{Iterar este parrafo cuando estemos cerca del final. Ta un tilin chafa.}
+
+
 
 
 
@@ -937,7 +931,7 @@ The remaining part of the operators $A$ and $B$ can be defined
 in any arbitrary manner as long as they are unitary.
 By starting from the initial state $|0\rangle$ and 
 applying the circuit shown in \fref{fig:1PR-circuit}, straightforward calculations 
-lead us to obtain the resulting curve of states described in Equation (\ref{eq:curve-states}).
+lead us to obtain the resulting curve of states described in \eref{eq:curve-states}.
 
 To see it, we can rewrite the expression of $B|0\rangle$ by 
 separating the first $N-1$ qubits from the last one:
@@ -1058,7 +1052,7 @@ circuits.}
 with $p \in [0,1]$. 
 Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
 qubits is such that 
-$|\beta_0(p)|^2= (1-3p/4)$, $|\beta_1(p)|^2 = |\beta_2(p)|^2 = |\beta_3(p)|^2 = p/4$.
+${|\beta_0(p)|}^2= (1-3p/4)$, ${|\beta_1(p)|}^2 = {|\beta_2(p)|}^2 = {|\beta_3(p)|}^2 = p/4$.
 Then, taking the $\beta_j$ to be real,
 thi curve of states is
 \begin{align*}
@@ -1077,7 +1071,7 @@ We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}
 
 \item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
 \begin{eqnarray}
-\epsilon(\rho) = \dfrac{1}{4} (1-p)^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} (1+p)^2 \sigma_3 \rho \sigma_3 ,
+\epsilon(\rho) = \dfrac{1}{4} {(1-p)}^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} {(1+p)}^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
 with $p \in [-1,1]$. 
 If we take the $\beta_j$ to be real,
@@ -1134,24 +1128,24 @@ by varying only one angle that depends on the parameter $p$ (the angle of a half
 Furthermore, we can construct other examples of 
 Pauli dynamical maps such that they
 can be implemented with a 1PR circuit.
-To do it, we only need to choose the three states $|a\rangle, |b\rangle, |c\rangle$
+To do it, we only need to choose the three states $|a\rangle$, $|b\rangle$, $|c\rangle$
 that satisfy the conditions of  \eref{eq:conditions-vecs}.
 For example, this can be done systematically for the case of curves of states of two qubits
 (that is, for Pauli dynamical maps of one qubit)
 with the following procedure:
 \begin{itemize}
-\item[1.] We first choose the norms $|a|, |b|, |c|$
+\item[1.] We first choose the norms $|a|$, $|b|$, $|c|$
 such that $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$. 
 This can be done by selecting two angles
-$\mu \in [0, \pi/2] , \nu \in [0,\pi/2]$ and defining:
+$\mu \in [0, \pi/2]$, $\nu \in [0,\pi/2]$ and defining:
 \begin{align*}
 |a| = \sin \nu \cos \mu, \; |b| = \sin \nu \sin \mu , \; |c| = \cos \nu.
 \end{align*}
-\item[2.] We define $|a'\rangle = |a| |0\rangle$, $|b'\rangle = |b| |1\rangle,$ $|c'\rangle = |c| |2\rangle$.
+\item[2.] We define $|a'\rangle = |a| |0\rangle$, $|b'\rangle = |b| |1\rangle$, $|c'\rangle = |c| |2\rangle$.
 \item[3.] Finally, we choose a unitary matrix $V$ \cpnote{Esta supongo qeu 
 la escoges aleatoriamente, y que la tomas por ahi del CUE. Lo platicamos y metemos 
 los detalles. }
-and use it to define the states $|a\rangle = V |a'\rangle, |b\rangle = V |b'\rangle, |c\rangle = V |c'\rangle$.
+and use it to define the states $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$.
 This way, given that the primed states are orthogonal and their squared norms add up to one,
 so do the unprimed states and therefore 
 fulfill the conditions of  \eref{eq:conditions-vecs}. 
@@ -1169,11 +1163,11 @@ $V$ written as a matrix in
 the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
 That way, 
 \begin{align*}
-|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
+|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T = {(e^{i\theta},0,0,0)}^T.
 \end{align*}
 The last equality comes from the fact
-that the first entry of $V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
-is obtained by calculating the dot product of the first row of $V$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
+that the first entry of $V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$
+is obtained by calculating the dot product of the first row of $V$ with ${(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$, which gives
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
@@ -1204,10 +1198,10 @@ $V$ writen as a matrix in
 the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
 That way, 
 \begin{align*}
-|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T = (e^{i\theta},0,0,0)^T.
+|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T = {(e^{i\theta},0,0,0)}^T.
 \end{align*}
-The last step is because the first entry of $V(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$
-is obtained by calculating the dot product of the first row of $V$ with $(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)^T$, which gives
+The last step is because the first entry of $V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$
+is obtained by calculating the dot product of the first row of $V$ with ${(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$, which gives
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
