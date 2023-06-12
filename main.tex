@@ -979,7 +979,7 @@ We can now use the previous results to conclude directly which Pauli dynamical m
 can be implemented with a 1PR circuit.
 Given the condition of theorem \ref{theorem2}, the curve of states of \eref{eq: parametrized state}  needed 
 to implement the map
-has to be constructed with only one parametrized rotation. 
+has to be constructed with only one parametrized rotation\cpnote{no entiendo esta frase}. 
 Therefore, the results of the last section imply that the the map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
@@ -989,31 +989,12 @@ can be implemented  if there are numbers $\beta_{\vec{\gamma}}(p)$ such that $|\
 \label{eq:vec}
 \sum_{\vec{\gamma}} \beta_{\vec{\gamma}}(p) |\vec{\gamma}\rangle = |c\rangle +  e^{is(p)} |a\rangle + e^{-is(p)}|b\rangle,
 \end{eqnarray}
-{\color{red}
-where $|a\rangle,|b\rangle,|c\rangle$ are orthogonal states  
-and $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$}
- \cpnote{redundante, refierete mejor a la ecuacion anterior, a la 24 pues. Ahora, también creo qeu la pedendencia
-con $p$ no está clara del lado derecho.}
+where $|a\rangle,|b\rangle,|c\rangle$ fulfill
+the conditions of \eref{eq:conditions-vecs}.
 
-\tbnote{Va, algo así (quitar lo 
-rojo, dejar lo morado):}
-
-{\color{purple} where $|a\rangle,|b\rangle,|c\rangle$ fulfill
-the conditions of \eref{eq:conditions-vecs}.}
-
-\cpnote{
- Quizpa si se escribe $s(p)$ en vez de 
-$s$ es mejor, pero piensale tambien . } 
-\tbnote{Es cierto, mejor, ya lo puse}.\\
-
-
-
-
-
-For the particular case of one qubit,
-we can show some examples of Pauli dynamical maps
-implementable with a 1PR circuit, which are plotted
-in \fref{fig:curves1}. 
+For the particular case of one qubit, we can show some examples of Pauli
+dynamical maps implementable with a 1PR circuit, which are plotted in
+\fref{fig:curves1}. 
 
 
 \begin{figure} % {{{
@@ -1054,22 +1035,23 @@ Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
 qubits is such that 
 ${|\beta_0(p)|}^2= (1-3p/4)$, ${|\beta_1(p)|}^2 = {|\beta_2(p)|}^2 = {|\beta_3(p)|}^2 = p/4$.
 Then, taking the $\beta_j$ to be real,
-thi curve of states is
+this curve of states is \cpnote{supongo qeye hay muchas curvas. Es correcto eso? Quizá un ``this curve of states can be'' sea mas preciso.}
 \begin{align*}
 |\beta(p) \rangle = \sqrt{1-3p/4} |00\rangle + \sqrt{p/4} |01\rangle + \sqrt{p/4} |10 \rangle  + \sqrt{p/4} |11\rangle.
 \end{align*}
 This state can be rewritten as:
 \begin{align*}
-|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |00\rangle - \dfrac{i}{2\sqrt{3}} |01\rangle - \dfrac{i}{2\sqrt{3}} |10 \rangle - \dfrac{i}{2\sqrt{3}} |11\rangle \right) \\
-& + e^{-is} \left( \dfrac{1}{2} |00\rangle + \dfrac{i}{2\sqrt{3}} |01\rangle + \dfrac{i}{2\sqrt{3}} |10\rangle + \dfrac{i}{2\sqrt{3}} |11 \rangle \right),
+|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |00\rangle - \dfrac{i}{2\sqrt{3}} |01\rangle 
+      - \dfrac{i}{2\sqrt{3}} |10 \rangle - \dfrac{i}{2\sqrt{3}} |11\rangle \right) \\
+& + e^{-is} \left( \dfrac{1}{2} |00\rangle + \dfrac{i}{2\sqrt{3}} |01\rangle 
+      + \dfrac{i}{2\sqrt{3}} |10\rangle + \dfrac{i}{2\sqrt{3}} |11 \rangle \right),
 \end{align*}
 with $\sin s = \sqrt{3p/4}$.
 We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
 1PR circuit.
-\cpnote{De nuevo, quizá aca convenga tener notacion de qubits y no de sistemas de 4 niveles}
-\tbnote{Va, listo.}
 
 \item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
+\cpnote{este mapa no es muy comun. Toca comentar algo al respecto. No se si acá o mas arriba. Si, ya se donde. En el parrafo antes de los ejemplos. }
 \begin{eqnarray}
 \epsilon(\rho) = \dfrac{1}{4} {(1-p)}^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} {(1+p)}^2 \sigma_3 \rho \sigma_3 ,
 \end{eqnarray}
@@ -1089,10 +1071,6 @@ this map fulfills the conditions of  \eref{eq:conditions-vecs}.
 
 
 \item \textbf{Bit flip map:} 
-\cpnote{Aca solo usas dos niveles, pero el caso general requiere 2 qubits. Ahora, si solo 
-se requiere un qubit, pues está chido pero toca decirlo. Quizá dejarlo como un ultimo ejemplo. 
-Toca citar acá tambien el trabajo de los brasileños... a ver si lo encuentro, Andrea 
-Valdez me va a pasar la cita. De hecho pordemos leer el articulo para inspiracion y citar} \tbnote{Va, puse explícitamente lo de que sólo se usa un qubit más abajo} \tbnote{Tambien puse la cita del trabajo brasileño}
 This dynamical map is defined as
 \begin{align*}
 \varepsilon_p(\rho) = (1-p)\rho + p\sigma_1 \rho \sigma_1,
@@ -1107,21 +1085,19 @@ This can be rewritten as
 \begin{align*}
 |\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |00\rangle - \dfrac{i}{2} |01\rangle \right) + e^{-is} \left( \frac{1}{2} |00\rangle + \frac{i}{2} |01\rangle \right),
 \end{align*}
-with $\sin s= \sqrt{p}$\cpnote{Que tal si lo dejamos como $\sin s= \sqrt{p}$? Si estas de 
-acuerdo igual cambia los siguientes} \tbnote{Va, ya los cambié}.
+with $\sin s= \sqrt{p}$.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
-{\color{purple} Note that in this case we actually only need one ancilla qubit
-since the state $|\beta(p)\rangle$ is only two dimensional.}
+Note that in this case we actually only need one ancilla qubit
+since the state $|\beta(p)\rangle$ is only two dimensional.
 
 The exact same thing can be done
 for the phase flip and bit phase flip dynamical maps by
 changing $\sigma_1$ to
 $\sigma_3$ and $\sigma_2$ respectively.
-{\color{purple}
 For example, the bit phase flip map was implemented in \cite{Andrea, Andrea_4qb} 
 using an optical arrangement, and  it was indeed done 
-by varying only one angle that depends on the parameter $p$ (the angle of a half waveplate).}
+by varying only one angle that depends on the parameter $p$ (the angle of a half waveplate).
 
 \end{itemize}
 
@@ -1145,18 +1121,18 @@ $\mu \in [0, \pi/2]$, $\nu \in [0,\pi/2]$ and defining:
 \item[3.] Finally, we choose a unitary matrix $V$ \cpnote{Esta supongo qeu 
 la escoges aleatoriamente, y que la tomas por ahi del CUE. Lo platicamos y metemos 
 los detalles. }
+\cpnote{Sigo sin saber coo escoges la matriz V. Espero platicar contigo}
 and use it to define the states $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$.
 This way, given that the primed states are orthogonal and their squared norms add up to one,
 so do the unprimed states and therefore 
 fulfill the conditions of  \eref{eq:conditions-vecs}. 
 
-{\color{purple} However, since a Pauli dynamical map should begin at the
+However, since a Pauli dynamical map should begin at the
 identity channel, we need to add the condition that $|a\rangle + |b\rangle + |c\rangle = e^{i \theta} |0\rangle$, with
 $\theta$ an arbitrary real number. 
 This way, when $s = 0$ in \eref{eq:vec}, the constructed state
 is $e^{i \theta}|0\rangle$, which
 corresponds with the identity channel.
-
 
 To fulfill this additional condition,  we restrict the first row of
 $V$ written as a matrix in 
@@ -1171,7 +1147,9 @@ is obtained by calculating the dot product of the first row of $V$ with ${(|\vec
 $e^{i\theta}$. 
 Furthermore, the other entries have to be $0$,
 since otherwise the norm of the result would be greater than
-$1$ but $V$ is unitary and therefore preserves the norm.}
+$1$ but $V$ is unitary and therefore preserves the norm.
+\cpnote{Creo qeu ahora está demasiado largo. jejej. hablemos y tratamos de hacer algo que se 
+acomode bien a lo que ambos nos parezca.}
 \end{itemize}
 
 Following this procedure for random
@@ -1179,44 +1157,12 @@ angles and unitary matrices $V$,
 we plot four Pauli dynamical maps  selected at random
 that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 
-{\color{red}
-These maps where constructed with the additional condition
-of the map passing through the identity channel.
-To do that, we ensure that the vectors also satisfy
-$|a\rangle + |b\rangle + |c\rangle = e^{i \theta}|0\rangle$ with $\theta$ an arbitrary
-real number.
-This way, when $s = 0$ in \eref{eq:vec}, the constructed state
-is $e^{i \theta}|0\rangle$, which
-corresponds with the identity channel.
-
-\cpnote{Esta parte está desordenada. Porque parece qeu das el procedimiento 
-en los 3 putnos de arriba y leugo que siempre no, qu evalta algo. Trata de iterar el paso 3 
-estos dos parrafos para que tengan un flujo mas chido. }
-\tbnote{Va, lo cambié y agregué esto al paso 3. Propongo quitar lo rojo y dejar lo morado}
-To fulfill this additional condition,  we restrict the first row of
-$V$ writen as a matrix in 
-the computational basis to be $e^{i\theta} (|\vec{a}|, |\vec{b}|, |\vec{c}|,0)$. 
-That way, 
-\begin{align*}
-|a\rangle + |b\rangle + |c\rangle = V (|a'\rangle + |b'\rangle + |c'\rangle ) = V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T = {(e^{i\theta},0,0,0)}^T.
-\end{align*}
-The last step is because the first entry of $V{(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$
-is obtained by calculating the dot product of the first row of $V$ with ${(|\vec{a}|, |\vec{b}|, |\vec{c}|,0)}^T$, which gives
-$e^{i\theta}$. 
-Furthermore, the other entries have to be $0$,
-since otherwise the norm of the result would be greater than
-$1$ but $V$ is unitary and therefore preserves the norm.
-}
-
-
-
 % }}}
-
 \section{Conclusion} % {{{
 \tbnote{Primera versión para ir teniendo algo escrito }\\
 
 
-In this study, we focused on the analysis of Pauli channels in N-qubit systems and
+In this study, we focused on the analysis of Pauli channels in $N$-qubit systems and
 developed an algorithm to implement them on a quantum computer.
  By running this algorithm on one of IBM's quantum computers, 
 we observed that the fidelity of the simulated channels was highest for those 
@@ -1236,6 +1182,10 @@ rotation dependent on the parameter. Notably, theorem \ref{theorem2} establishes
  conditions as applicable to any parametrized quantum circuit, 
  providing a general framework to describe the type of algorithms achievable using 
 only one single-qubit parametrized rotation.
+
+\cpnote{Leiste como escribir una conclusion? Aca falta algo importante. Si ya lo leiste, 
+dale una pensanda y si no, leelo a la luz de lo uqe escribiste. En todo caso, me parece una
+muy buena primera iteracion para las conclusiones!!! }
 % }}}
 
 
