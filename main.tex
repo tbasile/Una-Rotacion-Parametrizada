@@ -182,14 +182,22 @@ Carlos Pineda\textsuperscript{2*\Yinyang},
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+Pauli channels are fundamental in the context of quantum computing as they model noise in quantum devices. 
+We propose a quantum algorithm for simulating Pauli channels on quantum computers 
+and extend it to encompass Pauli dynamical maps 
+(parametrized Pauli channels).
+A parametrized quantum circuit is employed to accommodate for dynamical maps. 
+We also establish the mathematical conditions for an
+N-qubit transformation to be achievable using a parametrized circuit where
+only one single-qubit operation depends on the parameter. 
+The implementation of the proposed circuit is demonstrated using IBM's quantum computers 
+for the case of one qubit, and the fidelity of this implementation is obtained. 
 
 
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
 %\section*{Author summary}
-%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
 
 \linenumbers
 
@@ -199,6 +207,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 
 \cpnote{Porfa 3 propuestas de titulo y un intento de abstract. Ese es mas facil que la intro!
 de neuvo, quizá vale la pena que te einspires en otros abstracts de PlosOne}
+\tbnote{Va, ya puse un abstract basado en lo que vi en articulos de PlosOne}
+\tbnote{Para el título, tengo las siguientes propuestas:}
+{\color{green}
+\begin{itemize}
+\item Quantum Algorithm for Simulation of Parametrized Pauli Channels.
+\item Parametrized Pauli Channels Simulation in Quantum Computes.
+\item Quantum Simulation of Pauli Channels: Algorithm, Implementation and 
+generalization to parametrized channels.
+\end{itemize}
+}
 
 
 Puntos hechos en el artículo:
@@ -210,24 +228,40 @@ Puntos hechos en el artículo:
 
 Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
 with a recent particular interest in simulating the evolution of open quantum systems, 
-which are described by the theory of quantum
+which can be described by the theory of quantum
 channels~\cite{cleve,Zanetti,Xin,Wei}. \tbnote{Cita a Andrea}
-{\color{purple} For example, this has been done using optical arrangements
+{\color{red} For example, this has been done using optical arrangements
 to study the emergence of multipartite entanglement \cite{Andrea,Andrea_AD}.}
 \cpnote{Se siente forzada. nos toca encontrar mas ejemplos e introducirla de
 manera mas natural. Quizá mas adelante}
+\tbnote{Va, es cierto.
+Puedo incluir más trabajos y hablarlo más en general para que no se sienta forzado:}
+{\color{purple}
+Such systems have been simulated because of their many applications, 
+such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
+studying dissipative processes~\cite{Barreiro}
+and modeling non-Markovian dynamics~\cite{Marsden}.
+}
+
 Among the various types of quantum channels for a system of qubits, 
 Pauli channels hold special significance due to their simplicity 
-and relevance in the context of quantum computing~\cite{Zbigniew,geometry}, 
-\cpnote{Aca citar nuestros trabajos con Davalos. }
+and relevance in the context of quantum computing~\cite{Davalos,Zbigniew,geometry}, 
+\cpnote{Aca citar nuestros trabajos con Davalos. } \tbnote{Ya agregué la cita}
 as they serve as effective models for the noise affecting quantum devices~\cite{Flammia,Fawzi}.
 \cpnote{Creo que la transición de general a particular va demasiado rapido. Quizá hacerle 
 ver a Tomas y luego reescribirlo yo}
+\tbnote{Va, sí lo veo, gracias!}
 
 \cpnote{De nuevo una transicion muy abrupta. Para que ver los circuitos? Priero 
 hablar de los circuitos, quizá una frase, luego hablar de los parametrizadso, 
 Aca quiza citar a Barrero en innsbruk con sus vainas de enlazamiento}
-Additionally, we shall also work with parametrized quantum circuits, that is,  
+\tbnote{Lo de Barreiro es una de las citas que agregué nuevas arriba}
+\tbnote{Para lo de lo abrupto, quizá una frase como:} 
+{\color{purple} To represent the algorithms
+done in quantum computers, either
+to simulate a physical system or for some other purpose,
+one often uses a quantum circuit~\cite{chuangbook}.}
+In this work, we shall also work with parametrized quantum circuits, that is,  
 quantum circuits in which some of the operations depend on variable parameters~\cite{cerezo}. 
 These circuits play an important 
 part in applications such as quantum machine learning~\cite{Benedetti}
@@ -257,7 +291,40 @@ Pauli dynamical maps can be done with them.
 \cpnote{Me gustaron mucho estos dos ultimos parrafos. Croe que se puede ir mencionando las secciones
 y poner la info del siguiente parrafo aca. Ahora, no lo pongas a lo bestia, sino realmente
 integrando e hilando las ideas. Si hay preguntas, me dices que tos.}
+\tbnote{Va, pongo una versión de estos dos últimos párrafos pero incluyendo lo de las secciones del siguiente aquí:}
 
+{\color{purple}  
+In this article,
+after providing the definition of quantum
+channels and $N$-qubit Pauli channels
+in section \ref{sec: Pauli Channels},
+ our first objective is to present a 
+quantum algorithm capable of simulating Pauli channels on quantum computers.
+We do this in section \ref{sec: Circuit for a Pauli Channel},
+where we also demonstrate its implementation using IBM's quantum computers for 
+the particular case of single-qubit Pauli channels. 
+
+Expanding beyond discrete Pauli channels,
+we introduce the concept of Pauli dynamical maps, 
+defined as a continuous parametrization of
+$N$-qubit Pauli channels. 
+Therefore, in section \ref{sec: 1PR Circuits}
+we shift our focus to study parametrized
+quantum channels, 
+aiming to
+adapt the algorithm developed for channels 
+to dynamical maps. 
+Furthermore, we contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2},
+which  sets the mathematical conditions for the transformations that 
+can be done using a parametrized circuit with the condition that only one
+ single-qubit operation in the circuit may depend on the parameter.
+Finally, in section \ref{sec: 1PR circuit for a Pauli map},
+we conclude about the 
+Pauli dynamical maps that fulfill the conditions of theorem \ref{theorem2}. 
+}
+
+\tbnote{Y esto ya se va entonces}
+{\color{red}
 The paper is organized as follows: In section \ref{sec: Pauli Channels} 
 we provide  the definition of quantum channels and focus specifically on Pauli channels for systems of
 $N$ qubits. 
@@ -272,7 +339,7 @@ performed using a parametrized circuit
 with only one single-qubit operation dependent on the parameter.
 Finally, in section \ref{sec: 1PR circuit for a Pauli map} 
 we apply this theorem for the circuit of Pauli dynamical
-maps and show a couple of maps that fulfill the theorem's conditions.
+maps and show a couple of maps that fulfill the theorem's conditions.}
 
 
 
@@ -992,10 +1059,16 @@ Finally, applying the defined operator $A$ to this state yields the desired resu
 
 We can now use the previous results to conclude directly which Pauli dynamical maps
 can be implemented with a 1PR circuit.
-Given the condition of theorem \ref{theorem2}, the curve of states of \eref{eq: parametrized state}  needed 
+{\color{red} Given the condition of theorem \ref{theorem2}, the curve of states of \eref{eq: parametrized state}  needed 
 to implement the map
-has to be constructed with only one parametrized rotation\cpnote{no entiendo esta frase}. 
-Therefore, the results of the last section imply that the the map
+has to be constructed with only one parametrized rotation.}
+\cpnote{no entiendo esta frase} 
+\tbnote{Si, no está bien escrita. Cambiar por:}
+{\color{purple} For this, the curve of states of \eref{eq: parametrized state} 
+has to be constructed with only one parametrized rotation,
+so it has to satisfy the conditions of theorem \ref{theorem2}.
+}
+Therefore, this implies that the the map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
 \end{eqnarray}
@@ -1010,7 +1083,13 @@ the conditions of \eref{eq:conditions-vecs}.
 For the particular case of one qubit, we can show some examples of Pauli
 dynamical maps implementable with a 1PR circuit, which are plotted in
 \fref{fig:curves1}. 
-
+{\color{purple} The examples we show include some the most common maps: the bit flip, phase flip, bit-phase flip and depolarizing.
+However, we also include a more uncommon map, which we call the parabolic dynamical map,
+defined in \eref{eq:parab} and shown in \fref{fig:curves1}.
+This map traces a parabola inside the tetrahedron connecting two of its vertices
+and it describes a frontier in the tetrahedron between Pauli channels
+that are reachable by Lindbladian dynamics and those that are not~\cite{Davalos}.
+}
 
 \begin{figure} % {{{
 \captionsetup[subfigure]{justification=centering}
@@ -1050,7 +1129,8 @@ Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
 qubits is such that 
 ${|\beta_0(p)|}^2= (1-3p/4)$, ${|\beta_1(p)|}^2 = {|\beta_2(p)|}^2 = {|\beta_3(p)|}^2 = p/4$.
 Then, taking the $\beta_j$ to be real,
-this curve of states is \cpnote{supongo qeye hay muchas curvas. Es correcto eso? Quizá un ``this curve of states can be'' sea mas preciso.}
+this curve of states can be \cpnote{supongo qeye hay muchas curvas. Es correcto eso? Quizá un ``this curve of states can be'' sea mas preciso.} 
+\tbnote{Sí es correcto, va}
 \begin{align*}
 |\beta(p) \rangle = \sqrt{1-3p/4} |00\rangle + \sqrt{p/4} |01\rangle + \sqrt{p/4} |10 \rangle  + \sqrt{p/4} |11\rangle.
 \end{align*}
@@ -1066,13 +1146,14 @@ We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}
 1PR circuit.
 
 \item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
-\cpnote{este mapa no es muy comun. Toca comentar algo al respecto. No se si acá o mas arriba. Si, ya se donde. En el parrafo antes de los ejemplos. }
+\cpnote{este mapa no es muy comun. Toca comentar algo al respecto. No se si acá o mas arriba. Si, ya se donde. En el parrafo antes de los ejemplos. } \tbnote{Va, listo, lo puse en morado}
 \begin{eqnarray}
-\epsilon(\rho) = \dfrac{1}{4} {(1-p)}^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} {(1+p)}^2 \sigma_3 \rho \sigma_3 ,
+\epsilon(\rho) = \dfrac{1}{4} {(1-p)}^2  \rho + \dfrac{1}{4} (1-p^2) \sigma_1 \rho \sigma_1 + \dfrac{1}{4} (1-p^2) \sigma_2 \rho \sigma_2 + \dfrac{1}{4} {(1+p)}^2 \sigma_3 \rho \sigma_3,
+\label{eq:parab}
 \end{eqnarray}
 with $p \in [-1,1]$. 
 If we take the $\beta_j$ to be real,
-the curve of states needed on the ancilla qubits is:
+the curve of states needed on the ancilla qubits can be:
 \begin{eqnarray}
 |\beta(p)\rangle = \dfrac{1}{2} (1-p) |00\rangle + \dfrac{1}{2} \sqrt{1-p^2} |01\rangle +  \dfrac{1}{2} \sqrt{1-p^2} |10\rangle +  \dfrac{1}{2}(1+p) |11\rangle.
 \end{eqnarray}
@@ -1137,6 +1218,23 @@ $\mu \in [0, \pi/2]$, $\nu \in [0,\pi/2]$ and defining:
 la escoges aleatoriamente, y que la tomas por ahi del CUE. Lo platicamos y metemos 
 los detalles. }
 \cpnote{Sigo sin saber coo escoges la matriz V. Espero platicar contigo}
+\tbnote{No, no lo hago con CUE ni nada así por lo de que el
+primer renglon debe de tner una forma particular y no sabría cómo agregar eso tras
+elegir una matriz de CUE.}
+\tbnote{Lo que hago es empezar con ese renglon y busco un segundo renglón que sea ortogonal al primero y normalizado.
+Para ello, tomo tres vectores $w_1, w_2, w_3$
+normalizados y ortogonales al primer renglon.
+Entonces, el segundo renglon será en general
+de la forma $r_1 w_1 + r_2 w_2 + r_3 w_3$
+con $r_i$ complejos y que $|r_1|^2 + |r_2|^2 + |r_3|^2 = 1$ (para que el 
+segundo renglon esté normalizado).
+Entonces, busco esos $r_1, r_2, r_3$ al azar  
+(básicamente las partes reales e imaginarias
+de las $r_i$ deben de estar en una 6-esfera,
+por lo que escojo un punto al azar en dicha esfera).}
+
+
+
 and use it to define the states $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$.
 This way, given that the primed states are orthogonal and their squared norms add up to one,
 so do the unprimed states and therefore 
@@ -1165,6 +1263,7 @@ since otherwise the norm of the result would be greater than
 $1$ but $V$ is unitary and therefore preserves the norm.
 \cpnote{Creo qeu ahora está demasiado largo. jejej. hablemos y tratamos de hacer algo que se 
 acomode bien a lo que ambos nos parezca.}
+\tbnote{Jaja sí, va}
 \end{itemize}
 
 Following this procedure for random
@@ -1173,11 +1272,12 @@ we plot four Pauli dynamical maps  selected at random
 that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 
 % }}}
+
 \section{Conclusion} % {{{
 \tbnote{Primera versión para ir teniendo algo escrito }\\
 
 
-In this study, we focused on the analysis of Pauli channels in $N$-qubit systems and
+In this work, we focused on the analysis of Pauli channels in $N$-qubit systems and
 developed an algorithm to implement them on a quantum computer.
  By running this algorithm on one of IBM's quantum computers, 
 we observed that the fidelity of the simulated channels was highest for those 
@@ -1188,6 +1288,10 @@ inherent in current quantum computers.
 Furthermore, being as general as it is,
 the algorithm isn’t efficient for unitary channels, 
 which can be done in a much straightforward manner.
+{\color{purple}
+Consequently, this work presents another example of the
+simulation of open quantum systems, and their
+implementation in a quantum computer. } 
 
 Additionally, we extended our investigation 
 to encompass Pauli dynamical maps by leveraging the concept of a parametrized quantum circuit. 
@@ -1197,10 +1301,18 @@ rotation dependent on the parameter. Notably, theorem \ref{theorem2} establishes
  conditions as applicable to any parametrized quantum circuit, 
  providing a general framework to describe the type of algorithms achievable using 
 only one single-qubit parametrized rotation.
+{\color{purple} Therefore, it can be useful for simplifying any algorithm
+that requires a parametrized quantum circuit,
+such as those for quantum machine learning.}
 
 \cpnote{Leiste como escribir una conclusion? Aca falta algo importante. Si ya lo leiste, 
 dale una pensanda y si no, leelo a la luz de lo uqe escribiste. En todo caso, me parece una
-muy buena primera iteracion para las conclusiones!!! }
+muy buena primera iteracion para las conclusiones!! }
+\tbnote{Ah, supongo que lo de volver a expandir y hablar en general para terminar de hacer la forma de ``hourglass''
+en el artículo. Agregué algo en morado para eso.}
+
+
+
 % }}}
 
 
@@ -1233,6 +1345,7 @@ muy buena primera iteracion para las conclusiones!!! }
 % \label{S1_Table}
 % {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 % }}}
+
 \section{Acknowledgments} % {{{
 Support by projects CONACyT 285754, 254515 and UNAM-PAPIIT IG100518, IG101421 is
 acknowledged. 
@@ -1277,7 +1390,6 @@ acknowledged.
 %
 %\end{thebibliography}
 \tbnote{Poner la bibliografía como ellos dicen (copiarla toda aquí en lugar de ponerla en un archivo .bib)}
-\textbf{References}
 \bibliography{Bibliography}
 
 % }}}
