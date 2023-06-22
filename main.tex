@@ -139,7 +139,7 @@
 
 \begin{flushleft}
 {\Large
-\textbf\newline{Title of submission to PLOS journals} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
+\textbf\newline{Quantum simulation of Pauli channels and dynamical maps: algorithm and implementation } % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
 }
 \newline
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
@@ -182,8 +182,10 @@ Carlos Pineda\textsuperscript{2*\Yinyang},
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Pauli channels are fundamental in the context of quantum computing as they model noise in quantum devices. 
-We propose a quantum algorithm for simulating Pauli channels on quantum computers 
+\cpnote{Revisar}
+Pauli channels are fundamental in the context of quantum computing as they
+model noise in quantum devices.  We propose a quantum algorithm for simulating
+Pauli channels on quantum computers 
 and extend it to encompass Pauli dynamical maps 
 (parametrized Pauli channels).
 A parametrized quantum circuit is employed to accommodate for dynamical maps. 
@@ -192,8 +194,6 @@ N-qubit transformation to be achievable using a parametrized circuit where
 only one single-qubit operation depends on the parameter. 
 The implementation of the proposed circuit is demonstrated using IBM's quantum computers 
 for the case of one qubit, and the fidelity of this implementation is obtained. 
-
-
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
@@ -204,27 +204,6 @@ for the case of one qubit, and the fidelity of this implementation is obtained.
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
-
-\cpnote{Porfa 3 propuestas de titulo y un intento de abstract. Ese es mas facil que la intro!
-de neuvo, quizá vale la pena que te einspires en otros abstracts de PlosOne}
-\tbnote{Va, ya puse un abstract basado en lo que vi en articulos de PlosOne}
-\tbnote{Para el título, tengo las siguientes propuestas:}
-{\color{green}
-\begin{itemize}
-\item Quantum Algorithm for Simulation of Parametrized Pauli Channels.
-\item Parametrized Pauli Channels Simulation in Quantum Computes.
-\item Quantum Simulation of Pauli Channels: Algorithm, Implementation and 
-generalization to parametrized channels.
-\end{itemize}
-}
-
-
-Puntos hechos en el artículo:
-\begin{itemize}
-\item Propuesta de algoritmo para canal es de Pauli de N qubits y su simulación en compus cuánticas
-\item Condiciones para que un circuito parametrizado use una sola rotación parametrizada. En particular luego aplicadas al algoritmo para mapas dinámicos de Pauli.
-\end{itemize}
-
 
 Since their inception, quantum computers were proposed as powerful tools for the simulation of quantum systems,
 with a recent particular interest in simulating the evolution of open quantum systems, 
@@ -268,30 +247,31 @@ part in applications such as quantum machine learning~\cite{Benedetti}
 and describing general quantum transformations dependent on parameters. Substantial research has been 
 devoted to enhancing the efficiency of these circuits~\cite{Watanabe,Rasmussen}. 
 
-In this article, our first objective is to present a 
-quantum algorithm capable of simulating Pauli channels on quantum computers, 
-and we demonstrate its implementation using IBM's quantum computers. 
-This algorithm is designed to simulate any Pauli channel on a system of $N$ qubits,
-and works by utilizing $2N$ ancilla qubits.
-
-Expanding beyond discrete Pauli channels,
-we introduce the concept of Pauli dynamical maps, 
-defined as a continuous parametrization of
-$N$-qubit Pauli channels. 
-We adapt the algorithm developed for Pauli channels 
-to accommodate these dynamical maps by employing a 
-parametrized quantum circuit. 
-Furthermore, we contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2},
-which outlines the types of transformations that 
-can be done using a parametrized circuit with the condition that only one
- single-qubit operation in the circuit may depend on the parameter.
-We explicitly find the mathematical conditions for these types of
-transformations and conclude about which 
-Pauli dynamical maps can be done with them. 
-\cpnote{Me gustaron mucho estos dos ultimos parrafos. Croe que se puede ir mencionando las secciones
-y poner la info del siguiente parrafo aca. Ahora, no lo pongas a lo bestia, sino realmente
-integrando e hilando las ideas. Si hay preguntas, me dices que tos.}
-\tbnote{Va, pongo una versión de estos dos últimos párrafos pero incluyendo lo de las secciones del siguiente aquí:}
+% In this article, our first objective is to present a 
+% quantum algorithm capable of simulating Pauli channels on quantum computers, 
+% and we demonstrate its implementation using IBM's quantum computers. 
+% This algorithm is designed to simulate any Pauli channel on a system of $N$ qubits,
+% and works by utilizing $2N$ ancilla qubits.
+% 
+% Expanding beyond discrete Pauli channels,
+% we introduce the concept of Pauli dynamical maps, 
+% defined as a continuous parametrization of
+% $N$-qubit Pauli channels. 
+% We adapt the algorithm developed for Pauli channels 
+% to accommodate these dynamical maps by employing a 
+% parametrized quantum circuit. 
+% Furthermore, we contribute to the body of work related to parametrized quantum circuits by establishing theorem \ref{theorem2},
+% which outlines the types of transformations that 
+% can be done using a parametrized circuit with the condition that only one
+%  single-qubit operation in the circuit may depend on the parameter.
+% We explicitly find the mathematical conditions for these types of
+% transformations and conclude about which 
+% Pauli dynamical maps can be done with them. 
+% \cpnote{Me gustaron mucho estos dos ultimos parrafos. Croe que se puede ir mencionando las secciones
+% y poner la info del siguiente parrafo aca. Ahora, no lo pongas a lo bestia, sino realmente
+% integrando e hilando las ideas. Si hay preguntas, me dices que tos.}
+% \tbnote{Va, pongo una versión de estos dos últimos párrafos pero incluyendo lo de las secciones del siguiente aquí:}
+% 
 
 {\color{purple}  
 In this article,
@@ -322,31 +302,6 @@ Finally, in section \ref{sec: 1PR circuit for a Pauli map},
 we conclude about the 
 Pauli dynamical maps that fulfill the conditions of theorem \ref{theorem2}. 
 }
-
-\tbnote{Y esto ya se va entonces}
-{\color{red}
-The paper is organized as follows: In section \ref{sec: Pauli Channels} 
-we provide  the definition of quantum channels and focus specifically on Pauli channels for systems of
-$N$ qubits. 
-In section \ref{sec: Circuit for a Pauli Channel} we present  the proposed circuit 
-for implementing a Pauli channel of $N$ qubits in a quantum computer. 
-Furthermore, we simulate it on IBM’s computers for the special case of $N=1$
-and obtain the fidelity of this implementation.  
-Section \ref{sec: 1PR Circuits} shifts the focus to parametrized quantum circuits, 
-aiming to generalize the circuit for Pauli channels to accommodate Pauli dynamical maps. 
-We introduce theorem \ref{theorem2} to determine the operations that can be 
-performed using a parametrized circuit 
-with only one single-qubit operation dependent on the parameter.
-Finally, in section \ref{sec: 1PR circuit for a Pauli map} 
-we apply this theorem for the circuit of Pauli dynamical
-maps and show a couple of maps that fulfill the theorem's conditions.}
-
-
-
-
-
-
-
 
 % }}}
 \section{Pauli channels and dynamical maps}  \label{sec: Pauli Channels} % {{{
@@ -666,12 +621,12 @@ just as the Pauli channel is supposed to do.
 % with a probability $k_{\vec{\gamma}}$, 
 % just as a Pauli channel is supposed to do.  
 
-\cpnote{Evaluar si al final ponemos algo al respecto de este comentario}
-\cpnote{Del circuito, parece ue las fases de las bs gammas no omportan mucho (o nada). 
-Esa libertad la hemos considerado? De alguna manera colapsan curvas de las que
-hemos visto?} \tbnote{Sí, es una libertad que se tiene y he considerado y significa que hay muchas elecciones de $b_{\gamma}$ para un mismo canal.
-Es una de las varias cosas que complicaba determinar uno a uno qué canales se pueden hacer.}
-
+% \cpnote{Evaluar si al final ponemos algo al respecto de este comentario}
+% \cpnote{Del circuito, parece ue las fases de las bs gammas no omportan mucho (o nada). 
+% Esa libertad la hemos considerado? De alguna manera colapsan curvas de las que
+% hemos visto?} \tbnote{Sí, es una libertad que se tiene y he considerado y significa que hay muchas elecciones de $b_{\gamma}$ para un mismo canal.
+% Es una de las varias cosas que complicaba determinar uno a uno qué canales se pueden hacer.}
+% 
 
 %}}}
 \subsection{Simulation for one-qubit Pauli channels} % {{{
@@ -1265,6 +1220,7 @@ $1$ but $V$ is unitary and therefore preserves the norm.
 acomode bien a lo que ambos nos parezca.}
 \tbnote{Jaja sí, va}\\
 
+{\color{purple}
 Finally, we choose a unitary matrix $V$ with the condition that its first
 row is equal to $e^{i\theta} (|a|,|b|,|c|,0)$
 with $\theta$ an arbitrary real number.
@@ -1293,6 +1249,7 @@ selected at random.
 Finally, there is only one choice for the fourth row so that it is 
 orthonormal to the first three
 and a random phase can be given to it.
+}
 
 
 
