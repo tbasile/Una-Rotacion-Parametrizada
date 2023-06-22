@@ -1263,7 +1263,41 @@ since otherwise the norm of the result would be greater than
 $1$ but $V$ is unitary and therefore preserves the norm.
 \cpnote{Creo qeu ahora está demasiado largo. jejej. hablemos y tratamos de hacer algo que se 
 acomode bien a lo que ambos nos parezca.}
-\tbnote{Jaja sí, va}
+\tbnote{Jaja sí, va}\\
+
+Finally, we choose a unitary matrix $V$ with the condition that its first
+row is equal to $e^{i\theta} (|a|,|b|,|c|,0)$
+with $\theta$ an arbitrary real number.
+That way, we can define $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$
+and since $V$ is unitary, these unprimed vectors will fulfill the conditions of \eref{eq:conditions-vecs}.
+Furthermore, the form of the first row ensures that the dynamical map begins at the identity,
+since it implies that when $s=0$, the 
+state created in \eref{eq:vec}
+is
+$|a\rangle + |b\rangle + |c\rangle = e^{i \theta} |0\rangle$,
+which  corresponds with applying the identity channel.
+
+The choice of such a matrix $V$ can be done at random as follows:
+After setting the first row,
+construct three vectors $\vec{w}_1 , \vec{w}_2, \vec{w}_3$ orthogonal to it
+using the Gram-Schmidt process.
+Then select random complex numbers $r_1, r_2, r_3$ such
+that $|r_1|^2 + |r_2|^2 + |r_3|^2 = 1$ and
+define the second row of $V$ to be
+$r_1 \vec{w}_1 + r_2 \vec{w}_2 + r_3 \vec{w}_3$.
+Once the first two rows are chosen, use Gram-Schmidt to find two vectors
+$\vec{v}_1, \vec{v}_2$ orthogonal to 
+them and similarly define the third row as $q_1 \vec{v}_1+ q_2 \vec{v}_2$
+with $|q_1|^2 + |q_2|^2$ and $q_1,q_2$
+selected at random. 
+Finally, there is only one choice for the fourth row so that it is 
+orthonormal to the first three
+and a random phase can be given to it.
+
+
+
+
+
 \end{itemize}
 
 Following this procedure for random
@@ -1311,28 +1345,30 @@ muy buena primera iteracion para las conclusiones!! }
 \tbnote{Ah, supongo que lo de volver a expandir y hablar en general para terminar de hacer la forma de ``hourglass''
 en el artículo. Agregué algo en morado para eso.}
 
-\tbnote{O algo como lo siguiente:}
+\tbnote{Mejor quitar todo lo anterior y dejar esto:}
 
 {\color{purple}
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
 generalized it to Pauli dynamical maps.
 We observed that the fidelity of 
-simulating Pauli channels on one of IBM's quantum computers
+simulating single-qubit Pauli channels on one of IBM's quantum computers
 was highest for those closest to the totally depolarizing channel and fell off close to unitary channels,
 which was attributed to the current limitations of quantum computers.
 Additionally, when working with Pauli dynamical maps,
 we determined in theorem \ref{theorem2} the general mathematical conditions
-under which a parametrized quantum circuit requires only one single-qubuit rotation dependent on the parameter.
+under which a parametrized quantum circuit requires only one single-qubit rotation dependent on the parameter.
 
 Therefore, this work presents another example of the current
 exploration into simulating open quantum
 systems in quantum computers,
-and we find the big effect that the error of quantum computers have
+and we observe the big effect that the error of quantum computers have
 on these simulations.
 On the other hand, the result
 of theorem \ref{theorem2}
-can be used for any quantum algorithm that requires parametrized circuits,
+shows what can be done with the condition of using only one
+parametrized rotation and
+can be applied to any quantum algorithm that requires parametrized circuits,
 such as those used for quantum machine learning.
 }
 
