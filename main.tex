@@ -213,7 +213,9 @@ the simulation of quantum systems~\cite{feynman1982simulating}.
 Being open quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
 practical~\cite{breuer2007theory} interest, there has been efforts
 towards the simulation of the evolution of open quantum
-systems~\cite{cleve,Zanetti,Xin,Wei}\cpnote{porque escogiste estas citas? Me parece qeu la ce cleve no está completa.}.
+systems~\cite{cleve,Zanetti,Xin,Wei}.\cpnote{porque escogiste estas citas? Me parece qeu la ce cleve no está completa.} \tbnote{La primera habla al principio en general
+de simulación de sistemas abiertos y los otros tres porque se relacionan más con este trabajo
+porque lo hacen en particular con el formalismo de canales cuánticos}
 Such systems have been simulated because of their many applications, 
 such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
 studying dissipative processes~\cite{Barreiro}
@@ -247,7 +249,7 @@ for channels to dynamical maps.  Furthermore, we contribute to the body of work
 related to parametrized quantum circuits by establishing a theorem,
 which  sets the mathematical conditions for the transformations
 that can be done using a parametrized circuit with the condition that only a
-controlled \cpnote{el caso general es controlado, correcto?} single-qubit
+controlled \cpnote{el caso general es controlado, correcto?} \tbnote{Sí} single-qubit
 operation in the circuit may depend on the parameter.  Finally, in
 section \ref{sec: 1PR circuit for a Pauli map}, we conclude about the Pauli
 dynamical maps that fulfill the conditions of theorem \ref{theorem2}. 
@@ -1108,16 +1110,27 @@ with $\theta$ a uniform random phase.
 That way, we can define $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$
 and since $V$ is unitary, these unprimed vectors will fulfill the conditions of
 \eref{eq:conditions-vecs}\cpnote{aun no construimos la $V$ asi que aun no es
-unitaria. Aclarame ese punto y le sigo al resto del parrafo}.
+unitaria. Aclarame ese punto y le sigo al resto del parrafo}
+\tbnote{Ah, es que más bien la idea era primero decir que el siguiente paso es
+usar una matriz unitaria (con la condición
+mencionada sobre el primer renglón)
+y explicar cómo la usamos y por qué.
+Ya luego mostrar cómo se puede construir dicha 
+matriz al azar. También se puede hacer al revés,
+pero no me convencía decir todo lo de cómo 
+construir la matriz sin decir antes para qué}
+.
 Furthermore, the form of the first row ensures that the dynamical map begins at the identity,
 since it implies that when $s=0$, the 
 state created in \eref{eq:vec}
 is
 $|a\rangle + |b\rangle + |c\rangle = e^{i \theta} |0\rangle$,
 which  corresponds with applying the identity channel.
-Next, construct three vectors $\vec{w}_1 , \vec{w}_2, \vec{w}_3$ orthogonal to
-the first row using the Gram-Schmidt process.  Then select random complex
-numbers $r_1, r_2, r_3$ such that $|r_1|^2 + |r_2|^2 + |r_3|^2 = 1$ and define
+
+Such a matrix $V$ can be randomly constructed by first finding three vectors 
+$\vec{w}_1 , \vec{w}_2, \vec{w}_3$ orthogonal to
+the first row using the Gram-Schmidt process.  Then selecting random complex
+numbers $r_1, r_2, r_3$ such that $|r_1|^2 + |r_2|^2 + |r_3|^2 = 1$ and defining
 the second row of $V$ to be $r_1 \vec{w}_1 + r_2 \vec{w}_2 + r_3 \vec{w}_3$.
 Once the first two rows are chosen, use Gram-Schmidt to find two vectors
 $\vec{v}_1, \vec{v}_2$ orthogonal to 
@@ -1141,21 +1154,24 @@ that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 \cpnote{Reitera. Dale a lo qeu discutimos el espacio. a lo de la decoherencia nota
 que no lo tomamos como un resultado importante. Aca le das mucho mas espacio 
 del que croe que merece. Inspirate en la intro. }
+\tbnote{Ah va, listo}
 
 
 {\color{purple}
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
-generalized it to Pauli dynamical maps.
-We observed that the fidelity of 
-simulating single-qubit Pauli channels on one of IBM's quantum computers
-was highest for those closest to the totally depolarizing channel and fell off close to unitary channels,
-which was attributed to the current limitations of quantum computers.
-Additionally, when working with Pauli dynamical maps,
-we determined in theorem \ref{theorem2} the general mathematical conditions
-under which a parametrized quantum circuit requires only one single-qubit rotation dependent on the parameter.
+generalized it to Pauli dynamical maps
+by using parametrized quantum circuits.
+Furthermore, we implemented single-qubit Pauli channels
+on one of IBM's quantum computers
+and obtained their fidelities. 
+Finally, when working with Pauli dynamical maps,
+we searched for a way of simplifying the parametrized circuit
+by requiring that only one single-qubit rotation depends on the parameter.
+In theorem \ref{theorem2} we found the general mathematical conditions for 
+this, applicable to any parametrized circuit.
 
-Therefore, this work presents another example of the current
+Therefore, this work presents yet another example of the current
 exploration into simulating open quantum
 systems in quantum computers,
 and we observe the big effect that the error of quantum computers have
