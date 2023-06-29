@@ -945,12 +945,9 @@ Finally, applying the defined operator $A$ to this state yields the desired resu
 
 We can now use the previous results to conclude directly which Pauli dynamical maps
 can be implemented with a 1PR circuit.
-{\color{purple} For this, the curve of states of \eref{eq: parametrized state} 
+For this, the curve of states of \eref{eq: parametrized state} 
 has to be constructed with only one parametrized rotation,
 so it has to satisfy the conditions of theorem \ref{theorem2}.
-}
-\cpnote{Sigue estando redundante. Dices que cuales se pueden implentar con 1pr circuit y que 
-enticones tiene que ser construidas con un 1pr. Quizá integra las dos frases o has algo}
 Therefore, this implies that the map
 \begin{eqnarray}
 \varepsilon_p(\rho) = \sum_{\vec{\gamma}} k_{\vec{\gamma}}(p) \sigma_{\vec{\gamma}} \rho \sigma_{\vec{\gamma}},
@@ -1099,17 +1096,7 @@ row is equal to $e^{i\theta} (|a|,|b|,|c|,0)$
 with $\theta$ a uniform random phase.
 That way, we can define $|a\rangle = V |a'\rangle$, $|b\rangle = V |b'\rangle$, $|c\rangle = V |c'\rangle$
 and since $V$ is unitary, these unprimed vectors will fulfill the conditions of
-\eref{eq:conditions-vecs}\cpnote{aun no construimos la $V$ asi que aun no es
-unitaria. Aclarame ese punto y le sigo al resto del parrafo}
-\tbnote{Ah, es que más bien la idea era primero decir que el siguiente paso es
-usar una matriz unitaria (con la condición
-mencionada sobre el primer renglón)
-y explicar cómo la usamos y por qué.
-Ya luego mostrar cómo se puede construir dicha 
-matriz al azar. También se puede hacer al revés,
-pero no me convencía decir todo lo de cómo 
-construir la matriz sin decir antes para qué}
-.
+\eref{eq:conditions-vecs}.
 Furthermore, the form of the first row ensures that the dynamical map begins at the identity,
 since it implies that when $s=0$, the 
 state created in \eref{eq:vec}
@@ -1140,13 +1127,6 @@ that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 % }}}
 \section{Conclusion} % {{{
 
-\cpnote{Reitera. Dale a lo qeu discutimos el espacio. a lo de la decoherencia nota
-que no lo tomamos como un resultado importante. Aca le das mucho mas espacio 
-del que croe que merece. Inspirate en la intro. }
-\tbnote{Ah va, listo}
-
-
-{\color{purple}
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
 generalized it to Pauli dynamical maps
@@ -1171,9 +1151,6 @@ shows what can be done with the condition of using only one
 parametrized rotation and
 can be applied to any quantum algorithm that requires parametrized circuits,
 such as those used for quantum machine learning.
-}
-
-
 
 % }}}
 %\section{Supporting information} % {{{
@@ -1208,7 +1185,8 @@ such as those used for quantum machine learning.
 Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
 
 
-\nolinenumbers
+
+% \nolinenumbers
 
 % }}}
 % Biblbiografia {{{
@@ -1246,6 +1224,8 @@ Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged.
 %\newblock PLoS Genet. 2011 Oct;7(10):e1002337.
 %
 %\end{thebibliography}
+\cpnote{Revisa con cuidado la bibliografia. Los nombres parece que estan bien, pero los doi parece que no estan completos. Hay nombres de revistas raros. Cre oque en plos one se abrevian, pero entonces haslos otodos abreviavos. Revis que todos tengan año, numero y pagina y que esté homogeneo. Revisa con cuidaod como son las abreviaciones de los journals (son estandard pero no recuerdo odnde está esa informacion). Ver revisando el procedimiento para someter a Plos One y al arxiv. Avisame cuando estes listo. }
+
 \tbnote{Poner la bibliografía como ellos dicen (copiarla toda aquí en lugar de ponerla en un archivo .bib)}
 \bibliography{Bibliography}
 
