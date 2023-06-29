@@ -90,11 +90,10 @@
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
-\usepackage[inline]{showlabels}
+% \usepackage[inline]{showlabels}
 \usepackage{bbm,bm}
 \usepackage{soul}
 \usepackage{amsfonts}
-\usepackage{showlabels}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -133,9 +132,6 @@
 \begin{document}
 % Titulo, afiliacion, abstract  {{{
 \vspace*{0.2in}
-
-% Title must be 250 characters or less.
-
 
 \begin{flushleft}
 {\Large
@@ -182,44 +178,36 @@ Carlos Pineda\textsuperscript{2*\Yinyang},
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-\cpnote{Revisar}
+% \cpnote{Revisar}
 Pauli channels are fundamental in the context of quantum computing as they
-model noise in quantum devices.  We propose a quantum algorithm for simulating
-Pauli channels on quantum computers 
+model the simplest kind of noise in quantum devices.  We propose a quantum
+algorithm for simulating
+Pauli channels 
 and extend it to encompass Pauli dynamical maps 
 (parametrized Pauli channels).
 A parametrized quantum circuit is employed to accommodate for dynamical maps. 
 We also establish the mathematical conditions for an
-N-qubit transformation to be achievable using a parametrized circuit where
+$N$-qubit transformation to be achievable using a parametrized circuit where
 only one single-qubit operation depends on the parameter. 
 The implementation of the proposed circuit is demonstrated using IBM's quantum computers 
-for the case of one qubit, and the fidelity of this implementation is obtained. 
+for the case of one qubit, and the fidelity of this implementation is reported. 
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
 %\section*{Author summary}
 
-\linenumbers
+% \linenumbers
 
 % Use "Eq" instead of "Equation" for equation citations.
 % }}}
 \section{Introduction} % {{{
 
 Since their inception, quantum computers were proposed as powerful tools for
-the simulation of quantum systems~\cite{feynman1982simulating}. 
-% Several 
-% kinds of quantum systems have been simulated, like \cpnote{PONER ALGO ACA Y CITAR. 
-% Te puedes inspirar en las introducciones de articulos que simulen sistemas cuanticos}. 
-Being open quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
-practical~\cite{breuer2007theory} interest, there has been efforts
-towards the simulation of the evolution of open quantum
-systems~\cite{cleve,Zanetti,Xin,Wei}.\cpnote{porque escogiste estas citas? Me parece qeu la ce cleve no está completa.}
-\tbnote{Cambié un poco, agregué unos artículos que vi mucho más populares:}
-{\color{purple} 
-open quantum systems~\cite{Garcia, Wang,Weimer} and specifically for
-quantum channels~\cite{Xin,Wei,Zanetti}.
-}
-
+the simulation of quantum systems~\cite{feynman1982simulating}.  Being open
+quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
+practical~\cite{breuer2007theory} interest, there has been efforts towards the
+simulation of the evolution of open quantum systems~\cite{Garcia, Wang,Weimer}
+and specifically for quantum channels~\cite{Xin,Wei,Zanetti}.
 
 Such systems have been simulated because of their many applications, 
 such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
@@ -499,7 +487,7 @@ with $\mathcal{E}_a$ being the identity channel.
 
 % }}}
 % }}}
-\section{Circuit for a Pauli Channel} % {{{
+\section{Circuit for a Pauli channel} % {{{
 \label{sec: Circuit for a Pauli Channel}
 % Intro {{{
 
@@ -703,7 +691,7 @@ algorithm employs numerous quantum gates even in such scenarios.
 
 % }}}
 % }}}
-\section{One Parameter Circuits} % {{{
+\section{One parameter circuits} % {{{
 \label{sec: 1PR Circuits}
 
 
@@ -1150,7 +1138,6 @@ we plot four Pauli dynamical maps  selected at random
 that can be implemented with a 1PR circuit in \fref{fig:curves2}.
 
 % }}}
-
 \section{Conclusion} % {{{
 
 \cpnote{Reitera. Dale a lo qeu discutimos el espacio. a lo de la decoherencia nota
@@ -1189,9 +1176,6 @@ such as those used for quantum machine learning.
 
 
 % }}}
-
-
-
 %\section{Supporting information} % {{{
 
 
@@ -1220,7 +1204,6 @@ such as those used for quantum machine learning.
 % \label{S1_Table}
 % {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 % }}}
-
 \section{Acknowledgments} % {{{
 Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
 
@@ -1267,9 +1250,5 @@ Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged.
 \bibliography{Bibliography}
 
 % }}}
-\newpage
 \appendix
-%\input{Cosas-Escritas-Antes}
-
-
 \end{document}
