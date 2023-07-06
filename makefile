@@ -1,9 +1,10 @@
 main.pdf ::
 
 
-article_plos_one_pre.tex ::
+main_plos.tex ::
 	make main.pdf
-	echo  "\\\def\\\toplosone{}\\\input{main.tex}" > $@
-	latexpand -expand-bbl main.bbl article_plos_one_pre.tex -o /tmp/article_plos_one.tex
+	grep -v includegraphics main.tex > main_plos_tmp.tex
+	latexpand -expand-bbl main.bbl main_plos_tmp.tex -o main_plos.tex
+	rm main_plos_tmp.tex
 
 -include ~/makefile
