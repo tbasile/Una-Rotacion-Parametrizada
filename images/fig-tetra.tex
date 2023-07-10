@@ -40,31 +40,50 @@
 \begin{document}
 \thispagestyle{empty}
 
-\begin{figure} % {{{
-\centering
-\begin{subfigure}{0.9\textwidth}
-\begin{subfigure}{.666\textwidth}
-\centering
-\includegraphics[width=.95\columnwidth]{tetra-def.pdf}
-\end{subfigure}%
-\begin{subfigure}{.333\textwidth}
-\includegraphics[width=.95\columnwidth]{corte1-2.pdf} \\
-\includegraphics[width=.95\columnwidth]{corte2-2.pdf} \\
-\end{subfigure}
-\includegraphics[width=.322\columnwidth]{corte3-2.pdf}
-\includegraphics[width=.322\columnwidth]{corte4-2.pdf}
-\includegraphics[width=.322\columnwidth]{corte5-2.pdf}
-\end{subfigure}%
-\begin{subfigure}{0.1\textwidth}
-\includegraphics[width=.8\columnwidth]{col-2.pdf} \\ [2ex]
-\end{subfigure}
-%\caption{Results of the diamond fidelities as defined in \eref{eq:diamond-fid}
-%for a sample of Pauli channels in the tetrahedron.  Notice that channels close
-%to the center of the tetrahedron have high fidelities, while those close to the
-%borders do not.  Moreover, we show the results for cuts of the tetrahedron at
-%different values of $\tau_3$.}
-%\label{Fig3}
-\end{figure}
+%\begin{figure} % {{{
+%\centering
+%\begin{subfigure}{0.9\textwidth}
+%\begin{subfigure}{.666\textwidth}
+%\centering
+%\includegraphics[width=.95\columnwidth]{tetra-def.pdf}
+%\end{subfigure}%
+%\begin{subfigure}{.333\textwidth}
+%\includegraphics[width=.95\columnwidth]{corte1-2.pdf} \\
+%\includegraphics[width=.95\columnwidth]{corte2-2.pdf} \\
+%\end{subfigure}
+%\includegraphics[width=.322\columnwidth]{corte3-2.pdf}
+%\includegraphics[width=.322\columnwidth]{corte4-2.pdf}
+%\includegraphics[width=.322\columnwidth]{corte5-2.pdf}
+%\end{subfigure}%
+%\begin{subfigure}{0.1\textwidth}
+%\includegraphics[width=.8\columnwidth]{col-2.pdf} \\ [1ex]
+%\end{subfigure}
+%%\caption{Results of the diamond fidelities as defined in \eref{eq:diamond-fid}
+%%for a sample of Pauli channels in the tetrahedron.  Notice that channels close
+%%to the center of the tetrahedron have high fidelities, while those close to the
+%%borders do not.  Moreover, we show the results for cuts of the tetrahedron at
+%%different values of $\tau_3$.}
+%%\label{Fig3}
+%\end{figure}
+\newpage
+
+
+\begin{tikzpicture}
+\node[inner sep=0pt] (curvas) at (0,0)
+	{\includegraphics[width=.60\textwidth]{tetra-def.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (5.5,1.5)
+	{\includegraphics[width=.3\textwidth]{corte1-2.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (5.5,-2.2)
+	{\includegraphics[width=.3\textwidth]{corte2-2.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (5.5,-5.9)
+	{\includegraphics[width=.3\textwidth]{corte5-2.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (1.8,-5.9)
+	{\includegraphics[width=.3\textwidth]{corte4-2.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (-1.9,-5.9)
+	{\includegraphics[width=.3\textwidth]{corte3-2.pdf}};
+\node[inner sep=0pt] (curvas-azar) at (8.0,-2)
+	{\includegraphics[width=.08\textwidth]{col-2.pdf}};
+\end{tikzpicture}
 
 \end{document}
 
