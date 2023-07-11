@@ -1,0 +1,28 @@
+Instrucciones
+Upload a cover letter as a separate file in the online system. The length limit is 1 page.
+The cover letter should include the following information:
+•	Summarize the study’s contribution to the scientific literature
+•	Relate the study to previously published work
+•	Specify the type of article (for example, research article, systematic review, meta-analysis, clinical trial)
+•	Describe any prior interactions with PLOS regarding the submitted manuscript
+•	Suggest appropriate Academic Editors to handle your manuscript (see the full list of Academic Editors)
+•	List any opposed reviewers
+
+
+
+
+
+
+
+Plos One
+July, 2023
+
+To whom it may concern:
+I am writing to submit our research article entitled   “Quantum simulation of Pauli channels and dynamical maps: algorithm and implementation” to be considered for publication as a research article in PLOS One. 
+In this article, we focus on one of the fundamental purposes of quantum computers since their inception: simulating quantum systems. Specifically, we propose and simulate on a quantum computer an algorithm for implementing a Pauli channel. Pauli channels are transformations of qubit systems and serve as models for the noise affecting quantum devices; they are examples of the evolution of open quantum systems, which have garnered interest due to their applications in the study of entanglement and dissipative processes.
+Moreover, we extend the algorithm to encompass Pauli channels dependent on a parameter, which we refer to as Pauli dynamical maps. This extension leads us to investigate quantum algorithms with parameter-dependent operations, known as parametrized quantum circuits.  In this manuscript, we establish the mathematical conditions necessary for implementing any parametrized operation using a quantum circuit using only one parametrized single qubit operation. We believe these findings will be of interest to readers of your esteemed journal.
+We declare the manuscript’s originality and exclusivity for publication. In addition, we have not had any prior interactions with PLOS regarding this manuscript. In the event that our manuscript is chosen for review, we kindly suggest Dr. Fabio Sciarrino as a suitable reviewer, given his background and expertise to evaluate our findings. We have no objections to any other potential reviewers.
+Each named author has significantly contributed to the research and preparation of this manuscript. Furthermore, the named authors have no conflicts of interest to disclose.
+Thank you for considering our work.
+Sincerely,
+
