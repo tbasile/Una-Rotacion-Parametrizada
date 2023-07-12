@@ -28,9 +28,13 @@ In this article, we focus on one of the fundamental purposes of quantum
 computers since their inception: simulating quantum systems. Specifically, we
 propose and simulate on a quantum computer an algorithm for implementing
 Pauli channels. These channels are transformations of qubit systems typically 
-arising from noise affecting quantum devices; they are examples of the
-evolution of open quantum systems, which have garnered interest due to their
-applications in the study of entanglement and dissipative processes.
+arising from noise affecting quantum devices (Flammia S. and Wallman J.,
+Efficient estimation of Pauli channels, 2020). Pauli channels are examples of 
+the evolution of open quantum systems, which have garnered interest due to 
+their applications in the study of entanglement (Farías O.J. et al, 
+Observation of the emergence of multipartite entanglement between a bipartite 
+system and its environment, 2012) and dissipative processes 
+(Barreiro J. et al, An open-system quantum simulator with trapped ions, 2011).
 
 Moreover, we extend the algorithm to encompass Pauli channels dependent on a
 parameter, which we refer to as Pauli dynamical maps. This extension leads us
@@ -55,4 +59,3 @@ Thank you for considering our work.
 
 
 On behalf of all authors,
-
