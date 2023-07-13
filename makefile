@@ -1,3 +1,4 @@
+cover_letter_plos.pdf ::
 main.pdf ::
 
 
