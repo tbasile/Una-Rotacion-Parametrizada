@@ -1,5 +1,6 @@
 cover_letter_plos.pdf ::
 main.pdf ::
+main_plos.pdf ::
 
 
 main_plos.tex ::
