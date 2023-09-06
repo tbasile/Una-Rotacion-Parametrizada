@@ -1,0 +1,198 @@
+\documentclass[10pt,letterpaper]{article} % {{{
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% textcomp cpackage and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+\usepackage{subcaption}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
+
+% line numbers
+\usepackage[right]{lineno}
+
+% ligatures disabled
+\usepackage[nopatch=eqnum]{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Fig}}
+
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\succ}{\textrm{succ}}
+
+\newcommand{\fref}[1]{Fig~\ref{#1}}
+\newcommand{\eref}[1]{Eq~(\ref{#1})}
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+
+
+
+\usepackage[english]{babel}
+\usepackage{graphicx,helvet}
+\usepackage{color}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+% \usepackage[inline]{showlabels}
+\usepackage{bbm,bm}
+\usepackage{soul}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{quantikz}
+
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
+\FXRegisterAuthor{cp}{acp}{\color{blue}CP}
+\FXRegisterAuthor{tb}{ttb}{\color{green}TB}
+
+
+
+
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+%\setlength{\headheight}{27.023pt}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+\DeclareMathOperator{\tr}{tr}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+%% END MACROS SECTION
+
+% }}}
+\begin{document}
+\section{Comentarios}
+
+
+\begin{enumerate}
+\item I fail to see the point here - the logic of the paper is: 
+1. "open quantum systems can be modeled through a class of channels representing he various types of decoherence." 2. "Quantum circuits are a convenient gate-based formalism that is well understood and has an extensive body of work, and experimentally accessible."
+3. We map (generalised) Pauli channels onto quantum circuits, as a way to simulate them.
+
+What I am missing is what do we learn by doing it which cant be learned by actually performing the Pauli channel onto a quantum system? For example, applying well controlled sx, sy, sz operations and their coherent parametric combination using a photonic polarisation or path encoding is experimentally trivial. Why would I need to decompose (not even effectively for any channel) the pauli channels to match a gate based description? Which class of problems can we simulate that cannot be simulated otherwise? Is there any advantage (for example in speed up, resources like ancillas required, resistance to unwanted noise etc..?)
+
+Intuitively, it seems incredibly harder resource wise to create the sum b|gamma> superposition state needed for the ancilla, just for the sake of having it into a "quantum circuit" perspective.
+
+\item Really confusing notation, I suggest use the much more well known relation using the Levi-Civita tensor.
+
+\item At this point I am missing a proper defiition of a "quantum circuit" consistent with the mathematical formalism. The authors start from the very basic regarding Pauli channels, but give for granted the quantum circuit formalism.
+
+\item So another way to see this is that the simulation through the proposed decomposition works only for depolarising channels, and fails otherwise. 
+
+\item I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron. \\
+
+El statement es: These straightforward channels could be accomplished more efficiently by
+simply applying the corresponding Pauli operation directly. \\
+
+\item but this is a severe disadvantage, that begs the question: what is the advantage? \\
+
+\item This definition is vague - given the vagueness of the term "quantum circuit".
+ Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit. 
+ 
+\item again, this is not a conclusion from theorem 1. This is literally Definition 1. Also, use the proper notation here - make A and B operators living on an dim N Hilbert state, and R explixitly dependent on s and operating on qubit N. Then the matrix representation of the operators is a $2^n\times 2^n$ matrix which is applied to the state j....
+
+
+The explanation in words in not sufficient.
+
+\item true only if the initial j states are normalised, but they were undefined.
+
+
+\item How can it make sense to define A and B applied respectively to the last 3 and the first qubit?
+
+\item  Please, at least give an example of this semiarbitrary construction of A and B.
+
+\item I don't understand what operatively is happening here. Select the state 0, apply B, apply s, apply A and then "straight forward calculations" lead to what?
+
+\item so this is just the proof that the proposed operative definition of A and B is properly normalised, right?
+
+\item there is literally one parameter in one qubit, of course it depends on one parameter...
+ how can this be a result?
+  
+ \item This is interesting, instead of giving only some random examples, I would actually explore more in details the zoology of this class of dynamical maps - if lucky, you would find class of interesting problems that can be simulated effectively in an experimental setup by just accessing one parameter (as the authors say, just with one set of waveplates, for example), 
+ 
+ \item I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?
+ 
+ \item Imprcise (using parametrized quantum
+circuits.)
+ 
+ 
+ 
+ \item This reasoning I miss, simplifying for achieving what goal? 
+  
+ \item There is no quantification of this, it´s not even the focus of the paper 
+ 
+ \item citation required here
+\end{enumerate}
+
+
+\end{document}
