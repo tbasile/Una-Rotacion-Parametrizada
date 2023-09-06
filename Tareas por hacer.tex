@@ -1,0 +1,166 @@
+\documentclass[10pt,letterpaper]{article} % {{{
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% textcomp cpackage and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+\usepackage{subcaption}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
+
+% line numbers
+\usepackage[right]{lineno}
+
+% ligatures disabled
+\usepackage[nopatch=eqnum]{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Fig}}
+
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\succ}{\textrm{succ}}
+
+\newcommand{\fref}[1]{Fig~\ref{#1}}
+\newcommand{\eref}[1]{Eq~(\ref{#1})}
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+
+
+
+\usepackage[english]{babel}
+\usepackage{graphicx,helvet}
+\usepackage{color}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+% \usepackage[inline]{showlabels}
+\usepackage{bbm,bm}
+\usepackage{soul}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{quantikz}
+
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
+\FXRegisterAuthor{cp}{acp}{\color{blue}CP}
+\FXRegisterAuthor{tb}{ttb}{\color{green}TB}
+
+
+
+
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+%\setlength{\headheight}{27.023pt}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+\DeclareMathOperator{\tr}{tr}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+%% END MACROS SECTION
+
+% }}}
+\begin{document}
+
+\section{Simulación de cosas de dos qubits}
+
+En general, un canal de dos qubits va a requerir 4 qubits de ancilla. El circuito para hacerlo es una de las figuras del artículo y es una generalización sencilla del de un qubit.\\
+
+Algunos posibles canales a simular son por ejemplo:
+\begin{itemize}
+\item $\varepsilon(\rho) = p \rho + (1-p) \sigma_z \otimes \sigma_z \rho \sigma_z \otimes \sigma_z $.
+\item $\varepsilon(\rho) = p_1 \rho + p_2 \sigma_z \otimes I \rho \sigma_z \otimes I + p_3 I \otimes \sigma_z \rho I \otimes \sigma_3 $.
+\end{itemize}
+Como el primer canal solo involucra 2 de los 16 operadores de Pauli, en realidad sólo requiere un qubit de ancilla. El segundo canal requiere 2 qubits de ancilla. \\
+
+Entonces, los dos son fáciles de implementar en las compus cuánticas.
+
+\section{Ver cómo suben los datos otros artículos similares de Plos One}
+
+Por lo que encontré, muchos de los artículos no tenían datos abiertos al público.
+De los pocos que sí, casi todos subían un link a un repositorio de github que  contiene el código que hayan usado y quizá documentos con los resultados de dicho código. 
+
+
+
+
+\section{Revisar la motivación que ponen otras simulaciones cuánticas}
+
+
+
+\section{Revisar si se puede generalizar a qdits o a qué se refieren con lo de más de 2 dimensiones?}
+
+
+\section{La definicion de circuito cuantico}
+
+
+\end{document}
