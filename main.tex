@@ -681,6 +681,40 @@ the circuit to implement different channels, only need to change parameters.
 This allows us to consider parametrized circuits and then explore what happens when
 we constrain to only one parametrized operation.}
 
+{\color{green}
+\subsection{Two-qubit Pauli channels}
+\tbnote{Voy a agregar toda esta sección sobre el circuito para dos qubits}
+
+
+For the case of a two-qubit Pauli channel,
+the circuit of \fref{Fig1} would have two principal
+qubits and $2N$ ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
+However, the number of ancilla qubits can be reduced for Pauli 
+channels in which not all two-qubit Pauli matrices are applied to
+the system. For example, consider the following two-qubit dephasing channel:
+\begin{align}
+\varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  (\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  (\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
+\label{2qbit-c}
+\end{align}
+where $p \in [0,1]$ is a parameter that defines the channel. 
+Since this channel has $4$ Pauli operations, 
+only $2$ ancilla qubits will be necessary, and it can be implemented
+using the circuit of \fref{2qbit}a).
+
+\begin{figure} % {{{
+\centering
+\includegraphics{images/qbit-im.pdf}
+\caption{{\bf Circuit for 2-qubit dephasing channel.}  Circuit implementation for the 2-qubit dephasing channel of \eref{2qbit-c}. The state on the two ancilla qubits can be constructed just as it was done for \fref{Fig2}. }
+\label{2qbit}
+\end{figure} % }}}
+
+Just as for the one-qubit Pauli channels, this 
+channel was implemented on IBM's ibmq-lima  quantum computer and we obtained the Choi 
+matrix by doing quantum process tomography on
+the two principal qubits. Then, we calculated the diamond fidelity for different values of $p$ and
+obtained the results shown in \fref{2qbit}b).  
+
+}
 
 % }}}
 % }}}
@@ -1129,6 +1163,7 @@ para hacer el bit phase flip, que coincde con lo que nosotros
 probamos sobre qué canales se pueden hacer con una rotación parametrizada (pues bit phase flip es uno de esos). }
 \end{itemize}
 
+{\color{green}
 \begin{figure} % {{{
 \centering
 \includegraphics[width=0.60\textwidth]{images/dynamic-fidelitites.png}
@@ -1140,9 +1175,9 @@ We can see that just as in \fref{Fig3}, fidelities are high for points close to 
 to unitary channels ($p=0$ for all maps and $p=1$ for parabolic and bit flip).
 Furthermore, we can see that the fidelities are comparable to those of \fref{Fig3}, so that using the 1PR circuit
 doesn't considerably affect fidelity.}
-\label{FigS2q} 
+\label{fid} 
 \end{figure} % }}}
-
+}
 
 Furthermore, we can construct other examples of 
 Pauli dynamical maps such that they
