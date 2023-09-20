@@ -518,18 +518,24 @@ with $\mathcal{E}_a$ being the identity channel.
 
 In this section we propose a quantum circuit that simulates $N$-qubit Pauli
 channels. \revnote{At this point I am missing a proper definition of a "quantum circuit" consistent with the mathematical formalism. The authors start from the very basic regarding Pauli channels, but give for granted the quantum circuit formalism.} \tbnote{Agregué algo abajo}
+
+
+{\color{green} A quantum circuit is a model for representing computation on a quantum system. 
+This computation may include preparing the initial state of the system, applying unitary operations and measuring the whole system or parts of it~\cite{Rieffel}.
+
+Our systems always consists of some number of qubits,
+that can be divided into the ones to which we will apply the quantum channel,
+ or ``principal qubits'' and the ones that help us complete said operation, or ``ancilla qubits''.
+The circuit implements a unitary operator $U$ on the 
+system consisting of all the qubits 
+and then the principal qubits are measured.
+} 
+
  Moreover, we implement the circuit for $N=1$ on a quantum computer
 and analyze the results using the diamond norm.
 We find that close to the depolarizing channel, the general circuit simulator 
 can implement such channels with the highest fidelity.  \\
 
-{\color{green} A quantum circuit is a model for representing computation on a quantum system. 
-This computation may include preparing the initial state of the system, applying unitary operations and measuring the whole system or parts of it~\cite{Rieffel}.
-
-Here, our systems always consist of some number $N$ of qubits.
-The qubits can be divided into the ones to which we will apply the quantum channel, or ``principal qubits'' and the ones that help us complete said operation, or ``ancilla qubits''.
-The circuit implements a unitary operator $U$ and then some or all of the qubits are measured.
-} 
 
 % produce the highest 
 % }}} 
@@ -679,21 +685,32 @@ algorithm employs numerous quantum gates even in such scenarios. \revnote{but th
 \tbnote{As I see it, an advantage is that only one circuit arrengment is needed for any channel. We don't have to change
 the circuit to implement different channels, only need to change parameters.
 This allows us to consider parametrized circuits and then explore what happens when
-we constrain to only one parametrized operation.}
+we constrain to only one parametrized operation.}\\
+\tbnote{Se podría entonces cambiar la ultima oración del texto por la siguiente para que quede más claro:}
+{\color{green} This disadvantage comes from the fact
+that the circuit is  fully general and applicable to any Pauli channel, but that means that sometimes
+it is not the most straightforward algorithm to simulate a Pauli channel.
+However, the main advantage is that if we want 
+to simulate many Pauli channels (for example,
+for simulating a Pauli dynamical map as we will see later),
+we only have to change a couple of angles in the circuit and
+not completely reconstruct it. 
+And as we will see, sometimes only changing
+one angle in the circuit will be enough.}
 
 {\color{green}
-\subsection{Two-qubit Pauli channels}
+\subsection{Simulation of a two-qubit Pauli channel}
 \tbnote{Voy a agregar toda esta sección sobre el circuito para dos qubits}
 
 
 For the case of a two-qubit Pauli channel,
 the circuit of \fref{Fig1} would have two principal
-qubits and $2N$ ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
+qubits and four ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
 However, the number of ancilla qubits can be reduced for Pauli 
 channels in which not all two-qubit Pauli matrices are applied to
 the system. For example, consider the following two-qubit dephasing channel:
 \begin{align}
-\varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  (\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  (\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
+\varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  \dfrac{p}{3}(\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  \dfrac{p}{3}(\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
 \label{2qbit-c}
 \end{align}
 where $p \in [0,1]$ is a parameter that defines the channel. 
@@ -711,7 +728,7 @@ using the circuit of \fref{2qbit}a).
 Just as for the one-qubit Pauli channels, this 
 channel was implemented on IBM's ibmq-lima  quantum computer and we obtained the Choi 
 matrix by doing quantum process tomography on
-the two principal qubits. Then, we calculated the diamond fidelity for different values of $p$ and
+the principal qubits. Then, we calculated the diamond fidelity for different values of $p$ and
 obtained the results shown in \fref{2qbit}b).  
 
 }
@@ -846,8 +863,10 @@ applied to the last qubit and controlled by some of the other ones.
 {\color{green} As before, from the definition of a 1PR, we know that $U(p)$ can be decomposed as $ARB$, where 
 $A,B$ are unitary operators acting on the $N$-qubit system
 and $R$ is a rotation applied to one qubit.
-From theorem 1, we conclude that $R$ can be taken in general as a $\sigma_3$ rotation of angle $2s(p)$ applied to the last qubit and controlled by some of the other ones. 
-To prove the result, we will apply $U(p)$ to $|j\rangle$ by first applying $B$,
+From theorem 1, we conclude that $R$ can be taken in general as a $\sigma_3$
+rotation of angle $2s(p)$ applied to the last qubit and controlled by some of the other ones.
+Given  this, to prove the result of this theorem,
+we will apply $U(p)$ to $|j\rangle$ by first applying $B$,
 then $R_{\sigma_3}(2s(p))$ and finally $A$, with
 the goal of getting to \eref{eq:uj}. }
 
@@ -937,7 +956,7 @@ other qubits. There is some freedom when defining
 the operators $A$ and $B$, we only need
 to make sure that: \revnote{How can it make sense to define A and B applied respectively to the last 3 and the first qubit?} 
 \tbnote{Reescribí la oración anterior para no decir que es una definición,
-sino que queda algo de libertad (aunque igual lo decía después de la ecuación}
+sino que queda algo de libertad (aunque igual lo decía después de la ecuación)}
 \begin{align}
 &B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, \nonumber \\
 &A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
@@ -954,7 +973,7 @@ it can be shown that the curve of states created is that described in \eref{eq:c
 \tbnote{Reescrib\'i la oraci\'on anterior de forma que creo que se entiende mejor.}
 
 To see that $A R_{\sigma_3}(s(p)) B |0\rangle$ in fact creates
-the curve of states described in \eref{eq:curve-states}, \revnote{to see what?} \tbnote{Ya cambié la oración anterior} we can rewrite the expression of $B|0\rangle$ by 
+the curve of states described in \eref{eq:curve-states}, \revnote{to see what?} \tbnote{Ya cambié la oración anterior, pero siento que queda redundante. Creo que como estaba antes ``to see it'', era suficiente.} we can rewrite the expression of $B|0\rangle$ by 
 separating the first $N-1$ qubits from the last one:
 $$B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.$$
 Since the parametrized rotation $R_{\sigma_3}(2s(p))$ is controlled by all the first $N-1$ qubits, it only applies to the first two terms of $B|0\rangle$. As a result, we obtain: \revnote{so this is just the proof that the proposed operative definition of A and B is properly normalised, right?} \tbnote{No entiendo la pregunta, pero creo que la respuesta es no}
@@ -1039,7 +1058,7 @@ This state can be rewritten as:
       - \dfrac{i}{2\sqrt{3}} |2 \rangle - \dfrac{i}{2\sqrt{3}} |3\rangle \right) \\
 & + e^{-is} \left( \dfrac{1}{2} |0\rangle + \dfrac{i}{2\sqrt{3}} |1\rangle 
       + \dfrac{i}{2\sqrt{3}} |2\rangle + \dfrac{i}{2\sqrt{3}} |3 \rangle \right) \\
-\equiv & e^{is} |a\rangle + e^{-is} |b\rangle
+\equiv &\; e^{is} |a\rangle + e^{-is} |b\rangle
 \end{align*}
 \revnote{to be consistent with the previous formalism, the states should be 0,1,2,3} \tbnote{Done.}
 with $\sin s = \sqrt{3p/4}$.
@@ -1060,7 +1079,7 @@ given the curve of states, operations $A$ and $B$ can be defined as in \eref{eq:
 \label{FigS2q} 
 \end{figure} % }}}
 
-Now, defining $A$ and $B$ as in  \eref{eq:BA} for the particular
+The circuit requires defining $A$ and $B$ as in  \eref{eq:BA}, and for the particular
 vectors $|a\rangle, |b\rangle, |c \rangle$ of this dynamical map, we have that
 \begin{align*}
 A = \begin{pmatrix}
@@ -1068,17 +1087,17 @@ A = \begin{pmatrix}
 1/\sqrt{6} & -1/\sqrt{2} & i /\sqrt{6} & -i /\sqrt{6} \\
 1/\sqrt{6}  & 1/\sqrt{2} & i/\sqrt{6} & -i/\sqrt{6} \\
 -\sqrt{2/3} & 0 & i/\sqrt{6} & -i/\sqrt{6}
-\end{pmatrix} \; , \; B = \begin{pmatrix}
+\end{pmatrix} , \; B = \begin{pmatrix}
 0 & 0 & 0& 1 \\
 0 & 0 & 1 & 0 \\
 1/\sqrt{2} & -1/\sqrt{2} & 0 & 0 \\
 1/\sqrt{2} & 1/\sqrt{2} & 0 & 0 
-\end{pmatrix}
+\end{pmatrix},
 \end{align*}
-where the first column of $A$ and the
+where, as mentioned before, the first column of $A$ and the
 last three of $B$ can be chosen arbitrarily as long as the resultant matrices are unitary. 
 We ran this circuit in IBM's quantum computer ibmq-lima for $25$ different values of $p$ between $0$ and $1$,
-and $20$ repetitions for each value of $p$.
+with $20$ repetitions for each value of $p$.
 The diamond fidelity was calculated in each case and is shown in \fref{fid}.
 
 \item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
@@ -1096,7 +1115,7 @@ This can be rewritten as
 \begin{align*}
 |\beta(p)\rangle =&\; \left( \dfrac{1}{2}|0\rangle + \dfrac{1}{2} |3\rangle \right) + e^{is} \left( \dfrac{i}{4}|0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle - \dfrac{i}{4} |3\rangle \right) \\
 & + e^{-is}  \left( \dfrac{-i}{4} |0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle + \dfrac{i}{4} |3\rangle \right) \\
-& := |c\rangle + e^{is} |a\rangle + e^{-is} |b\rangle,
+\equiv & \; |c\rangle + e^{is} |a\rangle + e^{-is} |b\rangle,
 \end{align*}
 with $\sin s = 2p-1$, so that
 this curve fulfills the conditions of  \eref{eq:conditions-vecs}.
@@ -1109,7 +1128,7 @@ A = \begin{pmatrix}
 -1/\sqrt{2} & 0 & 1/2 & 1/2 \\
 1/\sqrt{2} & 0 & 1/2 & 1/2 \\
 0 & 1/\sqrt{2} & i/2 & -i/2
-\end{pmatrix} \\
+\end{pmatrix},
 B = \begin{pmatrix}
 0 & 1 &0 &0 \\
 1/\sqrt{2} & 0 & 0 &-1/\sqrt{2} \\
@@ -1119,7 +1138,7 @@ B = \begin{pmatrix}
 \end{align*}
 where again, the first column of $A$ and the last three of $B$ can be chosen arbitrarily. 
 As before, we ran this circuit for $25$ values of $p$ between $0$ and $1$, with $20$ repetitions for each,
-obtaining as a result the fidelities shown in \fref{FigS2q}.
+obtaining as a result the fidelities shown in \fref{fid}.
 
 
 
@@ -1143,9 +1162,9 @@ with $\sin s= \sqrt{p}$.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
 Matrices $A$ and $B$ can be obtained as for the other
-dynamical maps and the we ran the resulting circuit in ibmq-lima with the same
-specifications as for the other examples
-and the results are shown in \fref{FigS2q}.
+dynamical maps and we ran the resulting circuit in ibmq-lima with the same
+specifications as for the other examples,
+with the results are shown in \fref{fid}.
 %Note that in this case we actually only need one ancilla qubit
 %since the state $|\beta(p)\rangle$ is only two dimensional.
 
@@ -1170,14 +1189,21 @@ probamos sobre qué canales se pueden hacer con una rotación parametrizada (pue
 \caption{
 {\bf Fidelitis for dynamical maps.} Results of the fidelities obtained when simulating the three dynamical maps considered (depolarizing, parabolic and bit flip). 
 The implementation was done on IBM's ibmq-lima quantum computer.
-We can see that just as in \fref{Fig3}, fidelities are high for points close to the depolarizing channel 
-($p=1$ for depolarizing map, $p=1/2$ for parabolic map) and lower for points close
-to unitary channels ($p=0$ for all maps and $p=1$ for parabolic and bit flip).
 Furthermore, we can see that the fidelities are comparable to those of \fref{Fig3}, so that using the 1PR circuit
 doesn't considerably affect fidelity.}
 \label{fid} 
 \end{figure} % }}}
 }
+
+From the results of \fref{fid}, we can see that just as in figure 
+\fref{Fig3}, fidelities are high for points close to the depolarizing channel 
+($p=1$ for depolarizing map, $p=1/2$ for parabolic map) and lower for points close
+to unitary channels ($p=0$ for all maps and $p=1$ for parabolic and bit flip).
+Furthermore, we can see that the actual values of the fidelities are comparable
+to those of \fref{Fig3}, which means that
+using the 1PR circuit as opposed to 
+implementing each channel with \fref{Fig2}
+does not considerably affect fidelity.
 
 Furthermore, we can construct other examples of 
 Pauli dynamical maps such that they
