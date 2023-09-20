@@ -242,11 +242,28 @@ Intuitively, it seems incredibly harder resource wise to create the sum $b|gamma
 similar pero en lugar de usar los qubits de ancilla para crear las probabilidades, crearlas
 de otra forma que sea mejor y que entonces no tiene mucho sentido el artículo.  \\
 La verdad no sé bien cómo contestar a este comentario. \\
-Una forma podría ser haciendo más énfasis en lo de circuitos 1PR
-y que lo de canales de Pauli sea como un ejemplo particular de cómo se puede usar eso. Claro que eso significaría cambiar demasiado el artículo
- (hasta habría que cambiar el título ) y no sé si eso sea factible. Quizá se puede hacer
- más énfasis en lo de 1PR sin cambiar taaanto el orden del artículo\\
-Igual la verdad que estoy perdido con qué contestar a este artículo}
+Una forma podria ser cambiar un poco el enfoque. 
+Hacer que el objetivo principal sea
+simular un mapa dinámico (en lugar de simular canales de Pauli asi nada mas)  y estudiar como entra el parámetro en juego. 
+Podemos decir que aunque en general se ha hecho mucha simulación cuántica, 
+no se le ha dado mucho enfoque a operaciones parametrizadas.\\
+Luego, decir que para simular mapas parametrizados de Pauli,
+necesitamos empezar con un algortimo para canales y que funcione para cualquier canal de Pauli.
+Al ser tan general, no es perfecto, pues varios canales se podrian hacer más fácil, 
+pero lo bueno es que es un mismo algorigmo para todos, lo que 
+nos va a permitir usarlo para canales parametrizados, ya que entonces sólo habrá que
+mover un parámetro, en vez de cambiar todo el algoritmo para pasar de un canal a otro.\\
+Luego, generalizamos el circuito para ahora sí hacerlo en mapas dinámicos y vemos qué onda con lo de 
+poder reducir el número de parámetros, con lo que
+llegamos al teorema de los circuitos 1PR y etc.
+También corremos el circuito en compus cuánticas,
+lo que ayuda a ver que haber modificado el circuito para que tenga un sólo parámetro
+(hacer lo de meter las matrices A y B), no afectó mucho la fidelidad.
+Observar cómo se afecta o no la fidelidad al hacer eso puede ser una motivación de
+haber usado compus cuanticas. \\
+Al final, también recalcar que el resutlado sobre 1PR es más
+general que solo canales de Pauli y puede ser útil
+para cualquier curcuito parametrizado.}
 
 We start by providing the definition of quantum channels, the general framework
 used here, and multi-qubit Pauli channels in section \ref{sec: Pauli Channels}.
