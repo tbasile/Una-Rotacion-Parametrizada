@@ -1,5 +1,5 @@
-cover_letter_plos.pdf ::
 main.pdf ::
+cover_letter_plos.pdf ::
 main_plos.pdf ::
 
 
