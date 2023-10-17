@@ -199,7 +199,6 @@ for the case of one qubit, and the fidelity of this implementation is reported.
 
 
 % Use "Eq" instead of "Equation" for equation citations.
-% }}}
 
 \tbnote{Propuesta haciendo unos cambios de enfoque que menciono en la intro:}\\
 $\;$ \\
@@ -220,6 +219,7 @@ only one single-qubit operation depends on the parameter.
 The implementation of the proposed circuit is demonstrated using IBM's quantum computers 
 for the case of one qubit, and the fidelity of this implementation is reported. 
 }
+% }}}
 \section{Introduction} % {{{
 
 
@@ -232,6 +232,9 @@ quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
 practical~\cite{breuer2007theory} interest, there has been efforts towards the
 simulation of the evolution of open quantum systems~\cite{Garcia, Wang,Weimer}
 and specifically for quantum channels~\cite{Xin,Wei,Zanetti}.
+Such quantum algorithms can be represented using what is known as a quantum
+circuit~\cite{chuangbook}, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
+
 
 Such systems have been simulated because of their many applications, 
 such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
@@ -271,19 +274,32 @@ rotation in the circuit may depend on the parameter.  Finally, in
 section \ref{sec: 1PR circuit for a Pauli map}, we conclude analyzing the Pauli
 dynamical maps that fulfill the conditions of theorem \ref{theorem2}. 
 
-\revnote{I fail to see the point here - the logic of the paper is: 
-1."open quantum systems can be modeled through a class of channels representing he various types of decoherence. 2. Quantum circuits are a convenient gate-based formalism that is well understood and has an extensive body of work, and experimentally accessible.
-3. We map (generalised) Pauli channels onto quantum circuits, as a way to simulate them. \\
-What I am missing is what do we learn by doing it which can't be learned by actually performing the Pauli channel onto a quantum system? For example, applying well controlled sx, sy, sz operations and their coherent parametric combination using a photonic polarisation or path encoding is experimentally trivial. Why would I need to decompose (not even effectively for any channel) the Pauli channels to match a gate based description? Which class of problems can we simulate that cannot be simulated otherwise? Is there any advantage (for example in speed up, resources like ancillas required, resistance to unwanted noise etc..?)\\
-Intuitively, it seems incredibly harder resource wise to create the sum $b|gamma\rangle$ superposition state needed for the ancilla, just for the sake of having it into a "quantum circuit" perspective.}
-
-\tbnote{Entiendo que su punto es que los canales de Pauli se podrían hacer de una forma
+\revnote{I fail to see the point here - the logic of the paper is: % {{{
+1."open quantum systems can be modeled through a class of channels representing
+he various types of decoherence. 2. Quantum circuits are a convenient
+gate-based formalism that is well understood and has an extensive body of work,
+and experimentally accessible.  3. We map (generalised) Pauli channels onto
+quantum circuits, as a way to simulate them. \\
+What I am missing is what do we learn by doing it which can't be learned by
+actually performing the Pauli channel onto a quantum system? For example,
+applying well controlled sx, sy, sz operations and their coherent parametric
+combination using a photonic polarisation or path encoding is experimentally
+trivial. Why would I need to decompose (not even effectively for any channel)
+the Pauli channels to match a gate based description? Which class of problems
+can we simulate that cannot be simulated otherwise? Is there any advantage (for
+example in speed up, resources like ancillas required, resistance to unwanted
+noise etc..?)\\
+Intuitively, it seems incredibly harder resource wise to create the sum
+$b|gamma\rangle$ superposition state needed for the ancilla, just for the sake
+of having it into a "quantum circuit" perspective.} % }}}
+\tbnote{Entiendo que su punto es que los canales de Pauli se podrían hacer de una forma % {{{
 similar pero en lugar de usar los qubits de ancilla para crear las probabilidades, crearlas
 de otra forma que sea mejor y que entonces no tiene mucho sentido el artículo.  \\
 La verdad no sé bien cómo contestar a este comentario. \\
 Una forma podria ser cambiar un poco el enfoque. 
 Hacer que el objetivo principal sea
-simular un mapa dinámico (en lugar de simular canales de Pauli asi nada mas)  y estudiar como entra el parámetro en juego. 
+simular un mapa dinámico (en lugar de simular canales de Pauli asi nada mas)  y
+estudiar como entra el parámetro en juego. 
 Luego, decir que para simular mapas parametrizados de Pauli,
 necesitamos empezar con un algortimo para canales y que funcione para cualquier canal de Pauli.
 Al ser tan general, no es perfecto, pues varios canales se podrian hacer más fácil, 
@@ -300,22 +316,11 @@ Observar cómo se afecta o no la fidelidad al hacer eso puede ser una motivació
 haber usado compus cuanticas. \\
 Al final, también recalcar que el resutlado sobre 1PR es más
 general que solo canales de Pauli y puede ser útil
-para cualquier curcuito parametrizado.} \\
-$\;$ \\
+para cualquier curcuito parametrizado.} % }}}
+
 Ahora sí la nueva propuesta de la intro (los primeros dos párrafos son iguales): \\
 $\;$ \\
 {\color{green}
-
-
-
-Since their inception, quantum computers were proposed as powerful tools for
-the simulation of quantum systems~\cite{feynman1982simulating}.  Being open
-quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
-practical~\cite{breuer2007theory} interest, there has been efforts towards the
-simulation of the evolution of open quantum systems~\cite{Garcia, Wang,Weimer}
-and specifically for quantum channels~\cite{Xin,Wei,Zanetti}.
-Such quantum algorithms can be represented using what is known as a quantum
-circuit~\cite{chuangbook}, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
 
 Such systems have been simulated because of their many applications, 
 such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
