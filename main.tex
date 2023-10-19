@@ -377,9 +377,9 @@ positivity of $\mathcal{E}$ is not enough, and we actually require the more
 restrictive condition of complete positivity.  Complete positivity means that
 $\mathcal{E} \otimes \mathbb{I}_n$ is positive for any positive integer $n$
 (where $\mathbb{I}_n$ is the $n\times n$ identity matrix).  This ensures that
-even if the principal system is entangled with another system, applying
-$\mathcal{E}$ to the principal system while doing nothing to the other one
-still results in  a positive semidefinite state for the principal
+even if the main system is entangled with another system, applying
+$\mathcal{E}$ to the main system while doing nothing to the other one
+still results in  a positive semidefinite state for the main
 system~\cite{chuangbook}. 
 
 Given a quantum channel $\mathcal{E}$, the condition of trace preservation is
@@ -471,7 +471,7 @@ This can be simplified noting that
 \end{equation}
 which was obtained following the 
 commutation relation of Pauli matrices $[\sigma_\alpha,\sigma_\beta] = 2 i
-\epsilon_{\alpha \beta \gamma} \sigma_\gamma$ and $\epsilon_{\alpha \beta \gamma} \sigma_\gamma$ is 
+\epsilon_{\alpha \beta \gamma} \sigma_\gamma$ and $\epsilon_{\alpha \beta \gamma}$ is 
 the Levi-Civita tensor. Then, \eref{eq:Edepol} takes the form
 % 
 % 
@@ -503,7 +503,7 @@ the Levi-Civita tensor. Then, \eref{eq:Edepol} takes the form
 \label{eq: rho-transformada}
 \mathcal{E}(\rho) = \dfrac{1}{2} \sum_{\alpha} \left(\sum_{\gamma} A_{\alpha, \gamma} k_{\gamma} \right) r_{\alpha} \sigma_{\alpha}.
 \end{equation}
-\eref{eq: rho-transformada} once again has the form of \eref{eq: Density Matrix} \revnote{eq 2} \tbnote{No, sí es la eq 1}
+\eref{eq: rho-transformada} once again has the form of \eref{eq: Density Matrix}
 but with components $\left( \sum_{\gamma} A_{\alpha,\gamma} k_{\gamma} \right) r_{\alpha}$.
 This gives us another way of understanding Pauli channels
 as operations that take each component $r_{\alpha}$
@@ -598,18 +598,14 @@ with $\mathcal{E}_a$ being the identity channel.
 \label{sec: Circuit for a Pauli Channel}
 % Intro {{{
 
-\revnote{At this point I am missing a proper definition of a "quantum circuit"
-consistent with the mathematical formalism. The authors start from the very
-basic regarding Pauli channels, but give for granted the quantum circuit
-formalism.} 
 
 In this section we propose a quantum circuit that simulates $N$-qubit Pauli
 channels. 
 A quantum circuit is a model for representing computation on a quantum system. 
 This computation may include preparing the initial state of the system, applying unitary operations and measuring the whole system or parts of it~\cite{Rieffel}.
 Our systems always consists of some number of qubits, that can be divided into
-the ones to which we will apply the quantum channel, or ``main qubits''
-and the ones that help us complete said operation, or ``ancilla qubits''.
+the ones to which we will apply the quantum channel, or main qubits
+and the ones that help us complete said operation, or ancilla qubits.
 The circuit implements a unitary operator $U$ on the system consisting of all
 the qubits and then the effect on the main qubits is measured. 
 Moreover, we implement the circuit for $N=1$ on a quantum computer
@@ -750,15 +746,15 @@ fidelity defined by \eref{eq:diamond-fid} for the channels analyzed.  We can
 see that channels close to the completely depolarizing channel (that is close
 to the center of the tetrahedron) have a high $f$, while those close to unitary
 channels have much lower $f$. \revnote{So another way to see this is that the simulation through the proposed decomposition works only for depolarising channels, and fails otherwise. } 
-\tbnote{La respuesta a esto puede incluir lo siguiente: 
-It works better for depolarizing channels, yes, but still has considerably big zone with high fidelity.}
+\tbnote{Contestar en la carta que funciona hasta cierto punto para todos los canales propuestos
+y que se cuantifica qué tan bien funciona o no usando la fidelidad}
  This is reasonable because quantum computers are
 prone to errors that depolarize qubits, which isn't very problematic when
 trying to simulate depolarization but it is when simulating unitary processes.
 Moreover, the algorithm of \fref{Fig2} is not optimal for
-unitary channels \revnote{why?} (that is, the channels corresponding to the vertices of the
+unitary channels \revnote{why?} \tbnote{Replantear lo que es} (that is, the channels corresponding to the vertices of the
 tetrahedron).  These straightforward channels could be accomplished more
-efficiently by simply applying the corresponding Pauli operation directly. \revnote{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.}
+efficiently by simply applying the corresponding Pauli operator directly. \revnote{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.}
 \tbnote{Este comentario se conecta con lo del 
 primer comentario, que no sé bien cómo contestar.}
 Nevertheless, due to its general design to accommodate any Pauli channel, the
@@ -788,7 +784,7 @@ $\;$\\
 
 
 For the case of a two-qubit Pauli channel,
-the circuit of \fref{Fig1} would have two principal
+the circuit of \fref{Fig1} would have two main
 qubits and four ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
 However, the number of ancilla qubits can be reduced for Pauli 
 channels in which not all two-qubit Pauli matrices are applied to
@@ -812,7 +808,7 @@ using the circuit of \fref{2qbit}a).
 Just as for the one-qubit Pauli channels, this 
 channel was implemented on IBM's ibmq-lima  quantum computer and we obtained the Choi 
 matrix by doing quantum process tomography on
-the principal qubits. Then, we calculated the diamond fidelity for different values of $p$ and
+the main qubits. Then, we calculated the diamond fidelity for different values of $p$ and
 obtained the results shown in \fref{2qbit}b).  
 
 }
