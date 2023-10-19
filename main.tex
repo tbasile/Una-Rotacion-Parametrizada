@@ -235,7 +235,6 @@ and specifically for quantum channels~\cite{Xin,Wei,Zanetti}.
 Such quantum algorithms can be represented using what is known as a quantum
 circuit~\cite{chuangbook}, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
 
-
 Such systems have been simulated because of their many applications, 
 such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
 studying dissipative processes~\cite{Barreiro}
@@ -245,6 +244,11 @@ and within them, the simplest class of channels that produce decoherence are
 Pauli channels~\cite{geometry,Zbigniew,Davalos}. Indeed, they serve as
 effective models for the noise affecting quantum devices~\cite{Flammia}.
 
+
+
+*****************************************************************
+*****************************************************************
+*****************************************************************
 To represent the algorithms implemented in quantum computers, either to
 simulate a physical system or for some other purpose, one often uses a quantum
 circuit~\cite{chuangbook}.  In this work, we shall also work with parametrized
@@ -255,6 +259,28 @@ describing general quantum transformations dependent on parameters. Substantial
 research has been devoted to enhancing the efficiency of these
 circuits~\cite{Rasmussen}.  \\
 
+
+
+To represent the algorithms implemented in quantum computers, either to
+simulate a physical system or for some other purpose, one often uses a quantum
+circuit~\cite{chuangbook}.
+
+However, in this article, our main goal is not to implement Pauli channels, but to study and implement Pauli dynamical maps, which are continuous parametrized curves of Pauli channels. 
+These maps can be used to model continuous change of a qubit instead of only discrete jumps.
+Implementing these maps will lead us to study  quantum algorithms with free parameters, 
+something that is common in areas such as quantum machine learning~\cite{Benedetti}.
+This can be done using parametrized quantum circuits, which consist of quantum circuits in which one or more operations depend on a free parameter. \\
+
+Our study of such circuits for the use of simulating Pauli dynamical maps will lead 
+us to theorem 2, in which we find general condition for any parametrized
+transformation (for example, a Pauli dynamical map) to be achievable on a quantum circuit 
+with only one single-qubit rotation dependent on the parameter.
+Said parameter is in some sense a knob that we can control to continuously perform the transformation by
+only having to move one number. \\
+
+*****************************************************************
+*****************************************************************
+*****************************************************************
 We start by providing the definition of quantum channels, the general framework
 used here, and multi-qubit Pauli channels in section \ref{sec: Pauli Channels}.
 Our first objective is to present a quantum algorithm capable of simulating
@@ -322,31 +348,6 @@ Ahora sí la nueva propuesta de la intro (los primeros dos párrafos son iguales
 $\;$ \\
 {\color{green}
 
-Such systems have been simulated because of their many applications, 
-such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
-studying dissipative processes~\cite{Barreiro}
-and modeling non-Markovian dynamics~\cite{Marsden}.
-Among quantum systems, the simplest case is that of a qubit~\cite{chuangbook},
-and within them, the simplest class of channels that produce decoherence are
-Pauli channels~\cite{geometry,Zbigniew,Davalos}. Indeed, they serve as
-effective models for the noise affecting quantum devices~\cite{Flammia}.
-
-To represent the algorithms implemented in quantum computers, either to
-simulate a physical system or for some other purpose, one often uses a quantum
-circuit~\cite{chuangbook}.
-
-However, in this article, our main goal is not to implement Pauli channels, but to study and implement Pauli dynamical maps, which are continuous parametrized curves of Pauli channels. 
-These maps can be used to model continuous change of a qubit instead of only discrete jumps.
-Implementing these maps will lead us to study  quantum algorithms with free parameters, 
-something that is common in areas such as quantum machine learning~\cite{Benedetti}.
-This can be done using parametrized quantum circuits, which consist of quantum circuits in which one or more operations depend on a free parameter. \\
-
-Our study of such circuits for the use of simulating Pauli dynamical maps will lead 
-us to theorem 2, in which we find general condition for any parametrized
-transformation (for example, a Pauli dynamical map) to be achievable on a quantum circuit 
-with only one single-qubit rotation dependent on the parameter.
-Said parameter is in some sense a knob that we can control to continuously perform the transformation by
-only having to move one number. \\
 
 We start the article by providing the definition of quantum channels, the general framework
 used here, and multi-qubit Pauli channels in section \ref{sec: Pauli Channels}.
