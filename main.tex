@@ -775,7 +775,7 @@ $\;$\\
 
 {\color{green}
 \subsection{Simulation of a two-qubit Pauli channel}
-
+\label{2qbit}
 For the case of a two-qubit Pauli channel,
 the circuit of \fref{Fig1} would have two main
 qubits and four ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
@@ -1343,15 +1343,12 @@ probamos que se pueden hacer con una rotación parametrizada.}
 
 \revnote{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?}
 
-\tbnote{Añadir un parrafito al final que lo visualizamos sólo para una dimensión,
-pero que para más dimensiones creemos que los mapas representativos se podrán hacer así. 
-Sería interesante verlo en el futuro.}
+\tbnote{Añadí el párrafo en verde hablando de eso.}
 
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
 generalized it to Pauli dynamical maps
-by using parametrized quantum circuits \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise. Responder que 
-esperamos que ya con los cambios hechos esté más claro}.
+by using parametrized quantum circuits \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise.}.
 Furthermore, we implemented single-qubit Pauli channels
 on one of IBM's quantum computers
 and obtained their fidelities. 
@@ -1365,15 +1362,16 @@ In theorem \ref{theorem2} we found the general mathematical conditions for
 this, applicable to any parametrized circuit.
 \tbnote{Given this condition, we considered the space of Pauli maps that are possible to parametrize with one parameter, and 
 gave some explicit examples for a system of one qubit. 
-We expect that as the number of qubits gets bigger, the space of such maps becomes a smaller 
-part of the whole space of Pauli dynamical maps. 
-However, some paradigmatic maps as the dephasing one we studied for 2 qubits will still be
+As the number of qubits gets bigger, the degrees of freedom for choosing a Pauli dynamical map also gets bigger,
+so we would expect that the space of maps that can be done with only 
+one parameter
+becomes a smaller part of the whole space of Pauli dynamical maps.
+However, some paradigmatic maps as the dephasing one we studied for 2 qubits in section \ref{2qbit} will still be
 possible to do with a 1PR circuit (for this case, this can be seen by
 noticing that said dephasing channel in \eref{2qbit-c} has the same form as the depolarizing channel of \eref{eq:depo}, which we proved
 to be possible to implement with a 1PR circuit).}
 
-
-Therefore, this work presents yet another example of the current
+In conclusion, this work presents yet another example of the current
 exploration into simulating open quantum
 systems in quantum computers,
 and we observe the effect that the error of a quantum computer have
