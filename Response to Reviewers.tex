@@ -1,0 +1,392 @@
+\documentclass[10pt,letterpaper]{article} % {{{
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% textcomp cpackage and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+\usepackage{subcaption}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
+
+% line numbers
+\usepackage[right]{lineno}
+
+% ligatures disabled
+\usepackage[nopatch=eqnum]{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Fig}}
+
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+\renewcommand{\succ}{\textrm{succ}}
+
+\newcommand{\fref}[1]{Fig~\ref{#1}}
+\newcommand{\eref}[1]{Eq~(\ref{#1})}
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+
+
+
+\usepackage[english]{babel}
+\usepackage{graphicx,helvet}
+\usepackage{color}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+% \usepackage[inline]{showlabels}
+\usepackage{bbm,bm}
+\usepackage{soul}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{quantikz}
+
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
+\FXRegisterAuthor{cp}{acp}{\color{blue}CP}
+\FXRegisterAuthor{tb}{ttb}{\color{green}TB}
+
+
+
+
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+%\setlength{\headheight}{27.023pt}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+\DeclareMathOperator{\tr}{tr}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+%% END MACROS SECTION
+
+% }}}
+\begin{document}
+
+\section{Response to Editor:}
+
+We are re-submitting our paper ``Quantum simulation of Pauli channels and dynamical maps: algorithm and implementation''. 
+We believe that the revised version of our paper addresses all
+concerns by the referees in detail and is suitable for publication. 
+
+\section*{Reviewers' General Comments}
+
+\textbf{Reviewer 1:} \\
+
+\textbf{
+The paper presents two results: 1. A way to simulate
+parametric Pauli Channels using a gate-based formalism, useful for
+quantum computation, and 2. An investigation on the class of
+parametric Pauli Channels that can be parametrised by acting only on
+one qubit via one parameter.
+The full detailed comments on the paper are attached in the pdf file.
+My general comments are the following:
+\begin{itemize}
+\item[1.]The two aforementioned results are disjointed and completely
+lacking in motivation. The entire logic of the paper is obscure, and
+seemingly lacks any ground for the results to be useful in any way.
+\item[2.] The simulation on the IBM quantum computer is irrelevant, and does
+not prove neither the validity of the decomposition (as it fails for
+most of the range of operations) nor it is quantifiying any relevant
+parameter (noise for example). Data from those experimental runs and
+complete methodology for calculating the diamond norm is also missing.
+\item[3.] The claims are vague, and the mathematical formalism is vague, with
+strong abuse of notation and non-strict definitions and theorems.
+There are also many spelling mistakes and refuses, even in the
+formulas.
+\item[4.] The analysis on the 1-parametrisation is lacking a discussion on
+what happens at higher than 2 dimensions.
+\end{itemize}
+For the aformenetioned reasons, I cannot reccomend this paper for
+publication. I suggest the following three course of actions:
+\begin{itemize}
+\item[1.] Separate the two main results.
+\item[2.]Improve the tightness of the mathematical formalism.
+\item[3.]  Find an application of the generalised Pauli Channels that can be
+effectively simulated with the methodology.
+\end{itemize}
+}
+
+
+
+
+\textbf{Reviewer 2:} \\
+\textbf{The authors introduced some quantum circuits to implement the action
+of arbitrary Pauli channels using fixed-state ancilla qubits, and
+certain single-parameter Pauli dynamical channels using
+one-parameter-rotation circuits consisting of one parametrized
+single-qubit rotation and two unparametrized multiqubit unitary
+operations. They showed that the latter class of dynamical channels
+implementable is related to the one-parameter ancilla-state curves
+allowable for such circuits. This is understandable since only a
+single-parameter controlled rotation is used for the circuit, which
+does not offer sufficient flexibility to realize all single-parameter
+Pauli dynamical channels from my understanding.}
+
+\textbf{While the implementations appear to be mathematically sound, there
+appears to be a lack of comparisons between the actual channel
+implemented and the target channel. There is only one Fig. 3 that
+shows the diamond fidelities for homogenously-chosen single-qubit
+unparametrized Pauli target channels within the tetrahedron region.
+This is a nice plot that reveals the realistic errors coming from the
+IBM quantum cloud, namely that the single-qubit Pauli channels
+corresponding to the central part, which I presume are the
+depolarizing channels, have the highest diamond fidelity.}
+
+\textbf{
+Besides this plot, the authors however did not show the performance of
+their algorithms for larger number of qubits, and there are no
+performance plots for dynamical Pauli-channel implementations. For a
+further evaluation as to whether the algorithms are scientifically
+practical, at least a plot on two-qubit Pauli channels and one on
+two-qubit dynamical Pauli channels. My take is that because the
+unitary operators A and B are too sophisticated for hardware
+implementations, since they are even more complicated than single
+controlled unitary operators, the fidelity could be very strongly
+peaked around the zero of the pseudo Bloch-vector space for multiqubit
+systems. If the overall system is too large even for simulating
+two-qubit channels (due to the ancillas), then classical numerical
+simulations are sufficient.}
+
+\textbf{
+In any case, after supplying the performance plots, I believe that the
+algorithms and performance plots shall supply a fair presentation on
+the scientific soundness of this work.}
+
+
+
+
+\section{Comments throughout the text}
+
+
+\begin{enumerate}
+\item \textbf{I fail to see the point here, the logic of the paper is: 
+1. ``open quantum systems can be modeled through a class of channels representing he various types of decoherence.'' 2. ``Quantum circuits are a convenient gate-based formalism that is well understood and has an extensive body of work, and experimentally accessible.''
+3. We map (generalised) Pauli channels onto quantum circuits, as a way to simulate them.} 
+
+\textbf{What I am missing is what do we learn by doing it which cant be learned by actually performing the Pauli channel onto a quantum system? For example, applying well controlled sx, sy, sz operations and their coherent parametric combination using a photonic polarisation or path encoding is experimentally trivial. Why would I need to decompose (not even effectively for any channel) the pauli channels to match a gate based description? Which class of problems can we simulate that cannot be simulated otherwise? Is there any advantage (for example in speed up, resources like ancillas required, resistance to unwanted noise etc..?)}
+
+\textbf{Intuitively, it seems incredibly harder resource wise to create the sum b|gamma> superposition state needed for the ancilla, just for the sake of having it into a "quantum circuit" perspective.}\\
+
+\item \textbf{ Really confusing notation, I suggest use the much more well known relation using the Levi-Civita tensor.}\\
+
+
+A sentence was added to the text mentioning how we get to the equation by starting with the relation $[\sigma_\alpha,\sigma_\beta] = 2 i
+\epsilon_{\alpha \beta \gamma} \sigma_\gamma$.
+After using this equation on $\sigma_{\alpha} \sigma_{\gamma} \sigma_{\alpha}$, the Levi-Civita are summed out and we are left with:
+\begin{equation*}
+\sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}  =   A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\;\; \text{with} \; A_{\alpha, \gamma} = (2\delta_{\alpha \gamma}-1)(2\delta_{\alpha 0}-1)(2\delta_{\gamma 0}-1)
+\end{equation*}
+We believe that writing matrix $A$ explicitly is more simple than this expression. 
+
+\item \textbf{Eq 2} \\
+
+The correct equation is indeed equation 1, since we are referring to the fact that 
+\begin{equation}
+\label{eq: rho-transformada}
+\mathcal{E}(\rho) = \dfrac{1}{2} \sum_{\alpha} \left(\sum_{\gamma} A_{\alpha, \gamma} k_{\gamma} \right) r_{\alpha} \sigma_{\alpha}.
+\end{equation}
+has the form of $\dfrac{1}{2} \sum_{\alpha} r_{\alpha} \sigma_{\alpha}$, only with the
+$r_{\alpha}$ replaced by $\left( \sum_{\gamma} A_{\alpha,\gamma} k_{\gamma} \right) r_{\alpha}$.
+
+
+\item \textbf{ At this point I am missing a proper defiition of a "quantum circuit" consistent with the mathematical formalism. The authors start from the very basic regarding Pauli channels, but give for granted the quantum circuit formalism.} \\
+
+We added a few lines at the beginning of section 3 defining the concept of quantum circuit.
+We  mention that quantum circuits are a representation of computation on quantum systems, which applies a unitary operator $U$ on it. 
+
+\item  \textbf{So another way to see this is that the simulation through the proposed decomposition works only for depolarising channels, and fails otherwise.}\\
+
+The algorithm works to some extent for all Pauli channels, and how well
+it does or does not work is quantified by the fidelity.
+Indeed, the result we got is that it works much better for channels that are depolarizing
+and works less well as we get closer to unitary channels.
+
+
+\item \textbf{Why?}\\
+We rephrased the sentence to make the point more clear
+and explained that as a consequence of the circuit being usable in general for any Pauli channel,
+it implements unitary channels in a very roundabout way.
+
+
+
+\item \textbf{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.} \\
+
+
+
+\item \textbf{but this is a severe disadvantage, that begs the question: what is the advantage?} \\
+
+The advantages are that it is a straightforward, concrete and general way
+of simulating Pauli channels.
+Being general gives the possibility to later use it for Pauli dynamical maps by only needing to vary a few parameters.
+
+
+\item \textbf{This definition is vague - given the vagueness of the term "quantum circuit".
+ Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit. } \\
+ 
+We added a sentence explaining that to make it more concrete.
+
+ 
+\item \textbf{Normal}\\
+
+They are only orthogonal, since their individual norms are not equal to $1$.
+ 
+\item \textbf{Again, this is not a conclusion from theorem 1. This is literally Definition 1. Also, use the proper notation here - make A and B operators living on an dim N Hilbert state, and R explixitly dependent on s and operating on qubit N. Then the matrix representation of the operators is a $2^n\times 2^n$ matrix which is applied to the state j. The explanation in words in not sufficient.} \\
+
+We rephrased the first paragraph of the proof to make it more clear when we use the result of theorem 1. 
+Basically, we first use definition 1 to say that the circuit has the form $ARB$,
+and then the result of theorem $1$
+to conclude that $R$ is actually a $\sigma_3$ rotation
+of angle $2s$ applied to the last qubit.\\
+
+
+\item \textbf{true only if the initial j states are normalised, but they were undefined.}\\
+
+We added the definition of $|j\rangle$  at the end of the theorem statement.\\
+
+
+\item \textbf{How can it make sense to define A and B applied respectively to the last 3 and the first qubit?}\\
+
+We changed the phrasing to make it more clear that $A$ and $B$ 
+are restricted to act in a particular way on the last 3 and first qubit respectively.
+Besides from that, the remaining parts of the operators $A$ and $B$ can be chosen arbitrarily, 
+with the only restriction that the resulting matrices are unitary. \\
+
+\item  \textbf{Please, at least give an example of this semiarbitrary construction of A and B.}\\
+
+We added examples of these matrices for three particular dynamical maps in the next section. \\
+
+\item \textbf{I don't understand what operatively is happening here. Select the state 0, apply B, apply $R_s$, apply A and then "straight forward calculations" lead to what?} \\
+
+We rephrased this part to make it clearer. The idea is that we are searching for the matrices $A$ and $B$ such
+that for given vectors $|a\rangle, |b\rangle, |c\rangle$, the circuit creates
+the state $e^{is(p)} |a \rangle + e^{-is(p)} |b \rangle + |c\rangle$.
+In this part, we show that with the matrices $A$ and $B$ we constructed,
+we indeed create said state.
+That way, given any curve of states that can be done with a 1PR circuit
+according to theorem 2, here we show how
+to actually create said circuit (that is, which matrices $A$, $B$ to select).\\
+
+\item \textbf{To see what?} \\
+
+As said before, to see that the selection of matrices $A$, $B$ creates 
+the curve of states we wanted.
+This part of the text has been rewritten to make it clearer.\\
+
+
+\item \textbf{so this is just the proof that the proposed operative definition of A and B is properly normalised, right?} \\
+
+This is an intermediate step, but as said in the previous questions, 
+we are proving that the selection of $A$ and $B$ for given vectors $|a\rangle, |b\rangle, |c\rangle$ 
+indeed works to create the state
+$e^{is(p)} |a \rangle + e^{-is(p)} |b \rangle + |c\rangle$.\\
+
+\item \textbf{To be consistent with the previous formalism, the states should be 0,1,2,3}\\
+
+We made the change.\\
+
+\item \textbf{there is literally one parameter in one qubit, of course it depends on one parameter...
+ how can this be a result?} \\
+ 
+The result is that they needed  to move just one parameter to implement 
+many Pauli channels in the bit flip maps.
+For other maps, they may need to move more than one parameter to 
+implement all the channels in the map. 
+However, just as we showed that the bit flip map can be done with a 1PR circuit,
+they implemented the map using one parameter.\\
+  
+ \item  \textbf{This is interesting, instead of giving only some random examples, I would actually explore more in details the zoology of this class of dynamical maps - if lucky, you would find class of interesting problems that can be simulated effectively in an experimental setup by just accessing one parameter (as the authors say, just with one set of waveplates, for example)} \\
+ 
+Some of the examples given (depolarizing, bit flip, phase flip, bit-phase flip) are very well known 
+Pauli maps.
+We also included random examples with the purpose of seeing how some general maps that 
+can be implemented with a 1PR circuit look like.
+ 
+ \item  \textbf{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?} \\
+ 
+ We added a couple of sentences talking about that.
+  
+ \item \textbf{Imprcise} \\
+ 
+ We 
+ 
+ 
+ 
+ \item This reasoning I miss, simplifying for achieving what goal? 
+  
+ \item There is no quantification of this, it´s not even the focus of the paper 
+ 
+ \item citation required here
+\end{enumerate}
+
+
+\end{document}
