@@ -218,64 +218,44 @@ which can be used to study and model decoherence.
 Such quantum algorithms can be represented using what is known as a quantum
 circuit~\cite{chuangbook}, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
 
-Such systems have been simulated because of their many applications, 
-such as studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
-studying dissipative processes~\cite{Barreiro}
-and modeling non-Markovian dynamics~\cite{Marsden}.
-Among quantum systems, the simplest case is that of a qubit~\cite{chuangbook},
-and within them, the simplest class of channels that produce decoherence are
-Pauli channels~\cite{geometry,Zbigniew,Davalos}. Indeed, they serve as
-effective models for the noise affecting quantum devices~\cite{Flammia}.
+Such systems have been simulated because of their many applications, such as
+studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
+studying dissipative processes~\cite{Barreiro} and modeling non-Markovian
+dynamics~\cite{Marsden}.  Among quantum systems, the simplest case is that of a
+qubit~\cite{chuangbook}, and within them, the simplest class of channels that
+produce decoherence are Pauli channels~\cite{geometry,Zbigniew,Davalos}.
+Indeed, they serve as effective models for the noise affecting quantum
+devices~\cite{Flammia}.
 
-\cpnote{Iteara de nuevo Tomas:
-However, in this article, our main goal is not to implement Pauli channels, but to study and implement Pauli dynamical maps, which are continuous parametrized curves of Pauli channels. 
-These maps can be used to model continuous change of a qubit instead of only discrete jumps.
-Implementing these maps will lead us to study  quantum algorithms with free parameters, 
-something that is common in areas such as quantum machine learning~\cite{Benedetti}.
-This can be done using parametrized quantum circuits, which consist of quantum
-circuits in which one or more operations depend on a free parameter. }
+In this article we propose a quantum algorithm for simulating Pauli channels
+and implement it on one of IBM's quantum computers.  The algorithm proposed is
+straightforward and can be used for any Pauli channel by only changing a couple
+of parameters in the operations it performs.  To represent the algorithm, we
+use a quantum circuit, which is a common way of representing algorithms
+intended for quantum computers.~\cite{chuangbook}.  Furthermore, we will also
+simulate Pauli dynamical maps, which are continuous parametrized curves of
+Pauli channels.  These maps can be used to model a continuous change of a qubit
+instead of only discrete jumps.  The generality of the algorithm proposed for
+Pauli channels will be very useful in this part, since then using for dynamical
+maps will come very naturally.  Implementing these maps will lead us to study
+quantum algorithms  with free parameters, something that is common in areas
+such as quantum machine learning~\cite{Benedetti}.  This can be done using
+parametrized quantum circuits, which consist of quantum circuits in which one
+or more operations depend on a free parameter. 
 
-\cpnote{Porfa mete esto en el parrafo donde va la estructura:
-Our study of such circuits for the use of simulating Pauli dynamical maps will
-lead us to theorem 2, in which we find general condition for any parametrized
-transformation (for example, a Pauli dynamical map) to be achievable on a
-quantum circuit with only one single-qubit rotation dependent on the parameter.
-Said parameter is in some sense a knob that we can control to continuously
-perform the transformation by only having to move one number. }
-
-\tbnote{
-Continuing with this previous work done to simulate quantum processes, in this article we 
-propose a quantum algorithm for simulating Pauli channels
-and implement it on one of IBM's quantum computers.
-The algorithm proposed is straightforward and can be used for any Pauli channel by only changing a couple of 
-parameters in the operations it performs. 
-To represent the algorithm, we use a quantum circuit, which is a common
-way of representing algorithms intended for quantum computers.~\cite{chuangbook}.  }
-
-\tbnote{ Furthermore, we will also simulate Pauli dynamical maps, which are continuous parametrized curves of Pauli channels.
-These maps can be used to model a continuous change of a qubit instead of only discrete jumps. 
-The generality of the algorithm proposed for Pauli channels will be very useful in this part, since then
-using for dynamical maps will come very naturally.
-Implementing these maps will lead us to study quantum algorithms  with free parameters, 
-something that is common in areas such as quantum machine learning~\cite{Benedetti}.
-This can be done using parametrized quantum circuits, which consist of quantum
-circuits in which one or more operations depend on a free parameter. }
-
-
-\cpnote{dejar solo un parrafo de estructura:} 
-\tbnote{Aqui está:} 
 
 We start by providing the definition of quantum channels, the general framework
 used here, and multi-qubit Pauli channels in section \ref{sec: Pauli Channels}.
 Our first objective is to present a general and straightforward quantum algorithm capable of simulating
 Pauli channels on quantum computers; we do this in section \ref{sec: Circuit
 for a Pauli Channel}, where we also demonstrate its implementation using IBM's
-quantum computers for some single and two-qubit Pauli channels.
-Expanding beyond discrete Pauli channels, we introduce the concept of Pauli
+quantum computers for several single and two-qubit Pauli channels.
+Expanding beyond Pauli channels, we introduce the concept of Pauli
 dynamical maps, defined as a continuous parametrization of multi-qubit Pauli
 channels.  Therefore, in section \ref{sec: 1PR Circuits} we shift our focus to
 study parametrized quantum channels, aiming to adapt the algorithm developed
-for channels to dynamical maps.  Furthermore, we contribute to the body of work
+for channels to dynamical maps\cpnote{Me parece que las dos frases anteriores 
+dicen casi lo mismo. Poner una sola frase}.  Furthermore, we contribute to the body of work
 related to parametrized quantum circuits by establishing a theorem, which  sets
 the mathematical conditions for the transformations that can be done using a
 parametrized circuit with the restriction that only a controlled single-qubit
@@ -303,24 +283,24 @@ dynamical maps that fulfill the conditions of theorem \ref{theorem2}.
 %dynamical maps that fulfill the conditions of theorem \ref{theorem2}.  
  
 
-\revnote{I fail to see the point here - the logic of the paper is: % {{{
-1."open quantum systems can be modeled through a class of channels representing
-he various types of decoherence. 2. Quantum circuits are a convenient
-gate-based formalism that is well understood and has an extensive body of work,
-and experimentally accessible.  3. We map (generalised) Pauli channels onto
-quantum circuits, as a way to simulate them. \\
-What I am missing is what do we learn by doing it which can't be learned by
-actually performing the Pauli channel onto a quantum system? For example,
-applying well controlled sx, sy, sz operations and their coherent parametric
-combination using a photonic polarisation or path encoding is experimentally
-trivial. Why would I need to decompose (not even effectively for any channel)
-the Pauli channels to match a gate based description? Which class of problems
-can we simulate that cannot be simulated otherwise? Is there any advantage (for
-example in speed up, resources like ancillas required, resistance to unwanted
-noise etc..?)\\
-Intuitively, it seems incredibly harder resource wise to create the sum
-$b|gamma\rangle$ superposition state needed for the ancilla, just for the sake
-of having it into a "quantum circuit" perspective.} % }}}
+% \revnote{I fail to see the point here - the logic of the paper is: % {{{
+% 1."open quantum systems can be modeled through a class of channels representing
+% he various types of decoherence. 2. Quantum circuits are a convenient
+% gate-based formalism that is well understood and has an extensive body of work,
+% and experimentally accessible.  3. We map (generalised) Pauli channels onto
+% quantum circuits, as a way to simulate them. \\
+% What I am missing is what do we learn by doing it which can't be learned by
+% actually performing the Pauli channel onto a quantum system? For example,
+% applying well controlled sx, sy, sz operations and their coherent parametric
+% combination using a photonic polarisation or path encoding is experimentally
+% trivial. Why would I need to decompose (not even effectively for any channel)
+% the Pauli channels to match a gate based description? Which class of problems
+% can we simulate that cannot be simulated otherwise? Is there any advantage (for
+% example in speed up, resources like ancillas required, resistance to unwanted
+% noise etc..?)\\
+% Intuitively, it seems incredibly harder resource wise to create the sum
+% $b|gamma\rangle$ superposition state needed for the ancilla, just for the sake
+% of having it into a "quantum circuit" perspective.} % }}}
 
 
 
@@ -739,19 +719,25 @@ Finally, using the representation of Pauli channels in a tetrahedron as in
 fidelity defined by \eref{eq:diamond-fid} for the channels analyzed.  We can
 see that channels close to the completely depolarizing channel (that is close
 to the center of the tetrahedron) have a high $f$, while those close to unitary
-channels have much lower $f$. \revnote{So another way to see this is that the simulation through the proposed decomposition works only for depolarising channels, and fails otherwise. } 
-\tbnote{Contestar en la carta que funciona hasta cierto punto para todos los canales propuestos
-y que se cuantifica qué tan bien funciona o no usando la fidelidad}
- This is reasonable because quantum computers are
+channels have much lower $f$. 
+% \revnote{So another way to see this is that the simulation through the
+% proposed decomposition works only for depolarising channels, and fails
+% otherwise. } 
+% \tbnote{Contestar en la carta que funciona hasta cierto punto para todos los
+% canales propuestos y que se cuantifica qué tan bien funciona o no usando la
+% fidelidad}
+This is reasonable because quantum computers are
 prone to errors that depolarize qubits, which isn't very problematic when
 trying to simulate depolarization but it is when simulating unitary processes.
-Moreover, the algorithm of \fref{Fig2} is not optimal for
-unitary channels (that is, the channels corresponding to the vertices of the
-tetrahedron). \revnote{why?} \tbnote{Replantear, decir que cerca de los vertices del tetraedro teneos una fidelidad
-baja segun la imagen, por lo que podemos ver que los unitarios
-tienen una fid baja.} 
-\tbnote{Moreover, as can be seen in \fref{Fig3}, the algorithm of \fref{Fig2} is not optimal for 
-channels in the edges of the tetrahedron, which corresponds to unitary channels. }
+% Moreover, the algorithm of \fref{Fig2} is not optimal for
+% unitary channels (that is, the channels corresponding to the vertices of the
+% tetrahedron). \revnote{why?} \tbnote{Replantear, decir que cerca de los vertices del tetraedro teneos una fidelidad
+% baja segun la imagen, por lo que podemos ver que los unitarios
+% tienen una fid baja.} 
+% \tbnote{
+Moreover, as can be seen in \fref{Fig3}, the algorithm of \fref{Fig2} is not optimal for 
+channels in the edges of the tetrahedron, which corresponds to unitary channels. 
+% }
  These simple channels could be accomplished more
 efficiently by simply applying the corresponding Pauli operator directly. \revnote{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.}
 \tbnote{Este comentario se conecta con lo del 
@@ -1412,8 +1398,6 @@ such as those used for quantum machine learning~\cite{Benedetti}.
 % \label{S1_Table}
 % {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 % }}}
-
-
 %
 %\section{Acknowledgments} % {{{
 %Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
