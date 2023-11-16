@@ -738,61 +738,91 @@ trying to simulate depolarization but it is when simulating unitary processes.
 Moreover, as can be seen in \fref{Fig3}, the algorithm of \fref{Fig2} is not optimal for 
 channels in the edges of the tetrahedron, which corresponds to unitary channels. 
 % }
- These simple channels could be accomplished more
-efficiently by simply applying the corresponding Pauli operator directly. \revnote{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.}
-\tbnote{Este comentario se conecta con lo del 
-primer comentario, que no sé bien cómo contestar.}
-Nevertheless, due to its general design to accommodate any Pauli channel, the
-algorithm employs numerous quantum gates even in such scenarios. \revnote{but this is a severe disadvantage, that begs the question: what is the advantage?}
-\tbnote{Se podría entonces cambiar la ultima oración del texto por la siguiente para que quede más claro:}
-{\color{green} This disadvantage comes from the fact
-that the circuit is applicable to any Pauli channel, which that means that sometimes
-it is not the most straightforward algorithm to simulate a Pauli channel.
-However, the main advantages are that the algorithm is simple, and if we want 
-to simulate many Pauli channels (for example,
-for simulating a Pauli dynamical map as we will see later),
-we only have to change a couple of angles in the circuit to move between 
-different Pauli channels and not completely reconstruct the circuit. 
-And as we will see, sometimes only changing
-one angle in the circuit will be enough.}\\
-$\;$\\
+These channels could be accomplished more
+efficiently by simply applying the corresponding unitary operator directly. 
+% \revnote{I wholeheartedly agree with this statement, and I would go so far as
+% to claim that this is true in general, even at the center of the tethraedron.}
+% \tbnote{Este comentario se conecta con lo del 
+% primer comentario, que no sé bien cómo contestar.}
+% Nevertheless, due to its general design to accommodate any Pauli channel, the
+% algorithm employs numerous quantum gates even in such scenarios. 
+In this case we would be trading generality for fidelity. 
+% \revnote{but this is a severe disadvantage, that begs the question: what is the advantage?}
+% \tbnote{Se podría entonces cambiar la ultima oración del texto por la siguiente para que quede más claro:}
+The main advantage of the algorithm is that we can simulate with a unitary 
+circuit
+% simple, and if we want 
+% to 
+any Pauli channel, 
+% (for example,
+% for simulating a Pauli dynamical map as we will see later),
+only varying a couple of angles in the circuit.
+%  to move between 
+% different Pauli channels and not completely reconstruct the circuit. 
+In fact, as we will see, sometimes only changing one angle in the circuit will
+be enough to simulate many non-unitary dynamical maps of physical interest. 
+\cpnote{Revisa estas ultimas frases. Reformule lo que pusiste.}
 
-\tbnote{Sección que agregué:}\\
 
-{\color{green}
-\subsection{Simulation of a two-qubit Pauli channel}
-\label{2qbit}
-For the case of a two-qubit Pauli channel,
-the circuit of \fref{Fig1} would have two main
-qubits and four ancilla qubits, on which it would be necessary to create the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
-However, since the quantum computer ibmq-lima we used does not have that many qubits,
-we will simulate a Pauli channel that does not apply all two-qubit Pauli matrices to the system.
+% {\color{green} This disadvantage comes from the fact
+% that the circuit is applicable to any Pauli channel, which that means that sometimes
+% it is not the most straightforward algorithm to simulate a Pauli channel.
+% However, the main advantages are that the algorithm is simple, and if we want 
+% to simulate many Pauli channels (for example,
+% for simulating a Pauli dynamical map as we will see later),
+% we only have to change a couple of angles in the circuit to move between 
+% different Pauli channels and not completely reconstruct the circuit. 
+% And as we will see, sometimes only changing
+% one angle in the circuit will be enough.}\\
+% $\;$\\
+% 
+% \tbnote{Sección que agregué:}\\
+% }}}
+\subsection{Simulation of a two-qubit Pauli channel} \label{2qbit} % {{{
+% {\color{green}
+For the general case of a two-qubit Pauli channel,
+the circuit of \fref{Fig1} requires two main
+qubits and four ancilla qubits.
+% , on which it would be necessary to create the state $\sum_{\vec{\gamma}}
+% b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
+However, the quantum computer which we are using has only \cpnote{cuantos qubits 
+tiene esa compu?}.
+does not have that many qubits,
+We can still simulate a two qubit Pauli channel that does not apply all 
+two-qubit Pauli matrices to the system\cpnote{that applies at most tantos operaciones 
+de Pauli}.
 For example, consider the following two-qubit dephasing channel:
 \begin{align}
 \varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  \dfrac{p}{3}(\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  \dfrac{p}{3}(\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
 \label{2qbit-c}
 \end{align}
 where $p \in [0,1]$ is a parameter that defines the channel. 
-Since this channel has $4$ Pauli operations, 
-only $2$ ancilla qubits will be necessary, and it can be implemented
+Since this channel has four Pauli operations, 
+only $2$ ancilla qubits will be necessary, and thus it can be implemented
 using the circuit of \fref{2qbit}b.
 
 \begin{figure} % {{{
 \centering
 \includegraphics{images/qbit-im.pdf}
-\caption{{\bf Circuit for 2-qubit dephasing channel.}  Circuit implementation for the 2-qubit dephasing channel of \eref{2qbit-c}. The state on the two ancilla qubits can be constructed just as it was done for \fref{Fig2}. }
+\caption{{\bf Circuit for 2-qubit dephasing channel.}  Circuit implementation
+for the 2-qubit dephasing channel of \eref{2qbit-c}. The state on the two
+ancilla qubits can be constructed just as it was done for \fref{Fig2}.
+\cpnote{Este caption no está copleto. Falta describir la a y luego la b. De hecho 
+dado que primero proponemos el circuito y luego vemos la fidelidad, propngo 
+poenr el circuito arriba y la fidelidad abajo. TAbien describir ambas cosas. } }
 \label{2qbit}
 \end{figure} % }}}
 
 Just as for the one-qubit Pauli channels, this 
-channel was implemented on IBM's ibmq-lima  quantum computer and we obtained the Choi 
+channel was implemented on IBM's ibmq-lima  quantum computer. We obtained the Choi 
 matrix by doing quantum process tomography on
 the main qubits. Then, we calculated the diamond fidelity for different values of $p$ and
 obtained the results shown in \fref{2qbit}a. 
-As can be seen in the figure, the fidelity doesn't vary much as we change the value of $p$,
-and it stays at a value of around $0.75$, 
-and it is biggest around $p=0$, corresponding to the identity channel.
-}
+As can be seen in the figure, the fidelity doesn't vary much as we change the value of $p$.
+It stays at a value of around $0.75$, and it is biggest around $p=0$,
+corresponding to the identity channel\cpnote{Una descripcion mas precisa de
+estos valores por favor.}
+% }
 
 
 % }}}
@@ -840,14 +870,12 @@ circuit that includes only one gate dependent on a parameter $p$.
 Moreover, the parametrized gate is a one-qubit rotation about any axis,
 whether controlled or not.
 \end{definition}
-\revnote{This definition is vague - given the vagueness of the term "quantum circuit".
- Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit.}
- \tbnote{Agregar lo siguiente a la definición:} 
- 
-{\color{green}
+% \revnote{This definition is vague - given the vagueness of the term "quantum circuit".
+%  Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit.}
+%  \tbnote{Agregar lo siguiente a la definición:} 
+%  
 Therefore, a 1PR circuit implements a unitary operator $U(p)$ on some number $N$ of qubits,
 such that $U$ depends on the parameter $p$ only locally on one specific qubit.
-}
 
 Based on this definition, we aim to determine which curves of 
 states can be generated using 1PR circuits. 
@@ -925,20 +953,26 @@ with $s(p)$ some function of $p$,  $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ ortho
 and $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle
 c^j|c^j \rangle = 1$. Here $|j\rangle$ represents an element of the N-qubit  computational basis.
 \end{theorem}
-\textbf{Proof:}  \revnote{again, this is not a conclusion from theorem 1. This is literally Definition 1. Also, use the proper notation here - make A and B operators living on an dim N Hilbert state, and R explixitly dependent on s and operating on qubit N. Then the matrix representation of the operators is a $2^n \times 2^n$ matrix which is applied to the state j.... The explanation in words in not sufficient.} \tbnote{Cambié la siguiente oración por el párrafo en verde}
-We can conclude from theorem 1 that $U=ARB$,
-where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
-applied to the last qubit and controlled by some of the other ones. 
-
-{\color{green} As before, from the definition of a 1PR circuit, we know that $U(p)$ can be decomposed as $ARB$, where 
-$A,B$ are unitary operators acting on the $N$-qubit system
-and $R$ is a rotation applied to one qubit.
-From theorem 1, we conclude that $R$ can be taken in general as a $\sigma_3$
-rotation of angle $2s(p)$ applied to the last qubit and controlled by some of the other ones.
-To prove this theorem,
-we will apply $U(p)$ to $|j\rangle$ by first applying $B$,
-then $R_{\sigma_3}(2s(p))$ and finally $A$, with
-the goal of getting to \eref{eq:uj}. }
+\textbf{Proof:}  
+% \revnote{again, this is not a conclusion from theorem 1. This is literally
+% Definition 1. Also, use the proper notation here - make A and B operators
+% living on an dim N Hilbert state, and R explixitly dependent on s and operating
+% on qubit N. Then the matrix representation of the operators is a $2^n \times
+% 2^n$ matrix which is applied to the state j.... The explanation in words in not
+% sufficient.} \tbnote{Cambié la siguiente oración por el párrafo en verde}
+% We can conclude from theorem 1 that $U=ARB$,
+% where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
+% applied to the last qubit and controlled by some of the other ones. 
+% {\color{green} 
+As before, from the definition of a 1PR circuit, we know that $U(p)$ can be
+decomposed as $ARB$, where $A,B$ are unitary operators acting on the $N$-qubit
+system and $R$ is a rotation applied to one qubit.  From theorem 1, we conclude
+that $R$ can be taken in general as a $\sigma_3$ rotation of angle $2s(p)$
+applied to the last qubit and controlled by some of the other ones.  To prove
+this theorem, we will apply $U(p)$ to $|j\rangle$ by first applying $B$, then
+$R_{\sigma_3}(2s(p))$ and finally $A$, with the goal of getting to
+\eref{eq:uj}. 
+% }
 
 First, applying $B$ to $|j\rangle$ results in $B|j\rangle = B_{0,j} |0\rangle + B_{1,j} |1 \rangle + \cdots + B_{2^n-1,j}|2^n-1\rangle$,
 with $B_{i,j}$ the entries of matrix $B$.
@@ -992,9 +1026,14 @@ which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
 so that the result is given by:
-\begin{eqnarray*}
-U|j\rangle = AR_{\sigma_3}(2s(p)) B|j\rangle = e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
-\end{eqnarray*}
+% \begin{eqnarray*}
+\begin{align}
+U|j\rangle &= AR_{\sigma_3}(2s(p)) B|j\rangle \nonumber \\
+           &= e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle 
+              + A |\tilde{c}^j\rangle \nonumber \\
+           &= e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
+\end{align}
+% \end{eqnarray*}
 where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle, |c^j\rangle = A |\tilde{c}^j\rangle$ are still orthogonal
 states that satisfy $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
@@ -1237,12 +1276,15 @@ changing $\sigma_1$ to
 $\sigma_3$ and $\sigma_2$ respectively.
 For example, the bit phase flip map was implemented in \cite{Andrea, Andrea_4qb} 
 using an optical arrangement, and  it was indeed done 
-by varying only one angle that depends on the parameter $p$ (the angle of a half waveplate). \revnote{there is literally one parameter in one qubit, of course it depends on one parameter...
- how can this be a result?}
-\tbnote{Aquí la verdad no entiendo del todo qué intenta decir.
-El resultado es que en ese paper sólo hubo que variar un parámetro
-para hacer el bit phase flip, que coincde con lo que nosotros 
-probamos sobre qué canales se pueden hacer con una rotación parametrizada (pues bit phase flip es uno de esos). }
+by varying only one angle that depends on the parameter $p$ (the angle of a
+half waveplate). 
+% \revnote{there is literally one parameter in one qubit, of
+% course it depends on one parameter...
+%  how can this be a result?}
+% \tbnote{Aquí la verdad no entiendo del todo qué intenta decir.
+% El resultado es que en ese paper sólo hubo que variar un parámetro
+% para hacer el bit phase flip, que coincde con lo que nosotros 
+% probamos sobre qué canales se pueden hacer con una rotación parametrizada (pues bit phase flip es uno de esos). }
 
 \tbnote{Buscar alguna forma fácil de probar que no todos los mapas tienen la forma de 1PR} 
 \end{itemize}
@@ -1319,22 +1361,29 @@ and a random phase can be given to it.
 Following this procedure for random
 angles and unitary matrices $V$, 
 we plot four Pauli dynamical maps  selected at random
-that can be implemented with a 1PR circuit in \fref{Fig5}. \revnote{This is interesting, instead of giving only some random examples, I would actually explore more in details the zoology of this class of dynamical maps - if lucky, you would find class of interesting problems that can be simulated effectively in an experimental setup by just accessing one parameter (as the authors say, just with one set of waveplates, for example), }
-\tbnote{Los mapas que ya mencionamos más a profundidad (depolarizing, phase damping, etc.) son esos ejemplos creo yo.
-Pues son ejemplos de mapas útiles o conocidos (por lo menos el depolarizing y los bit flip, phase flip, bit phase flip) y que
-probamos que se pueden hacer con una rotación parametrizada.}
+that can be implemented with a 1PR circuit in \fref{Fig5}. 
+% \revnote{This is
+% interesting, instead of giving only some random examples, I would actually
+% explore more in details the zoology of this class of dynamical maps - if lucky,
+% you would find class of interesting problems that can be simulated effectively
+% in an experimental setup by just accessing one parameter (as the authors say,
+% just with one set of waveplates, for example), }
+% \tbnote{Los mapas que ya mencionamos más a profundidad (depolarizing, phase damping, etc.) son esos ejemplos creo yo.
+% Pues son ejemplos de mapas útiles o conocidos (por lo menos el depolarizing y los bit flip, phase flip, bit phase flip) y que
+% probamos que se pueden hacer con una rotación parametrizada.}
 
 % }}}
 \section{Conclusion} % {{{
 
-\revnote{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?}
-
-\tbnote{Añadí el párrafo en verde hablando de eso.}
-
+% \revnote{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?}
+% 
+% \tbnote{Añadí el párrafo en verde hablando de eso.}
+% 
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
 generalized it to Pauli dynamical maps
-by using parametrized quantum circuits \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise.}.
+by using parametrized quantum circuits.
+%  \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise.}.
 Furthermore, we implemented single-qubit Pauli channels
 on one of IBM's quantum computers
 and obtained their fidelities. 
@@ -1342,26 +1391,30 @@ and obtained their fidelities.
 Then, when working with Pauli dynamical maps,
 we searched for a way of minimizing the amount of 
 parametric operations in the circuit 
-by requiring that only one single-qubit rotation depends on the parameter. \revnote{This reasoning I miss, simplifying for achieving what goal? } 
-\tbnote{Le di una reescritura a esa frase.}
+by requiring that only one single-qubit rotation depends on the parameter. 
+% \revnote{This reasoning I miss, simplifying for achieving what goal? } 
+% \tbnote{Le di una reescritura a esa frase.}
 In theorem \ref{theorem2} we found the general mathematical conditions for 
 this, applicable to any parametrized circuit.
-\tbnote{Given this condition, we considered the space of Pauli maps that are possible to parametrize with one parameter, and 
-gave some explicit examples for a system of one qubit. 
-As the number of qubits gets bigger, the degrees of freedom for choosing a Pauli dynamical map also gets bigger,
-so we would expect that the space of maps that can be done with only 
-one parameter
-becomes a smaller part of the whole space of Pauli dynamical maps.
-However, some paradigmatic maps as the dephasing one we studied for 2 qubits in section \ref{2qbit} will still be
-possible to do with a 1PR circuit (for this case, this can be seen by
-noticing that said dephasing channel in \eref{2qbit-c} has the same form as the depolarizing channel of \eref{eq:depo}, which we proved
-to be possible to implement with a 1PR circuit).}
+\tbnote{Given this condition, we considered the space of Pauli maps that are
+possible to parametrize with one parameter, and gave some explicit examples for
+a system of one qubit.  As the number of qubits gets bigger, the degrees of
+freedom for choosing a Pauli dynamical map also gets bigger, so we would expect
+that the space of maps that can be done with only one parameter
+becomes a relatively smaller part of the whole space of Pauli dynamical maps.
+However, some paradigmatic maps as the dephasing one we studied for 2 qubits in
+section \ref{2qbit} will still be possible to do with a 1PR circuit (for this
+case, this can be seen by noticing that said dephasing channel in
+\eref{2qbit-c} has the same form as the depolarizing channel of \eref{eq:depo},
+which we proved to be possible to implement with a 1PR circuit).}
+\cpnote{Reescribe lo anterior sin hacer referencias a ecuaciones o secciones.}
 
 In conclusion, this work presents yet another example of the current
 exploration into simulating open quantum
 systems in quantum computers,
 and we observe the effect that the error of a quantum computer have
-on these simulations, quantified by the fidelity. \revnote{There is no quantification of this, it´s not even the focus of the paper} \tbnote{ya cambié la oración}
+on these simulations, quantified by the fidelity. 
+% \revnote{There is no quantification of this, it´s not even the focus of the paper} \tbnote{ya cambié la oración}
 On the other hand, the result
 of theorem \ref{theorem2}
 shows what can be done with the condition of using only one
