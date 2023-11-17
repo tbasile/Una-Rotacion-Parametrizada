@@ -177,30 +177,34 @@ effectively simulated with the methodology.
 } 
 
 We thank the first reviewer for the time spent carefully 
-reviewing the manuscript, and the opinions regarding it.
+assessing the manuscript, and the opinions given.
 We have made major changes in the manuscript following your comments and recommendations. 
 Some of the general changes we made are explained in the following list
 and then we respond to more specific comments
 throughout the text.
 \begin{itemize}
-\item We rewrote big parts of the introduction to make more clear the logic of the paper. 
+\item We rewrote big parts of the introduction to make clearer the logic and motivation of the paper. 
 We begin the paper by presenting the theory of Pauli channels, 
-and then present the first result, which is the algorithm for simulating them on a quantum computer.
+and then show the first result, which is the algorithm for simulating them on a quantum computer,
+which we try out for systems of one and two qubits.
 With that algorithm in mind, we seek to generalize it to Pauli dynamical maps, 
 so as to include continuous transformations of the 
 N-qubit system. This goal leads us to
 focus on parametrized quantum circuits and then to consider
 what can be done with only moving one parameter.
 \item We added the data and code from the IBM quantum computer simulations
-to a Github repository.
-\item We improved the tightness of the formulation by adding
+to a Github repository: \href{https://github.com/tbasile/Quantum-simulation-of-Pauli-Channels.git}{https://github.com/tbasile/Quantum-simulation-of-Pauli-Channels.git}
+\item We improved the tightness of the mathematical formulation by adding
 a more mathematical definition of 1PR circuits and
-rephrasing the proof of theorem 2 to make it more clear. 
-\item In section 5 of the paper we expanded on the examples for Pauli dynamical maps
+rephrasing the proof of theorem 2 to make it clearer. 
+The specific changes are discussed below as responses to the comments made by the reviewer throughout the text.
+\item In section 5 of the paper we expanded the explanations on the examples for Pauli dynamical maps
 that can be implemented with a 1PR circuit.
 These Pauli dynamical maps are well-known and we prove here
-that they can be done with only moving one parameter in the circuit.
-Furthermore, we also implemented these dynamical circuits on IBM's using a 1PR circuit.
+that they can be done with only moving one parameter in the circuit. We also added explicitly the matrices $A$ and $B$ that can
+be used to simulate them with a 1PR circuit.
+Furthermore, we included Fig. 8, where
+we show the results of implementing these dynamical circuits on IBM's computer using a 1PR circuit.
 
 \end{itemize}
 
@@ -248,18 +252,25 @@ simulations are sufficient.}
 \textbf{
 In any case, after supplying the performance plots, I believe that the
 algorithms and performance plots shall supply a fair presentation on
-the scientific soundness of this work.} \\
+the scientific soundness of this work.} \\$\;$\\
 
 
 We thank the second reviewer for the detailed analysis
 of our manuscript and the comments made. 
 Following the recommendations, we 
 added section 3.3 in which we simulate a two qubit Pauli dynamical map 
-and show that the fidelities are still reasonably high. 
-Furthermore, we also supplied plots of the simulation of the
-three Pauli dynamical maps studied in section 5. 
-For each of these simulations, we used the proposed 1PR circuit and plotted the fidelities for
+and in Fig. 4 show that the fidelities are still reasonably high. 
+
+Regarding the 1PR circuits, we added explicitly the matrices $A$ and $B$
+to the examples of dynamical maps and
+simulated them on IBM's quantum computer
+using the dynamical Pauli channel implementation.
+For each of these simulations, we used the proposed 1PR circuit and plotted  in Fig. 8 the fidelities for
 different channels along the dynamical map.
+
+Finally, we included a paragraph in the conclusion discussing what happens on higher dimensions and arguing that paradigmatic
+channels such as the two qubit dephasing channel of section 3.3 will still have a 
+1PR circuit implementation. 
 
 
 
@@ -279,7 +290,7 @@ The comments are written in bold and our response in regular font.
 \textbf{Intuitively, it seems incredibly harder resource wise to create the sum b|gamma> superposition state needed for the ancilla, just for the sake of having it into a "quantum circuit" perspective. }\\
 
 
-We rewrote parts of the introduction to make the objective of the manuscript more clear. 
+We rewrote parts of the introduction to make the objective of the manuscript clearer. 
 First of all, one of the principal objectives of quantum computers nowadays
 is to use them for simulation of quantum processes,
 and out of all quantum processes, decoherence is one of the most important and prevalent.
@@ -287,7 +298,7 @@ That is why we chose to simulate Pauli channels, which are one of the
 simplest descriptions of decoherence. 
 Important characteristics about the algorithm proposed for Pauli channels
 are its simplicity and generality.
-We choose to represent the channel using a gate-based formalism because
+We chose to represent the channel using a gate-based formalism because
 of it being one of the most common and general ways of
 representing quantum algorithms.
 
@@ -297,7 +308,7 @@ adding movable parameters to the circuit.
 Finally, we show the general result of what parametrized quantum operations can be done 
 moving only one parameter, which experimentally could translate
 to having to adapt only one setting of an experiment
-to simulate a quantum operation.
+to simulate the quantum operation.
 
 
 
@@ -338,16 +349,9 @@ and less well as we get closer to unitary channels.
 
 
 \item \textbf{Why?}\\
-We rephrased the sentence to make the point more clear
+We rephrased the sentence to make the point clearer
 and explained that as a consequence of the circuit being usable in general for any Pauli channel,
 it implements unitary channels in a very roundabout way.
-
-
-
-\item \textbf{I wholeheartedly agree with this statement, and I would go so far as to claim that this is true in general, even at the center of the tethraedron.} \\
-
-
-
 
 
 \item \textbf{But this is a severe disadvantage, that begs the question: what is the advantage?} \\
@@ -355,7 +359,7 @@ it implements unitary channels in a very roundabout way.
 The advantages are that it is a straightforward, concrete and general way
 of simulating Pauli channels.
 Being general gives the possibility to later use it for Pauli dynamical maps by only needing to vary the parameters
-and not the design of the circuit in general.
+and not the design of the circuit itself.
 
 
 \item \textbf{This definition is vague - given the vagueness of the term "quantum circuit".
@@ -366,11 +370,12 @@ We added a sentence explaining that to make it more concrete.
  
 \item \textbf{Normal}\\
 
-They are only orthogonal, since their individual norms are not equal to $1$.
+They are only orthogonal, since their individual norms are not equal to $1$. 
+After restructuring the proof of theorem 2, this is now clearer.
  
 \item \textbf{Again, this is not a conclusion from theorem 1. This is literally Definition 1. Also, use the proper notation here - make A and B operators living on an dim N Hilbert state, and R explixitly dependent on s and operating on qubit N. Then the matrix representation of the operators is a $2^n\times 2^n$ matrix which is applied to the state j. The explanation in words in not sufficient.} \\
 
-We rephrased the first paragraph of the proof to make it more clear when we use the result of theorem 1. 
+We rephrased the first paragraph of the proof to make it easier to see when we use the result of theorem 1. 
 Basically, we first use definition 1 to say that the circuit has the form $ARB$,
 and then the result of theorem $1$
 to conclude that $R$ is in particular a $\sigma_3$ rotation
@@ -384,14 +389,14 @@ We added the definition of $|j\rangle$  at the end of the theorem statement.\\
 
 \item \textbf{How can it make sense to define A and B applied respectively to the last 3 and the first qubit?}\\
 
-We changed the phrasing to make it more clear that $A$ and $B$ 
+We changed the phrasing to make it clearer that $A$ and $B$ 
 are restricted to act in a particular way on the last 3 and first qubit respectively.
 Besides from that, the remaining parts of the operators $A$ and $B$ can be chosen arbitrarily, 
 with the only restriction that the resulting matrices are unitary. \\
 
 \item  \textbf{Please, at least give an example of this semiarbitrary construction of A and B.}\\
 
-We added examples of these matrices for the three particular dynamical maps shown in the next section. \\
+We added examples of these matrices for the particular dynamical maps shown in section 5. \\
 
 \item \textbf{I don't understand what operatively is happening here. Select the state 0, apply B, apply $R_s$, apply A and then "straight forward calculations" lead to what?} \\
 
@@ -449,12 +454,12 @@ However, some of the most paradigmatic maps will still be implementable this way
   
 \item \textbf{Imprecise} \\ 
  
-We have rephrased parts of the conclusion to make it more clear.
+We have rephrased parts of the conclusion to make it clearer.
  
  
 \item \textbf{This reasoning I miss, simplifying for achieving what goal? } \\
  
-We rephrased the conclusion to make it more clear. We wanted to reduce the number of parametrized gates
+We rephrased the conclusion to make it clearer. We wanted to reduce the number of parametrized gates
 so as to have only one parameter that works as a kind of knob to move around in the channels forming
 a dynamical map.
   
