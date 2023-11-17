@@ -16,11 +16,11 @@ main_gitdiff.pdf ::
 	git checkout $(gitone)
 # 	make articulo_plos_plantilla.pdf
 	cp main.tex /tmp/v1.tex 
-	git checkout master
+	git checkout main
 	git checkout $(gittwo)
 	cp main.tex /tmp/v2.tex 
 	latexdiff /tmp/v1.tex /tmp/v2.tex > /tmp/v_diff.tex
-	git checkout master
+	git checkout main
 	make /tmp/v_diff.pdf
 # 	pdflatex -draftmode /tmp/v_diff.tex
 # 	bibtex cg_paper_gitdiff.aux
