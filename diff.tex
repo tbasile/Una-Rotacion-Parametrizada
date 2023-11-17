@@ -1,4 +1,7 @@
 \documentclass[10pt,letterpaper]{article} % {{{
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL C:\Users\tbasi\OneDrive\Documentos\basura\Mainviejo\main.tex                    Fri Nov 17 10:01:28 2023
+%DIF ADD C:\Users\tbasi\OneDrive\Documentos\GitHub\Una-Rotacion-Parametrizada\main.tex   Thu Nov 16 22:50:23 2023
 \usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
 \usepackage{amsmath,amssymb}
 % Use adjustwidth environment to exceed column width (see example table in text)
@@ -18,7 +21,11 @@
 \usepackage{nameref,hyperref}
 
 % line numbers
-\usepackage[mathlines]{lineno}  \linenumbers \setlength\linenumbersep{3pt}
+%DIF 21c21
+%DIF < \usepackage[right]{lineno}
+%DIF -------
+\usepackage[mathlines]{lineno}  \linenumbers \setlength\linenumbersep{3pt} %DIF > 
+%DIF -------
 
 % ligatures disabled
 \usepackage[nopatch=eqnum]{microtype}
@@ -104,7 +111,11 @@
 \usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
 \FXRegisterAuthor{cp}{acp}{\color{blue}CP}
 \FXRegisterAuthor{tb}{ttb}{\color{green}TB}
-\FXRegisterAuthor{rev}{rrv}{\color{red}REV}
+%DIF 107c107
+%DIF < 
+%DIF -------
+\FXRegisterAuthor{rev}{rrv}{\color{red}REV} %DIF > 
+%DIF -------
 
 
 
@@ -130,6 +141,88 @@
 %% END MACROS SECTION
 
 % }}}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
 \begin{document}
 % Titulo, afiliacion, abstract  {{{
 \vspace*{0.2in}
@@ -145,9 +238,9 @@ Tomás Basile\textsuperscript{1,2\Yinyang},
 Carlos Pineda\textsuperscript{2*\Yinyang},
 \\
 \bigskip
-\textbf{1} Facultad de Ciencias. Universidad Nacional Autónoma de México, Ciudad de México, Mexico
+\textbf{1} Facultad de Ciencias. Universidad Nacional Autónoma de México, Ciudad de México\DIFdelbegin \DIFdel{01000}\DIFdelend , Mexico
 \\
-\textbf{2} Instituto de Física, Universidad Nacional Autónoma de México, Ciudad de México, México
+\textbf{2} Instituto de Física, Universidad Nacional Autónoma de México, Ciudad de México\DIFdelbegin \DIFdel{01000}\DIFdelend , México
 \\
 \bigskip
 
@@ -199,111 +292,134 @@ for the case of one qubit, and the fidelity of this implementation is reported.
 
 
 % Use "Eq" instead of "Equation" for equation citations.
+\DIFaddbegin 
 
 
-% }}}
+\DIFaddend % }}}
 \section{Introduction} % {{{
 
 
-% Citar a estos manes de alguna manera y pedir que nos citen;
-% https://mail.google.com/mail/u/0/#inbox/FMfcgzGtwgbtTGtlXkBtrCGQRxjRZrph
+%DIF >  Citar a estos manes de alguna manera y pedir que nos citen;
+%DIF >  https://mail.google.com/mail/u/0/#inbox/FMfcgzGtwgbtTGtlXkBtrCGQRxjRZrph
+\DIFaddbegin 
 
-Since their inception, quantum computers were proposed as powerful tools for
+\DIFaddend Since their inception, quantum computers were proposed as powerful tools for
 the simulation of quantum systems~\cite{feynman1982simulating}.  Being open
 quantum systems of fundamental~\cite{Zur91,RevModPhys.76.1267} and
 practical~\cite{breuer2007theory} interest, there has been efforts towards the
 simulation of the evolution of open quantum systems~\cite{Garcia, Wang,Weimer}
-and specifically for quantum channels~\cite{Xin,Wei,Zanetti}, 
+and specifically for quantum channels~\cite{Xin,Wei,Zanetti}\DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{, 
 which can be used to study and model decoherence.
 Such quantum algorithms can be represented using what is known as a quantum
-circuit~\cite{chuangbook}, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
+circuit~\mbox{%DIFAUXCMD
+\cite{chuangbook}}\hskip0pt%DIFAUXCMD
+, which we will study in section \ref{sec: Circuit for a Pauli Channel}.
+}\DIFaddend 
 
 Such systems have been simulated because of their many applications, such as
 studying the emergence of multipartite entanglement~\cite{Andrea,Andrea_AD},
 studying dissipative processes~\cite{Barreiro} and modeling non-Markovian
 dynamics~\cite{Marsden}.  Among quantum systems, the simplest case is that of a
-qubit~\cite{chuangbook}, and within them, the simplest class of channels that
+qubit~\cite{chuangbook}, and \DIFdelbegin \DIFdel{withing }\DIFdelend \DIFaddbegin \DIFadd{within }\DIFaddend them, the simplest class of channels that
 produce decoherence are Pauli channels~\cite{geometry,Zbigniew,Davalos}.
 Indeed, they serve as effective models for the noise affecting quantum
 devices~\cite{Flammia}.
 
-In this article we propose a quantum algorithm for simulating Pauli channels
+\DIFaddbegin \DIFadd{In this article we propose a quantum algorithm for simulating Pauli channels
 and implement it on one of IBM's quantum computers.  The algorithm proposed is
 straightforward and can be used for any Pauli channel by only changing a couple
-of parameters in the operations it performs.  To represent the algorithm, we
+of parameters in the operations it performs.  }\DIFaddend To represent the \DIFdelbegin \DIFdel{algorithms implemented in quantum computers, either to
+simulate a physical system or for some other purpose, one often uses a quantum
+circuit}\DIFdelend \DIFaddbegin \DIFadd{algorithm, we
 use a quantum circuit, which is a common way of representing algorithms
-intended for quantum computers.~\cite{chuangbook}.  Furthermore, we will also
+intended for quantum computers.}\DIFaddend ~\cite{chuangbook}.  \DIFdelbegin \DIFdel{In this work, we shall also
+work with parametrized
+quantum circuits, that is,  quantum circuits in which some of
+the operations
+depend on variable parameters~\mbox{%DIFAUXCMD
+\cite{cerezo}}\hskip0pt%DIFAUXCMD
+.  These circuits play an important
+partin applications }\DIFdelend \DIFaddbegin \DIFadd{Furthermore, we will also
 simulate Pauli dynamical maps, which are continuous parametrized curves of
 Pauli channels.  These maps can be used to model a continuous change of a qubit
 instead of only discrete jumps.  The generality of the algorithm proposed for
 Pauli channels will be very useful in this part, since then using for dynamical
 maps will come very naturally.  Implementing these maps will lead us to study
 quantum algorithms  with free parameters, something that is common in areas
-such as quantum machine learning~\cite{Benedetti}.  This can be done using
+}\DIFaddend such as quantum machine learning~\cite{Benedetti}\DIFdelbegin \DIFdel{and
+describing general quantum transformations dependent on parameters.  Substantial
+research has been devoted to enhancing the efficiency of these
+circuits ~\mbox{%DIFAUXCMD
+\cite{Rasmussen}}\hskip0pt%DIFAUXCMD
+}\DIFdelend .  \DIFaddbegin \DIFadd{This can be done using
 parametrized quantum circuits, which consist of quantum circuits in which one
 or more operations depend on a free parameter. 
+}\DIFaddend 
 
 
 We start by providing the definition of quantum channels, the general framework
 used here, and multi-qubit Pauli channels in section \ref{sec: Pauli Channels}.
-Our first objective is to present a general and straightforward quantum algorithm capable of simulating
+Our first objective is to present a \DIFaddbegin \DIFadd{general and straightforward }\DIFaddend quantum algorithm capable of simulating
 Pauli channels on quantum computers; we do this in section \ref{sec: Circuit
 for a Pauli Channel}, where we also demonstrate its implementation using IBM's
-quantum computers for several single and two-qubit Pauli channels.
-Expanding beyond Pauli channels, we introduce the concept of Pauli
+quantum computers for \DIFdelbegin \DIFdel{the particular case of single-qubit }\DIFdelend \DIFaddbegin \DIFadd{several single and two-qubit }\DIFaddend Pauli channels.
+Expanding beyond \DIFdelbegin \DIFdel{discrete }\DIFdelend Pauli channels, we introduce the concept of Pauli
 dynamical maps, defined as a continuous parametrization of multi-qubit Pauli
-channels, and to see how to implement them,
-we study parametrized quantum circuits in chapter \ref{sec: 1PR Circuits}. \cpnote{Me parece que las dos frases anteriores 
-dicen casi lo mismo. Poner una sola frase} \tbnote{Ya}  Furthermore, we contribute to the body of work
+channels\DIFdelbegin \DIFdel{.  Therefore, in section \ref{sec: 1PR Circuits} we shift our focus to }\DIFdelend \DIFaddbegin \DIFadd{, and to see how to implement them,
+we }\DIFaddend study parametrized quantum \DIFdelbegin \DIFdel{channels, aiming to adapt the algorithm developed
+for channels to dynamical maps. }\DIFdelend \DIFaddbegin \DIFadd{circuits in chapter \ref{sec: 1PR Circuits}. }\cpnote{Me parece que las dos frases anteriores 
+dicen casi lo mismo. Poner una sola frase} \tbnote{Ya}  \DIFaddend Furthermore, we contribute to the body of work
 related to parametrized quantum circuits by establishing a theorem, which  sets
 the mathematical conditions for the transformations that can be done using a
-parametrized circuit with the restriction that only a controlled single-qubit
+parametrized circuit with the \DIFdelbegin \DIFdel{condition }\DIFdelend \DIFaddbegin \DIFadd{restriction }\DIFaddend that only a controlled single-qubit
 rotation in the circuit may depend on the parameter.  Finally, in section
-\ref{sec: 1PR circuit for a Pauli map}, we conclude analyzing the Pauli
+\ref{sec: 1PR circuit for a Pauli map}, we conclude \DIFdelbegin \DIFdel{about }\DIFdelend \DIFaddbegin \DIFadd{analyzing }\DIFaddend the Pauli
 dynamical maps that fulfill the conditions of theorem \ref{theorem2}. 
 
 
-%
-%We start the article by providing the definition of quantum channels, the
-%general framework used here, and multi-qubit Pauli channels in section
-%\ref{sec: Pauli Channels}.  Then, since our main objective is to obtain a
-%parametrized circuit for Pauli dynamical maps, we will first need a circuit
-%that can implement any Pauli channel by only changing some parameters in the
-%quantum gates and without changing the design of the circuit itself.
-%Therefore, in section\ref{sec: Circuit for a Pauli Channel} we present such a
-%circuit and we also show its implementation using IBM's quantum computers for
-%the particular case of single-qubit Pauli channels and some two-qubit ones.  In
-%section \ref{sec: 1PR Circuits}, we adapt the algorithm to dynamical maps.
-%Then we aim to simplify the algorithm so that it only contains one parametrized
-%single-qubit rotation, and in the process we contribute to the work in
-%parametrized quantum circuits by establishing   in \ref{theorem2} which general
-%quantum transformations can be implemented this way.  Finally, in section
-%\ref{sec: 1PR circuit for a Pauli map}, we conclude analyzing the Pauli
-%dynamical maps that fulfill the conditions of theorem \ref{theorem2}.  
- 
-
-% \revnote{I fail to see the point here - the logic of the paper is: % {{{
-% 1."open quantum systems can be modeled through a class of channels representing
-% he various types of decoherence. 2. Quantum circuits are a convenient
-% gate-based formalism that is well understood and has an extensive body of work,
-% and experimentally accessible.  3. We map (generalised) Pauli channels onto
-% quantum circuits, as a way to simulate them. \\
-% What I am missing is what do we learn by doing it which can't be learned by
-% actually performing the Pauli channel onto a quantum system? For example,
-% applying well controlled sx, sy, sz operations and their coherent parametric
-% combination using a photonic polarisation or path encoding is experimentally
-% trivial. Why would I need to decompose (not even effectively for any channel)
-% the Pauli channels to match a gate based description? Which class of problems
-% can we simulate that cannot be simulated otherwise? Is there any advantage (for
-% example in speed up, resources like ancillas required, resistance to unwanted
-% noise etc..?)\\
-% Intuitively, it seems incredibly harder resource wise to create the sum
-% $b|gamma\rangle$ superposition state needed for the ancilla, just for the sake
-% of having it into a "quantum circuit" perspective.} % }}}
+%DIF > 
+%DIF > We start the article by providing the definition of quantum channels, the
+%DIF > general framework used here, and multi-qubit Pauli channels in section
+%DIF > \ref{sec: Pauli Channels}.  Then, since our main objective is to obtain a
+%DIF > parametrized circuit for Pauli dynamical maps, we will first need a circuit
+%DIF > that can implement any Pauli channel by only changing some parameters in the
+%DIF > quantum gates and without changing the design of the circuit itself.
+%DIF > Therefore, in section\ref{sec: Circuit for a Pauli Channel} we present such a
+%DIF > circuit and we also show its implementation using IBM's quantum computers for
+%DIF > the particular case of single-qubit Pauli channels and some two-qubit ones.  In
+%DIF > section \ref{sec: 1PR Circuits}, we adapt the algorithm to dynamical maps.
+%DIF > Then we aim to simplify the algorithm so that it only contains one parametrized
+%DIF > single-qubit rotation, and in the process we contribute to the work in
+%DIF > parametrized quantum circuits by establishing   in \ref{theorem2} which general
+%DIF > quantum transformations can be implemented this way.  Finally, in section
+%DIF > \ref{sec: 1PR circuit for a Pauli map}, we conclude analyzing the Pauli
+%DIF > dynamical maps that fulfill the conditions of theorem \ref{theorem2}.  
+ \DIFaddbegin 
 
 
+%DIF >  \revnote{I fail to see the point here - the logic of the paper is: % {{{
+%DIF >  1."open quantum systems can be modeled through a class of channels representing
+%DIF >  he various types of decoherence. 2. Quantum circuits are a convenient
+%DIF >  gate-based formalism that is well understood and has an extensive body of work,
+%DIF >  and experimentally accessible.  3. We map (generalised) Pauli channels onto
+%DIF >  quantum circuits, as a way to simulate them. \\
+%DIF >  What I am missing is what do we learn by doing it which can't be learned by
+%DIF >  actually performing the Pauli channel onto a quantum system? For example,
+%DIF >  applying well controlled sx, sy, sz operations and their coherent parametric
+%DIF >  combination using a photonic polarisation or path encoding is experimentally
+%DIF >  trivial. Why would I need to decompose (not even effectively for any channel)
+%DIF >  the Pauli channels to match a gate based description? Which class of problems
+%DIF >  can we simulate that cannot be simulated otherwise? Is there any advantage (for
+%DIF >  example in speed up, resources like ancillas required, resistance to unwanted
+%DIF >  noise etc..?)\\
+%DIF >  Intuitively, it seems incredibly harder resource wise to create the sum
+%DIF >  $b|gamma\rangle$ superposition state needed for the ancilla, just for the sake
+%DIF >  of having it into a "quantum circuit" perspective.} % }}}
 
-% }}}
+
+
+\DIFaddend % }}}
 \section{Pauli channels and dynamical maps}  \label{sec: Pauli Channels} % {{{
 
 % Intro  {{{
@@ -349,10 +465,11 @@ positivity of $\mathcal{E}$ is not enough, and we actually require the more
 restrictive condition of complete positivity.  Complete positivity means that
 $\mathcal{E} \otimes \mathbb{I}_n$ is positive for any positive integer $n$
 (where $\mathbb{I}_n$ is the $n\times n$ identity matrix).  This ensures that
-even if the main system is entangled with another system, applying
-$\mathcal{E}$ to the main system while doing nothing to the other one
-still results in  a positive semidefinite state for the main
-system~\cite{chuangbook}. 
+even if the \DIFdelbegin \DIFdel{principal }\DIFdelend \DIFaddbegin \DIFadd{main }\DIFaddend system is entangled with another system, applying
+$\mathcal{E}$ to the \DIFdelbegin \DIFdel{principal }\DIFdelend \DIFaddbegin \DIFadd{main }\DIFaddend system while doing nothing to the other one
+still results in  a positive semidefinite state for the \DIFdelbegin \DIFdel{principal
+}\DIFdelend \DIFaddbegin \DIFadd{main
+}\DIFaddend system~\cite{chuangbook}. 
 
 Given a quantum channel $\mathcal{E}$, the condition of trace preservation is
 straightforward to verify but complete positivity is not as simple.  To test
@@ -430,49 +547,60 @@ To do it, we substitute \eref{eq: Density Matrix}
 in \eref{eq: Pauli channel 1 qbit}:
 \begin{equation}
 \mathcal{E}(\rho) = \dfrac{1}{2}\sum_{\gamma,\alpha=0}^3 k_{\gamma} r_{\alpha} \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}.
-\label{eq:Edepol}
-\end{equation}
-This can be simplified noting that 
-\begin{equation}
-\sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A = \begin{pmatrix}
+\DIFaddbegin \label{eq:Edepol}
+\DIFaddend \end{equation}
+This can be simplified \DIFdelbegin \DIFdel{by using the following property }\DIFdelend \DIFaddbegin \DIFadd{noting that 
+}\begin{equation}
+\DIFadd{\sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A = \begin{pmatrix}
 1 & 1 & 1 & 1\\
 1 & 1 & -1 &-1 \\
 1 & -1 & 1 & -1 \\
 1 & -1 & -1 & 1
 \end{pmatrix},
 \label{eq: propiedad-pauli}
-\end{equation}
-which was obtained following the 
-commutation relation of Pauli matrices $[\sigma_\alpha,\sigma_\beta] = 2 i
+}\end{equation}
+\DIFadd{which was obtained following the 
+commutation relation }\DIFaddend of Pauli matrices \DIFdelbegin \DIFdel{:
+}\begin{displaymath}
+\DIFdel{%DIFDELCMD < \label{eq: propiedad-pauli}%%%
+\sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A_{\alpha,\gamma} = \begin{pmatrix}
+1 & 1 & 1 & 1\\
+1 & 1 & -1 &-1 \\
+1 & -1 & 1 & -1 \\
+1 & -1 & -1 & 1
+\end{pmatrix},
+}\end{displaymath}%DIFAUXCMD
+\DIFdel{which leads to
+}\DIFdelend \DIFaddbegin \DIFadd{$[\sigma_\alpha,\sigma_\beta] = 2 i
 \epsilon_{\alpha \beta \gamma} \sigma_\gamma$ and $\epsilon_{\alpha \beta \gamma}$ is 
 the Levi-Civita tensor. Then, \eref{eq:Edepol} takes the form
-% 
-% 
-% 
-% 
-% This can be simplified by using the following property of Pauli matrices:
-% \revnote{Really confusing notation, I suggest use the much more well known relation using the Levi-Civita tensor.}
-% 
-% 
-% \tbnote{Siguiendo la relaci\'on de conmutaci\'on, resulta que las Levi Civitas desaparecen y quedan s\'olo deltas de Dirac:}
-% {\color{green}
-% \begin{equation*}
-% \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}  =   A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\;\; \text{with} \; A_{\alpha, \gamma} = (2\delta_{ij}-1)(2\delta_{i0}-1)(2\delta_{j0}-1)
-% \end{equation*}
-% }
-% 
-% 
-% \begin{equation}
-% \label{eq: propiedad-pauli}
-% \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A = \begin{pmatrix}
-% 1 & 1 & 1 & 1\\
-% 1 & 1 & -1 &-1 \\
-% 1 & -1 & 1 & -1 \\
-% 1 & -1 & -1 & 1
-% \end{pmatrix},
-% \end{equation}
-% which leads to
-\begin{equation}
+%DIF >  
+%DIF >  
+%DIF >  
+%DIF >  
+%DIF >  This can be simplified by using the following property of Pauli matrices:
+%DIF >  \revnote{Really confusing notation, I suggest use the much more well known relation using the Levi-Civita tensor.}
+%DIF >  
+%DIF >  
+%DIF >  \tbnote{Siguiendo la relaci\'on de conmutaci\'on, resulta que las Levi Civitas desaparecen y quedan s\'olo deltas de Dirac:}
+%DIF >  {\color{green}
+%DIF >  \begin{equation*}
+%DIF >  \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma}  =   A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\;\; \text{with} \; A_{\alpha, \gamma} = (2\delta_{ij}-1)(2\delta_{i0}-1)(2\delta_{j0}-1)
+%DIF >  \end{equation*}
+%DIF >  }
+%DIF >  
+%DIF >  
+%DIF >  \begin{equation}
+%DIF >  \label{eq: propiedad-pauli}
+%DIF >  \sigma_{\gamma} \sigma_{\alpha} \sigma_{\gamma} = A_{\alpha,\gamma} \sigma_{\alpha}, \;\;\;\;\; \text{with} \; A = \begin{pmatrix}
+%DIF >  1 & 1 & 1 & 1\\
+%DIF >  1 & 1 & -1 &-1 \\
+%DIF >  1 & -1 & 1 & -1 \\
+%DIF >  1 & -1 & -1 & 1
+%DIF >  \end{pmatrix},
+%DIF >  \end{equation}
+%DIF >  which leads to
+}\DIFaddend \begin{equation}
 \label{eq: rho-transformada}
 \mathcal{E}(\rho) = \dfrac{1}{2} \sum_{\alpha} \left(\sum_{\gamma} A_{\alpha, \gamma} k_{\gamma} \right) r_{\alpha} \sigma_{\alpha}.
 \end{equation}
@@ -574,20 +702,23 @@ with $\mathcal{E}_a$ being the identity channel.
 
 In this section we propose a quantum circuit that simulates $N$-qubit Pauli
 channels. 
-A quantum circuit is a model for representing computation on a quantum system. 
-This computation may include preparing the initial state of the system, applying unitary operations and measuring the whole system or parts of it~\cite{Rieffel}.
+\DIFaddbegin \DIFadd{A quantum circuit is a model for representing computation on a quantum system. 
+This computation may include preparing the initial state of the system, applying unitary operations and measuring the whole system or parts of it~\mbox{%DIFAUXCMD
+\cite{Rieffel}}\hskip0pt%DIFAUXCMD
+.
 Our systems always consists of some number of qubits, that can be divided into
 the ones to which we will apply the quantum channel, or main qubits
 and the ones that help us complete said operation, or ancilla qubits.
 The circuit implements a unitary operator $U$ on the system consisting of all
 the qubits and then the effect on the main qubits is measured. 
-Moreover, we implement the circuit for $N=1$ on a quantum computer
+}\DIFaddend Moreover, we implement the circuit for $N=1$ on a quantum computer
 and analyze the results using the diamond norm.
 We find that close to the depolarizing channel, the general circuit simulator 
 can implement such channels with the highest fidelity.
+\DIFaddbegin 
 
 
-% produce the highest 
+\DIFaddend % produce the highest 
 % }}} 
 \subsection{Description of the circuit for a Pauli channel} %{{{
 \label{subsec: Description of the circuit}
@@ -600,8 +731,9 @@ this is presented in \fref{Fig1}.
 
 \begin{figure} % {{{
 \centering
-\includegraphics{circuito_general.pdf}
-\caption{{\bf Circuit for an $N$-qubit
+%DIF < \includegraphics{circuito_general.pdf}
+\DIFaddbeginFL \includegraphics{circuito_general.pdf}
+\DIFaddendFL \caption{{\bf Circuit for an $N$-qubit
 Pauli channel.}
 The circuit creates the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}|\vec{\gamma}\rangle$ 
 on the $2N$ ancilla qubits denoted by $\tilde{q}$.}
@@ -650,8 +782,9 @@ defined by the following equations:
 
 \begin{figure} % {{{
 \centering
-\includegraphics{circuito_unqubit.pdf}
-\caption{
+%DIF < \includegraphics{circuito_unqubit.pdf}
+\DIFaddbeginFL \includegraphics{circuito_unqubit.pdf}
+\DIFaddendFL \caption{
 {\bf One-qubit Pauli channel circuit.} Circuit for a one-qubit Pauli channel,
 which is a particular case of \fref{Fig1}.  Here we have two
 ancilla qubits and we use three rotations
@@ -704,8 +837,9 @@ when they are exactly equal.
 
 \begin{figure} % {{{
 \centering
-\includegraphics{fig-tetra.pdf}
-\caption{{\bf Results of the diamond fidelities as defined in \eref{eq:diamond-fid}
+%DIF < \includegraphics{fig-tetra.pdf}
+\DIFaddbeginFL \includegraphics{fig-tetra.pdf}
+\DIFaddendFL \caption{{\bf Results of the diamond fidelities as defined in \eref{eq:diamond-fid}
 for a sample of Pauli channels in the tetrahedron.}  Notice that channels close
 to the center of the tetrahedron have high fidelities, while those close to the
 borders do not.  Moreover, we show the results for cuts of the tetrahedron at
@@ -719,129 +853,135 @@ fidelity defined by \eref{eq:diamond-fid} for the channels analyzed.  We can
 see that channels close to the completely depolarizing channel (that is close
 to the center of the tetrahedron) have a high $f$, while those close to unitary
 channels have much lower $f$. 
-% \revnote{So another way to see this is that the simulation through the
-% proposed decomposition works only for depolarising channels, and fails
-% otherwise. } 
-% \tbnote{Contestar en la carta que funciona hasta cierto punto para todos los
-% canales propuestos y que se cuantifica qué tan bien funciona o no usando la
-% fidelidad}
+%DIF >  \revnote{So another way to see this is that the simulation through the
+%DIF >  proposed decomposition works only for depolarising channels, and fails
+%DIF >  otherwise. } 
+%DIF >  \tbnote{Contestar en la carta que funciona hasta cierto punto para todos los
+%DIF >  canales propuestos y que se cuantifica qué tan bien funciona o no usando la
+%DIF >  fidelidad}
 This is reasonable because quantum computers are
 prone to errors that depolarize qubits, which isn't very problematic when
 trying to simulate depolarization but it is when simulating unitary processes.
-% Moreover, the algorithm of \fref{Fig2} is not optimal for
-% unitary channels (that is, the channels corresponding to the vertices of the
-% tetrahedron). \revnote{why?} \tbnote{Replantear, decir que cerca de los vertices del tetraedro teneos una fidelidad
-% baja segun la imagen, por lo que podemos ver que los unitarios
-% tienen una fid baja.} 
-% \tbnote{
-Moreover, as can be seen in \fref{Fig3}, the algorithm of \fref{Fig2} is not optimal for 
-channels in the edges of the tetrahedron, which corresponds to unitary channels. 
-% }
-These channels could be accomplished more
-efficiently by simply applying the corresponding unitary operator directly. 
-% \revnote{I wholeheartedly agree with this statement, and I would go so far as
-% to claim that this is true in general, even at the center of the tethraedron.}
-% \tbnote{Este comentario se conecta con lo del 
-% primer comentario, que no sé bien cómo contestar.}
-% Nevertheless, due to its general design to accommodate any Pauli channel, the
-% algorithm employs numerous quantum gates even in such scenarios. 
+\DIFdelbegin \DIFdel{Moreover, }\DIFdelend %DIF >  Moreover, the algorithm of \fref{Fig2} is not optimal for
+%DIF >  unitary channels (that is, the channels corresponding to the vertices of the
+%DIF >  tetrahedron). \revnote{why?} \tbnote{Replantear, decir que cerca de los vertices del tetraedro teneos una fidelidad
+%DIF >  baja segun la imagen, por lo que podemos ver que los unitarios
+%DIF >  tienen una fid baja.} 
+%DIF >  \tbnote{
+\DIFaddbegin \DIFadd{Moreover, as can be seen in \fref{Fig3}, }\DIFaddend the algorithm of \fref{Fig2} is not optimal for 
+\DIFdelbegin \DIFdel{unitary channels (that is, the channels corresponding to the vertices }\DIFdelend \DIFaddbegin \DIFadd{channels in the edges }\DIFaddend of the tetrahedron\DIFdelbegin \DIFdel{). 
+These straightforward }\DIFdelend \DIFaddbegin \DIFadd{, which corresponds to unitary channels. 
+%DIF >  }
+These }\DIFaddend channels could be accomplished more
+efficiently by simply applying the corresponding \DIFdelbegin \DIFdel{Pauli operation directly. 
+Nevertheless, 
+due to its general design to accommodate any }\DIFdelend \DIFaddbegin \DIFadd{unitary operator directly. 
+%DIF >  \revnote{I wholeheartedly agree with this statement, and I would go so far as
+%DIF >  to claim that this is true in general, even at the center of the tethraedron.}
+%DIF >  \tbnote{Este comentario se conecta con lo del 
+%DIF >  primer comentario, que no sé bien cómo contestar.}
+%DIF >  Nevertheless, due to its general design to accommodate any Pauli channel, the
+%DIF >  algorithm employs numerous quantum gates even in such scenarios. 
 In this case we would be trading generality for fidelity. 
-% \revnote{but this is a severe disadvantage, that begs the question: what is the advantage?}
-% \tbnote{Se podría entonces cambiar la ultima oración del texto por la siguiente para que quede más claro:}
+%DIF >  \revnote{but this is a severe disadvantage, that begs the question: what is the advantage?}
+%DIF >  \tbnote{Se podría entonces cambiar la ultima oración del texto por la siguiente para que quede más claro:}
 The main advantage of the algorithm is that we can simulate with a unitary 
 circuit
-% simple, and if we want 
-% to 
+%DIF >  simple, and if we want 
+%DIF >  to 
 any Pauli channel, 
-% (for example,
-% for simulating a Pauli dynamical map as we will see later),
+%DIF >  (for example,
+%DIF >  for simulating a Pauli dynamical map as we will see later),
 only varying a couple of angles in the circuit.
-%  to move between 
-% different Pauli channels and not completely reconstruct the circuit. 
+%DIF >   to move between 
+%DIF >  different Pauli channels and not completely reconstruct the circuit. 
 In fact, as we will see, sometimes only changing one angle in the circuit will
 be enough to simulate many non-unitary dynamical maps of physical interest. 
-\cpnote{Revisa estas ultimas frases. Reformule lo que pusiste.}
+}\cpnote{Revisa estas ultimas frases. Reformule lo que pusiste.}
 \tbnote{Ya lo leí, quedó muy bien}
 
 
-% {\color{green} This disadvantage comes from the fact
-% that the circuit is applicable to any Pauli channel, which that means that sometimes
-% it is not the most straightforward algorithm to simulate a Pauli channel.
-% However, the main advantages are that the algorithm is simple, and if we want 
-% to simulate many Pauli channels (for example,
-% for simulating a Pauli dynamical map as we will see later),
-% we only have to change a couple of angles in the circuit to move between 
-% different Pauli channels and not completely reconstruct the circuit. 
-% And as we will see, sometimes only changing
-% one angle in the circuit will be enough.}\\
-% $\;$\\
-% 
-% \tbnote{Sección que agregué:}\\
-% }}}
-\subsection{Simulation of a two-qubit Pauli channel} \label{2qbit-s} % {{{
-% {\color{green}
-For the general case of a two-qubit Pauli channel,
-the circuit of \fref{Fig1} requires two main
+%DIF >  {\color{green} This disadvantage comes from the fact
+%DIF >  that the circuit is applicable to any Pauli channel, which that means that sometimes
+%DIF >  it is not the most straightforward algorithm to simulate a Pauli channel.
+%DIF >  However, the main advantages are that the algorithm is simple, and if we want 
+%DIF >  to simulate many Pauli channels (for example,
+%DIF >  for simulating a Pauli dynamical map as we will see later),
+%DIF >  we only have to change a couple of angles in the circuit to move between 
+%DIF >  different Pauli channels and not completely reconstruct the circuit. 
+%DIF >  And as we will see, sometimes only changing
+%DIF >  one angle in the circuit will be enough.}\\
+%DIF >  $\;$\\
+%DIF >  
+%DIF >  \tbnote{Sección que agregué:}\\
+%DIF >  }}}
+\subsection{\DIFadd{Simulation of a two-qubit Pauli channel}} \label{2qbit} %DIF >  {{{
+%DIF >  {\color{green}
+\DIFadd{For the general case of a two-qubit }\DIFaddend Pauli channel,
+the \DIFdelbegin \DIFdel{algorithm employs numerous quantum gates even in such scenarios. 
+}\DIFdelend \DIFaddbegin \DIFadd{circuit of \fref{Fig1} requires two main
 qubits and four ancilla qubits.
-% , on which it would be necessary to create the state $\sum_{\vec{\gamma}}
-% b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
-However, the quantum computer which we are using has only 5 qubits \cpnote{cuantos qubits 
-tiene esa compu?} \tbnote{5}.
+%DIF >  , on which it would be necessary to create the state $\sum_{\vec{\gamma}}
+%DIF >  b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
+However, the quantum computer which we are using has only 5 qubits }\cpnote{cuantos qubits 
+tiene esa compu?} \tbnote{5}\DIFadd{.
 We can still simulate a two qubit Pauli channel that applies at most $8$ Pauli operations 
-using the three ancilla qubits. \cpnote{that applies at most tantos operaciones 
+using the three ancilla qubits. }\cpnote{that applies at most tantos operaciones 
 de Pauli} \tbnote{Ya.}
-For example, consider the following two-qubit dephasing channel:
-\begin{align}
-\varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  \dfrac{p}{3}(\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  \dfrac{p}{3}(\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
+\DIFadd{For example, consider the following two-qubit dephasing channel:
+}\begin{align}
+\DIFadd{\varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  \dfrac{p}{3}(\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  \dfrac{p}{3}(\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
 \label{2qbit-c}
-\end{align}
-where $p \in [0,1]$ is a parameter that defines the channel. 
+}\end{align}
+\DIFadd{where $p \in [0,1]$ is a parameter that defines the channel. 
 Since this channel has four Pauli operations, 
 only $2$ ancilla qubits will be necessary, and thus it can be implemented
 using the circuit of \fref{2qbit}b.
+}\DIFaddend 
 
-\begin{figure} % {{{
+\DIFaddbegin \begin{figure} %DIF >  {{{
 \centering
 \includegraphics{images/qbit-im.pdf}
-\caption{{\bf Circuit for 2-qubit dephasing channel.}  Circuit implementation
+\caption{{\bf \DIFaddFL{Circuit for 2-qubit dephasing channel.}}  \DIFaddFL{Circuit implementation
 for the 2-qubit dephasing channel of \eref{2qbit-c} and fidelity results of its implementation using ibmq-lima.
  The circuit is shown in figure a), where the  state on the two
 ancilla qubits can be constructed just as it was done for \fref{Fig2}. 
 In figure b) we show the results of fidelities after implementing
 this circuit on ibmq-lima for $25$ values of $p$ between $0$ and $1$, 
 each of which is simulated $10$ times.
-\cpnote{Este caption no está copleto. Falta describir la a y luego la b. De hecho 
+}\cpnote{Este caption no está copleto. Falta describir la a y luego la b. De hecho 
 dado que primero proponemos el circuito y luego vemos la fidelidad, propngo 
 poenr el circuito arriba y la fidelidad abajo. TAbien describir ambas cosas.} \tbnote{ya}}
 \label{2qbit}
-\end{figure} % }}}
+\end{figure} \DIFaddend % }}}
+\DIFaddbegin 
 
-Just as for the one-qubit Pauli channels, this 
+\DIFadd{Just as for the one-qubit Pauli channels, this 
 channel was implemented on IBM's ibmq-lima  quantum computer. We obtained the Choi 
 matrix by doing quantum process tomography on
 the main qubits. Then, we calculated the diamond fidelity for different values of $p$ and
 obtained the results shown in \fref{2qbit}a. 
 As can be seen in the figure, the fidelity doesn't vary much as we change the value of $p$.
 The average fidelity over all values of $p$ is $0.758$ and it is biggest when $p=0$,
-corresponding to the identity channel, where it reaches a fidelity of $0.874$. \cpnote{Una descripcion mas precisa de
+corresponding to the identity channel, where it reaches a fidelity of $0.874$. }\cpnote{Una descripcion mas precisa de
 estos valores por favor.} \tbnote{Ya}
-% }
+%DIF >  }
 
 
-% }}}
-% }}}
+\DIFaddend % }}}
+%DIF >  }}}
 \section{One parameter circuits} % {{{
 \label{sec: 1PR Circuits}
 
-% {\color{green}
-% Finally, we move to the main goal of this article, which is 
-% simulating Pauli dynamical maps.
-% 
-Finally, we consider the simulation of 
+\DIFdelbegin \DIFdel{Just }\DIFdelend %DIF >  {\color{green}
+%DIF >  Finally, we move to the main goal of this article, which is 
+%DIF >  simulating Pauli dynamical maps.
+%DIF >  
+\DIFaddbegin \DIFadd{Finally, we consider the simulation of 
 Pauli dynamical maps.
-% 
+%DIF >  
 This is pretty much already solved, since
-just as Pauli channels, Pauli dynamical maps can be implemented using the circuit
+just }\DIFaddend as Pauli channels, Pauli dynamical maps can be implemented using the circuit
 of \fref{Fig1}. However, there is one difference: 
 the state to be created on the ancilla qubits now 
 depends on a parameter $p$, and it is represented by the expression:
@@ -873,12 +1013,13 @@ circuit that includes only one gate dependent on a parameter $p$.
 Moreover, the parametrized gate is a one-qubit rotation about any axis,
 whether controlled or not.
 \end{definition}
-% \revnote{This definition is vague - given the vagueness of the term "quantum circuit".
-%  Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit.}
-%  \tbnote{Agregar lo siguiente a la definición:} 
-%  
-Therefore, a 1PR circuit implements a unitary operator $U(p)$ on some number $N$ of qubits,
+%DIF >  \revnote{This definition is vague - given the vagueness of the term "quantum circuit".
+%DIF >   Here what you are defining is just a unitary operation acting on a N-qubit Hilbert space, that is parameter dependent only locally on one specific qubit.}
+%DIF >   \tbnote{Agregar lo siguiente a la definición:} 
+%DIF >   
+\DIFaddbegin \DIFadd{Therefore, a 1PR circuit implements a unitary operator $U(p)$ on some number $N$ of qubits,
 such that $U$ depends on the parameter $p$ only locally on one specific qubit.
+}\DIFaddend 
 
 Based on this definition, we aim to determine which curves of 
 states can be generated using 1PR circuits. 
@@ -889,8 +1030,9 @@ is applied to the last qubit.
 
 \begin{figure} % {{{
 \centering
-\includegraphics{OPR-circuit.pdf}
-\caption{\textbf{General form of a 1PR circuit}.
+%DIF < \includegraphics{OPR-circuit.pdf}
+\DIFaddbeginFL \includegraphics{OPR-circuit.pdf}
+\DIFaddendFL \caption{\textbf{General form of a 1PR circuit}.
 Any 1PR circuit can be transformed into this form,
 where the rotation on the last qubit
 can be controlled or not by any of the other qubits.
@@ -907,7 +1049,7 @@ into the form shown in \fref{Fig4}.
 \textbf{Proof:} 
 First, we observe that according to the
 definition, a 1PR circuit always consists of an operation $B$ followed 
-by the parametrized rotation on a specific qubit and then another operation $A$, 
+by the parametrized rotation \DIFaddbegin \DIFadd{on a specific qubit }\DIFaddend and then another operation $A$, 
 where $A$ and $B$ are not parametrized.
 
 Next, we note that it is not necessary to consider rotations about an arbitrary axis,
@@ -926,7 +1068,7 @@ Since the angles $\theta$ and $\phi$ do not depend on the parameter $p$,
 any 1PR circuit can be transformed into a circuit where the parametrized
  rotation is around $\sigma_3$ instead of an arbitrary axis. 
 Moreover, without loss of generality, we can choose the last qubit as the
-target qubit for the rotation, since if it is not, we could use
+target qubit for the rotation, since if it \DIFdelbegin \DIFdel{weren't}\DIFdelend \DIFaddbegin \DIFadd{is not}\DIFaddend , we could use
 swap gates to move the rotation
 to the first qubit without adding gates
 that depend on $p$. 
@@ -945,45 +1087,50 @@ This result is stated in the following theorem.
 \begin{theorem}
 \label{theorem2}
 Consider a 1PR circuit of $N$ qubits parametrized by $p$
-and denote by $U(p)$ the operator it implements on this system. 
+and denote by \DIFdelbegin \DIFdel{$U$ }\DIFdelend \DIFaddbegin \DIFadd{$U(p)$ }\DIFaddend the operator it implements on this system. 
 Then, for every $j \in \{0, 1, \cdots, 2^N-1\}$, 
 we have that:
-\begin{align}
-U(p)|j\rangle = e^{is(p)} |a^j\rangle + e^{-is(p)} |b^j\rangle + |c^j\rangle
+\DIFdelbegin \begin{align*}
+\DIFdel{U|j\rangle = e^{is(p)} |a^j\rangle + e^{-is(p)} |b^j\rangle + |c^j\rangle
+}\end{align*}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \begin{align}
+\DIFadd{U(p)|j\rangle = e^{is(p)} |a^j\rangle + e^{-is(p)} |b^j\rangle + |c^j\rangle
 \label{eq:uj}
-\end{align}
+}\end{align}\DIFaddend 
 with $s(p)$ some function of $p$,  $|a^j\rangle ,|b^j\rangle, |c^j\rangle$ orthogonal states 
 and $\langle a^j| a^j\rangle + \langle b^j| b^j\rangle + \langle
-c^j|c^j \rangle = 1$. Here $|j\rangle$ represents an element of the N-qubit  computational basis.
-\end{theorem}
+c^j|c^j \rangle = 1$. \DIFaddbegin \DIFadd{Here $|j\rangle$ represents an element of the N-qubit  computational basis.
+}\DIFaddend \end{theorem}
 \textbf{Proof:}  
-% \revnote{again, this is not a conclusion from theorem 1. This is literally
-% Definition 1. Also, use the proper notation here - make A and B operators
-% living on an dim N Hilbert state, and R explixitly dependent on s and operating
-% on qubit N. Then the matrix representation of the operators is a $2^n \times
-% 2^n$ matrix which is applied to the state j.... The explanation in words in not
-% sufficient.} \tbnote{Cambié la siguiente oración por el párrafo en verde}
-% We can conclude from theorem 1 that $U=ARB$,
-% where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
-% applied to the last qubit and controlled by some of the other ones. 
-% {\color{green} 
-As before, from the definition of a 1PR circuit, we know that $U(p)$ can be
+\DIFdelbegin \DIFdel{We can conclude from theorem 1 that $U=ARB$, where $A$ }\DIFdelend %DIF >  \revnote{again, this is not a conclusion from theorem 1. This is literally
+%DIF >  Definition 1. Also, use the proper notation here - make A and B operators
+%DIF >  living on an dim N Hilbert state, and R explixitly dependent on s and operating
+%DIF >  on qubit N. Then the matrix representation of the operators is a $2^n \times
+%DIF >  2^n$ matrix which is applied to the state j.... The explanation in words in not
+%DIF >  sufficient.} \tbnote{Cambié la siguiente oración por el párrafo en verde}
+%DIF >  We can conclude from theorem 1 that $U=ARB$,
+%DIF >  where $A$ and $B$ are unitary matrices and $R$ is a $\sigma_3$ rotation of angle $2s$
+%DIF >  applied to the last qubit and controlled by some of the other ones. 
+%DIF >  {\color{green} 
+\DIFaddbegin \DIFadd{As before, from the definition of a 1PR circuit, we know that $U(p)$ can be
 decomposed as $ARB$, where $A,B$ are unitary operators acting on the $N$-qubit
-system and $R$ is a rotation applied to one qubit.  From theorem 1, we conclude
-that $R$ can be taken in general as a $\sigma_3$ rotation of angle $2s(p)$
-applied to the last qubit and controlled by some of the other ones.  To prove
+system }\DIFaddend and \DIFdelbegin \DIFdel{$B$ are unitary matrices and }\DIFdelend $R$ is a \DIFaddbegin \DIFadd{rotation applied to one qubit.  From theorem 1, we conclude
+that $R$ can be taken in general as a }\DIFaddend $\sigma_3$ rotation of angle \DIFdelbegin \DIFdel{$2s$
+}\DIFdelend \DIFaddbegin \DIFadd{$2s(p)$
+}\DIFaddend applied to the last qubit and controlled by some of the other ones.  \DIFaddbegin \DIFadd{To prove
 this theorem, we will apply $U(p)$ to $|j\rangle$ by first applying $B$, then
 $R_{\sigma_3}(2s(p))$ and finally $A$, with the goal of getting to
 \eref{eq:uj}. 
-% }
+%DIF >  }
+}\DIFaddend 
 
 First, applying $B$ to $|j\rangle$ results in $B|j\rangle = B_{0,j} |0\rangle + B_{1,j} |1 \rangle + \cdots + B_{2^n-1,j}|2^n-1\rangle$,
 with $B_{i,j}$ the entries of matrix $B$.
-This can be rewritten by separating the last qubit from the other $N-1$:
+This can be rewritten by separating \DIFaddbegin \DIFadd{the }\DIFaddend last qubit from the other $N-1$:
 \begin{equation}
 B|j\rangle = \sum_{k=0}^{2^{N-1}-1} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{equation}
-After the operator $B$, the circuit applies the  controlled rotation $R_{\sigma_3}(2s(p))$.
+After the operator $B$, the circuit applies the  controlled rotation \DIFdelbegin \DIFdel{$R$}\DIFdelend \DIFaddbegin \DIFadd{$R_{\sigma_3}(2s(p))$}\DIFaddend .
 To simplify the analysis, we separate the states of
 the first $N-1$ qubits into those that fulfill the control conditions of the rotation
 (which we denote as the set $\mathcal{C}$)
@@ -998,7 +1145,7 @@ B|j\rangle =
 
 Then, the rotation $R$ will only affect the states on the first sum (since they fulfill the control conditions)
 and not the others. Therefore,  
-using that a $R_{\sigma_3}(2s(p))$ rotation acts by adding a phase $e^{-is(p)}$ to $|0\rangle$
+\DIFdelbegin \DIFdel{remembering that a $\sigma_3$ }\DIFdelend \DIFaddbegin \DIFadd{using that a $R_{\sigma_3}(2s(p))$ }\DIFaddend rotation acts by adding a phase $e^{-is(p)}$ to $|0\rangle$
 and a phase $e^{is(p)}$ to $|1\rangle$, we have that,
 % \begin{small}
 % \begin{eqnarray}
@@ -1008,16 +1155,16 @@ and a phase $e^{is(p)}$ to $|1\rangle$, we have that,
 % \end{eqnarray}
 % \end{small}
 % test
-\begin{small}
-\begin{align}
-R_{\sigma_3}(2s(p))B|j\rangle& = e^{-is(p)} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is(p)} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1\rangle 
+\DIFaddbegin \begin{small}
+\DIFaddend \begin{align}
+\DIFdelbegin \DIFdel{RB}\DIFdelend \DIFaddbegin \DIFadd{R_{\sigma_3}(2s(p))B}\DIFaddend |j\rangle& = e^{-is(p)} \sum_{k \in \mathcal{C}} B_{2k,j} |k\rangle |0\rangle + e^{is(p)} \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |1\rangle 
 + \sum_{k \not\in \mathcal{C}} \left( B_{2k,j} |k\rangle|0\rangle  + B_{2k+1,j} |k \rangle |1\rangle  \right) \nonumber \\
 & = e^{-is(p)} |\tilde{b}^{j}\rangle + e^{is(p)} |\tilde{a}^j\rangle + |\tilde{c}^j\rangle,
 \end{align}
-\end{small}
-where we defined
+\DIFaddbegin \end{small}
+\DIFaddend where we defined
 \begin{align*}
-|\tilde{a}^j \rangle &= \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|1\rangle,\\
+|\tilde{a}^j \rangle &= \sum_{k \in \mathcal{C}} B_{2k,j}|k\rangle|\DIFdelbegin \DIFdel{0}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle,\\
 |\tilde{b}^j\rangle &= \sum_{k \in \mathcal{C}} B_{2k+1,j} |k\rangle |0 \rangle,\\
 |\tilde{c}^j\rangle &= \sum_{k \not\in \mathcal{C}}\left( B_{2k,j} |k\rangle|0\rangle+ B_{2k+1,j} |k \rangle |1\rangle  \right).
 \end{align*}
@@ -1029,14 +1176,17 @@ which is unitary.
 
 Finally, after having applied the rotation, the circuit applies gate $A$, 
 so that the result is given by:
-% \begin{eqnarray*}
-\begin{align}
-U|j\rangle &= AR_{\sigma_3}(2s(p)) B|j\rangle \nonumber \\
-           &= e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle 
-              + A |\tilde{c}^j\rangle \nonumber \\
-           &= e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
-\end{align}
-% \end{eqnarray*}
+\DIFdelbegin \begin{eqnarray*}
+\DIFdel{U|j\rangle = ARB|j\rangle = e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle + A |\tilde{c}^j\rangle = e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
+}\end{eqnarray*}%DIFAUXCMD
+\DIFdelend %DIF >  \begin{eqnarray*}
+\DIFaddbegin \begin{align}
+\DIFadd{U|j\rangle }&\DIFadd{= AR_{\sigma_3}(2s(p)) B|j\rangle \nonumber }\\
+           &\DIFadd{= e^{-is(p)} A |\tilde{a}^j\rangle + e^{is(p)} A |\tilde{b}^j\rangle 
+              + A |\tilde{c}^j\rangle \nonumber }\\
+           &\DIFadd{= e^{-is(p)} |a^j\rangle + e^{is(p)} |b^j\rangle + |c^j\rangle,
+}\end{align}\DIFaddend 
+%DIF >  \end{eqnarray*}
 where $|a^j\rangle = A |\tilde{a}^j\rangle, |b^j\rangle = A |\tilde{b}^j\rangle, |c^j\rangle = A |\tilde{c}^j\rangle$ are still orthogonal
 states that satisfy $\langle a| a\rangle + \langle b| b\rangle + \langle c| c\rangle = 1$ because $A$ is unitary. $\blacksquare$  \\
  $\;$ \\
@@ -1062,39 +1212,52 @@ states described by \eref{eq:curve-states}.
 One approach to achieve this is by utilizing the circuit 
 depicted in \fref{Fig4}, 
 with the parametrized rotation $R$ applied to the last qubit controlled by all the 
-other qubits. There is some freedom when choosing
-the operators $A$ and $B$, we only need
+other qubits. \DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{There is some freedom when choosing
+the }\DIFaddend operators $A$ and $B$\DIFdelbegin \DIFdel{can be defined as follows:
+}\begin{align*}
+&\DIFdel{B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, }\\
+&\DIFdel{A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
+}\end{align*}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{, we only need
 to make sure that:
-\begin{align}
-&B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, \nonumber \\
-&A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
+}\begin{align}
+&\DIFadd{B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N}-1 \rangle + \sqrt{\langle b | b \rangle} |2^{N}-2\rangle + \sqrt{\langle c |c \rangle} |2^N-3\rangle, \nonumber }\\
+&\DIFadd{A|2^N-1 \rangle = \frac{1}{\sqrt{\langle a | a \rangle}} |a\rangle,\; A|2^{N}-2\rangle = \frac{1}{\sqrt{\langle b | b \rangle}}|b\rangle, \; A|2^{N}-3\rangle = \frac{1}{\sqrt{\langle c | c \rangle}}|c\rangle.
 \label{eq:BA}
-\end{align}
-The remaining part of the operators $A$ and $B$ can be chosen
-in any arbitrary manner as long as they are unitary. 
-Examples of these matrices are shown for particular dynamical maps in the next section.
-%Then, by following the calculations of applying 
-%$A R_{\sigma_3}(2s(p)) B$ to $|0\rangle$,
-%it can be shown that the curve of states created is that described in \eref{eq:curve-states}.
+}\end{align}\DIFaddend 
+The remaining part of the operators $A$ and $B$ can be \DIFdelbegin \DIFdel{defined
+}\DIFdelend \DIFaddbegin \DIFadd{chosen
+}\DIFaddend in any arbitrary manner as long as they are unitary. 
+\DIFdelbegin \DIFdel{By starting from the initial state $|0\rangle$ and 
+applying the circuit shown in \fref{Fig4}, straightforward calculations 
+lead us to obtain the resulting }\DIFdelend \DIFaddbegin \DIFadd{Examples of these matrices are shown for particular dynamical maps in the next section.
+%DIF > Then, by following the calculations of applying 
+%DIF > $A R_{\sigma_3}(2s(p)) B$ to $|0\rangle$,
+%DIF > it can be shown that the curve of states created is that described in \eref{eq:curve-states}.
+}
 
-To see that $A R_{\sigma_3}(s(p)) B |0\rangle$ in fact creates
-the curve of states described in \eref{eq:curve-states}, we can rewrite the expression of $B|0\rangle$ by 
+\DIFadd{To see that $A R_{\sigma_3}(s(p)) B |0\rangle$ in fact creates
+the }\DIFaddend curve of states described in \eref{eq:curve-states}\DIFdelbegin \DIFdel{.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{To see it}\DIFdelend , we can rewrite the expression of $B|0\rangle$ by 
 separating the first $N-1$ qubits from the last one:
 $$B|0\rangle = \sqrt{\langle a | a \rangle} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.$$
-Since the parametrized rotation $R_{\sigma_3}(2s(p))$ is controlled by all the first $N-1$ qubits, it only applies to the first two terms of $B|0\rangle$. As a result, we obtain: 
+Since the parametrized rotation \DIFdelbegin \DIFdel{$R$ }\DIFdelend \DIFaddbegin \DIFadd{$R_{\sigma_3}(2s(p))$ }\DIFaddend is controlled by all the first $N-1$ qubits, it only applies to the first two terms of $B|0\rangle$. As a result, we obtain: 
 
 $$
-R_{\sigma_3}(2s(p))B|0\rangle =\sqrt{\langle a | a \rangle} e^{is(p)} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} e^{-is(p)} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.
+\DIFdelbegin \DIFdel{RB}\DIFdelend \DIFaddbegin \DIFadd{R_{\sigma_3}(2s(p))B}\DIFaddend |0\rangle =\sqrt{\langle a | a \rangle} e^{is(p)} |2^{N-1}-1\rangle |1\rangle + \sqrt{\langle b | b \rangle} e^{-is(p)} |2^{N-1}-1\rangle |0\rangle + \sqrt{\langle c | c \rangle} |2^{N-1}-2\rangle |1\rangle.
 $$
 
-Finally, applying the  operator $A$ to this state yields: 
-\begin{align*}
-AR_{\sigma_3}(2s(p))B = |c\rangle + e^{is(p)} |a\rangle + e^{-is(p)} |b\rangle.
-\end{align*}
-With this, we prove that any curve of states as that in \eref{eq:curve-states} 
+Finally, applying the  \DIFdelbegin \DIFdel{defined }\DIFdelend operator $A$ to this state yields\DIFdelbegin \DIFdel{the desired result}\DIFdelend \DIFaddbegin \DIFadd{: 
+}\begin{align*}
+\DIFadd{AR_{\sigma_3}(2s(p))B = |c\rangle + e^{is(p)} |a\rangle + e^{-is(p)} |b\rangle.
+}\end{align*}
+\DIFadd{With this, we prove that any curve of states as that in \eref{eq:curve-states} 
 can be constructed by the circuit in  \fref{Fig4} with the parametrized rotation 
 controlled by all the other qubits 
-by correctly choosing matrices $A$ and $B$.
+by correctly choosing matrices $A$ and $B$}\DIFaddend .
 
  
 % }}}
@@ -1130,8 +1293,9 @@ that are reachable by Lindbladian dynamics and those that are not~\cite{Davalos}
 
 \begin{figure} % {{{
 \centering
-\includegraphics{fig-curves.pdf}
-\caption{{\bf Some Pauli dynamical maps that can be implemented with a 1PR circuit.}
+%DIF < \includegraphics{fig-curves.pdf}
+\DIFaddbeginFL \includegraphics{fig-curves.pdf}
+\DIFaddendFL \caption{{\bf Some Pauli dynamical maps that can be implemented with a 1PR circuit.}
 The curves painted in these tetrahedrons
 represent Pauli dynamical maps that can be implemented with 1PR circuits.
 (a) shows the dynamical maps mentioned in the main 
@@ -1146,48 +1310,53 @@ circuits.}
 
 \begin{itemize}
 \item \textbf{Depolarizing:} This dynamical map is given by
-\begin{align}
-\varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
+\DIFdelbegin \begin{align*}
+\DIFdel{\varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
+}\end{align*}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \begin{align}
+\DIFadd{\varepsilon_p(\rho) = (1-3p/4) \rho + (p/4) \sigma_1 \rho \sigma_1 + (p/4) \sigma_2 \rho \sigma_2 + (p/4) \sigma_3 \rho \sigma_3,
 \label{eq:depo}
-\end{align}
+}\end{align}\DIFaddend 
 with $p \in [0,1]$. 
 Therefore, the curve of states $|\beta(p)\rangle$ needed on the ancilla
 qubits is such that ${|\beta_0(p)|}^2= (1-3p/4)$, ${|\beta_1(p)|}^2 =
 {|\beta_2(p)|}^2 = {|\beta_3(p)|}^2 = p/4$.  Then, taking the $\beta_j$ to be
 real, the curve of states can be 
 \begin{align*}
-|\beta(p) \rangle = \sqrt{1-3p/4} |0\rangle + \sqrt{p/4} |1\rangle + \sqrt{p/4} |2 \rangle  + \sqrt{p/4} |3\rangle.
+|\beta(p) \rangle = \sqrt{1-3p/4} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \sqrt{p/4} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle + \sqrt{p/4} |\DIFdelbegin \DIFdel{10 }\DIFdelend \DIFaddbegin \DIFadd{2 }\DIFaddend \rangle  + \sqrt{p/4} |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle.
 \end{align*}
 This state can be rewritten as:
 \begin{align*}
-|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |0\rangle - \dfrac{i}{2\sqrt{3}} |1\rangle 
-      - \dfrac{i}{2\sqrt{3}} |2 \rangle - \dfrac{i}{2\sqrt{3}} |3\rangle \right) \\
-& + e^{-is} \left( \dfrac{1}{2} |0\rangle + \dfrac{i}{2\sqrt{3}} |1\rangle 
-      + \dfrac{i}{2\sqrt{3}} |2\rangle + \dfrac{i}{2\sqrt{3}} |3 \rangle \right) \\
-\equiv &\; e^{is} |a\rangle + e^{-is} |b\rangle
-\end{align*}
+|\beta(p)\rangle =& \; e^{is} \left( \dfrac{1}{2} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle - \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle 
+      - \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{10 }\DIFdelend \DIFaddbegin \DIFadd{2 }\DIFaddend \rangle - \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle \right) \\
+& + e^{-is} \left( \dfrac{1}{2} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle 
+      + \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{10}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend \rangle + \dfrac{i}{2\sqrt{3}} |\DIFdelbegin \DIFdel{11 }\DIFdelend \DIFaddbegin \DIFadd{3 }\DIFaddend \rangle \right) \DIFdelbegin \DIFdel{,
+}\DIFdelend \DIFaddbegin \\
+\DIFadd{\equiv }&\DIFadd{\; e^{is} |a}\rangle \DIFadd{+ e^{-is} |b}\rangle
+\DIFaddend \end{align*}
 with $\sin s = \sqrt{3p/4}$.
 We can see that this curve satisfies the conditions of \eref{eq:conditions-vecs}, meaning that it can be created with a 
 1PR circuit.
-Explicitly, following the discussion after theorem \ref{theorem2},
+\DIFaddbegin \DIFadd{Explicitly, following the discussion after theorem \ref{theorem2},
 we know that this curve of states can be constructed by 
 the circuit of \fref{FigS2q}.
+}\DIFaddend 
 
-\begin{figure} % {{{
+\DIFaddbegin \begin{figure} %DIF >  {{{
 \centering
 \includegraphics{images/estado-2-qbits.pdf}
 \caption{
-{\bf 1PR Circuit for one qubit curve of states.} This is a 1PR circuit for creating a curve of states that satisfies
+{\bf \DIFaddFL{1PR Circuit for one qubit curve of states.}} \DIFaddFL{This is a 1PR circuit for creating a curve of states that satisfies
 the conditions of theorem \ref{theorem2}. 
 given the curve of states, operations $A$ and $B$ can be defined as in \eref{eq:BA}.
-}
+}}
 \label{FigS2q} 
-\end{figure} % }}}
+\end{figure} %DIF >  }}}
 
-The circuit requires defining $A$ and $B$ as in  \eref{eq:BA}, and for the particular
+\DIFadd{The circuit requires defining $A$ and $B$ as in  \eref{eq:BA}, and for the particular
 vectors $|a\rangle, |b\rangle, |c \rangle$ of this dynamical map, we have that
-\begin{align*}
-A = \begin{pmatrix}
+}\begin{align*}
+\DIFadd{A = \begin{pmatrix}
 0 & 0 & 1/\sqrt{2} & 1/\sqrt{2} \\
 1/\sqrt{6} & -1/\sqrt{2} & i /\sqrt{6} & -i /\sqrt{6} \\
 1/\sqrt{6}  & 1/\sqrt{2} & i/\sqrt{6} & -i/\sqrt{6} \\
@@ -1198,37 +1367,47 @@ A = \begin{pmatrix}
 1/\sqrt{2} & -1/\sqrt{2} & 0 & 0 \\
 1/\sqrt{2} & 1/\sqrt{2} & 0 & 0 
 \end{pmatrix},
-\end{align*}
-where, as mentioned before, the first column of $A$ and the
+}\end{align*}
+\DIFadd{where, as mentioned before, the first column of $A$ and the
 last three of $B$ can be chosen arbitrarily as long as the resultant matrices are unitary. 
 We ran this circuit in IBM's quantum computer ibmq-lima for $25$ different values of $p$ between $0$ and $1$,
 with $20$ repetitions for each value of $p$.
 The diamond fidelity was calculated in each case and is shown in \fref{fid}.
+}
 
-\item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
+\DIFaddend \item \textbf{Parabolic dynamical map:} We define the parabolic dynamical map as:
 \begin{eqnarray}
-\epsilon(\rho) =  {(1-p)}^2  \rho + (p-p^2) \sigma_1 \rho \sigma_1 + (p-p^2) \sigma_2 \rho \sigma_2 + p^2 \sigma_3 \rho \sigma_3,
+\epsilon(\rho) =  \DIFdelbegin %DIFDELCMD < \dfrac{1}{4} %%%
+\DIFdelend {(1-p)}^2  \rho + \DIFdelbegin %DIFDELCMD < \dfrac{1}{4} %%%
+\DIFdelend (\DIFdelbegin \DIFdel{1-p}\DIFdelend \DIFaddbegin \DIFadd{p-p}\DIFaddend ^2) \sigma_1 \rho \sigma_1 + \DIFdelbegin %DIFDELCMD < \dfrac{1}{4} %%%
+\DIFdelend (\DIFdelbegin \DIFdel{1-p}\DIFdelend \DIFaddbegin \DIFadd{p-p}\DIFaddend ^2) \sigma_2 \rho \sigma_2 + \DIFdelbegin %DIFDELCMD < \dfrac{1}{4} {%%%
+\DIFdel{(1+}\DIFdelend p\DIFdelbegin \DIFdel{)}%DIFDELCMD < }%%%
+\DIFdelend ^2 \sigma_3 \rho \sigma_3,
 \label{eq:parab}
 \end{eqnarray}
-with $p \in [0,1]$. 
+with \DIFdelbegin \DIFdel{$p \in [-1,1]$}\DIFdelend \DIFaddbegin \DIFadd{$p \in [0,1]$}\DIFaddend . 
 If we take the $\beta_j$ to be real,
 the curve of states needed on the ancilla qubits can be:
 \begin{eqnarray}
-|\beta(p)\rangle =  (1-p) |0\rangle + \sqrt{p-p^2} |1\rangle +  \sqrt{p-p^2} |2\rangle + p |3\rangle.
+|\beta(p)\rangle =  \DIFdelbegin %DIFDELCMD < \dfrac{1}{2} %%%
+\DIFdelend (1-p) |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \DIFdelbegin %DIFDELCMD < \dfrac{1}{2} %%%
+\DIFdel{\sqrt{1-p^2} }\DIFdelend \DIFaddbegin \DIFadd{\sqrt{p-p^2} }\DIFaddend |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle +  \DIFdelbegin %DIFDELCMD < \dfrac{1}{2} %%%
+\DIFdel{\sqrt{1-p^2} }\DIFdelend \DIFaddbegin \DIFadd{\sqrt{p-p^2} }\DIFaddend |\DIFdelbegin \DIFdel{10}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend \rangle + \DIFdelbegin %DIFDELCMD < \dfrac{1}{2}%%%
+\DIFdel{(1+}\DIFdelend p \DIFdelbegin \DIFdel{) }\DIFdelend |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle.
 \end{eqnarray}
 This can be rewritten as
 \begin{align*}
-|\beta(p)\rangle =&\; \left( \dfrac{1}{2}|0\rangle + \dfrac{1}{2} |3\rangle \right) + e^{is} \left( \dfrac{i}{4}|0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle - \dfrac{i}{4} |3\rangle \right) \\
-& + e^{-is}  \left( \dfrac{-i}{4} |0\rangle + \dfrac{1}{4} |1\rangle + \dfrac{1}{4} |2\rangle + \dfrac{i}{4} |3\rangle \right) \\
-\equiv & \; |c\rangle + e^{is} |a\rangle + e^{-is} |b\rangle,
+|\beta(p)\rangle =&\; \left( \dfrac{1}{2}|\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \dfrac{1}{2} |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle \right) + e^{is} \left( \dfrac{i}{4}|\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \dfrac{1}{4} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle + \dfrac{1}{4} |\DIFdelbegin \DIFdel{10}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend \rangle - \dfrac{i}{4} |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle \right) \\
+& + e^{-is}  \left( \dfrac{-i}{4} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \dfrac{1}{4} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle + \dfrac{1}{4} |\DIFdelbegin \DIFdel{10}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend \rangle + \dfrac{i}{4} |\DIFdelbegin \DIFdel{11}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend \rangle \right) \DIFaddbegin \\
+\DIFadd{\equiv }& \DIFadd{\; |c}\rangle \DIFadd{+ e^{is} |a}\rangle \DIFadd{+ e^{-is} |b}\rangle\DIFaddend ,
 \end{align*}
-with $\sin s = 2p-1$, so that
-this curve fulfills the conditions of  \eref{eq:conditions-vecs}.
-This  means that it can be created with the
+with \DIFdelbegin \DIFdel{$\sin s = p$}\DIFdelend \DIFaddbegin \DIFadd{$\sin s = 2p-1$}\DIFaddend , so that
+this \DIFdelbegin \DIFdel{map }\DIFdelend \DIFaddbegin \DIFadd{curve }\DIFaddend fulfills the conditions of  \eref{eq:conditions-vecs}.
+\DIFaddbegin \DIFadd{This  means that it can be created with the
 1PR circuit of figure \fref{FigS2q}. In this
 case, matrices $A$ and $B$ can be taken to be:
-\begin{align*}
-A = \begin{pmatrix}
+}\begin{align*}
+\DIFadd{A = \begin{pmatrix}
 0 & 1/\sqrt{2} & -i/2 & i/2 \\
 -1/\sqrt{2} & 0 & 1/2 & 1/2 \\
 1/\sqrt{2} & 0 & 1/2 & 1/2 \\
@@ -1240,10 +1419,11 @@ B = \begin{pmatrix}
 1/2 & 0 & 1/\sqrt{2} & 1/2 \\
 1/2 & 0 & - 1/\sqrt{2} & 1/2
 \end{pmatrix},
-\end{align*}
-where again, the first column of $A$ and the last three of $B$ can be chosen arbitrarily. 
+}\end{align*}
+\DIFadd{where again, the first column of $A$ and the last three of $B$ can be chosen arbitrarily. 
 As before, we ran this circuit for $25$ values of $p$ between $0$ and $1$, with $20$ repetitions for each,
 obtaining as a result the fidelities shown in \fref{fid}.
+}\DIFaddend 
 
 
 
@@ -1257,21 +1437,24 @@ for $p \in [0,1]$.
 In particular, if we take the $\beta_j$ to be real,
 we need to create the curve of states:
 \begin{align*}
-|\beta(p)\rangle = \sqrt{1-p} |0\rangle +\sqrt{p} |1\rangle.
+|\beta(p)\rangle = \sqrt{1-p} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle +\sqrt{p} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle.
 \end{align*}
 This can be rewritten as
 \begin{align*}
-|\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |0\rangle - \dfrac{i}{2} |1\rangle \right) + e^{-is} \left( \frac{1}{2} |0\rangle + \frac{i}{2} |1\rangle \right),
+|\beta(p) \rangle = e^{is}  \left(\frac{1}{2} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle - \dfrac{i}{2} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle \right) + e^{-is} \left( \frac{1}{2} |\DIFdelbegin \DIFdel{00}\DIFdelend \DIFaddbegin \DIFadd{0}\DIFaddend \rangle + \frac{i}{2} |\DIFdelbegin \DIFdel{01}\DIFdelend \DIFaddbegin \DIFadd{1}\DIFaddend \rangle \right),
 \end{align*}
 with $\sin s= \sqrt{p}$.
 Therefore, we can see that the curve satisfies the conditions of  \eref{eq:conditions-vecs} 
 and it can be created with a 1PR circuit.
-Matrices $A$ and $B$ can be obtained as for the other
+\DIFdelbegin \DIFdel{Note that in this case we actually only need one ancilla qubit
+since the state $|\beta(p)\rangle$ is only two dimensional.
+}\DIFdelend \DIFaddbegin \DIFadd{Matrices $A$ and $B$ can be obtained as for the other
 dynamical maps and we ran the resulting circuit in ibmq-lima with the same
 specifications as for the other examples,
 with the results are shown in \fref{fid}.
-%Note that in this case we actually only need one ancilla qubit
-%since the state $|\beta(p)\rangle$ is only two dimensional.
+%DIF > Note that in this case we actually only need one ancilla qubit
+%DIF > since the state $|\beta(p)\rangle$ is only two dimensional.
+}\DIFaddend 
 
 The exact same thing can be done
 for the phase flip and bit phase flip dynamical maps by
@@ -1281,41 +1464,42 @@ For example, the bit phase flip map was implemented in \cite{Andrea, Andrea_4qb}
 using an optical arrangement, and  it was indeed done 
 by varying only one angle that depends on the parameter $p$ (the angle of a
 half waveplate). 
-% \revnote{there is literally one parameter in one qubit, of
-% course it depends on one parameter...
-%  how can this be a result?}
-% \tbnote{Aquí la verdad no entiendo del todo qué intenta decir.
-% El resultado es que en ese paper sólo hubo que variar un parámetro
-% para hacer el bit phase flip, que coincde con lo que nosotros 
-% probamos sobre qué canales se pueden hacer con una rotación parametrizada (pues bit phase flip es uno de esos). }
+%DIF >  \revnote{there is literally one parameter in one qubit, of
+%DIF >  course it depends on one parameter...
+%DIF >   how can this be a result?}
+%DIF >  \tbnote{Aquí la verdad no entiendo del todo qué intenta decir.
+%DIF >  El resultado es que en ese paper sólo hubo que variar un parámetro
+%DIF >  para hacer el bit phase flip, que coincde con lo que nosotros 
+%DIF >  probamos sobre qué canales se pueden hacer con una rotación parametrizada (pues bit phase flip es uno de esos). }
 
 
 \end{itemize}
 
-{\color{green}
-\begin{figure} % {{{
+\DIFaddbegin {\color{green}
+\begin{figure} %DIF >  {{{
 \centering
 \includegraphics[width=0.60\textwidth]{images/dynamic-fidelitites.png}
 \caption{
-{\bf Fidelities for dynamical maps.} Results of the fidelities obtained when simulating the three dynamical maps considered (depolarizing, parabolic and bit flip). 
+{\bf \DIFaddFL{Fidelities for dynamical maps.}} \DIFaddFL{Results of the fidelities obtained when simulating the three dynamical maps considered (depolarizing, parabolic and bit flip). 
 The implementation was done on IBM's ibmq-lima quantum computer.
 Furthermore, we can see that the fidelities are comparable to those of \fref{Fig3}, so that using the 1PR circuit
-doesn't considerably affect fidelity.}
+doesn't considerably affect fidelity.}}
 \label{fid} 
-\end{figure} % }}}
+\end{figure} %DIF >  }}}
 }
 
-From the results of \fref{fid}, we can see that just as in figure 
+\DIFadd{From the results of \fref{fid}, we can see that just as in figure 
 \fref{Fig3}, fidelities are high for points close to the depolarizing channel 
 ($p=1$ for depolarizing map, $p=1/2$ for parabolic map) and lower for points close
 to unitary channels ($p=0$ for all maps and $p=1$ for parabolic and bit flip).
-Furthermore, we can see that the actual values of the fidelities are comparable
+}\DIFaddend Furthermore, we can \DIFaddbegin \DIFadd{see that the actual values of the fidelities are comparable
 to those of \fref{Fig3}, which means that
 using the 1PR circuit as opposed to 
 implementing each channel with \fref{Fig2}
 does not considerably affect fidelity.
+}
 
-Furthermore, we can construct other examples of 
+\DIFadd{Furthermore, we can }\DIFaddend construct other examples of 
 Pauli dynamical maps such that they
 can be implemented with a 1PR circuit.
 To do it, we only need to choose the three states $|a\rangle$, $|b\rangle$, $|c\rangle$
@@ -1365,41 +1549,42 @@ Following this procedure for random
 angles and unitary matrices $V$, 
 we plot four Pauli dynamical maps  selected at random
 that can be implemented with a 1PR circuit in \fref{Fig5}. 
-% \revnote{This is
-% interesting, instead of giving only some random examples, I would actually
-% explore more in details the zoology of this class of dynamical maps - if lucky,
-% you would find class of interesting problems that can be simulated effectively
-% in an experimental setup by just accessing one parameter (as the authors say,
-% just with one set of waveplates, for example), }
-% \tbnote{Los mapas que ya mencionamos más a profundidad (depolarizing, phase damping, etc.) son esos ejemplos creo yo.
-% Pues son ejemplos de mapas útiles o conocidos (por lo menos el depolarizing y los bit flip, phase flip, bit phase flip) y que
-% probamos que se pueden hacer con una rotación parametrizada.}
+%DIF >  \revnote{This is
+%DIF >  interesting, instead of giving only some random examples, I would actually
+%DIF >  explore more in details the zoology of this class of dynamical maps - if lucky,
+%DIF >  you would find class of interesting problems that can be simulated effectively
+%DIF >  in an experimental setup by just accessing one parameter (as the authors say,
+%DIF >  just with one set of waveplates, for example), }
+%DIF >  \tbnote{Los mapas que ya mencionamos más a profundidad (depolarizing, phase damping, etc.) son esos ejemplos creo yo.
+%DIF >  Pues son ejemplos de mapas útiles o conocidos (por lo menos el depolarizing y los bit flip, phase flip, bit phase flip) y que
+%DIF >  probamos que se pueden hacer con una rotación parametrizada.}
 
 % }}}
 \section{Conclusion} % {{{
 
-% \revnote{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?}
-% 
-% \tbnote{Añadí el párrafo en verde hablando de eso.}
-% 
+%DIF >  \revnote{I feel that there needs to be a treatment of what happens, at least qualitatively at higher than two dimension, as one of the selling point is the generality of the formalism for N qubit. I expect, however, that the higher the dimension, the less rich is the space that can be parametrised by only one parameter, so.. what is the applicability of the theorem for higher dimensions?}
+%DIF >  
+%DIF >  \tbnote{Añadí el párrafo en verde hablando de eso.}
+%DIF >  
 In this work, we found a quantum algorithm for 
 simulating Pauli channels in $N$-qubit systems and
 generalized it to Pauli dynamical maps
 by using parametrized quantum circuits.
-%  \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise.}.
+%DIF >   \revnote{imprecise} \tbnote{No sé exactamente qué es imprecise.}.
 Furthermore, we implemented single-qubit Pauli channels
 on one of IBM's quantum computers
 and obtained their fidelities. 
+\DIFdelbegin \DIFdel{Finally}\DIFdelend \DIFaddbegin 
 
-Then, when working with Pauli dynamical maps,
-we searched for a way of minimizing the amount of 
-parametric operations in the circuit 
+\DIFadd{Then}\DIFaddend , when working with Pauli dynamical maps,
+we searched for a way of \DIFdelbegin \DIFdel{simplifying the parametrized }\DIFdelend \DIFaddbegin \DIFadd{minimizing the amount of 
+parametric operations in the }\DIFaddend circuit 
 by requiring that only one single-qubit rotation depends on the parameter. 
-% \revnote{This reasoning I miss, simplifying for achieving what goal? } 
-% \tbnote{Le di una reescritura a esa frase.}
+%DIF >  \revnote{This reasoning I miss, simplifying for achieving what goal? } 
+%DIF >  \tbnote{Le di una reescritura a esa frase.}
 In theorem \ref{theorem2} we found the general mathematical conditions for 
 this, applicable to any parametrized circuit.
-\tbnote{Given this condition, we considered the space of Pauli maps that are
+\DIFaddbegin \tbnote{Given this condition, we considered the space of Pauli maps that are
 possible to parametrize with one parameter, and gave some explicit examples for
 a system of one qubit.  As the number of qubits gets bigger, the degrees of
 freedom for choosing a Pauli dynamical map also gets bigger, so we would expect
@@ -1410,19 +1595,23 @@ case, this can be seen by noticing that said dephasing channel
 has the same form as the depolarizing channel for one qubit,
 which we proved to be possible to implement with a 1PR circuit).}
 \cpnote{Reescribe lo anterior sin hacer referencias a ecuaciones o secciones.} \tbnote{Ya}
+\DIFaddend 
 
-In conclusion, this work presents yet another example of the current
+\DIFdelbegin \DIFdel{Therefore}\DIFdelend \DIFaddbegin \DIFadd{In conclusion}\DIFaddend , this work presents yet another example of the current
 exploration into simulating open quantum
 systems in quantum computers,
-and we observe the effect that the error of a quantum computer have
-on these simulations, quantified by the fidelity. 
-% \revnote{There is no quantification of this, it´s not even the focus of the paper} \tbnote{ya cambié la oración}
-On the other hand, the result
+and we observe the \DIFdelbegin \DIFdel{big }\DIFdelend effect that the error of \DIFdelbegin \DIFdel{quantum computers }\DIFdelend \DIFaddbegin \DIFadd{a quantum computer }\DIFaddend have
+on these simulations\DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{, quantified by the fidelity. 
+%DIF >  \revnote{There is no quantification of this, it´s not even the focus of the paper} \tbnote{ya cambié la oración}
+}\DIFaddend On the other hand, the result
 of theorem \ref{theorem2}
 shows what can be done with the condition of using only one
 parametrized rotation and
 can be applied to any quantum algorithm that requires parametrized circuits,
-such as those used for quantum machine learning~\cite{Benedetti}.
+such as those used for quantum machine learning\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
+\cite{Benedetti}}\hskip0pt%DIFAUXCMD
+}\DIFaddend .
 
 % }}}
 %\section{Supporting information} % {{{
@@ -1453,9 +1642,16 @@ such as those used for quantum machine learning~\cite{Benedetti}.
 % \label{S1_Table}
 % {\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
 % }}}
-%
-%\section{Acknowledgments} % {{{
-%Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\section{\DIFdel{Acknowledgments}} %DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIF <  {{{
+\DIFdel{Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
+}\DIFdelend %DIF > 
+%DIF > \section{Acknowledgments} % {{{
+%DIF > Support by projects CONACyT 285754, and UNAM-PAPIIT IG101421 is acknowledged. 
 
 
 
