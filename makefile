@@ -28,8 +28,9 @@ main_gitdiff.pdf ::
 # 	pdflatex cg_paper_gitdiff.tex
 
 
-articulo_plos_gitdiff_master_and_plos_v1.pdf ::
-	make articulo_plos_gitdiff.pdf  gitone=plos_v1 gittwo=master
+main_gitdiff_master_and_plos_v1.pdf ::
+	make main_gitdiff.pdf  gitone=PrimerEnvioPlos gittwo=master
+	mv main_gitdiff.pdf main_gitdiff_master_and_plos_v1.pdf
 
 
 
