@@ -179,7 +179,6 @@ Carlos Pineda\textsuperscript{2*\Yinyang},
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-% \cpnote{Revisar}
 Pauli channels are fundamental in the context of quantum computing as they
 model the simplest kind of noise in quantum devices.  We propose a quantum
 algorithm for simulating
@@ -252,9 +251,8 @@ for a Pauli Channel}, where we also demonstrate its implementation using IBM's
 quantum computers for several single and two-qubit Pauli channels.
 Expanding beyond Pauli channels, we introduce the concept of Pauli
 dynamical maps, defined as a continuous parametrization of multi-qubit Pauli
-channels, and to see how to implement them,
-we study parametrized quantum circuits in chapter \ref{sec: 1PR Circuits}. \cpnote{Me parece que las dos frases anteriores 
-dicen casi lo mismo. Poner una sola frase} \tbnote{Ya}  Furthermore, we contribute to the body of work
+channels. In fact, in order  to implement them, we study parametrized quantum
+circuits in chapter \ref{sec: 1PR Circuits}. Furthermore, we contribute to the body of work
 related to parametrized quantum circuits by establishing a theorem, which  sets
 the mathematical conditions for the transformations that can be done using a
 parametrized circuit with the restriction that only a controlled single-qubit
@@ -760,8 +758,6 @@ only varying a couple of angles in the circuit.
 % different Pauli channels and not completely reconstruct the circuit. 
 In fact, as we will see, sometimes only changing one angle in the circuit will
 be enough to simulate many non-unitary dynamical maps of physical interest. 
-\cpnote{Revisa estas ultimas frases. Reformule lo que pusiste.}
-\tbnote{Ya lo leí, quedó muy bien}
 
 
 % {\color{green} This disadvantage comes from the fact
@@ -785,11 +781,10 @@ the circuit of \fref{Fig1} requires two main
 qubits and four ancilla qubits.
 % , on which it would be necessary to create the state $\sum_{\vec{\gamma}}
 % b_{\vec{\gamma}} |\vec{\gamma}\rangle$.
-However, the quantum computer which we are using has only 5 qubits \cpnote{cuantos qubits 
-tiene esa compu?} \tbnote{5}.
-We can still simulate a two qubit Pauli channel that applies at most $8$ Pauli operations 
-using the three ancilla qubits. \cpnote{that applies at most tantos operaciones 
-de Pauli} \tbnote{Ya.}
+However, the quantum computer which we are using has only 5 qubits.
+We could still simulate a two qubit Pauli channel that applies at most $8$ Pauli operations,
+instead of 16 which would be the most general case,
+using the three ancilla qubits. 
 For example, consider the following two-qubit dephasing channel:
 \begin{align}
 \varepsilon (\rho) = (1-p) \rho + \dfrac{p}{3} (I \otimes \sigma_z) \rho (I \otimes \sigma_z) +  \dfrac{p}{3}(\sigma_z \otimes I) \rho (\sigma_z \otimes I) +  \dfrac{p}{3}(\sigma_z \otimes \sigma_z) \rho (\sigma_z \otimes \sigma_z),
@@ -810,9 +805,7 @@ ancilla qubits can be constructed just as it was done for \fref{Fig2}.
 In figure b) we show the results of fidelities after implementing
 this circuit on ibmq-lima for $25$ values of $p$ between $0$ and $1$, 
 each of which is simulated $10$ times.
-\cpnote{Este caption no está copleto. Falta describir la a y luego la b. De hecho 
-dado que primero proponemos el circuito y luego vemos la fidelidad, propngo 
-poenr el circuito arriba y la fidelidad abajo. TAbien describir ambas cosas.} \tbnote{ya}}
+}
 \label{2qbit}
 \end{figure} % }}}
 
@@ -823,10 +816,7 @@ the main qubits. Then, we calculated the diamond fidelity for different values o
 obtained the results shown in \fref{2qbit}a. 
 As can be seen in the figure, the fidelity doesn't vary much as we change the value of $p$.
 The average fidelity over all values of $p$ is $0.758$ and it is biggest when $p=0$,
-corresponding to the identity channel, where it reaches a fidelity of $0.874$. \cpnote{Una descripcion mas precisa de
-estos valores por favor.} \tbnote{Ya}
-% }
-
+corresponding to the identity channel, where it reaches a fidelity of $0.874$.
 
 % }}}
 % }}}
@@ -1399,7 +1389,7 @@ by requiring that only one single-qubit rotation depends on the parameter.
 % \tbnote{Le di una reescritura a esa frase.}
 In theorem \ref{theorem2} we found the general mathematical conditions for 
 this, applicable to any parametrized circuit.
-\tbnote{Given this condition, we considered the space of Pauli maps that are
+Given this condition, we considered the space of Pauli maps that are
 possible to parametrize with one parameter, and gave some explicit examples for
 a system of one qubit.  As the number of qubits gets bigger, the degrees of
 freedom for choosing a Pauli dynamical map also gets bigger, so we would expect
@@ -1408,8 +1398,7 @@ becomes a relatively smaller part of the whole space of Pauli dynamical maps.
 However, some paradigmatic maps as the dephasing one we studied for 2 qubits will still be possible to do with a 1PR circuit (for this
 case, this can be seen by noticing that said dephasing channel
 has the same form as the depolarizing channel for one qubit,
-which we proved to be possible to implement with a 1PR circuit).}
-\cpnote{Reescribe lo anterior sin hacer referencias a ecuaciones o secciones.} \tbnote{Ya}
+which we proved to be possible to implement with a 1PR circuit).
 
 In conclusion, this work presents yet another example of the current
 exploration into simulating open quantum
