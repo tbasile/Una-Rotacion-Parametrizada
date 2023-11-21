@@ -7,23 +7,19 @@ dynamical maps: algorithm and implementation". We believe that the revised versi
 2. We would like you to amend the Role of Funder statement. It should say 
   "The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript." 
 3. (there was no third point)
-4. Please expand the acronym “CONACyT” as "Consejo Nacional de Ciencia y
-   Tecnología" in the online submission. Notice that the agency changed name recently. 
-5. Regarding Data Availability, we have included the code required to reproduce
-   the results. We have also includes the values of fidelity that are needed to
-   reproduce figures 3, 4 and 8. Both code and data are available in
+4. Please expand the acronym “CONACyT” as "Consejo Nacional de Ciencia y Tecnología" in the online submission. Notice that the agency changed name recently. 
+5. Regarding Data Availability, we have included the code required to reproduce the results. We have also includes the values of fidelity that are needed to reproduce figures 3, 4 and 8. Both code and data are available in
       https://github.com/tbasile/Quantum-simulation-of-Pauli-Channels .
-* We have removed the founding information from the article. We would like to
-  remove it also from the Acknowledgments section. As it stands, the Funding Statement is correct. 
+* We have removed the founding information from the article. We would like to remove it also from the Acknowledgments section. As it stands, the Funding Statement is correct. 
 
 We also include a
 * rebuttal letter, 
 * a marked-up copy that highlights changes, 
 * and an unmarked version of your revised paper. 
 
-Finally, we also included the suggested reference "Experimental Quantum Channel
-Simulation, Phys. Rev. A 95, 042310 (2017)" in the introduction. 
+Finally, we also included the suggested reference "Experimental Quantum Channel Simulation, Phys. Rev. A 95, 042310 (2017)" in the introduction. 
 
+As a sidenote, some figures in the built PDF seem to have been altered during the conversion (1, 2, 5, and 7). 
 
 
 On behalf of the authors,
