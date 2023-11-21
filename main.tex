@@ -16,7 +16,9 @@
 
 % Use nameref to cite supporting information files (see Supporting Information section for more info)
 \usepackage{nameref,hyperref}
+\usepackage{graphicx}
 
+\graphicspath{{images/}}
 % line numbers
 \usepackage[mathlines]{lineno}  \linenumbers \setlength\linenumbersep{3pt}
 
@@ -599,7 +601,6 @@ this is presented in \fref{Fig1}.
 \begin{figure}[htb] % {{{
 \centering
 \includegraphics{circuito_general.pdf}
-% \includegraphics{Fig1.tiff}
 \caption{{\bf Circuit for an $N$-qubit
 Pauli channel.}
 The circuit creates the state $\sum_{\vec{\gamma}} b_{\vec{\gamma}}|\vec{\gamma}\rangle$ 
