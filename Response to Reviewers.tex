@@ -131,16 +131,14 @@
 
 % }}}
 \begin{document}
-
-\section*{Response to Editor:}
+\section*{Response to Editor:} % {{{
 
 We are re-submitting our paper ``Quantum simulation of Pauli channels and dynamical maps: algorithm and implementation''. 
 We believe that the revised version of our paper addresses all
 concerns by the referees in detail and is suitable for publication. 
-
-\section*{Reviewers' General Comments}
-
-\textbf{Reviewer 1:} \\
+% }}}
+\section*{Reviewers' General Comments} % {{{
+\textbf{Reviewer 1:} \\% {{{
 
 \textbf{
 The paper presents two results: 1. A way to simulate
@@ -210,8 +208,8 @@ we show the results of implementing these dynamical circuits on IBM's computer u
 
 
 
-
-\textbf{Reviewer 2:} \\
+% }}}
+\textbf{Reviewer 2:} \\ % {{{
 \textbf{The authors introduced some quantum circuits to implement the action
 of arbitrary Pauli channels using fixed-state ancilla qubits, and
 certain single-parameter Pauli dynamical channels using
@@ -273,8 +271,9 @@ channels such as the two qubit dephasing channel of section 3.3 will still have 
 1PR circuit implementation. 
 
 
-
-\section*{Comments throughout the text}
+% }}}
+% }}}
+\section*{Comments throughout the text} % {{{
 
 Here we present the comments made by the reviewers throughout the text 
 and respond to each of them individually.
@@ -313,10 +312,12 @@ to simulate the quantum operation.
 
 
 
-\item \textbf{ Really confusing notation, I suggest use the much more well known relation using the Levi-Civita tensor.}\\
+\item \textbf{ Really confusing notation, I suggest use the much more well
+known relation using the Levi-Civita tensor.}\\
 
 
-A sentence was added to the text mentioning how we get to the equation by starting with the relation $[\sigma_\alpha,\sigma_\beta] = 2 i
+A sentence was added to the text mentioning how we get to the equation by
+starting with the relation $[\sigma_\alpha,\sigma_\beta] = 2 i
 \epsilon_{\alpha \beta \gamma} \sigma_\gamma$.
 After using this equation on $\sigma_{\alpha} \sigma_{\gamma} \sigma_{\alpha}$, the Levi-Civita tensors are summed out and we are left with:
 \begin{equation*}
@@ -472,6 +473,5 @@ We have a quantification of the fidelity of the implementation of different Paul
 \item \textbf{Citation required here.}
 We added a citation.
 \end{enumerate}
-
-
+% }}}
 \end{document}
